@@ -1,0 +1,222 @@
+[
+  {
+    "id": "black-myth-wukong",
+    "type": "game",
+    "title": "黑神话：悟空",
+    "subtitle": "首款国产3A大作中的千年古建",
+    "icon": "🐵",
+    "color": "#C41E3A",
+    "bgColor": "#FFF5F5",
+    "description": "追随《黑神话：悟空》的游戏足迹，探访那些通过实景扫描技术完美还原的千年古建，感受虚拟与现实交融的震撼。",
+    "fileName": "black-myth-wukong.json"
+  },
+  {
+    "id": "fate-grand-order",
+    "type": "game",
+    "title": "Fate/Grand Order",
+    "subtitle": "人智统合真国SIN中的秦皇遗产",
+    "icon": "🏺",
+    "color": "#1A237E",
+    "bgColor": "#E8EAF6",
+    "description": "穿越到FGO异闻带大秦帝国，探访以秦始皇陵、万里长城、兵马俑为原型的游戏场景，感受千古一帝的遗产在日本国民级手游中的奇幻再现。",
+    "fileName": "fate-grand-order.json"
+  },
+  {
+    "id": "genshin-impact",
+    "type": "game",
+    "title": "原神",
+    "subtitle": "璃月港背后的华夏建筑之美",
+    "icon": "🏮",
+    "color": "#FF7F27",
+    "bgColor": "#FFF3E8",
+    "description": "走进提瓦特大陆的璃月地区，探访那些以中国山水与古建为灵感的壮丽场景，领略米哈游如何将华夏建筑美学融入开放世界。",
+    "fileName": "genshin-impact.json"
+  },
+  {
+    "id": "justice-online",
+    "type": "game",
+    "title": "逆水寒",
+    "subtitle": "大宋汴京城里的亭台楼阁",
+    "icon": "🏯",
+    "color": "#2E7D32",
+    "bgColor": "#E8F5E9",
+    "description": "踏入《逆水寒》中繁华的北宋汴京城，探访游戏里以宋画为蓝本还原的楼阁园林，感受那个文化鼎盛时代的建筑风华。",
+    "fileName": "justice-online.json"
+  },
+  {
+    "id": "sword-of-sixteen",
+    "type": "game",
+    "title": "燕云十六声",
+    "subtitle": "五代十国乱世中的古建遗珍",
+    "icon": "🗡️",
+    "color": "#5D4037",
+    "bgColor": "#EFEBE9",
+    "description": "穿越到《燕云十六声》中五代十国的乱世，探访游戏中以晚唐五代建筑为原型的场景，感受那个动荡年代的建筑艺术与历史沧桑。",
+    "fileName": "sword-of-sixteen.json"
+  },
+  {
+    "id": "butterfly-lovers",
+    "type": "story",
+    "title": "梁祝化蝶",
+    "subtitle": "跟着《梁山伯与祝英台》游中国古建",
+    "icon": "🦋",
+    "color": "#e91e63",
+    "bgColor": "#fce4ec",
+    "description": "从祝英台的家乡到梁山伯的坟墓，追随这段凄美爱情的足迹，探访那些见证千古绝恋的历史古建。",
+    "fileName": "butterfly-lovers.json"
+  },
+  {
+    "id": "cowherd-weaver",
+    "type": "story",
+    "title": "牛郎织女",
+    "subtitle": "跟着《牛郎织女》游中国古建",
+    "icon": "⭐",
+    "color": "#9c27b0",
+    "bgColor": "#f3e5f5",
+    "description": "从银河两岸到七夕鹊桥，追随这段跨越天界的爱情传说，探访那些承载浪漫情缘的历史古建。",
+    "fileName": "cowherd-weaver.json"
+  },
+  {
+    "id": "dream-of-red-chamber",
+    "type": "story",
+    "title": "红楼一梦",
+    "subtitle": "跟着《红楼梦》游中国古建",
+    "icon": "🌸",
+    "color": "#e91e63",
+    "bgColor": "#fce4ec",
+    "description": "从金陵到京都，走进大观园的世界，探访那些承载宝黛情缘的历史古建。",
+    "fileName": "dream-of-red-chamber.json"
+  },
+  {
+    "id": "journey-to-the-west",
+    "type": "story",
+    "title": "西游取经路",
+    "subtitle": "跟着《西游记》游中国古建",
+    "icon": "🐵",
+    "color": "#e67e22",
+    "bgColor": "#fef3e2",
+    "description": "从长安出发，沿着玄奘法师西行取经的路线，探访那些与《西游记》有着千丝万缕联系的历史古建。",
+    "fileName": "journey-to-the-west.json"
+  },
+  {
+    "id": "legend-of-white-snake",
+    "type": "story",
+    "title": "白蛇传奇",
+    "subtitle": "跟着《白蛇传》游中国古建",
+    "icon": "🐍",
+    "color": "#27ae60",
+    "bgColor": "#eafaf1",
+    "description": "从西湖断桥到雷峰塔下，追随白素贞与许仙的爱情足迹，探访那些见证千年情缘的历史古建。",
+    "fileName": "legend-of-white-snake.json"
+  },
+  {
+    "id": "liao-zhai",
+    "type": "story",
+    "title": "聊斋志异",
+    "subtitle": "跟着《聊斋志异》游中国古建",
+    "icon": "🦊",
+    "color": "#34495e",
+    "bgColor": "#f2f4f6",
+    "description": "从柳泉居士的茅屋到狐仙鬼怪的居所，探访那些承载蒲松龄奇思妙想的历史古建。",
+    "fileName": "liao-zhai.json"
+  },
+  {
+    "id": "romance-of-three-kingdoms",
+    "type": "story",
+    "title": "三国风云录",
+    "subtitle": "跟着《三国演义》游中国古建",
+    "icon": "⚔️",
+    "color": "#2980b9",
+    "bgColor": "#eaf2f8",
+    "description": "从桃园结义到三国归晋，追随魏蜀吴的英雄足迹，探访那些见证乱世风云的历史古建。",
+    "fileName": "romance-of-three-kingdoms.json"
+  },
+  {
+    "id": "water-margin",
+    "type": "story",
+    "title": "水浒英雄志",
+    "subtitle": "跟着《水浒传》游中国古建",
+    "icon": "🗡️",
+    "color": "#c0392b",
+    "bgColor": "#fdedec",
+    "description": "从梁山泊到东京汴梁，追随一百单八将的足迹，探访那些见证英雄传奇的历史古建。",
+    "fileName": "water-margin.json"
+  },
+  {
+    "id": "west-chamber",
+    "type": "story",
+    "title": "西厢情缘",
+    "subtitle": "跟着《西厢记》游中国古建",
+    "icon": "💕",
+    "color": "#9b59b6",
+    "bgColor": "#f5eef8",
+    "description": "从普救寺到长亭送别，追随张生与崔莺莺的爱情足迹，探访那些见证才子佳人的历史古建。",
+    "fileName": "west-chamber.json"
+  },
+  {
+    "id": "grand-canal",
+    "type": "route",
+    "title": "隋唐大运河",
+    "subtitle": "贯通南北的千年水脉",
+    "icon": "🌊",
+    "color": "#0277BD",
+    "bgColor": "#E1F5FE",
+    "description": "从洛阳到杭州，沿隋唐大运河探访这条贯通南北的千年水脉，见证中国古代水利工程的伟大成就。",
+    "fileName": "grand-canal.json"
+  },
+  {
+    "id": "shudao-road",
+    "type": "route",
+    "title": "李白蜀道",
+    "subtitle": "诗仙笔下的奇险之路",
+    "icon": "🏔️",
+    "color": "#5D4037",
+    "bgColor": "#EFEBE9",
+    "description": "从长安到成都，沿金牛道探访李白笔下的蜀道，感受\"蜀道之难，难于上青天\"的奇险与壮美。",
+    "fileName": "shudao-road.json"
+  },
+  {
+    "id": "silk-road-land",
+    "type": "route",
+    "title": "陆上丝绸之路",
+    "subtitle": "穿越千年的东西方文明之路",
+    "icon": "🐫",
+    "color": "#D4A574",
+    "bgColor": "#FDF8F3",
+    "description": "从长安出发，经河西走廊，穿越西域，抵达中亚和欧洲，探访这条连接东西方文明的千年古道上的历史遗迹。",
+    "fileName": "silk-road-land.json"
+  },
+  {
+    "id": "silk-road-maritime",
+    "type": "route",
+    "title": "海上丝绸之路",
+    "subtitle": "跨越海洋的文明交流之路",
+    "icon": "⚓",
+    "color": "#1E88E5",
+    "bgColor": "#E3F2FD",
+    "description": "从泉州、广州等港口出发，穿越南海、印度洋，抵达东非和欧洲，探访这条海上文明交流通道上的历史遗迹。",
+    "fileName": "silk-road-maritime.json"
+  },
+  {
+    "id": "tang-tubo-road",
+    "type": "route",
+    "title": "唐蕃古道",
+    "subtitle": "文成公主的和平之路",
+    "icon": "🏔️",
+    "color": "#8B4513",
+    "bgColor": "#FDF5E6",
+    "description": "从长安到拉萨，追随文成公主入藏的足迹，探访这条连接唐蕃两国的和平友好之路上的历史遗迹。",
+    "fileName": "tang-tubo-road.json"
+  },
+  {
+    "id": "xuxiake-journey",
+    "type": "route",
+    "title": "徐霞客游记",
+    "subtitle": "追随游圣足迹，徒步中国山川",
+    "icon": "🥾",
+    "color": "#8B4513",
+    "bgColor": "#FDF5E6",
+    "description": "跟随明代旅行家徐霞客的足迹，从江南水乡到西南边陲，探访那些见证游圣传奇旅程的历史古建与自然奇观。",
+    "fileName": "xuxiake-journey.json"
+  }
+]

@@ -1,0 +1,309 @@
+{
+  "id": "silk-road-land",
+  "title": "陆上丝绸之路",
+  "subtitle": "穿越千年的东西方文明之路",
+  "icon": "🐫",
+  "color": "#D4A574",
+  "bgColor": "#FDF8F3",
+  "description": "从长安出发，经河西走廊，穿越西域，抵达中亚和欧洲，探访这条连接东西方文明的千年古道上的历史遗迹。",
+  "route": {
+    "title": "陆上丝绸之路：东西方文明交流的千年古道",
+    "intro": "\"驼铃古道丝绸路，胡马犹闻唐汉风。\"丝绸之路是古代连接中国与中亚、西亚乃至欧洲的重要商贸通道，也是东西方文明交流的桥梁。\n\n公元前138年，张骞出使西域，开辟了这条横贯欧亚的陆上通道。从长安出发，经河西走廊，出玉门关、阳关，穿越塔克拉玛干沙漠南北两道，翻越帕米尔高原，抵达中亚、西亚，直至地中海沿岸。\n\n两千多年来，丝绸、茶叶、瓷器从这里西运，良马、香料、珠宝从这里东来。佛教、伊斯兰教沿此路传播，各种文化在此交融。如今，让我们一起踏上这条千年古道，探访那些见证辉煌的历史遗迹。",
+    "stops": [
+      {
+        "title": "第一站：长安——丝绸之路的起点",
+        "icon": "🏛️",
+        "content": "西汉建元二年（前139年），张骞从长安出发，开始了他的西域之行。长安，这座当时世界上最大的城市，成为了丝绸之路的东方起点。\n\n【汉长安城遗址】位于西安市未央区，是西汉都城长安的遗址。作为丝绸之路的起点，长安城见证了无数商队出发和归来的繁华景象。遗址中的未央宫、长乐宫等宫殿基址，让人仿佛回到了那个辉煌的时代。\n\n【大雁塔】位于西安市雁塔区，是唐代玄奘法师为保存从印度带回的佛经而主持修建的佛塔。玄奘西行取经，也是沿着丝绸之路往返，他的《大唐西域记》详细记录了沿途的风土人情。\n\n【西安城墙】是中国现存规模最大、保存最完整的古代城垣。明代西安城是在唐长安城皇城基础上扩建而成，延续了长安作为西北重镇的地位。",
+        "buildings": [
+          {
+            "name": "汉长安城遗址",
+            "province": "shaanxi",
+            "district": "shaanxi_xian",
+            "embedded": null
+          },
+          {
+            "name": "大雁塔",
+            "province": "shaanxi",
+            "district": "shaanxi_xian",
+            "embedded": null
+          },
+          {
+            "name": "西安城墙",
+            "province": "shaanxi",
+            "district": "shaanxi_xian",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第二站：天水——丝路重镇",
+        "icon": "🏔️",
+        "content": "从天水出发，丝绸之路进入河西走廊。天水是甘肃东部的重要城市，也是丝绸之路上的重要节点。\n\n【麦积山石窟】位于天水市麦积区，是中国四大石窟之一，以其精美的泥塑艺术闻名于世。石窟始建于后秦时期，历经北魏、西魏、北周、隋、唐、五代、宋、元、明、清等朝代的开凿和修缮，现存洞窟221个，泥塑石雕10632身。\n\n【伏羲庙】位于天水市秦州区，是祭祀中华人文始祖伏羲氏的庙宇。伏羲庙始建于明成化年间，现存建筑为明清时期所建，是中国现存规模最大的伏羲祭祀建筑群。",
+        "buildings": [
+          {
+            "name": "麦积山石窟",
+            "province": "gansu",
+            "district": "gansu_tianshui",
+            "embedded": null
+          },
+          {
+            "name": "伏羲庙",
+            "province": "gansu",
+            "district": "gansu_tianshui",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第三站：兰州——黄河之都",
+        "icon": "🌊",
+        "content": "兰州是甘肃省省会，也是丝绸之路上的重要交通枢纽。黄河穿城而过，形成了独特的城市风貌。\n\n【兰州黄河铁桥】位于兰州市城关区，是黄河上游最早的铁桥，建于1907-1909年，由德国泰来洋行承建。铁桥不仅是重要的交通设施，也是近代中国引进西方工程技术的见证。\n\n【五泉山建筑群】位于兰州市城关区，依山而建，集园林、寺庙和人文景观于一体。五泉山因有甘露、掬月、摸子、惠、蒙五泉而得名，历代均在此修建寺庙楼阁。\n\n【青城古民居】位于兰州市榆中县，是陇上著名水乡，保留了大量明清至民国时期的民居建筑，体现了黄河上游的民间建筑艺术。",
+        "buildings": [
+          {
+            "name": "兰州黄河铁桥",
+            "province": "gansu",
+            "district": "gansu_lanzhou",
+            "embedded": null
+          },
+          {
+            "name": "五泉山建筑群",
+            "province": "gansu",
+            "district": "gansu_lanzhou",
+            "embedded": null
+          },
+          {
+            "name": "青城古民居",
+            "province": "gansu",
+            "district": "gansu_lanzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第四站：武威——河西都会",
+        "icon": "🏺",
+        "content": "武威，古称凉州，是河西走廊的东大门，也是丝绸之路上的重要商埠。这里曾是前凉、后凉、南凉、北凉、大凉五个政权的都城，有\"五凉京华\"之称。\n\n【雷台汉墓】位于武威市凉州区，是东汉晚期的大型砖室墓，因出土了著名的\"马踏飞燕\"铜奔马而闻名于世。铜奔马现为中国旅游标志。\n\n【天梯山石窟】位于武威市凉州区，是中国早期石窟艺术的代表，被誉为\"中国石窟鼻祖\"。石窟始建于北凉时期，对后来的云冈石窟、龙门石窟产生了深远影响。",
+        "buildings": [
+          {
+            "name": "雷台汉墓",
+            "province": "gansu",
+            "district": "gansu_wuwei",
+            "embedded": null
+          },
+          {
+            "name": "天梯山石窟",
+            "province": "gansu",
+            "district": "gansu_wuwei",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第五站：张掖——张国臂掖",
+        "icon": "🌈",
+        "content": "张掖，古称甘州，是河西走廊的中段重镇。\"张国臂掖，以通西域\"，张掖因此得名。这里是丝绸之路南北两道的交汇点，也是佛教东传的重要通道。\n\n【张掖大佛寺】位于张掖市甘州区，寺内供奉着中国最大的室内泥塑卧佛，佛身长34.5米。大佛寺始建于西夏永安元年（1098年），是西夏皇家寺院。",
+        "buildings": [
+          {
+            "name": "张掖大佛寺",
+            "province": "gansu",
+            "district": "gansu_zhangye",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第六站：嘉峪关——天下第一雄关",
+        "icon": "🏰",
+        "content": "嘉峪关是明长城西端的起点，也是丝绸之路上的重要关隘。这里地势险要，建筑雄伟，有\"天下第一雄关\"之称。\n\n【万里长城-嘉峪关】位于嘉峪关市峪泉镇，是明代西北边防最重要的关隘之一。嘉峪关始建于明洪武五年（1372年），由内城、外城、罗城、瓮城、城壕和南北两翼长城组成，全长约60公里。",
+        "buildings": [
+          {
+            "name": "万里长城-嘉峪关",
+            "province": "gansu",
+            "district": "gansu_jiayuguan",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第七站：敦煌——丝路明珠",
+        "icon": "🎨",
+        "content": "敦煌是丝绸之路上最璀璨的一颗明珠，也是东西方文化交流的枢纽。这里保存着世界上最丰富、最精美的佛教艺术宝库。\n\n【莫高窟】位于敦煌市东南25公里的鸣沙山东麓，是世界上现存规模最大、内容最丰富的佛教艺术圣地。现存洞窟735个，壁画4.5万平方米，泥质彩塑2415尊。1987年被列入世界文化遗产名录。\n\n【玉门关及长城烽燧遗址】位于敦煌市西北，是汉代丝绸之路北道的重要关隘。\"春风不度玉门关\"，唐代诗人王之涣的诗句让玉门关名扬千古。\n\n【阳关遗址】位于敦煌市南湖乡，是汉代丝绸之路南道的重要关隘。\"劝君更尽一杯酒，西出阳关无故人\"，王维的诗句让阳关成为千古名地。",
+        "buildings": [
+          {
+            "name": "莫高窟",
+            "province": "gansu",
+            "district": "gansu_jiuquan",
+            "embedded": null
+          },
+          {
+            "name": "玉门关及长城烽燧遗址",
+            "province": "gansu",
+            "district": "gansu_jiuquan",
+            "embedded": null
+          },
+          {
+            "name": "阳关遗址",
+            "province": "gansu",
+            "district": "gansu_jiuquan",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第八站：吐鲁番——火洲风情",
+        "icon": "🍇",
+        "content": "吐鲁番是新疆东大门，也是丝绸之路上的重要驿站。这里素有\"火洲\"之称，夏季气温极高，但同时也是著名的瓜果之乡。\n\n【高昌故城】位于吐鲁番市高昌区，是古代西域重要的政治、经济、文化中心，是丝绸之路上的重镇。高昌城始建于汉代，唐代为西州治所，是高昌回鹘王国的都城，一直沿用到元代，历时1400余年。2014年列入世界文化遗产名录。\n\n【交河故城】位于吐鲁番市高昌区，是世界上最大、最古老、保存最完好的生土建筑城市。交河故城是车师前国的都城，唐代为安西都护府最早的驻地。2014年列入世界文化遗产名录。\n\n【柏孜克里克千佛洞】位于吐鲁番市高昌区火焰山峡谷中，是高昌回鹘时期佛教艺术的杰出代表，现存洞窟83个，壁画内容丰富。",
+        "buildings": [
+          {
+            "name": "高昌故城",
+            "province": "xinjiang",
+            "district": "tulufan",
+            "embedded": null
+          },
+          {
+            "name": "雅尔湖故城",
+            "province": "xinjiang",
+            "district": "tulufan",
+            "embedded": null
+          },
+          {
+            "name": "柏孜克里克千佛洞",
+            "province": "xinjiang",
+            "district": "tulufan",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第九站：喀什——丝路明珠",
+        "icon": "🕌",
+        "content": "喀什是新疆最西端的城市，也是丝绸之路上的重要商埠。这里是中国最西端的边陲城市，也是中亚文化与中国文化交融的地方。\n\n【艾提尕尔清真寺】位于喀什市，是新疆最大的清真寺，也是中亚地区最有影响力的清真寺之一。清真寺始建于明正统年间，后经多次扩建，可容纳数千人同时礼拜。",
+        "buildings": [
+          {
+            "name": "艾提尕尔清真寺",
+            "province": "xinjiang",
+            "district": "kashen",
+            "embedded": null
+          }
+        ]
+      }
+    ],
+    "allBuildings": [
+      {
+        "name": "汉长安城遗址",
+        "province": "shaanxi",
+        "district": "shaanxi_xian",
+        "stop": 1
+      },
+      {
+        "name": "大雁塔",
+        "province": "shaanxi",
+        "district": "shaanxi_xian",
+        "stop": 1
+      },
+      {
+        "name": "西安城墙",
+        "province": "shaanxi",
+        "district": "shaanxi_xian",
+        "stop": 1
+      },
+      {
+        "name": "麦积山石窟",
+        "province": "gansu",
+        "district": "gansu_tianshui",
+        "stop": 2
+      },
+      {
+        "name": "伏羲庙",
+        "province": "gansu",
+        "district": "gansu_tianshui",
+        "stop": 2
+      },
+      {
+        "name": "兰州黄河铁桥",
+        "province": "gansu",
+        "district": "gansu_lanzhou",
+        "stop": 3
+      },
+      {
+        "name": "五泉山建筑群",
+        "province": "gansu",
+        "district": "gansu_lanzhou",
+        "stop": 3
+      },
+      {
+        "name": "青城古民居",
+        "province": "gansu",
+        "district": "gansu_lanzhou",
+        "stop": 3
+      },
+      {
+        "name": "雷台汉墓",
+        "province": "gansu",
+        "district": "gansu_wuwei",
+        "stop": 4
+      },
+      {
+        "name": "天梯山石窟",
+        "province": "gansu",
+        "district": "gansu_wuwei",
+        "stop": 4
+      },
+      {
+        "name": "张掖大佛寺",
+        "province": "gansu",
+        "district": "gansu_zhangye",
+        "stop": 5
+      },
+      {
+        "name": "万里长城-嘉峪关",
+        "province": "gansu",
+        "district": "gansu_jiayuguan",
+        "stop": 6
+      },
+      {
+        "name": "莫高窟",
+        "province": "gansu",
+        "district": "gansu_jiuquan",
+        "stop": 7
+      },
+      {
+        "name": "玉门关及长城烽燧遗址",
+        "province": "gansu",
+        "district": "gansu_jiuquan",
+        "stop": 7
+      },
+      {
+        "name": "阳关遗址",
+        "province": "gansu",
+        "district": "gansu_jiuquan",
+        "stop": 7
+      },
+      {
+        "name": "高昌故城",
+        "province": "xinjiang",
+        "district": "tulufan",
+        "stop": 8
+      },
+      {
+        "name": "雅尔湖故城",
+        "province": "xinjiang",
+        "district": "tulufan",
+        "stop": 8
+      },
+      {
+        "name": "柏孜克里克千佛洞",
+        "province": "xinjiang",
+        "district": "tulufan",
+        "stop": 8
+      },
+      {
+        "name": "艾提尕尔清真寺",
+        "province": "xinjiang",
+        "district": "kashen",
+        "stop": 9
+      }
+    ]
+  },
+  "embeddedBuildings": {}
+}

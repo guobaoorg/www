@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>国保地图 guobao.org 全国重点文物保护单位地理分布查询</title>
+  <meta name="description" content="国保地图（guobao.org）收录全国34个省级行政区5000+处全国重点文物保护单位，涵盖古建筑、古遗址、古墓葬、石窟寺及石刻、近现代重要史迹等。提供国保单位查询、文化遗产地图、历史故事与主题文化路线，开启穿越时空的文化遗产之旅。">
+  <meta name="keywords" content="国保地图,国保单位,全国重点文物保护单位,古建筑,文化遗产,世界遗产,历史建筑,文物,古遗址,古墓葬,石窟寺,文物保护,文化地图">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="guobao.org">
+  <link rel="canonical" href="https://guobao.org/">
+  <meta property="og:title" content="国保地图 - 全国重点文物保护单位查询与文化遗产地图">
+  <meta property="og:description" content="收录34个省级行政区5000+处全国重点文物保护单位，提供国保单位查询、文化地图、历史故事与主题路线。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://guobao.org/">
+  <meta property="og:site_name" content="国保地图">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="国保地图 - 全国重点文物保护单位查询与文化遗产地图">
+  <meta name="twitter:description" content="收录34个省级行政区5000+处全国重点文物保护单位，提供查询、地图、故事与路线。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B2%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
+  <script type="module" src="/js/main.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "国保地图",
+    "alternateName": "guobao.org",
+    "url": "https://guobao.org/",
+    "description": "全国重点文物保护单位查询与文化遗产地图平台，收录34个省级行政区5000+处全国重点文物保护单位，提供国保查询、文化地图、历史故事与主题路线。",
+    "inLanguage": "zh-CN",
+    "about": {
+      "@type": "Thing",
+      "name": "全国重点文物保护单位",
+      "description": "中国国家级文物保护单位名录与文化遗产数据库"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header__inner">
+      <a href="?page=home" class="site-logo" data-nav aria-label="返回首页">
+        <span class="site-logo__icon" aria-hidden="true">🐲</span>
+        <span class="site-logo__text">国保地图</span>
+      </a>
+      <nav class="nav-menu" aria-label="主导航">
+        <a href="?page=home" class="nav-menu__link" data-nav>首页</a>
+        <a href="?page=map" class="nav-menu__link" data-nav>地图</a>
+        <a href="?page=trail" class="nav-menu__link" data-nav>足迹</a>
+        <a href="?page=provinces" class="nav-menu__link" data-nav>省份</a>
+        <a href="?page=tags" class="nav-menu__link" data-nav>标签</a>
+        <a href="?page=search" class="nav-menu__link" data-nav>搜索</a>
+      </nav>
+      <div class="header__actions">
+        <button class="theme-toggle" aria-label="切换主题">🌓</button>
+        <button class="nav-toggle" aria-label="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="breadcrumb" aria-label="面包屑导航">
+    <div class="breadcrumb__inner">
+      <ol id="breadcrumbList">
+        <li class="active">首页</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="mainContent">
+    <div class="container">
+      <div class="loading">
+        <div class="loading__icon" aria-hidden="true">🏛️</div>
+        <div>正在加载...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>©2026 国保地图 guobao.org 开图寻往迹，揽胜阅千秋</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,251 @@
+{
+  "id": "romance-of-three-kingdoms",
+  "title": "三国风云录",
+  "subtitle": "跟着《三国演义》游中国古建",
+  "icon": "⚔️",
+  "color": "#2980b9",
+  "bgColor": "#eaf2f8",
+  "description": "从桃园结义到三国归晋，追随魏蜀吴的英雄足迹，探访那些见证乱世风云的历史古建。",
+  "story": {
+    "title": "三国风云录：从桃园结义到三国归晋的古建传奇",
+    "intro": "东汉末年，天下大乱，群雄并起。刘备、关羽、张飞桃园结义，开启了长达近百年的三国纷争。从成都的武侯祠到洛阳的关林，从荆州古城到白帝城托孤，每一处古建都承载着那段波澜壮阔的历史。\n\n让我们跟随曹操、刘备、孙权的足迹，探访那些见证三国风云的历史古建。",
+    "chapters": [
+      {
+        "title": "第一章：桃园结义——涿郡的英雄起点",
+        "icon": "🍑",
+        "content": "东汉末年，涿郡（今河北涿州）的桃园中，刘备、关羽、张飞三人结为兄弟，立誓\"不求同年同月同日生，但求同年同月同日死\"。这个简单的仪式，开启了三国时代最传奇的故事。\n\n虽然涿州没有直接相关的古建筑，但我们可以从附近的建筑中感受到那个时代的气息。【晋祠】位于太原市，始建于西周，是为纪念晋国开国诸侯唐叔虞而建。晋祠的古老与庄严，让人联想到三国英雄们的豪情壮志。\n\n【平遥城墙】位于晋中市，始建于西周，现存城墙为明代所建。这座城墙见证了数千年的历史变迁，也让人联想到三国时期的烽火连天。",
+        "buildings": [
+          {
+            "name": "晋祠",
+            "province": "shanxi",
+            "district": "jinyuan"
+          },
+          {
+            "name": "平遥城墙",
+            "province": "shanxi",
+            "district": "pingyao"
+          }
+        ]
+      },
+      {
+        "title": "第二章：赤壁烽火——长江上的决定性战役",
+        "icon": "🔥",
+        "content": "建安十三年（208年），曹操率领八十万大军南下，意图一统天下。孙权和刘备联军在赤壁（今湖北赤壁市）以火攻大破曹军，奠定了三国鼎立的基础。\n\n【赤壁摩崖石刻】位于咸宁市，是三国时期赤壁之战的遗址，现存多个摩崖石刻和古建筑。石刻上的\"赤壁\"二字，相传为周瑜所书，见证了那场改变历史的战役。\n\n【东坡赤壁】位于黄冈市，虽然并非真正的赤壁之战遗址，但北宋文学家苏轼的《赤壁赋》就写于此地。\"大江东去，浪淘尽，千古风流人物\"，苏轼的词句让赤壁之名更加响亮。\n\n【荆州城墙】位于荆州市，始建于三国时期，现存城墙为明清时期所建。荆州是三国时期的战略要地，关羽曾在此镇守七年。城墙上的每一块砖石，都仿佛在诉说着那段历史。\n\n【荆州三观】位于荆州市，是道教建筑，包括太晖观、玄妙观、开元观。这些道观始建于唐代，但所在的地理位置正是三国时期荆州城的中心。关羽不仅武艺高强，还精通《春秋》，这种文武双全的特质，正是荆州古城文化底蕴的体现。",
+        "buildings": [
+          {
+            "name": "赤壁摩崖石刻",
+            "province": "hubei",
+            "district": "chibi"
+          },
+          {
+            "name": "东坡赤壁",
+            "province": "hubei",
+            "district": "huanggang"
+          },
+          {
+            "name": "荆州城墙",
+            "province": "hubei",
+            "district": "jingzhou"
+          },
+          {
+            "name": "荆州三观",
+            "province": "hubei",
+            "district": "jingzhou"
+          }
+        ]
+      },
+      {
+        "title": "第三章：蜀汉风云——从隆中到白帝城",
+        "icon": "⚔️",
+        "content": "刘备三顾茅庐，请诸葛亮出山辅佐。诸葛亮在【隆中】提出了著名的\"隆中对\"，为刘备规划了夺取荆益、三分天下的战略。从此，蜀汉的历史拉开了序幕。\n\n【襄阳\"古隆中\"】位于襄阳市，是诸葛亮隐居的地方。这里山清水秀，古木参天，正是诸葛亮\"躬耕于南阳\"的地方。刘备三顾茅庐的故事，就发生在这里的草庐之中。\n\n【成都武侯祠】位于成都市，是中国唯一的君臣合祀祠庙，始建于三国时期，现存建筑为清代所建。祠内的刘备殿、诸葛亮殿、关羽殿、张飞殿等，供奉着蜀汉的英雄们。祠内的\"攻心联\"\"能攻心则反侧自消，自古知兵非好战；不审势即宽严皆误，后来治蜀要深思\"，是清代赵藩所书，被誉为\"天下第一联\"。\n\n【白帝城】位于重庆市奉节县，是刘备托孤的地方。章武三年（223年），刘备在夷陵之战中大败，退守白帝城，临终前将儿子刘禅托付给诸葛亮。白帝城的托孤堂，见证了这段悲壮的历史。\n\n【白帝城遗址】位于重庆市奉节县，是白帝城的考古遗址。虽然地面建筑已不复存在，但遗址中的城墙、宫殿等遗迹，依然能让人感受到当年的悲壮。\n\n【勉县武侯祠】位于汉中市，是诸葛亮北伐时驻扎的地方。祠内的古建筑群保存完好，是研究三国历史的重要资料。诸葛亮\"鞠躬尽瘁，死而后已\"的精神，正是从这里走向历史的。",
+        "buildings": [
+          {
+            "name": "襄阳\"古隆中\"",
+            "province": "hubei",
+            "district": "xiangcheng"
+          },
+          {
+            "name": "成都武侯祠",
+            "province": "sichuan",
+            "district": "wuhou"
+          },
+          {
+            "name": "白帝城",
+            "province": "chongqing",
+            "district": "fengjie"
+          },
+          {
+            "name": "白帝城遗址",
+            "province": "chongqing",
+            "district": "fengjie"
+          },
+          {
+            "name": "勉县武侯祠",
+            "province": "shaanxi",
+            "district": "mian-xian"
+          }
+        ]
+      },
+      {
+        "title": "第四章：魏武挥鞭——从许昌到洛阳的霸业",
+        "icon": "🐎",
+        "content": "曹操\"挟天子以令诸侯\"，以许昌为都城，建立了魏国的基业。从许昌到洛阳，从官渡到邺城，曹操的足迹遍布中原大地。\n\n【关林】位于洛阳市，是埋葬关羽首级的地方。建安二十四年（219年），关羽在麦城被孙权部将吕蒙所杀，孙权将关羽首级送给曹操，曹操以诸侯之礼将其葬于洛阳。关林的古柏参天，殿宇巍峨，是中国三大关庙之一。\n\n【南阳武侯祠】位于南阳市，是诸葛亮隐居时的草庐旧址。虽然诸葛亮最终选择了隆中，但南阳的草庐依然让人联想到那位\"卧龙\"先生。\n\n【洛阳白马寺】位于洛阳市，是中国第一古刹。曹操虽然不信佛教，但他在洛阳时，白马寺已经是重要的文化场所。寺内的齐云塔，见证了从东汉到三国的历史变迁。\n\n【龙门石窟】位于洛阳市，始建于北魏时期，延续至唐代。虽然龙门石窟的主要开凿时间在三国之后，但北魏时期的造像，正是三国归晋后北方文化的产物。",
+        "buildings": [
+          {
+            "name": "关林",
+            "province": "henan",
+            "district": "luolong"
+          },
+          {
+            "name": "南阳武侯祠",
+            "province": "henan",
+            "district": "wolong"
+          },
+          {
+            "name": "白马寺",
+            "province": "henan",
+            "district": "luolong"
+          },
+          {
+            "name": "龙门石窟",
+            "province": "henan",
+            "district": "luolong"
+          }
+        ]
+      },
+      {
+        "title": "第五章：三分归晋——三国时代的终结",
+        "icon": "📜",
+        "content": "公元280年，晋武帝司马炎灭吴，统一全国，三国时代正式结束。从洛阳到建康，从长安到成都，三国英雄们的故事最终画上了句号。\n\n【玉泉寺及铁塔】位于宜昌市，是三国时期关羽\"玉泉山显圣\"的地方。传说关羽死后，魂魄不散，在玉泉山向僧人普净求度。寺内的铁塔建于宋代，高30余米，是中国现存最高的铁塔之一。\n\n【嵩岳寺塔】位于登封市，是中国现存最古老的砖塔，建于北魏正光年间（520-525年）。这座塔见证了从北魏到隋朝的变迁，也是三国归晋后北方佛教复兴的产物。\n\n【少林寺】位于登封市，建于北魏太和十九年（495年）。虽然少林寺与三国没有直接关系，但它所在的嵩山地区，正是三国时期魏国的腹地。寺内的塔林，保存了历代高僧的墓塔，也让人联想到三国英雄们的归宿。",
+        "buildings": [
+          {
+            "name": "玉泉寺及铁塔",
+            "province": "hubei",
+            "district": "dangyang"
+          },
+          {
+            "name": "嵩岳寺塔",
+            "province": "henan",
+            "district": "dengfeng"
+          },
+          {
+            "name": "少林寺",
+            "province": "henan",
+            "district": "dengfeng"
+          }
+        ]
+      }
+    ],
+    "allBuildings": [
+      {
+        "name": "晋祠",
+        "province": "shanxi",
+        "district": "jinyuan",
+        "chapter": 1
+      },
+      {
+        "name": "平遥城墙",
+        "province": "shanxi",
+        "district": "pingyao",
+        "chapter": 1
+      },
+      {
+        "name": "赤壁摩崖石刻",
+        "province": "hubei",
+        "district": "chibi",
+        "chapter": 2
+      },
+      {
+        "name": "东坡赤壁",
+        "province": "hubei",
+        "district": "huanggang",
+        "chapter": 2
+      },
+      {
+        "name": "荆州城墙",
+        "province": "hubei",
+        "district": "jingzhou",
+        "chapter": 2
+      },
+      {
+        "name": "荆州三观",
+        "province": "hubei",
+        "district": "jingzhou",
+        "chapter": 2
+      },
+      {
+        "name": "襄阳\"古隆中\"",
+        "province": "hubei",
+        "district": "xiangcheng",
+        "chapter": 3
+      },
+      {
+        "name": "成都武侯祠",
+        "province": "sichuan",
+        "district": "wuhou",
+        "chapter": 3
+      },
+      {
+        "name": "白帝城",
+        "province": "chongqing",
+        "district": "fengjie",
+        "chapter": 3
+      },
+      {
+        "name": "白帝城遗址",
+        "province": "chongqing",
+        "district": "fengjie",
+        "chapter": 3
+      },
+      {
+        "name": "勉县武侯祠",
+        "province": "shaanxi",
+        "district": "mian-xian",
+        "chapter": 3
+      },
+      {
+        "name": "关林",
+        "province": "henan",
+        "district": "luolong",
+        "chapter": 4
+      },
+      {
+        "name": "南阳武侯祠",
+        "province": "henan",
+        "district": "wolong",
+        "chapter": 4
+      },
+      {
+        "name": "白马寺",
+        "province": "henan",
+        "district": "luolong",
+        "chapter": 4
+      },
+      {
+        "name": "龙门石窟",
+        "province": "henan",
+        "district": "luolong",
+        "chapter": 4
+      },
+      {
+        "name": "玉泉寺及铁塔",
+        "province": "hubei",
+        "district": "dangyang",
+        "chapter": 5
+      },
+      {
+        "name": "嵩岳寺塔",
+        "province": "henan",
+        "district": "dengfeng",
+        "chapter": 5
+      },
+      {
+        "name": "少林寺",
+        "province": "henan",
+        "district": "dengfeng",
+        "chapter": 5
+      }
+    ]
+  },
+  "embeddedBuildings": {}
+}

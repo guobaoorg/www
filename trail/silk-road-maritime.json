@@ -1,0 +1,271 @@
+{
+  "id": "silk-road-maritime",
+  "title": "海上丝绸之路",
+  "subtitle": "跨越海洋的文明交流之路",
+  "icon": "⚓",
+  "color": "#1E88E5",
+  "bgColor": "#E3F2FD",
+  "description": "从泉州、广州等港口出发，穿越南海、印度洋，抵达东非和欧洲，探访这条海上文明交流通道上的历史遗迹。",
+  "route": {
+    "title": "海上丝绸之路：跨越海洋的文明交流之路",
+    "intro": "\"涨海声中万国商。\"海上丝绸之路是古代中国与外国交通贸易和文化交往的海上通道，也是东西方文明交流的重要桥梁。\n\n海上丝绸之路形成于秦汉时期，发展于三国隋朝时期，繁荣于唐宋时期，转变于明清时期。从广州、泉州、宁波等港口出发，中国商人驾驶着满载丝绸、瓷器、茶叶的商船，穿越南海、印度洋，抵达东南亚、南亚、阿拉伯半岛，直至东非和欧洲。\n\n这条海上通道不仅运送货物，更传播了中华文化，也带来了异域风情。佛教、伊斯兰教沿此路东传，香料、珠宝从西来。如今，让我们一起扬帆起航，探访那些见证海上辉煌的历史遗迹。",
+    "stops": [
+      {
+        "title": "第一站：泉州——东方第一大港",
+        "icon": "⚓",
+        "content": "泉州，古称刺桐，是宋元时期东方第一大港，也是海上丝绸之路的重要起点。2021年，\"泉州：宋元中国的世界海洋商贸中心\"被列入世界文化遗产名录。\n\n【开元寺】位于泉州市鲤城区，是福建最大的佛教寺院，也是海上丝绸之路多元文化交融的见证。寺内的东西塔是中国现存最高的一对石塔，也是泉州古城的标志。\n\n【清净寺】位于泉州市鲤城区，是中国现存最古老的伊斯兰教寺院，始建于北宋大中祥符二年（1009年）。清净寺见证了阿拉伯商人沿海上丝绸之路来到泉州的历史。\n\n【洛阳桥】位于泉州市洛江区，是中国古代四大名桥之一，也是现存最早的跨海梁式石桥。洛阳桥的建造技术代表了宋代桥梁工程的最高水平。",
+        "buildings": [
+          {
+            "name": "开元寺",
+            "province": "fujian",
+            "district": "fujian_quanzhou",
+            "embedded": null
+          },
+          {
+            "name": "清净寺",
+            "province": "fujian",
+            "district": "fujian_quanzhou",
+            "embedded": null
+          },
+          {
+            "name": "洛阳桥",
+            "province": "fujian",
+            "district": "fujian_quanzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第二站：广州——千年商都",
+        "icon": "🏙️",
+        "content": "广州是中国历史上最悠久的对外通商口岸之一，也是海上丝绸之路的重要起点。从汉代起，广州就是中国对外贸易的重要港口。\n\n【光孝寺】位于广州市越秀区，是广州最古老的佛教寺院，始建于三国时期。佛教从海上丝绸之路传入中国，光孝寺是重要的登陆点之一。\n\n【南海神庙】位于广州市黄埔区，是中国古代四大海神庙中唯一保存下来的，始建于隋开皇十四年（594年）。南海神庙是古代皇帝祭祀海神的地方，也是海上丝绸之路的重要见证。\n\n【怀圣寺光塔】位于广州市越秀区，是中国现存最早的伊斯兰教建筑之一，始建于唐代。光塔是广州作为海上丝绸之路重要港口的见证，也是阿拉伯商人在广州活动的遗迹。",
+        "buildings": [
+          {
+            "name": "光孝寺",
+            "province": "guangdong",
+            "district": "guangdong_guangzhou",
+            "embedded": null
+          },
+          {
+            "name": "南海神庙",
+            "province": "guangdong",
+            "district": "guangdong_guangzhou",
+            "embedded": null
+          },
+          {
+            "name": "怀圣寺光塔",
+            "province": "guangdong",
+            "district": "guangdong_guangzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第三站：宁波——东亚商埠",
+        "icon": "🌊",
+        "content": "宁波是中国古代重要的对外贸易港口，也是海上丝绸之路的重要起点之一。从唐代起，宁波就是中国与日本、朝鲜半岛贸易的重要港口。\n\n【天一阁】位于宁波市海曙区，是中国现存最早的私家藏书楼，始建于明嘉靖四十年（1561年）。天一阁不仅是藏书楼，也是宁波作为文化名城的重要标志。\n\n【保国寺】位于宁波市江北区，是中国现存最古老的木结构建筑之一。保国寺的大雄宝殿建于北宋大中祥符六年（1013年），是中国江南地区最古老、保存最完整的木结构建筑。",
+        "buildings": [
+          {
+            "name": "天一阁",
+            "province": "zhejiang",
+            "district": "zhejiang_ningbo",
+            "embedded": null
+          },
+          {
+            "name": "保国寺",
+            "province": "zhejiang",
+            "district": "zhejiang_ningbo",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第四站：福州——闽都古港",
+        "icon": "🌸",
+        "content": "福州是福建省省会，也是海上丝绸之路的重要港口之一。从唐代起，福州就是中国对外贸易的重要港口，尤其是与琉球（今冲绳）的贸易往来频繁。\n\n【三坊七巷】位于福州市鼓楼区，是中国现存面积最大的城中心历史文化街区，被誉为\"明清建筑博物馆\"。三坊七巷走出了林则徐、严复、冰心等众多历史名人。\n\n【罗星塔】位于福州市马尾区，是国际公认的航标，也是闽江门户的标志。罗星塔见证了福州作为海上丝绸之路重要港口的历史。",
+        "buildings": [
+          {
+            "name": "三坊七巷",
+            "province": "fujian",
+            "district": "fujian_fuzhou",
+            "embedded": null
+          },
+          {
+            "name": "罗星塔",
+            "province": "fujian",
+            "district": "fujian_fuzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第五站：扬州——运河与海运的交汇",
+        "icon": "🚢",
+        "content": "扬州是唐代最繁华的商业城市之一，也是海上丝绸之路与京杭大运河的重要交汇点。从扬州出发，货物可以通过运河运往内陆，也可以通过海运通往海外。\n\n【扬州城遗址】位于扬州市，是唐代扬州城的遗址。唐代扬州是中国最繁华的商业城市，也是海上丝绸之路的重要节点。\n\n【大明寺】位于扬州市邗江区，是唐代鉴真和尚东渡日本前住持的寺院。鉴真六次东渡，最终成功抵达日本，传播佛教和中华文化，是中日文化交流的使者。",
+        "buildings": [
+          {
+            "name": "扬州城遗址",
+            "province": "jiangsu",
+            "district": "jiangsu_yangzhou",
+            "embedded": null
+          },
+          {
+            "name": "大明寺",
+            "province": "jiangsu",
+            "district": "jiangsu_yangzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第六站：南京——六朝古都",
+        "icon": "🏛️",
+        "content": "南京是中国四大古都之一，也是海上丝绸之路的重要节点。明代郑和七下西洋，就是从南京出发的。\n\n【明孝陵】位于南京市玄武区，是明太祖朱元璋与马皇后的合葬陵墓。明孝陵是明清皇家陵寝的典范，2003年入选世界文化遗产。\n\n【南京城墙】是世界现存规模最大、保存最完整的古代都城城墙。明代南京是郑和下西洋的出发地，南京城墙见证了这一海上壮举。",
+        "buildings": [
+          {
+            "name": "明孝陵",
+            "province": "jiangsu",
+            "district": "jiangsu_nanjing",
+            "embedded": null
+          },
+          {
+            "name": "南京城墙",
+            "province": "jiangsu",
+            "district": "jiangsu_nanjing",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第七站：澳门——中西交汇",
+        "icon": "🎰",
+        "content": "澳门是海上丝绸之路的重要节点，也是中西文化交流的桥梁。16世纪起，葡萄牙人来到澳门，使其成为远东最重要的贸易港口之一。\n\n【澳门历史城区】位于澳门半岛，是中国境内现存最古老、规模最大、保存最完整的中西特色建筑共存的历史城区。2005年，澳门历史城区被列入世界文化遗产名录。\n\n【大三巴牌坊】位于澳门半岛，是圣保禄大教堂正面前壁的遗址，是澳门的标志性建筑。大三巴牌坊融合了欧洲文艺复兴时期与东方建筑的风格。\n\n【妈阁庙】位于澳门半岛，是澳门最古老的庙宇，始建于明弘治元年（1488年）。妈阁庙是澳门得名之地，也是海上丝绸之路的重要见证。",
+        "buildings": [
+          {
+            "name": "澳门历史城区",
+            "province": "macau",
+            "district": "macau",
+            "embedded": null
+          },
+          {
+            "name": "大三巴牌坊",
+            "province": "macau",
+            "district": "macau",
+            "embedded": null
+          },
+          {
+            "name": "妈阁庙",
+            "province": "macau",
+            "district": "macau",
+            "embedded": null
+          }
+        ]
+      }
+    ],
+    "allBuildings": [
+      {
+        "name": "开元寺",
+        "province": "fujian",
+        "district": "fujian_quanzhou",
+        "stop": 1
+      },
+      {
+        "name": "清净寺",
+        "province": "fujian",
+        "district": "fujian_quanzhou",
+        "stop": 1
+      },
+      {
+        "name": "洛阳桥",
+        "province": "fujian",
+        "district": "fujian_quanzhou",
+        "stop": 1
+      },
+      {
+        "name": "光孝寺",
+        "province": "guangdong",
+        "district": "guangdong_guangzhou",
+        "stop": 2
+      },
+      {
+        "name": "南海神庙",
+        "province": "guangdong",
+        "district": "guangdong_guangzhou",
+        "stop": 2
+      },
+      {
+        "name": "怀圣寺光塔",
+        "province": "guangdong",
+        "district": "guangdong_guangzhou",
+        "stop": 2
+      },
+      {
+        "name": "天一阁",
+        "province": "zhejiang",
+        "district": "zhejiang_ningbo",
+        "stop": 3
+      },
+      {
+        "name": "保国寺",
+        "province": "zhejiang",
+        "district": "zhejiang_ningbo",
+        "stop": 3
+      },
+      {
+        "name": "三坊七巷",
+        "province": "fujian",
+        "district": "fujian_fuzhou",
+        "stop": 4
+      },
+      {
+        "name": "罗星塔",
+        "province": "fujian",
+        "district": "fujian_fuzhou",
+        "stop": 4
+      },
+      {
+        "name": "扬州城遗址",
+        "province": "jiangsu",
+        "district": "jiangsu_yangzhou",
+        "stop": 5
+      },
+      {
+        "name": "大明寺",
+        "province": "jiangsu",
+        "district": "jiangsu_yangzhou",
+        "stop": 5
+      },
+      {
+        "name": "明孝陵",
+        "province": "jiangsu",
+        "district": "jiangsu_nanjing",
+        "stop": 6
+      },
+      {
+        "name": "南京城墙",
+        "province": "jiangsu",
+        "district": "jiangsu_nanjing",
+        "stop": 6
+      },
+      {
+        "name": "澳门历史城区",
+        "province": "macau",
+        "district": "macau",
+        "stop": 7
+      },
+      {
+        "name": "大三巴牌坊",
+        "province": "macau",
+        "district": "macau",
+        "stop": 7
+      },
+      {
+        "name": "妈阁庙",
+        "province": "macau",
+        "district": "macau",
+        "stop": 7
+      }
+    ]
+  },
+  "embeddedBuildings": {}
+}

@@ -1,0 +1,206 @@
+{
+  "id": "grand-canal",
+  "title": "隋唐大运河",
+  "subtitle": "贯通南北的千年水脉",
+  "icon": "🌊",
+  "color": "#0277BD",
+  "bgColor": "#E1F5FE",
+  "description": "从洛阳到杭州，沿隋唐大运河探访这条贯通南北的千年水脉，见证中国古代水利工程的伟大成就。",
+  "route": {
+    "title": "隋唐大运河：贯通南北的千年水脉",
+    "intro": "\"尽道隋亡为此河，至今千里赖通波。\"隋唐大运河是中国古代最伟大的水利工程之一，也是世界上开凿最早、规模最大的运河。\n\n隋炀帝大业元年（605年），隋炀帝下令开凿大运河，以洛阳为中心，北抵涿郡（今北京），南至余杭（今杭州），贯通海河、黄河、淮河、长江、钱塘江五大水系，全长约2700公里。\n\n大运河的开凿，促进了南北经济文化的交流，巩固了国家的统一。2014年，中国大运河被列入世界文化遗产名录。如今，让我们一起沿运河而行，探访这条千年水脉上的历史遗迹。",
+    "stops": [
+      {
+        "title": "第一站：洛阳——运河中心",
+        "icon": "🏛️",
+        "content": "洛阳是隋唐大运河的中心，也是隋炀帝开凿大运河的起点。大运河以洛阳为中心，向南北延伸，形成了贯通全国的水运网络。\n\n【隋唐洛阳城遗址】位于洛阳市洛龙区，是隋代和唐代的都城遗址。隋炀帝就是在这里下令开凿大运河，以洛阳为中心，北抵涿郡，南至余杭。\n\n【龙门石窟】位于洛阳市洛龙区，是中国四大石窟之一，也是世界文化遗产。龙门石窟见证了洛阳作为隋唐都城的辉煌历史。",
+        "buildings": [
+          {
+            "name": "隋唐洛阳城遗址",
+            "province": "henan",
+            "district": "henan_luoyang",
+            "embedded": null
+          },
+          {
+            "name": "龙门石窟",
+            "province": "henan",
+            "district": "henan_luoyang",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第二站：开封——汴河繁华",
+        "icon": "🏮",
+        "content": "开封是北宋都城，也是隋唐大运河的重要节点。汴河（通济渠）从开封流过，带来了这座城市的繁荣。\n\n【北宋东京城遗址】位于开封市，是北宋都城东京的遗址。北宋时期，大运河是都城的生命线，从江南运来的粮食和物资通过运河抵达开封。\n\n【铁塔】位于开封市顺河回族区，是北宋时期建造的佛塔，也是开封的标志性建筑。铁塔见证了开封作为北宋都城的辉煌。",
+        "buildings": [
+          {
+            "name": "北宋东京城遗址",
+            "province": "henan",
+            "district": "henan_kaifeng",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第三站：商丘——运河枢纽",
+        "icon": "⚓",
+        "content": "商丘是隋唐大运河通济渠段的重要节点，也是运河沿线的重要商埠。大运河的开凿，使商丘成为了南北交通的枢纽。\n\n【大运河商丘南关码头遗址】位于商丘市睢阳区，是大运河通济渠段的重要码头遗址。遗址发现了码头、仓窖等遗迹，是大运河世界遗产的重要组成部分。\n\n【归德府城墙】位于商丘市睢阳区，是明代归德府的城墙。城墙见证了商丘作为运河沿线重要城市的历史。",
+        "buildings": [
+          {
+            "name": "大运河商丘南关码头遗址",
+            "province": "henan",
+            "district": "henan_shangqiu",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第四站：淮北——运河古道",
+        "icon": "🚢",
+        "content": "淮北是隋唐大运河通济渠段的重要节点，柳孜运河码头遗址是这里最重要的考古发现。\n\n【柳孜运河码头遗址】位于淮北市濉溪县，是隋唐大运河通济渠段的重要码头遗存。遗址揭示了运河河床、石砌码头和沉船遗迹，文化层堆积丰厚，为中国大运河申报世界遗产提供了关键实证。",
+        "buildings": [
+          {
+            "name": "柳孜运河码头遗址",
+            "province": "anhui",
+            "district": "anhui_huaibei",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第五站：扬州——运河名城",
+        "icon": "🌸",
+        "content": "扬州是隋唐大运河与长江的交汇点，也是运河沿线最繁华的城市之一。唐代诗人杜牧的\"二十四桥明月夜\"让扬州名扬天下。\n\n【扬州城遗址】位于扬州市，是唐代扬州城的遗址。唐代扬州是中国最繁华的商业城市，也是大运河沿线最重要的城市之一。",
+        "buildings": [
+          {
+            "name": "扬州城遗址",
+            "province": "jiangsu",
+            "district": "jiangsu_yangzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第六站：镇江——江河交汇",
+        "icon": "🌊",
+        "content": "镇江是京杭大运河与长江的交汇点，也是运河沿线的重要港口。从镇江出发，船只可以沿长江上行至华中，也可以沿运河北上至中原。\n\n【金山寺】位于镇江市润州区，是江南著名的佛教寺院。金山寺位于长江边，也是运河与长江交汇处的标志性建筑。",
+        "buildings": [
+          {
+            "name": "金山寺",
+            "province": "jiangsu",
+            "district": "jiangsu_zhenjiang",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第七站：苏州——江南水乡",
+        "icon": "🏞️",
+        "content": "苏州是京杭大运河沿线的重要城市，也是江南水乡的代表。大运河穿城而过，带来了这座城市的繁荣。\n\n【拙政园】位于苏州市姑苏区，是中国四大名园之一，也是世界文化遗产。拙政园是江南园林的杰出代表，也是大运河沿线的重要文化遗产。\n\n【留园】位于苏州市姑苏区，是中国四大名园之一。留园以建筑空间处理精湛著称，也是世界文化遗产。",
+        "buildings": [
+          {
+            "name": "拙政园",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou",
+            "embedded": null
+          },
+          {
+            "name": "留园",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou",
+            "embedded": null
+          }
+        ]
+      },
+      {
+        "title": "第八站：杭州——运河终点",
+        "icon": "🌅",
+        "content": "杭州是京杭大运河的终点，也是运河沿线最美丽的城市。西湖与运河交相辉映，形成了独特的城市风貌。\n\n【大运河】位于杭州市，是京杭大运河最南端的遗产点，包括上塘河、余杭塘河、富义仓等。2014年，中国大运河被列入世界文化遗产名录。\n\n【六和塔】位于杭州市西湖区，是宋代建筑，高60米。六和塔矗立在钱塘江畔，是杭州的标志性建筑，也是运河船只的航标。",
+        "buildings": [
+          {
+            "name": "大运河",
+            "province": "zhejiang",
+            "district": "zhejiang_hangzhou",
+            "embedded": null
+          },
+          {
+            "name": "六和塔",
+            "province": "zhejiang",
+            "district": "zhejiang_hangzhou",
+            "embedded": null
+          }
+        ]
+      }
+    ],
+    "allBuildings": [
+      {
+        "name": "隋唐洛阳城遗址",
+        "province": "henan",
+        "district": "henan_luoyang",
+        "stop": 1
+      },
+      {
+        "name": "龙门石窟",
+        "province": "henan",
+        "district": "henan_luoyang",
+        "stop": 1
+      },
+      {
+        "name": "北宋东京城遗址",
+        "province": "henan",
+        "district": "henan_kaifeng",
+        "stop": 2
+      },
+      {
+        "name": "大运河商丘南关码头遗址",
+        "province": "henan",
+        "district": "henan_shangqiu",
+        "stop": 3
+      },
+      {
+        "name": "柳孜运河码头遗址",
+        "province": "anhui",
+        "district": "anhui_huaibei",
+        "stop": 4
+      },
+      {
+        "name": "扬州城遗址",
+        "province": "jiangsu",
+        "district": "jiangsu_yangzhou",
+        "stop": 5
+      },
+      {
+        "name": "金山寺",
+        "province": "jiangsu",
+        "district": "jiangsu_zhenjiang",
+        "stop": 6
+      },
+      {
+        "name": "拙政园",
+        "province": "jiangsu",
+        "district": "jiangsu_suzhou",
+        "stop": 7
+      },
+      {
+        "name": "留园",
+        "province": "jiangsu",
+        "district": "jiangsu_suzhou",
+        "stop": 7
+      },
+      {
+        "name": "大运河",
+        "province": "zhejiang",
+        "district": "zhejiang_hangzhou",
+        "stop": 8
+      },
+      {
+        "name": "六和塔",
+        "province": "zhejiang",
+        "district": "zhejiang_hangzhou",
+        "stop": 8
+      }
+    ]
+  },
+  "embeddedBuildings": {}
+}
