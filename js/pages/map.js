@@ -276,7 +276,7 @@ async function _loadMapDataAsync(allIds) {
   let totalBuildings = 0;
   const dynastyCounts = {};
   const loadedProvinces = new Set();
-  const batchSize = 5;
+  const batchSize = 8;
 
   const progressFill = document.getElementById('mapProgressFill');
 
@@ -326,6 +326,13 @@ async function _loadMapDataAsync(allIds) {
   if (progressFill) progressFill.style.opacity = '0';
   const doneLoadingEl = document.getElementById('mapStatLoading');
   if (doneLoadingEl) doneLoadingEl.style.display = 'none';
+
+  // 全部数据加载完成后，重新渲染时期轴以更新最终计数
+  _renderTimeline(dynastyCounts);
+  if (_activeEraFilter !== 'all') {
+    const activeBlock = document.querySelector(`.era-timeline-block[data-era="${_activeEraFilter}"]`);
+    if (activeBlock) activeBlock.classList.add('active');
+  }
 }
 
 function _renderTimeline(dynastyCounts) {

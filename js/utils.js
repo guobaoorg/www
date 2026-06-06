@@ -7,8 +7,7 @@ import State from './state.js';
 const Utils = {
   _cache: new Map(),
   _cacheLimits: {
-    protectionBadges: 50,
-    truncatedTexts: 500
+    protectionBadges: 50
   },
 
   /**
@@ -17,14 +16,7 @@ const Utils = {
   truncateText(text, maxLength, suffix = '...') {
     if (!text) return '';
     if (text.length <= maxLength) return text;
-    const cacheKey = `trunc_${text.length}_${maxLength}_${suffix}`;
-    if (this._cache.has(cacheKey)) return this._cache.get(cacheKey);
-    const result = text.substring(0, maxLength) + suffix;
-    if (this._cache.size >= this._cacheLimits.truncatedTexts) {
-      this._cache.delete(this._cache.keys().next().value);
-    }
-    this._cache.set(cacheKey, result);
-    return result;
+    return text.substring(0, maxLength) + suffix;
   },
 
   /**

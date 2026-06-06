@@ -58,7 +58,7 @@ function _renderTags(container) {
 
   const renderTag = (tag, index) => {
     const ts = Config.getTagStyle(tag.name, index);
-    const size = minCount === maxCount ? 16 : 14 + (tag.count - minCount) / (maxCount - minCount) * 10;
+    const size = minCount === maxCount ? 13 : 12 + (tag.count - minCount) / (maxCount - minCount) * 6;
     return `<span class="tag-modern" data-nav href="?page=tag&name=${encodeURIComponent(tag.name)}" style="font-size: ${size}px; background: ${ts.bg}; color: ${ts.color}; border: 1px solid ${ts.color}30;">
       <span class="tag-modern-icon">${ts.icon}</span>
       <span class="tag-modern-name">${tag.name}</span>

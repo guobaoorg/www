@@ -772,8 +772,8 @@ a:hover {
 .tag-modern {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0.25rem 0.625rem;
+    gap: 0.2rem;
+    padding: 0.15rem 0.5rem;
     border-radius: var(--radius-full);
     cursor: pointer;
     transition: var(--transition-fast);
@@ -955,33 +955,8 @@ a:hover {
     margin-bottom: 0.75rem;
 }
 
-/* Tag Header */
-.tag-header {
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--radius-md);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.tag-header-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.625rem;
-    color: var(--text-white);
-    flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
-}
-
-.tag-header-info { flex: 1; }
-
-/* Province & District Header */
+/* Tag/Province/District Header */
+.tag-header,
 .province-header,
 .district-header {
     padding: 1.25rem 1.5rem;
@@ -993,6 +968,7 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
+.tag-header-icon,
 .province-header-icon,
 .district-header-icon {
     width: 52px;
@@ -1007,6 +983,7 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
+.tag-header-info,
 .province-header-info,
 .district-header-info { flex: 1; }
 
