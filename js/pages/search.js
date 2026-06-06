@@ -21,7 +21,7 @@ export async function render(container) {
       </div>
     </div>`;
 
-  State.ensureDataLoaded();
+  await State.ensureDataLoaded();
 
   const input = document.getElementById('searchPageInput');
   const clearBtn = document.getElementById('searchPageClear');

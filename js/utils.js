@@ -114,9 +114,6 @@ const Utils = {
     </div>`;
   },
 
-  clearCache() {
-    this._cache.clear();
-  }
 };
 
 export default Utils;

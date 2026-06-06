@@ -15,23 +15,14 @@ export async function render(container) {
 
   let building = null;
 
-  // 优先通过 pid 只加载目标省份数据（性能优化）
+  // 优先通过 pid 只加载目标省份数据
   const pid = State.currentProvince;
   if (pid) {
     await HashSearch.loadProvinceData(pid);
-    State.clearCache();
     building = State.findBuildingByFullPath(buildingName);
   }
 
-  // 回退：加载全部省份数据
-  if (!building) {
-    const allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
-    await HashSearch.loadProvinces(allProvinceIds);
-    State.clearCache();
-    building = State.findBuildingByFullPath(buildingName);
-  }
-
-  // 回退：尝试用建筑名称直接搜索（从完整路径中提取最后一个名称）
+  // 回退：在已加载数据中按名称尾部匹配查找
   if (!building) {
     const allBuildings = State.getAllBuildings();
     building = allBuildings.find(b => buildingName.endsWith(b.name));
@@ -43,6 +34,7 @@ export async function render(container) {
   }
 
   const provinceStyle = Config.getProvinceStyle(building.provinceId);
+  const searchKeyword = encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name);
   const relatedBuildings = getRelatedBuildings(building, 4);
 
   container.innerHTML = `
@@ -55,7 +47,7 @@ export async function render(container) {
             <p class="building-detail-location">
               <span class="location-icon">📍</span> ${building.location}
               <span class="map-links-inline">
-                <a href="https://ditu.amap.com/search?query=${encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name)}" target="_blank" class="map-link-inline amap" title="高德地图">🗺️</a>
+                <a href="https://ditu.amap.com/search?query=${searchKeyword}" target="_blank" class="map-link-inline amap" title="高德地图">🗺️</a>
                 <a href="https://www.google.com/maps/search/${encodeURIComponent(building.location)}" target="_blank" class="map-link-inline google" title="谷歌地图">🌐</a>
               </span>
             </p>
@@ -65,9 +57,9 @@ export async function render(container) {
           <div class="building-detail-section">
             <h3><span class="section-icon">🎬</span> 相关视频</h3>
             <div class="video-links">
-              <a href="https://www.douyin.com/search/${encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name)}" target="_blank" rel="noopener" class="video-link douyin">🎵 抖音</a>
-              <a href="https://www.xiaohongshu.com/search_result?keyword=${encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name)}" target="_blank" rel="noopener" class="video-link xiaohongshu">📕 小红书</a>
-              <a href="https://search.bilibili.com/all?keyword=${encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name)}" target="_blank" rel="noopener" class="video-link bilibili">📺 哔哩哔哩</a>
+              <a href="https://www.douyin.com/search/${searchKeyword}" target="_blank" rel="noopener" class="video-link douyin">🎵 抖音</a>
+              <a href="https://www.xiaohongshu.com/search_result?keyword=${searchKeyword}" target="_blank" rel="noopener" class="video-link xiaohongshu">📕 小红书</a>
+              <a href="https://search.bilibili.com/all?keyword=${searchKeyword}" target="_blank" rel="noopener" class="video-link bilibili">📺 哔哩哔哩</a>
             </div>
           </div>
           <div class="building-detail-section">

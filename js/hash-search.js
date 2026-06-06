@@ -159,45 +159,6 @@ const HashSearch = {
   /* ==================== 检索方法 ==================== */
 
   /**
-   * 精确匹配 — 在数据集中查找字段完全等于指定值的项
-   * @param {Array} items - 数据集
-   * @param {string} key - 字段名
-   * @param {*} value - 匹配值
-   * @returns {Array}
-   */
-  exactMatch(items, key, value) {
-    return items.filter(item => item[key] === value);
-  },
-
-  /**
-   * 多条件组合匹配 — 支持 AND 组合
-   * @param {Array} items - 数据集
-   * @param {Array<{key: string, value: *, exact?: boolean}>} conditions - 条件数组
-   * @returns {Array}
-   */
-  multiMatch(items, conditions) {
-    return items.filter(item =>
-      conditions.every(cond => {
-        const val = item[cond.key];
-        if (cond.exact) {
-          return val === cond.value;
-        }
-        if (typeof val === 'string' && typeof cond.value === 'string') {
-          return val.toLowerCase().includes(cond.value.toLowerCase());
-        }
-        if (Array.isArray(val)) {
-          return val.some(v =>
-            typeof v === 'string' && typeof cond.value === 'string'
-              ? v.toLowerCase().includes(cond.value.toLowerCase())
-              : v === cond.value
-          );
-        }
-        return val === cond.value;
-      })
-    );
-  },
-
-  /**
    * 模糊搜索 — 在指定字段中搜索关键词
    * @param {Array} items - 数据集
    * @param {string} query - 搜索关键词

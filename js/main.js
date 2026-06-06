@@ -7,9 +7,6 @@ import State from './state.js';
 import Router from './router.js';
 import UI from './ui.js';
 
-// 全局导航函数（供内联 HTML onclick 使用）
-window._navigate = (url) => Router.navigateTo(url);
-
 // 保存地图销毁函数引用
 let _currentDestroyMap = null;
 
@@ -39,16 +36,13 @@ async function renderPage() {
   const breadcrumb = document.querySelector('.breadcrumb');
   const view = State.currentView;
 
+  const mainContent = document.getElementById('mainContent');
+  if (!mainContent) return;
+
   // 面包屑可见性
   if (breadcrumb) {
     breadcrumb.style.display = view === 'map' ? 'none' : '';
   }
-
-  UI.updateBreadcrumb();
-  UI.updateActiveNav();
-
-  const mainContent = document.getElementById('mainContent');
-  if (!mainContent) return;
 
   window.scrollTo(0, 0);
 
@@ -76,6 +70,9 @@ async function renderPage() {
     mainContent.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">页面未找到</div></div></div>`;
   }
 
+  // 页面渲染完成后更新面包屑和导航（确保使用最新数据）
+  UI.updateBreadcrumb();
+  UI.updateActiveNav();
   UI.injectStructuredData();
 }
 

@@ -25,7 +25,7 @@ export async function render(container) {
   }
 
   const districts = State.getAllDistricts(provinceId);
-  const allBuildings = State.getAllBuildings().filter(b => b.provinceId === provinceId);
+  const allBuildings = data.buildings || [];
   const buildingsByDistrict = {};
   allBuildings.forEach(b => {
     if (!buildingsByDistrict[b.district]) buildingsByDistrict[b.district] = [];

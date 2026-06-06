@@ -8,18 +8,6 @@ import Utils from '../utils.js';
 
 let _destroyMap = null;
 
-// 每日一题：使用日期作为随机种子，确保同一天所有用户看到同一题
-function _getDailyRandomBuilding() {
-  const all = State.getAllBuildings();
-  const candidates = all.filter(b => b.architecture && b.description && b.features && b.history);
-  if (candidates.length === 0) return null;
-
-  const today = new Date();
-  const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  const index = dateSeed % candidates.length;
-  return candidates[index];
-}
-
 // 从线索文本中移除答案相关文字，避免泄露答案
 function _sanitizeClueText(text, building, stageKey) {
   if (!text || !building) return text;
@@ -156,19 +144,36 @@ export async function render(container, destroyMapFn) {
   _destroyMap = destroyMapFn;
   if (_destroyMap) _destroyMap();
 
-  container.innerHTML = `<div class="container"><div class="loading"><div class="loading__icon">❓</div><div>正在加载今日题目...</div></div></div>`;
-
-  const allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
-  await HashSearch.loadProvinces(allProvinceIds);
-  await State.ensureDataLoaded();
-
-  const dailyBuilding = _getDailyRandomBuilding();
-  if (!dailyBuilding) {
+  const provinceMeta = State.getProvinceMeta();
+  const provinceIds = provinceMeta?.provinces?.map(p => p.id) || [];
+  if (provinceIds.length === 0) {
     container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">暂无题目</div><p>请检查数据</p></div></div>`;
     return;
   }
 
+  container.innerHTML = `<div class="container"><div class="loading"><div class="loading__icon">❓</div><div>正在加载今日题目...</div></div></div>`;
+
+  // 用日期种子确定性选取一个省份，只加载该省 + 跨省数据（替代原来的全量加载）
   const today = new Date();
+  const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  const selectedId = provinceIds[dateSeed % provinceIds.length];
+  await HashSearch.loadProvinces([selectedId, 'cross']);
+
+  let candidates = State.getAllBuildings().filter(b => b.architecture && b.description && b.features && b.history);
+  // 极端情况兜底：若该省无合格建筑则加载剩余省份
+  if (candidates.length === 0) {
+    const remaining = provinceIds.filter(id => id !== selectedId);
+    await HashSearch.loadProvinces(remaining);
+    candidates = State.getAllBuildings().filter(b => b.architecture && b.description && b.features && b.history);
+  }
+
+  if (candidates.length === 0) {
+    container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">暂无题目</div><p>请检查数据</p></div></div>`;
+    return;
+  }
+
+  const dailyBuilding = candidates[dateSeed % candidates.length];
+
   const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
 
   let currentClueIndex = 0;

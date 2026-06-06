@@ -53,8 +53,9 @@ function _renderTags(container) {
     ? visibleGroups.filter(g => g.id === activeCategory)
     : visibleGroups;
 
-  const maxCount = Math.max(...tags.map(t => t.count));
-  const minCount = Math.min(...tags.map(t => t.count));
+  const counts = tags.reduce((acc, t) => { acc.push(t.count); return acc; }, []);
+  const maxCount = Math.max(...counts);
+  const minCount = Math.min(...counts);
 
   const renderTag = (tag, index) => {
     const ts = Config.getTagStyle(tag.name, index);

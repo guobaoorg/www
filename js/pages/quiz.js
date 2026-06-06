@@ -665,6 +665,5 @@ function _handleSkip(container) {
 
 export async function render(container) {
   _loadState();
-  await State.ensureDataLoaded();
   _startNewRound(container);
 }
