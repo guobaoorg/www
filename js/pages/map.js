@@ -276,12 +276,15 @@ async function _loadMapDataAsync(allIds) {
   let totalBuildings = 0;
   const dynastyCounts = {};
   const loadedProvinces = new Set();
-  const batchSize = 8;
+  const initialBatchSize = 3;
+  const normalBatchSize = 8;
 
   const progressFill = document.getElementById('mapProgressFill');
 
-  for (let i = 0; i < allIds.length; i += batchSize) {
+  let i = 0;
+  while (i < allIds.length) {
     if (!_markerCluster) return;
+    const batchSize = i === 0 ? initialBatchSize : normalBatchSize;
     const batch = allIds.slice(i, i + batchSize);
     try { await Promise.all(batch.map(id => HashSearch.loadProvinceData(id))); } catch (_) {}
 
@@ -320,6 +323,7 @@ async function _loadMapDataAsync(allIds) {
       _renderTimeline(dynastyCounts);
       _updateMapStats();
     }
+    i += batchSize;
   }
 
   _updateMapStats();
