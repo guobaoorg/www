@@ -14,7 +14,6 @@ function _getDailyRandomBuilding() {
   const candidates = all.filter(b => b.architecture && b.description && b.features && b.history);
   if (candidates.length === 0) return null;
 
-  // 基于当前日期生成种子，每日一题
   const today = new Date();
   const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
   const index = dateSeed % candidates.length;
@@ -22,9 +21,6 @@ function _getDailyRandomBuilding() {
 }
 
 // 从线索文本中移除答案相关文字，避免泄露答案
-// 1. 替换完整建筑名称 → "该建筑"
-// 2. 替换核心名称（仅当独立出现、非复合词时）→ "该建筑"
-// 3. 非地区/年代线索中，替换地区名和年代 → 泛称
 function _sanitizeClueText(text, building, stageKey) {
   if (!text || !building) return text;
   let result = text;
@@ -34,12 +30,10 @@ function _sanitizeClueText(text, building, stageKey) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   result = result.replace(new RegExp(escaped, 'g'), '该建筑');
 
-  // 2. 提取核心名称（去除常见后缀），智能替换独立出现的核心名
+  // 2. 提取核心名称，智能替换独立出现的核心名
   const coreName = name.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
   if (coreName !== name && coreName.length >= 2) {
     const coreEscaped = coreName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    // 仅替换独立出现的核心名：前有标点/句首，后跟标点/常见虚词/句尾
-    // 避免将复合词中的核心名误替换（如"高昌回鹘"中的"高昌"）
     result = result.replace(
       new RegExp(`(^|[。，；：、！？""''\\s（）])${coreEscaped}(?=[。，；：、！？""''\\s（）的是了在为与和及等也都就已将被从由对向于至]|$)`, 'g'),
       '$1该建筑'
@@ -75,10 +69,20 @@ const CLUE_STAGES = [
 ];
 
 function _getLocationClue(b) {
-  const parts = [];
-  if (b.province) parts.push(b.province);
-  if (b.districtName) parts.push(b.districtName);
-  return parts.join(' ');
+  return b.location || '暂无地区信息';
+}
+
+// 根据下一线索索引生成生动的提示文案
+function _getHintPrompt(nextStageIndex) {
+  const prompts = [
+    '🤔 要不要来点提示？让我告诉你它的建筑风格有多特别！',
+    '🧐 还没头绪吗？让我为你描绘它的特色～',
+    '🎯 再想想？它的独特价值或许能给你启发！',
+    '📖 想听听它的故事吗？历史背景里有答案哦！',
+    '🗺️ 方向不对？让我告诉你它在哪里！',
+    '⏳ 最后一击！它的年代即将揭晓～'
+  ];
+  return prompts[nextStageIndex] || '💡 让我来帮你！';
 }
 
 function _getClueText(stageKey, building) {
@@ -99,9 +103,11 @@ function _getClueText(stageKey, building) {
     case 'location':
       raw = _getLocationClue(building) || '暂无地区信息';
       break;
-    case 'era':
-      raw = building.era || '暂无年代信息';
+    case 'era': {
+      const eraTags = (building.tags || []).join(' · ');
+      raw = `年代：${building.era || '暂无信息'} · ${eraTags || '暂无标签'}`;
       break;
+    }
   }
   return _sanitizeClueText(raw, building, stageKey);
 }
@@ -146,18 +152,6 @@ function _getMatchInfo(input, correctName) {
   return { correctLen, inputLen, correctChars, wrongChars, minInputLen };
 }
 
-function _renderAllClues(building, currentClueIndex) {
-  const clues = [];
-  for (let i = 0; i <= currentClueIndex; i++) {
-    const stage = CLUE_STAGES[i];
-    const text = _getClueText(stage.key, building);
-    const isNewest = i === currentClueIndex;
-    const hasMap = stage.key === 'location' && building.lat && building.lng;
-    clues.push({ stage, text, isNewest, index: i + 1, hasMap });
-}
-return clues;
-}
-
 export async function render(container, destroyMapFn) {
   _destroyMap = destroyMapFn;
   if (_destroyMap) _destroyMap();
@@ -181,6 +175,18 @@ export async function render(container, destroyMapFn) {
   const remainingClues = () => CLUE_STAGES.length - currentClueIndex - 1;
   const allClues = () => _renderAllClues(dailyBuilding, currentClueIndex);
 
+  function _renderAllClues(building, clueIndex) {
+    const clues = [];
+    for (let i = 0; i <= clueIndex; i++) {
+      const stage = CLUE_STAGES[i];
+      const text = _getClueText(stage.key, building);
+      const isNewest = i === clueIndex;
+      const hasMap = stage.key === 'location' && building.lat && building.lng;
+      clues.push({ stage, text, isNewest, index: i + 1, hasMap });
+    }
+    return clues;
+  }
+
   function renderHomeQuiz() {
     const clues = allClues();
     container.innerHTML = `
@@ -195,32 +201,16 @@ export async function render(container, destroyMapFn) {
                 <p class="daily-quiz-date">${dateStr} · 挑战你的国保知识储备</p>
               </div>
             </div>
-            <a href="?page=quiz" class="daily-quiz-more-link">进入完整答题 →</a>
-          </div>
-
-          <!-- 线索提示阶段 -->
-          <div class="quiz-clue-stages">
-            ${CLUE_STAGES.map((s, i) => {
-              const revealed = i <= currentClueIndex;
-              const current = i === currentClueIndex;
-              return `<span class="quiz-clue-dot${revealed ? ' revealed' : ''}${current ? ' current' : ''}" title="${s.label}">${s.icon}</span>`;
-            }).join('')}
           </div>
 
           <!-- 已揭示的线索列表 -->
           <div class="quiz-clue-list">
             ${clues.map(c => `
               <div class="quiz-clue-card${c.isNewest ? ' quiz-clue-card-newest' : ''}">
-                <div class="quiz-clue-header">
-                  <span class="quiz-clue-icon">${c.stage.icon}</span>
-                  <span class="quiz-clue-label">${c.stage.label}</span>
-                  <span class="quiz-clue-count">提示 ${c.index}</span>
-                </div>
                 <div class="quiz-clue-content">
                   <p>${c.text}</p>
-                  ${c.hasMap ? `<div class="quiz-satellite-map" id="homeSatelliteMap"></div>` : ''}
+                  ${c.hasMap ? `<div class="quiz-satellite-map"></div>` : ''}
                 </div>
-                ${c.isNewest ? `<div class="quiz-clue-hint">${c.stage.hint}</div>` : ''}
               </div>
             `).join('')}
           </div>
@@ -229,7 +219,7 @@ export async function render(container, destroyMapFn) {
           <div class="quiz-input-area">
             ${remainingClues() > 0 ? `
               <button class="quiz-btn quiz-btn-hint" id="dailyQuizMoreHint">
-                💡 猜不出来？获取更多提示（还剩 ${remainingClues()} 条）
+                ${_getHintPrompt(currentClueIndex + 1)}（还剩 ${remainingClues()} 条）
               </button>` : ''}
             <div class="quiz-input-row">
               <input type="text" class="quiz-input" id="dailyQuizInput" placeholder="输入建筑名称..." autocomplete="off">
@@ -247,23 +237,35 @@ export async function render(container, destroyMapFn) {
   }
 
   function _initHomeSatelliteMap(building) {
-    const mapDiv = document.getElementById('homeSatelliteMap');
+    const mapDivs = document.querySelectorAll('.quiz-satellite-map');
+    const mapDiv = mapDivs[mapDivs.length - 1];
     if (!mapDiv || !building?.lat || !building?.lng) return;
 
     const map = L.map(mapDiv, {
       center: [building.lat, building.lng],
       zoom: 15,
       zoomControl: true,
-      attributionControl: false,
-      dragging: false,
-      scrollWheelZoom: false,
-      doubleClickZoom: false,
-      touchZoom: false
+      attributionControl: false
     });
 
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18, attribution: '© OpenStreetMap'
+    });
+    const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19
-    }).addTo(map);
+    });
+    const road = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18, opacity: 0.7
+    });
+    const labels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 18, opacity: 0.6
+    });
+    const satGroup = L.layerGroup([sat, road, labels]);
+    L.control.layers({
+      '标准': osm,
+      '卫星': satGroup
+    }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
+    satGroup.addTo(map);
 
     const markerIcon = L.divIcon({
       className: 'quiz-satellite-marker',
@@ -274,6 +276,32 @@ export async function render(container, destroyMapFn) {
 
     L.marker([building.lat, building.lng], { icon: markerIcon }).addTo(map);
     setTimeout(() => { map.invalidateSize(); }, 100);
+  }
+
+  function _appendHomeClue(index) {
+    const clueList = document.querySelector('.quiz-clue-list');
+    if (!clueList || !dailyBuilding) return;
+
+    const stage = CLUE_STAGES[index];
+    const text = _getClueText(stage.key, dailyBuilding);
+    const hasMap = stage.key === 'location' && dailyBuilding.lat && dailyBuilding.lng;
+
+    // 移除旧卡片的新增标记
+    clueList.querySelectorAll('.quiz-clue-card-newest').forEach(el => el.classList.remove('quiz-clue-card-newest'));
+
+    const div = document.createElement('div');
+    div.className = 'quiz-clue-card quiz-clue-card-newest';
+    div.innerHTML = `
+              <div class="quiz-clue-content">
+                <p>${text}</p>
+                ${hasMap ? '<div class="quiz-satellite-map"></div>' : ''}
+              </div>
+            </div>`;
+
+    clueList.appendChild(div);
+
+    // 如果是地区线索，初始化卫星地图
+    if (hasMap) _initHomeSatelliteMap(dailyBuilding);
   }
 
   function bindEvents() {
@@ -300,7 +328,13 @@ export async function render(container, destroyMapFn) {
       hintBtn.addEventListener('click', () => {
         if (currentClueIndex < CLUE_STAGES.length - 1) {
           currentClueIndex++;
-          renderHomeQuiz();
+          _appendHomeClue(currentClueIndex);
+          const remaining = CLUE_STAGES.length - currentClueIndex - 1;
+          if (remaining > 0) {
+            hintBtn.textContent = `${_getHintPrompt(currentClueIndex + 1)}（还剩 ${remaining} 条）`;
+          } else {
+            hintBtn.style.display = 'none';
+          }
           const inputEl = document.getElementById('dailyQuizInput');
           if (inputEl) inputEl.focus();
         }
@@ -315,16 +349,24 @@ export async function render(container, destroyMapFn) {
     const isCorrect = _checkAnswer(userAnswer, dailyBuilding.name);
 
     if (isCorrect) {
+      const correctSet = new Set(dailyBuilding.name);
+      const coloredChars = userAnswer.split('').map(ch =>
+        `<span class="char-correct">${ch}</span>`
+      ).join('');
+
       resultArea.style.display = 'block';
       resultArea.className = 'quiz-result quiz-result-correct';
       resultArea.innerHTML = `
         <div class="quiz-result-icon">✅</div>
         <div class="quiz-result-title">回答正确！太棒了</div>
+        <div class="quiz-result-chars">
+          <div class="quiz-result-chars-row">${coloredChars}</div>
+        </div>
         <div class="quiz-result-answer">答案：<strong>${dailyBuilding.name}</strong></div>
         <div class="quiz-result-detail">${dailyBuilding.province} · ${dailyBuilding.districtName} · ${dailyBuilding.era}</div>
-        <div style="margin-top: 0.75rem;">
-          <a href="${Utils.generateBuildingHash(dailyBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-next" style="text-decoration:none;display:inline-block;">查看详情 ↗</a>
-          <a href="?page=quiz" class="quiz-btn quiz-btn-next" style="text-decoration:none;display:inline-block;margin-left: 0.5rem;">继续挑战 →</a>
+        <div class="quiz-result-actions">
+          <a href="${Utils.generateBuildingHash(dailyBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline">查看详情 ↗</a>
+          <a href="?page=quiz" class="quiz-btn quiz-btn-outline">继续挑战 →</a>
         </div>`;
 
       input.disabled = true;
@@ -332,18 +374,20 @@ export async function render(container, destroyMapFn) {
       const hintBtn = document.getElementById('dailyQuizMoreHint');
       if (hintBtn) hintBtn.style.display = 'none';
     } else {
+      const correctSet = new Set(dailyBuilding.name);
+      const coloredChars = userAnswer.split('').map(ch =>
+        `<span class="char-${correctSet.has(ch) ? 'correct' : 'wrong'}">${ch}</span>`
+      ).join('');
+
       resultArea.style.display = 'block';
       resultArea.className = 'quiz-result quiz-result-wrong';
       const matchInfo = _getMatchInfo(userAnswer, dailyBuilding.name);
-      const matchPct = matchInfo.correctLen > 0 ? Math.round(matchInfo.correctChars / matchInfo.correctLen * 100) : 0;
-      const thresholdPct = Math.round(matchInfo.minInputLen / matchInfo.correctLen * 100);
       resultArea.innerHTML = `
         <div class="quiz-result-icon">❌</div>
         <div class="quiz-result-title">不对哦，再想想！</div>
-        <div class="quiz-result-match">
-          答案共 <strong>${matchInfo.correctLen}</strong> 字，你输入了 <strong>${matchInfo.inputLen}</strong> 字<br>
-          正确 <strong>${matchInfo.correctChars}</strong> 字 · 错误 <strong>${matchInfo.wrongChars}</strong> 字<br>
-          当前匹配度 <strong>${matchPct}%</strong>（正确字 ÷ 答案总字数，需 ≥ ${thresholdPct}% 才可匹配）
+        <div class="quiz-result-chars">
+          <div class="quiz-result-chars-hint">🟢 正确字 · ⚪ 错误/多输的字</div>
+          <div class="quiz-result-chars-row">${coloredChars}</div>
         </div>`;
 
       input.value = '';

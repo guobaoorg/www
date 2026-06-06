@@ -4,6 +4,7 @@
 import HashSearch from '../hash-search.js';
 import State from '../state.js';
 import Config from '../config.js';
+import Utils from '../utils.js';
 
 const LEVELS = [
   '炼气一层','炼气二层','炼气三层','炼气四层','炼气五层','炼气六层','炼气七层','炼气八层','炼气九层','炼气十层',
@@ -148,10 +149,20 @@ function _getMatchInfo(input) {
 }
 
 function _getLocationClue(b) {
-  const parts = [];
-  if (b.province) parts.push(b.province);
-  if (b.districtName) parts.push(b.districtName);
-  return parts.join(' ');
+  return b.location || '暂无地区信息';
+}
+
+// 根据下一线索索引生成生动的提示文案
+function _getHintPrompt(nextStageIndex) {
+  const prompts = [
+    '🤔 要不要来点提示？让我告诉你它的建筑风格有多特别！',
+    '🧐 还没头绪吗？让我为你描绘它的特色～',
+    '🎯 再想想？它的独特价值或许能给你启发！',
+    '📖 想听听它的故事吗？历史背景里有答案哦！',
+    '🗺️ 方向不对？让我告诉你它在哪里！',
+    '⏳ 最后一击！它的年代即将揭晓～'
+  ];
+  return prompts[nextStageIndex] || '💡 让我来帮你！';
 }
 
 // 从线索文本中移除答案相关文字，避免泄露答案
@@ -220,9 +231,11 @@ function _renderAllClues() {
       case 'location':
         raw = _getLocationClue(_currentBuilding) || '暂无地区信息';
         break;
-      case 'era':
-        raw = _currentBuilding.era || '暂无年代信息';
+      case 'era': {
+        const eraTags = (_currentBuilding.tags || []).join(' · ');
+        raw = `年代：${_currentBuilding.era || '暂无信息'} · ${eraTags || '暂无标签'}`;
         break;
+      }
     }
     const text = _sanitizeClueText(raw, stage.key);
     const isNewest = i === _currentClueIndex;
@@ -246,14 +259,6 @@ function _shortProvince(name) {
 function _shortEra(name) {
   if (name === '中华人民共和国') return '共和国';
   return name;
-}
-
-function _renderClueStages() {
-  return CLUE_STAGES.map((s, i) => {
-    const revealed = i <= _currentClueIndex;
-    const current = i === _currentClueIndex;
-    return `<span class="quiz-clue-dot${revealed ? ' revealed' : ''}${current ? ' current' : ''}" title="${s.label}">${s.icon}</span>`;
-  }).join('');
 }
 
 async function _startNewRound(container) {
@@ -374,25 +379,14 @@ function _renderQuizUI(container) {
           <button class="quiz-filter-apply" id="quizFilterApply">筛选</button>
         </div>
 
-        <!-- 线索提示阶段 -->
-        <div class="quiz-clue-stages">
-          ${_renderClueStages()}
-        </div>
-
         <!-- 已揭示的线索列表 -->
         <div class="quiz-clue-list">
           ${allClues.map(c => `
             <div class="quiz-clue-card${c.isNewest ? ' quiz-clue-card-newest' : ''}">
-              <div class="quiz-clue-header">
-                <span class="quiz-clue-icon">${c.stage.icon}</span>
-                <span class="quiz-clue-label">${c.stage.label}</span>
-                <span class="quiz-clue-count">提示 ${c.index}</span>
-              </div>
               <div class="quiz-clue-content">
                 <p>${c.text}</p>
-                ${c.hasMap ? `<div class="quiz-satellite-map" id="quizSatelliteMap"></div>` : ''}
+                ${c.hasMap ? `<div class="quiz-satellite-map"></div>` : ''}
               </div>
-              ${c.isNewest ? `<div class="quiz-clue-hint">${c.stage.hint}</div>` : ''}
             </div>
           `).join('')}
         </div>
@@ -401,13 +395,13 @@ function _renderQuizUI(container) {
         <div class="quiz-input-area">
           ${remainingClues > 0 ? `
             <button class="quiz-btn quiz-btn-hint" id="quizMoreHint">
-              💡 猜不出来？获取更多提示（还剩 ${remainingClues} 条）
+              ${_getHintPrompt(_currentClueIndex + 1)}（还剩 ${remainingClues} 条）
             </button>` : ''}
-          <button class="quiz-btn quiz-btn-skip" id="quizSkip">⏭️ 跳过此题</button>
           <div class="quiz-input-row">
             <input type="text" class="quiz-input" id="quizAnswerInput" placeholder="输入建筑名称..." autocomplete="off">
             <button class="quiz-btn quiz-btn-submit" id="quizSubmit">提交答案</button>
           </div>
+          <button class="quiz-btn quiz-btn-skip" id="quizSkip">⏭️ 跳过此题</button>
         </div>
 
         <!-- 结果区域 -->
@@ -420,7 +414,8 @@ function _renderQuizUI(container) {
 }
 
 function _initSatelliteMap() {
-  const mapDiv = document.getElementById('quizSatelliteMap');
+  const mapDivs = document.querySelectorAll('.quiz-satellite-map');
+  const mapDiv = mapDivs[mapDivs.length - 1];
   if (!mapDiv || !_currentBuilding?.lat || !_currentBuilding?.lng) return;
 
   const lat = _currentBuilding.lat;
@@ -430,16 +425,27 @@ function _initSatelliteMap() {
     center: [lat, lng],
     zoom: 15,
     zoomControl: true,
-    attributionControl: false,
-    dragging: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    touchZoom: false
+    attributionControl: false
   });
 
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18, attribution: '© OpenStreetMap'
+  });
+  const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     maxZoom: 19
-  }).addTo(map);
+  });
+  const road = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 18, opacity: 0.7
+  });
+  const labels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 18, opacity: 0.6
+  });
+  const satGroup = L.layerGroup([sat, road, labels]);
+  L.control.layers({
+    '标准': osm,
+    '卫星': satGroup
+  }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
+  satGroup.addTo(map);
 
   // 红色标记点 + 脉冲圆圈
   const markerIcon = L.divIcon({
@@ -453,6 +459,45 @@ function _initSatelliteMap() {
 
   // 延迟 invalidateSize 确保容器尺寸正确
   setTimeout(() => { map.invalidateSize(); }, 100);
+}
+
+function _appendClue(index) {
+  const clueList = document.querySelector('.quiz-clue-list');
+  if (!clueList || !_currentBuilding) return;
+
+  const stage = CLUE_STAGES[index];
+  let raw = '';
+  switch (stage.key) {
+    case 'architecture': raw = _currentBuilding.architecture || '暂无建筑风格信息'; break;
+    case 'description': raw = _currentBuilding.description || '暂无特色介绍'; break;
+    case 'features': raw = _currentBuilding.features || '暂无特色与价值信息'; break;
+    case 'history': raw = _currentBuilding.history || '暂无历史背景信息'; break;
+    case 'location': raw = _getLocationClue(_currentBuilding) || '暂无地区信息'; break;
+    case 'era': {
+      const eraTags = (_currentBuilding.tags || []).join(' · ');
+      raw = `年代：${_currentBuilding.era || '暂无信息'} · ${eraTags || '暂无标签'}`;
+      break;
+    }
+  }
+  const text = _sanitizeClueText(raw, stage.key);
+  const hasMap = stage.key === 'location' && _currentBuilding.lat && _currentBuilding.lng;
+
+  // 移除旧卡片的新增标记
+  clueList.querySelectorAll('.quiz-clue-card-newest').forEach(el => el.classList.remove('quiz-clue-card-newest'));
+
+  const div = document.createElement('div');
+  div.className = 'quiz-clue-card quiz-clue-card-newest';
+  div.innerHTML = `
+              <div class="quiz-clue-content">
+                <p>${text}</p>
+                ${hasMap ? '<div class="quiz-satellite-map"></div>' : ''}
+              </div>
+            </div>`;
+
+  clueList.appendChild(div);
+
+  // 如果是地区线索，初始化卫星地图
+  if (hasMap) _initSatelliteMap();
 }
 
 function _bindQuizEvents(container) {
@@ -478,7 +523,13 @@ function _bindQuizEvents(container) {
     hintBtn.addEventListener('click', () => {
       if (_currentClueIndex < CLUE_STAGES.length - 1) {
         _currentClueIndex++;
-        _renderQuizUI(container);
+        _appendClue(_currentClueIndex);
+        const remaining = CLUE_STAGES.length - _currentClueIndex - 1;
+        if (remaining > 0) {
+          hintBtn.textContent = `${_getHintPrompt(_currentClueIndex + 1)}（还剩 ${remaining} 条）`;
+        } else {
+          hintBtn.style.display = 'none';
+        }
         const inputEl = document.getElementById('quizAnswerInput');
         if (inputEl) inputEl.focus();
       }
@@ -519,16 +570,26 @@ function _handleSubmit() {
     _usedBuildingKeys.add(buildingKey);
     _saveState();
 
+    const correctSet = new Set(_currentBuilding.name);
+    const coloredChars = userAnswer.split('').map(ch =>
+      `<span class="char-correct">${ch}</span>`
+    ).join('');
+
     resultArea.style.display = 'block';
     resultArea.className = 'quiz-result quiz-result-correct';
     resultArea.innerHTML = `
       <div class="quiz-result-icon">✅</div>
       <div class="quiz-result-title">回答正确！</div>
+      <div class="quiz-result-chars">
+        <div class="quiz-result-chars-row">${coloredChars}</div>
+      </div>
       <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
       <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
       <div class="quiz-result-level">⬆ 境界提升至 <strong>${_getLevelName()}</strong></div>
-      <button class="quiz-btn quiz-btn-next" onclick="document.getElementById('quizNextRound').click()">继续下一题 →</button>
-      <div style="display:none;"><button id="quizNextRound"></button></div>`;
+      <div class="quiz-result-actions">
+        <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
+        <button class="quiz-btn quiz-btn-outline" id="quizNextRound">继续下一题 →</button>
+      </div>`;
 
     document.getElementById('quizNextRound').addEventListener('click', () => {
       _startNewRound(document.getElementById('mainContent'));
@@ -544,18 +605,20 @@ function _handleSubmit() {
     if (_userLevel > 0) _userLevel--;
     _saveState();
 
+    const correctSet = new Set(_currentBuilding.name);
+    const coloredChars = userAnswer.split('').map(ch =>
+      `<span class="char-${correctSet.has(ch) ? 'correct' : 'wrong'}">${ch}</span>`
+    ).join('');
+
     resultArea.style.display = 'block';
     resultArea.className = 'quiz-result quiz-result-wrong';
     const matchInfo = _getMatchInfo(userAnswer);
-    const matchPct = matchInfo.correctLen > 0 ? Math.round(matchInfo.correctChars / matchInfo.correctLen * 100) : 0;
-    const thresholdPct = Math.round(matchInfo.minInputLen / matchInfo.correctLen * 100);
     resultArea.innerHTML = `
       <div class="quiz-result-icon">❌</div>
       <div class="quiz-result-title">不对哦，再想想！</div>
-      <div class="quiz-result-match">
-        答案共 <strong>${matchInfo.correctLen}</strong> 字，你输入了 <strong>${matchInfo.inputLen}</strong> 字<br>
-        正确 <strong>${matchInfo.correctChars}</strong> 字 · 错误 <strong>${matchInfo.wrongChars}</strong> 字<br>
-        当前匹配度 <strong>${matchPct}%</strong>（正确字 ÷ 答案总字数，需 ≥ ${thresholdPct}% 才可匹配）
+      <div class="quiz-result-chars">
+        <div class="quiz-result-chars-hint">🟢 正确字 · ⚪ 错误/多输的字</div>
+        <div class="quiz-result-chars-row">${coloredChars}</div>
       </div>
       <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>`;
 

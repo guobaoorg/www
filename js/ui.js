@@ -94,7 +94,7 @@ const UI = {
       items.push({ name: '🏷️ 标签', href: '?page=tags' });
       items.push({ name: `${Config.getTagStyle(decodeURIComponent(State.currentTag), 0).icon} ${decodeURIComponent(State.currentTag)}` });
     } else if (v === 'search') items.push({ name: '🔍 搜索' });
-    else if (v === 'quiz') items.push({ name: '🔍 识保' });
+    else if (v === 'quiz') items.push({ name: '🗝️ 猜保' });
     else if (v === 'cross') items.push({ name: '🌊 跨省文物保护单位' });
     else if (v === 'trail') items.push({ name: '👣 足迹' });
     else if (v === 'map') items.push({ name: '🗺️ 地图' });
