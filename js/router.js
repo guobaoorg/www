@@ -54,7 +54,8 @@ const Router = {
       'search': () => import('./pages/search.js'),
       'cross': () => import('./pages/cross.js'),
       'trail': () => import('./pages/trail.js'),
-      'trail-detail': () => import('./pages/trail-detail.js')
+      'trail-detail': () => import('./pages/trail-detail.js'),
+      'quiz': () => import('./pages/quiz.js')
     };
     const loader = moduleMap[viewName];
     if (loader) {
