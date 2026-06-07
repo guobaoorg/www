@@ -104,31 +104,31 @@ async function renderRouteDetail(container, meta, data) {
         </div>
       </div>
       <div class="topic-intro">${route.intro.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
-      <div class="route-timeline" style="position: relative; margin: 2rem 0;">
-        <div class="route-timeline-line" style="position: absolute; left: 24px; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, ${meta.color}40, ${meta.color}); border-radius: 3px;"></div>
+      <div class="route-timeline">
+        <div class="route-timeline-line" style="background: linear-gradient(to bottom, ${meta.color}40, ${meta.color});"></div>
         ${route.stops.map((stop, index) => {
           const isLast = index === totalStops - 1;
           const stopBuildings = (stop.buildings || [])
             .map(b => State.resolveBuildingRef(b))
             .filter(b => b !== null);
           return `
-            <div class="route-stop" style="position: relative; padding-left: 64px; margin-bottom: ${isLast ? '0' : '2rem'};">
-              <div class="route-stop-marker" style="position: absolute; left: 12px; top: 0; width: 28px; height: 28px; border-radius: 50%; background: ${meta.color}; color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; border: 3px solid var(--bg-card); box-shadow: 0 0 0 3px ${meta.color}40; z-index: 1;">${index + 1}</div>
+            <div class="route-stop">
+              <div class="route-stop-marker" style="background: ${meta.color}; box-shadow: 0 0 0 3px ${meta.color}40;">${index + 1}</div>
               <div class="route-stop-card">
-                <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-light); background: linear-gradient(135deg, ${meta.bgColor}80 0%, var(--bg-card) 100%);">
-                  <div style="display: flex; align-items: center; gap: 0.625rem;">
-                    <span style="font-size: 1.25rem;">${stop.icon}</span>
+                <div class="route-stop-header" style="background: linear-gradient(135deg, ${meta.bgColor}80 0%, var(--bg-card) 100%);">
+                  <div class="route-stop-header-inner">
+                    <span class="route-stop-icon">${stop.icon}</span>
                     <div>
-                      <h3 style="font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0;">${stop.title}</h3>
-                      ${stop.poet ? `<div style="font-size: 0.75rem; color: ${meta.color}; margin-top: 0.25rem;">📜 ${stop.poet}</div>` : ''}
+                      <h3 class="route-stop-title">${stop.title}</h3>
+                      ${stop.poet ? `<div class="route-stop-poet" style="color: ${meta.color};">📜 ${stop.poet}</div>` : ''}
                     </div>
                   </div>
                 </div>
-                ${stop.poem ? `<div style="padding: 1rem 1.25rem; background: var(--bg-secondary); border-bottom: 1px solid var(--border-light);"><pre style="font-family: inherit; font-size: 0.875rem; line-height: 1.8; color: var(--text-primary); margin: 0; white-space: pre-wrap;">${stop.poem}</pre></div>` : ''}
-                <div style="padding: 1rem 1.25rem;"><div class="topic-chapter-content" style="font-size: 0.875rem; line-height: 1.7; color: var(--text-secondary);">${stop.content.split('\n\n').map(p => `<p style="margin: 0 0 0.5rem 0;">${p}</p>`).join('')}</div></div>
-                ${stopBuildings.length > 0 ? `<div style="padding: 0 1.25rem 1rem;"><div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.75rem;">🏛️ 相关古建</div><div class="building-grid compact">${stopBuildings.map(b => Utils.createBuildingCard(b)).join('')}</div></div>` : ''}
+                ${stop.poem ? `<div class="route-stop-poem"><pre>${stop.poem}</pre></div>` : ''}
+                <div class="route-stop-content">${stop.content.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
+                ${stopBuildings.length > 0 ? `<div class="route-stop-buildings"><div class="route-stop-buildings-title">🏛️ 相关古建</div><div class="building-grid compact">${stopBuildings.map(b => Utils.createBuildingCard(b)).join('')}</div></div>` : ''}
               </div>
-              ${!isLast ? `<div style="display: flex; align-items: center; justify-content: center; margin-top: 1rem; margin-left: -64px;"><div style="display: flex; align-items: center; gap: 0.5rem; color: ${meta.color}; font-size: 0.75rem; font-weight: 600;"><span>↓</span><span>前往下一站</span><span>↓</span></div></div>` : ''}
+              ${!isLast ? `<div class="route-stop-next"><div class="route-stop-next-inner" style="color: ${meta.color};"><span>↓</span><span>前往下一站</span><span>↓</span></div></div>` : ''}
             </div>`;
         }).join('')}
       </div>

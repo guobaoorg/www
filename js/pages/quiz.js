@@ -6,6 +6,8 @@ import State from '../state.js';
 import Config from '../config.js';
 import Utils from '../utils.js';
 
+let _loadedBuildingKey = null;
+
 const LEVELS = [
   '炼气一层','炼气二层','炼气三层','炼气四层','炼气五层','炼气六层','炼气七层','炼气八层','炼气九层','炼气十层',
   '炼气十一层','炼气十二层','炼气十三层',
@@ -38,6 +40,8 @@ const STORAGE_KEY = 'guobao_quiz_state';
 
 let _currentBuilding = null;
 let _currentClueIndex = 0;
+let _quizFinished = false;
+let _wrongResultHtml = null;
 let _userLevel = 0;
 let _filterProvince = 'all';
 let _filterEra = 'all';
@@ -47,11 +51,18 @@ let _usedBuildingKeys = new Set();
 
 function _saveState() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    const state = {
       userLevel: _userLevel, score: _score, totalAttempts: _totalAttempts,
       usedBuildingKeys: [..._usedBuildingKeys],
-      filterProvince: _filterProvince, filterEra: _filterEra
-    }));
+      filterProvince: _filterProvince, filterEra: _filterEra,
+      currentClueIndex: _currentClueIndex,
+      quizFinished: _quizFinished,
+      wrongResultHtml: _wrongResultHtml
+    };
+    if (_currentBuilding) {
+      state.currentBuildingKey = `${_currentBuilding.provinceId || ''}_${_currentBuilding.district || ''}_${_currentBuilding.name}`;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (_) {}
 }
 
@@ -66,6 +77,11 @@ function _loadState() {
       _usedBuildingKeys = new Set(s.usedBuildingKeys || []);
       _filterProvince = s.filterProvince || 'all';
       _filterEra = s.filterEra || 'all';
+      _currentClueIndex = s.currentClueIndex || 0;
+      _quizFinished = s.quizFinished === true;
+      _wrongResultHtml = s.wrongResultHtml || null;
+      // 不直接恢复 building，在 _startRound 中通过 key 查找
+      _loadedBuildingKey = s.currentBuildingKey || null;
     }
   } catch (_) {}
 }
@@ -261,13 +277,48 @@ function _shortEra(name) {
   return name;
 }
 
-async function _startNewRound(container) {
+async function _startRound(container, forceNew = false) {
+  // 如果不是强制新题，且当前有未完成的题目，直接恢复
+  if (!forceNew && _currentBuilding && !_quizFinished) {
+    _renderQuizUI(container);
+    return;
+  }
+
+  // 如果是强制新题或已结束，清除旧状态
+  if (forceNew || _quizFinished) {
+    _currentBuilding = null;
+    _currentClueIndex = 0;
+    _quizFinished = false;
+    _wrongResultHtml = null;
+    _loadedBuildingKey = null;
+  }
+
+  // 尝试从持久化存储恢复建筑
+  if (!_currentBuilding && _loadedBuildingKey) {
+    const allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
+    await HashSearch.loadProvinces(allProvinceIds);
+    const all = State.getAllBuildings();
+    _currentBuilding = all.find(b => {
+      const key = `${b.provinceId || ''}_${b.district || ''}_${b.name}`;
+      return key === _loadedBuildingKey;
+    }) || null;
+    if (!_currentBuilding) {
+      _currentClueIndex = 0;
+      _quizFinished = false;
+      _loadedBuildingKey = null;
+    }
+  }
+
+  // 如果还没有建筑，加载数据并随机选一个
   if (!_currentBuilding) {
     const allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
     await HashSearch.loadProvinces(allProvinceIds);
+    _currentBuilding = _pickRandomBuilding();
+    _currentClueIndex = 0;
+    _quizFinished = false;
   }
-  _currentBuilding = _pickRandomBuilding();
-  _currentClueIndex = 0;
+
+  _saveState();
   _renderQuizUI(container);
 }
 
@@ -323,7 +374,8 @@ function _renderQuizUI(container) {
         _filterProvince = document.getElementById('quizFilterProvince')?.value || 'all';
         _filterEra = document.getElementById('quizFilterEra')?.value || 'all';
         _saveState();
-        _startNewRound(container);
+        _quizFinished = true;
+        _startRound(container, true);
       });
     }
     const resetBtn = document.getElementById('quizResetFilters');
@@ -332,7 +384,8 @@ function _renderQuizUI(container) {
         _filterProvince = 'all';
         _filterEra = 'all';
         _saveState();
-        _startNewRound(container);
+        _quizFinished = true;
+        _startRound(container, true);
       });
     }
     return;
@@ -395,17 +448,18 @@ function _renderQuizUI(container) {
         <div class="quiz-input-area">
           ${remainingClues > 0 ? `
             <button class="quiz-btn quiz-btn-hint" id="quizMoreHint">
-              ${_getHintPrompt(_currentClueIndex + 1)}（还剩 ${remainingClues} 条）
+              ${_getHintPrompt(_currentClueIndex + 1)}
             </button>` : ''}
           <div class="quiz-input-row">
             <input type="text" class="quiz-input" id="quizAnswerInput" placeholder="输入建筑名称..." autocomplete="off">
             <button class="quiz-btn quiz-btn-submit" id="quizSubmit">提交答案</button>
           </div>
+          <button class="quiz-btn quiz-btn-reveal" id="quizReveal">💡 猜不出来？直接看答案</button>
           <button class="quiz-btn quiz-btn-skip" id="quizSkip">⏭️ 跳过此题</button>
         </div>
 
         <!-- 结果区域 -->
-        <div class="quiz-result" id="quizResult" style="display:none;"></div>
+        ${_wrongResultHtml ? `<div class="quiz-result quiz-result-wrong" id="quizResult">${_wrongResultHtml}</div>` : `<div class="quiz-result" id="quizResult" style="display:none;"></div>`}
       </div>
     </div>`;
 
@@ -505,6 +559,7 @@ function _bindQuizEvents(container) {
   const submitBtn = document.getElementById('quizSubmit');
   const hintBtn = document.getElementById('quizMoreHint');
   const skipBtn = document.getElementById('quizSkip');
+  const revealBtn = document.getElementById('quizReveal');
   const filterApply = document.getElementById('quizFilterApply');
 
   if (input) input.focus();
@@ -526,7 +581,7 @@ function _bindQuizEvents(container) {
         _appendClue(_currentClueIndex);
         const remaining = CLUE_STAGES.length - _currentClueIndex - 1;
         if (remaining > 0) {
-          hintBtn.textContent = `${_getHintPrompt(_currentClueIndex + 1)}（还剩 ${remaining} 条）`;
+          hintBtn.textContent = _getHintPrompt(_currentClueIndex + 1);
         } else {
           hintBtn.style.display = 'none';
         }
@@ -542,12 +597,19 @@ function _bindQuizEvents(container) {
     });
   }
 
+  if (revealBtn) {
+    revealBtn.addEventListener('click', () => {
+      _handleReveal(container);
+    });
+  }
+
   if (filterApply) {
     filterApply.addEventListener('click', () => {
       _filterProvince = document.getElementById('quizFilterProvince')?.value || 'all';
       _filterEra = document.getElementById('quizFilterEra')?.value || 'all';
       _saveState();
-      _startNewRound(container);
+      _quizFinished = true;
+      _startRound(container, true);
     });
   }
 }
@@ -560,6 +622,8 @@ function _handleSubmit() {
   const userAnswer = input.value.trim();
   if (!userAnswer) return;
 
+  // 清除旧结果，新提交将生成新结果
+  _wrongResultHtml = null;
   _totalAttempts++;
   const isCorrect = _checkAnswer(userAnswer);
 
@@ -568,6 +632,8 @@ function _handleSubmit() {
     if (_userLevel < LEVELS.length - 1) _userLevel++;
     const buildingKey = `${_currentBuilding.provinceId}_${_currentBuilding.district}_${_currentBuilding.name}`;
     _usedBuildingKeys.add(buildingKey);
+    _quizFinished = true;
+    _wrongResultHtml = null;
     _saveState();
 
     const correctSet = new Set(_currentBuilding.name);
@@ -592,7 +658,7 @@ function _handleSubmit() {
       </div>`;
 
     document.getElementById('quizNextRound').addEventListener('click', () => {
-      _startNewRound(document.getElementById('mainContent'));
+      _startRound(document.getElementById('mainContent'), true);
     });
 
     input.disabled = true;
@@ -601,6 +667,8 @@ function _handleSubmit() {
     if (hintBtn) hintBtn.style.display = 'none';
     const skipBtn = document.getElementById('quizSkip');
     if (skipBtn) skipBtn.style.display = 'none';
+    const revealBtn = document.getElementById('quizReveal');
+    if (revealBtn) revealBtn.style.display = 'none';
   } else {
     if (_userLevel > 0) _userLevel--;
     _saveState();
@@ -613,7 +681,7 @@ function _handleSubmit() {
     resultArea.style.display = 'block';
     resultArea.className = 'quiz-result quiz-result-wrong';
     const matchInfo = _getMatchInfo(userAnswer);
-    resultArea.innerHTML = `
+    _wrongResultHtml = `
       <div class="quiz-result-icon">❌</div>
       <div class="quiz-result-title">不对哦，再想想！</div>
       <div class="quiz-result-chars">
@@ -621,9 +689,52 @@ function _handleSubmit() {
         <div class="quiz-result-chars-row">${coloredChars}</div>
       </div>
       <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>`;
+    resultArea.innerHTML = _wrongResultHtml;
+    _saveState();
 
     input.value = '';
     input.focus();
+  }
+}
+
+function _handleReveal(container) {
+  if (!_currentBuilding) return;
+  _totalAttempts++;
+  if (_userLevel > 0) _userLevel--;
+  const buildingKey = `${_currentBuilding.provinceId}_${_currentBuilding.district}_${_currentBuilding.name}`;
+  _usedBuildingKeys.add(buildingKey);
+  _quizFinished = true;
+  _saveState();
+
+  const resultArea = document.getElementById('quizResult');
+  if (resultArea) {
+    resultArea.style.display = 'block';
+    resultArea.className = 'quiz-result quiz-result-reveal';
+    resultArea.innerHTML = `
+      <div class="quiz-result-icon">💡</div>
+      <div class="quiz-result-title">答案揭晓</div>
+      <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
+      <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
+      <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>
+      <div class="quiz-result-actions">
+        <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
+        <button class="quiz-btn quiz-btn-outline" id="quizNextRound">继续下一题 →</button>
+      </div>`;
+
+    document.getElementById('quizNextRound').addEventListener('click', () => {
+      _startRound(document.getElementById('mainContent'), true);
+    });
+
+    const input = document.getElementById('quizAnswerInput');
+    if (input) input.disabled = true;
+    const submitBtn = document.getElementById('quizSubmit');
+    if (submitBtn) submitBtn.disabled = true;
+    const hintBtn = document.getElementById('quizMoreHint');
+    if (hintBtn) hintBtn.style.display = 'none';
+    const skipBtn = document.getElementById('quizSkip');
+    if (skipBtn) skipBtn.style.display = 'none';
+    const revealBtn = document.getElementById('quizReveal');
+    if (revealBtn) revealBtn.style.display = 'none';
   }
 }
 
@@ -633,6 +744,7 @@ function _handleSkip(container) {
   if (_userLevel > 0) _userLevel--;
   const buildingKey = `${_currentBuilding.provinceId}_${_currentBuilding.district}_${_currentBuilding.name}`;
   _usedBuildingKeys.add(buildingKey);
+  _quizFinished = true;
   _saveState();
 
   const resultArea = document.getElementById('quizResult');
@@ -645,11 +757,13 @@ function _handleSkip(container) {
       <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
       <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
       <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>
-      <button class="quiz-btn quiz-btn-next" onclick="document.getElementById('quizNextRound2').click()">继续下一题 →</button>
-      <div style="display:none;"><button id="quizNextRound2"></button></div>`;
+      <div class="quiz-result-actions">
+        <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
+        <button class="quiz-btn quiz-btn-outline" id="quizNextRoundSkip">继续下一题 →</button>
+      </div>`;
 
-    document.getElementById('quizNextRound2').addEventListener('click', () => {
-      _startNewRound(document.getElementById('mainContent'));
+    document.getElementById('quizNextRoundSkip').addEventListener('click', () => {
+      _startRound(document.getElementById('mainContent'), true);
     });
 
     const input = document.getElementById('quizAnswerInput');
@@ -660,10 +774,12 @@ function _handleSkip(container) {
     if (hintBtn) hintBtn.style.display = 'none';
     const skipBtn = document.getElementById('quizSkip');
     if (skipBtn) skipBtn.style.display = 'none';
+    const revealBtn = document.getElementById('quizReveal');
+    if (revealBtn) revealBtn.style.display = 'none';
   }
 }
 
 export async function render(container) {
   _loadState();
-  _startNewRound(container);
+  _startRound(container);
 }

@@ -25,6 +25,7 @@ const State = {
   _allBuildingsCache: null,
   _allTagsCache: null,
   _tagBuildingsCache: {},
+  _buildingNameIndex: null,
   _cachedLoadedCount: 0,
 
   /** 初始化：加载元数据 */
@@ -74,12 +75,17 @@ const State = {
       return this._allBuildingsCache;
     }
     const all = [];
+    this._buildingNameIndex = new Map();
     const allData = HashSearch.getAllProvinceData();
     for (const [provinceId, data] of allData) {
       const provinceName = this.getProvinceName(provinceId);
       if (data.buildings) {
         for (const b of data.buildings) {
-          all.push({ ...b, province: provinceName, provinceId });
+          const entry = { ...b, province: provinceName, provinceId };
+          all.push(entry);
+          // 构建名称索引（按完整路径）
+          const fullPath = `${provinceName}${b.districtName || ''}${b.name}`;
+          this._buildingNameIndex.set(fullPath, entry);
         }
       }
     }
@@ -138,7 +144,11 @@ const State = {
   /** 根据完整路径查找建筑 */
   findBuildingByFullPath(fullPath) {
     if (!fullPath) return null;
-    // 优先从缓存查找
+    // 优先使用名称索引（O(1)）
+    if (this._buildingNameIndex?.has(fullPath)) {
+      return this._buildingNameIndex.get(fullPath);
+    }
+    // 回退到遍历查找
     const allBuildings = this.getAllBuildings();
     let building = allBuildings.find(b => b.name === fullPath);
     if (!building) {
@@ -193,6 +203,7 @@ const State = {
     this._allBuildingsCache = null;
     this._allTagsCache = null;
     this._tagBuildingsCache = {};
+    this._buildingNameIndex = null;
     this._cachedLoadedCount = 0;
   }
 };

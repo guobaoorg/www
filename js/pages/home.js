@@ -175,8 +175,24 @@ export async function render(container, destroyMapFn) {
   const dailyBuilding = candidates[dateSeed % candidates.length];
 
   const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
+  const sessionKey = `guobao_daily_${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getDate()).padStart(2, '0')}`;
 
-  let currentClueIndex = 0;
+  // 从 sessionStorage 恢复状态
+  let savedState = null;
+  try {
+    const raw = sessionStorage.getItem(sessionKey);
+    if (raw) savedState = JSON.parse(raw);
+  } catch (_) {}
+
+  function _saveDailyState(clueIndex, finished, wrongResultHtml) {
+    try {
+      sessionStorage.setItem(sessionKey, JSON.stringify({ clueIndex, finished, wrongResultHtml: wrongResultHtml || null }));
+    } catch (_) {}
+  }
+
+  let currentClueIndex = savedState?.clueIndex || 0;
+  let quizFinished = savedState?.finished || false;
+  let wrongResultHtml = savedState?.wrongResultHtml || null;
   const remainingClues = () => CLUE_STAGES.length - currentClueIndex - 1;
   const allClues = () => _renderAllClues(dailyBuilding, currentClueIndex);
 
@@ -220,24 +236,37 @@ export async function render(container, destroyMapFn) {
             `).join('')}
           </div>
 
-          <!-- 输入区 -->
+          <!-- 输入区（仅在未完成时显示） -->
+          ${quizFinished ? '' : `
           <div class="quiz-input-area">
             ${remainingClues() > 0 ? `
               <button class="quiz-btn quiz-btn-hint" id="dailyQuizMoreHint">
-                ${_getHintPrompt(currentClueIndex + 1)}（还剩 ${remainingClues()} 条）
+                ${_getHintPrompt(currentClueIndex + 1)}
               </button>` : ''}
             <div class="quiz-input-row">
               <input type="text" class="quiz-input" id="dailyQuizInput" placeholder="输入建筑名称..." autocomplete="off">
               <button class="quiz-btn quiz-btn-submit" id="dailyQuizSubmit">提交答案</button>
             </div>
-          </div>
+            <button class="quiz-btn quiz-btn-reveal" id="dailyQuizReveal">💡 猜不出来？直接看答案</button>
+          </div>`}
 
           <!-- 结果区域 -->
-          <div class="quiz-result" id="dailyQuizResult" style="display:none;"></div>
+          ${quizFinished ? `<div class="quiz-result quiz-result-reveal">
+            <div class="quiz-result-icon">💡</div>
+            <div class="quiz-result-title">答案揭晓</div>
+            <div class="quiz-result-answer">答案：<strong>${dailyBuilding.name}</strong></div>
+            <div class="quiz-result-detail">${dailyBuilding.province} · ${dailyBuilding.districtName} · ${dailyBuilding.era}</div>
+            <div class="quiz-result-actions">
+              <a href="${Utils.generateBuildingHash(dailyBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline">查看详情 ↗</a>
+              <a href="?page=quiz" class="quiz-btn quiz-btn-outline">继续挑战 →</a>
+            </div>
+          </div>` : wrongResultHtml ? `<div class="quiz-result quiz-result-wrong" id="dailyQuizResult">${wrongResultHtml}</div>` : `<div class="quiz-result" id="dailyQuizResult" style="display:none;"></div>`}
         </div>
       </div>`;
 
-    bindEvents();
+    if (!quizFinished) {
+      bindEvents();
+    }
     _initHomeSatelliteMap(dailyBuilding);
   }
 
@@ -309,10 +338,35 @@ export async function render(container, destroyMapFn) {
     if (hasMap) _initHomeSatelliteMap(dailyBuilding);
   }
 
+  function handleReveal(input, resultArea) {
+    quizFinished = true;
+    _saveDailyState(currentClueIndex, true);
+
+    resultArea.style.display = 'block';
+    resultArea.className = 'quiz-result quiz-result-reveal';
+    resultArea.innerHTML = `
+      <div class="quiz-result-icon">💡</div>
+      <div class="quiz-result-title">答案揭晓</div>
+      <div class="quiz-result-answer">答案：<strong>${dailyBuilding.name}</strong></div>
+      <div class="quiz-result-detail">${dailyBuilding.province} · ${dailyBuilding.districtName} · ${dailyBuilding.era}</div>
+      <div class="quiz-result-actions">
+        <a href="${Utils.generateBuildingHash(dailyBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline">查看详情 ↗</a>
+        <a href="?page=quiz" class="quiz-btn quiz-btn-outline">继续挑战 →</a>
+      </div>`;
+
+    input.disabled = true;
+    document.getElementById('dailyQuizSubmit').disabled = true;
+    const hintBtn = document.getElementById('dailyQuizMoreHint');
+    if (hintBtn) hintBtn.style.display = 'none';
+    const revealBtn = document.getElementById('dailyQuizReveal');
+    if (revealBtn) revealBtn.style.display = 'none';
+  }
+
   function bindEvents() {
     const input = document.getElementById('dailyQuizInput');
     const submitBtn = document.getElementById('dailyQuizSubmit');
     const hintBtn = document.getElementById('dailyQuizMoreHint');
+    const revealBtn = document.getElementById('dailyQuizReveal');
     const resultArea = document.getElementById('dailyQuizResult');
 
     if (input) input.focus();
@@ -333,10 +387,11 @@ export async function render(container, destroyMapFn) {
       hintBtn.addEventListener('click', () => {
         if (currentClueIndex < CLUE_STAGES.length - 1) {
           currentClueIndex++;
+          _saveDailyState(currentClueIndex, false);
           _appendHomeClue(currentClueIndex);
           const remaining = CLUE_STAGES.length - currentClueIndex - 1;
           if (remaining > 0) {
-            hintBtn.textContent = `${_getHintPrompt(currentClueIndex + 1)}（还剩 ${remaining} 条）`;
+            hintBtn.textContent = _getHintPrompt(currentClueIndex + 1);
           } else {
             hintBtn.style.display = 'none';
           }
@@ -345,15 +400,27 @@ export async function render(container, destroyMapFn) {
         }
       });
     }
+
+    if (revealBtn) {
+      revealBtn.addEventListener('click', () => {
+        handleReveal(input, resultArea);
+      });
+    }
   }
 
   function handleSubmit(input, resultArea) {
     const userAnswer = input.value.trim();
     if (!userAnswer) return;
 
+    // 清除旧结果，新提交将生成新结果
+    wrongResultHtml = null;
+
     const isCorrect = _checkAnswer(userAnswer, dailyBuilding.name);
 
     if (isCorrect) {
+      quizFinished = true;
+      _saveDailyState(currentClueIndex, true, null);
+
       const correctSet = new Set(dailyBuilding.name);
       const coloredChars = userAnswer.split('').map(ch =>
         `<span class="char-correct">${ch}</span>`
@@ -378,6 +445,8 @@ export async function render(container, destroyMapFn) {
       document.getElementById('dailyQuizSubmit').disabled = true;
       const hintBtn = document.getElementById('dailyQuizMoreHint');
       if (hintBtn) hintBtn.style.display = 'none';
+      const revealBtn = document.getElementById('dailyQuizReveal');
+      if (revealBtn) revealBtn.style.display = 'none';
     } else {
       const correctSet = new Set(dailyBuilding.name);
       const coloredChars = userAnswer.split('').map(ch =>
@@ -387,13 +456,15 @@ export async function render(container, destroyMapFn) {
       resultArea.style.display = 'block';
       resultArea.className = 'quiz-result quiz-result-wrong';
       const matchInfo = _getMatchInfo(userAnswer, dailyBuilding.name);
-      resultArea.innerHTML = `
+      wrongResultHtml = `
         <div class="quiz-result-icon">❌</div>
         <div class="quiz-result-title">不对哦，再想想！</div>
         <div class="quiz-result-chars">
           <div class="quiz-result-chars-hint">🟢 正确字 · ⚪ 错误/多输的字</div>
           <div class="quiz-result-chars-row">${coloredChars}</div>
         </div>`;
+      resultArea.innerHTML = wrongResultHtml;
+      _saveDailyState(currentClueIndex, false, wrongResultHtml);
 
       input.value = '';
       input.focus();

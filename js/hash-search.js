@@ -168,38 +168,33 @@ const HashSearch = {
   fuzzySearch(items, query, fields) {
     const lowerQuery = query.toLowerCase().trim();
     if (!lowerQuery) return [];
-    return items.filter(item => {
-      return fields.some(field => {
-        const val = item[field];
-        if (!val) return false;
-        if (typeof val === 'string') {
-          return val.toLowerCase().includes(lowerQuery);
-        }
-        if (Array.isArray(val)) {
-          return val.some(v => typeof v === 'string' && v.toLowerCase().includes(lowerQuery));
-        }
-        return false;
-      });
-    }).map(item => {
+    const fieldLabels = {
+      name: '名称匹配', location: '地点匹配', era: '年代匹配',
+      type: '类型匹配', districtName: '地区匹配', tags: '标签匹配',
+      description: '描述匹配', history: '历史匹配',
+      architecture: '建筑匹配', features: '特色匹配'
+    };
+    const results = [];
+    for (const item of items) {
       const reasons = [];
-      const lowerQ = lowerQuery;
-      fields.forEach(field => {
+      for (const field of fields) {
         const val = item[field];
-        if (!val) return;
-        const match = (typeof val === 'string' && val.toLowerCase().includes(lowerQ)) ||
-          (Array.isArray(val) && val.some(v => typeof v === 'string' && v.toLowerCase().includes(lowerQ)));
-        if (match) {
-          const labels = {
-            name: '名称匹配', location: '地点匹配', era: '年代匹配',
-            type: '类型匹配', districtName: '地区匹配', tags: '标签匹配',
-            description: '描述匹配', history: '历史匹配',
-            architecture: '建筑匹配', features: '特色匹配'
-          };
-          reasons.push(labels[field] || field + '匹配');
+        if (!val) continue;
+        let matched = false;
+        if (typeof val === 'string') {
+          matched = val.toLowerCase().includes(lowerQuery);
+        } else if (Array.isArray(val)) {
+          matched = val.some(v => typeof v === 'string' && v.toLowerCase().includes(lowerQuery));
         }
-      });
-      return { ...item, matchReasons: reasons };
-    });
+        if (matched) {
+          reasons.push(fieldLabels[field] || field + '匹配');
+        }
+      }
+      if (reasons.length > 0) {
+        results.push({ ...item, matchReasons: reasons });
+      }
+    }
+    return results;
   },
 
   /* ==================== 内部缓存管理 ==================== */
