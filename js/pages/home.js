@@ -1,7 +1,7 @@
 /**
  * 首页模块 — 国保猜猜看每日一题
  */
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, State, Utils, UI } from '../core.js';
 
 let _destroyMap = null;
 
@@ -138,43 +138,7 @@ export async function render(container, destroyMapFn) {
   function _initHomeSatelliteMap(building) {
     const mapDivs = document.querySelectorAll('.quiz-satellite-map');
     const mapDiv = mapDivs[mapDivs.length - 1];
-    if (!mapDiv || !building?.lat || !building?.lng) return;
-
-    const map = L.map(mapDiv, {
-      center: [building.lat, building.lng],
-      zoom: 15,
-      zoomControl: true,
-      attributionControl: false
-    });
-
-    const osm = L.tileLayer(Config.TILE_URLS.OSM, {
-      maxZoom: 18, attribution: '© OpenStreetMap'
-    });
-    const sat = L.tileLayer(Config.TILE_URLS.SAT, {
-      maxZoom: 19
-    });
-    const road = L.tileLayer(Config.TILE_URLS.ROAD, {
-      maxZoom: 18, opacity: 0.7
-    });
-    const labels = L.tileLayer(Config.TILE_URLS.LABELS, {
-      maxZoom: 18, opacity: 0.6
-    });
-    const satGroup = L.layerGroup([sat, road, labels]);
-    L.control.layers({
-      '标准': osm,
-      '卫星': satGroup
-    }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
-    satGroup.addTo(map);
-
-    const markerIcon = L.divIcon({
-      className: 'quiz-satellite-marker',
-      html: '<div class="quiz-satellite-pin"></div><div class="quiz-satellite-pulse"></div>',
-      iconSize: [20, 20],
-      iconAnchor: [10, 10]
-    });
-
-    L.marker([building.lat, building.lng], { icon: markerIcon }).addTo(map);
-    setTimeout(() => { map.invalidateSize(); }, 100);
+    UI.createSatelliteMap(mapDiv, building?.lat, building?.lng);
   }
 
   function _appendHomeClue(index) {

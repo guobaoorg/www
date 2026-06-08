@@ -1,6 +1,3 @@
-/**
- * 省份列表页
- */
 import { Config, State } from '../core.js';
 
 export function render(container) {

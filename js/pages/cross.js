@@ -1,6 +1,3 @@
-/**
- * 跨省文物保护单位页
- */
 import { HashSearch, Utils } from '../core.js';
 
 export async function render(container) {

@@ -1,6 +1,3 @@
-/**
- * 区县详情页
- */
 import { HashSearch, Config, State, Utils } from '../core.js';
 
 export async function render(container) {

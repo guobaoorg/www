@@ -1,7 +1,16 @@
-/**
- * 省份详情页
- */
 import { HashSearch, Config, State, Utils } from '../core.js';
+
+function getEraSummary(buildings) {
+  const eras = {};
+  buildings.forEach(b => { if (b.era) eras[b.era] = (eras[b.era] || 0) + 1; });
+  return Object.entries(eras).sort((a, b) => b[1] - a[1]).slice(0, 7).map(([era, count]) => `${era}(${count})`).join(' · ');
+}
+
+function getTagSummary(buildings) {
+  const tags = new Set();
+  buildings.forEach(b => { if (b.tags) b.tags.forEach(tag => tags.add(tag)); });
+  return Utils.shuffleArray([...tags]).slice(0, 7);
+}
 
 export async function render(container) {
   const provinceId = State.currentProvince;
@@ -34,18 +43,6 @@ export async function render(container) {
     return b && b.length > 0;
   });
 
-  const getEraSummary = (buildings) => {
-    const eras = {};
-    buildings.forEach(b => { if (b.era) eras[b.era] = (eras[b.era] || 0) + 1; });
-    return Object.entries(eras).sort((a, b) => b[1] - a[1]).slice(0, 7).map(([era, count]) => `${era}(${count})`).join(' · ');
-  };
-
-  const getTagSummary = (buildings) => {
-    const tags = new Set();
-    buildings.forEach(b => { if (b.tags) b.tags.forEach(tag => tags.add(tag)); });
-    return Utils.shuffleArray([...tags]).slice(0, 7);
-  };
-
   const protectionLabel = State.getProtectionLabel(provinceId);
 
   container.innerHTML = `
@@ -63,8 +60,7 @@ export async function render(container) {
           const eraSummary = getEraSummary(districtBuildings);
           const tagSummary = getTagSummary(districtBuildings);
           const hasHeritage = districtBuildings.some(b => b.worldHeritage);
-          const shuffledBuildings = Utils.shuffleArray([...districtBuildings]);
-          const featuredBuildings = shuffledBuildings.slice(0, 7);
+          const featuredBuildings = Utils.shuffleArray(districtBuildings.slice(0, 20)).slice(0, 7);
           return `
             <div class="district-grid-card" data-nav href="?page=district&pid=${provinceId}&did=${district.id}" style="border-top-color: ${provinceStyle.color};">
               <div class="district-grid-card-header">

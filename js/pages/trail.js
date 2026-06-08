@@ -1,6 +1,3 @@
-/**
- * 足迹列表页
- */
 import { State } from '../core.js';
 
 export function render(container) {

@@ -1,9 +1,7 @@
-/**
- * 搜索页
- */
 import { HashSearch, State, Utils } from '../core.js';
 
 let _searchDebounceTimer = null;
+let _dataLoading = false;
 
 export async function render(container) {
   container.innerHTML = `
@@ -13,13 +11,19 @@ export async function render(container) {
           <input type="text" class="search-page-input" placeholder="搜索建筑名称、地点、年代..." id="searchPageInput" autocomplete="off">
           <button class="search-page-clear" id="searchPageClear" style="display: none;">×</button>
         </div>
+        <div id="searchLoadHint" class="search-page-hint"></div>
         <div class="search-page-results" id="searchPageResults">
           <div class="search-page-hint"><p>输入关键词搜索</p></div>
         </div>
       </div>
     </div>`;
 
-  await State.ensureDataLoaded();
+  const needLoad = HashSearch.getCacheStats().loadedProvinces === 0;
+  if (needLoad) {
+    const hintEl = document.getElementById('searchLoadHint');
+    if (hintEl) hintEl.innerHTML = '<p style="color:var(--text-muted);font-size:0.75rem;">⏳ 数据后台加载中，输入后自动搜索</p>';
+    loadDataInBackground();
+  }
 
   const input = document.getElementById('searchPageInput');
   const clearBtn = document.getElementById('searchPageClear');
@@ -32,7 +36,7 @@ export async function render(container) {
       if (_searchDebounceTimer) clearTimeout(_searchDebounceTimer);
       if (query) {
         clearBtn.style.display = 'flex';
-        _searchDebounceTimer = setTimeout(() => renderSearchResults(query, resultsContainer), 250);
+        _searchDebounceTimer = setTimeout(() => doSearch(query, resultsContainer), 200);
       } else {
         clearBtn.style.display = 'none';
         resultsContainer.innerHTML = '<div class="search-page-hint"><p>输入关键词搜索</p></div>';
@@ -50,7 +54,21 @@ export async function render(container) {
   }
 }
 
-function renderSearchResults(query, container) {
+async function loadDataInBackground() {
+  if (_dataLoading) return;
+  _dataLoading = true;
+  const allIds = State.getProvinceMeta()?.provinces?.map(p => p.id) || [];
+  const batchSize = 6;
+  for (let i = 0; i < allIds.length; i += batchSize) {
+    await HashSearch.loadProvinces(allIds.slice(i, i + batchSize));
+    State.clearCache();
+  }
+  const hintEl = document.getElementById('searchLoadHint');
+  if (hintEl) { hintEl.innerHTML = ''; hintEl.style.display = 'none'; }
+  _dataLoading = false;
+}
+
+function doSearch(query, container) {
   const allBuildings = State.getAllBuildings();
   const searchFields = ['name', 'location', 'era', 'type', 'districtName', 'tags', 'description', 'history', 'architecture', 'features'];
   const results = HashSearch.fuzzySearch(allBuildings, query, searchFields);

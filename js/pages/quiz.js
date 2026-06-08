@@ -1,7 +1,7 @@
 /**
  * 国保猜猜看 — 修仙等级猜建筑
  */
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, Config, State, Utils, UI } from '../core.js';
 
 let _loadedBuildingKey = null;
 
@@ -436,49 +436,7 @@ function _renderQuizUI(container) {
 function _initSatelliteMap() {
   const mapDivs = document.querySelectorAll('.quiz-satellite-map');
   const mapDiv = mapDivs[mapDivs.length - 1];
-  if (!mapDiv || !_currentBuilding?.lat || !_currentBuilding?.lng) return;
-
-  const lat = _currentBuilding.lat;
-  const lng = _currentBuilding.lng;
-
-  const map = L.map(mapDiv, {
-    center: [lat, lng],
-    zoom: 15,
-    zoomControl: true,
-    attributionControl: false
-  });
-
-  const osm = L.tileLayer(Config.TILE_URLS.OSM, {
-    maxZoom: 18, attribution: '© OpenStreetMap'
-  });
-  const sat = L.tileLayer(Config.TILE_URLS.SAT, {
-    maxZoom: 19
-  });
-  const road = L.tileLayer(Config.TILE_URLS.ROAD, {
-    maxZoom: 18, opacity: 0.7
-  });
-  const labels = L.tileLayer(Config.TILE_URLS.LABELS, {
-    maxZoom: 18, opacity: 0.6
-  });
-  const satGroup = L.layerGroup([sat, road, labels]);
-  L.control.layers({
-    '标准': osm,
-    '卫星': satGroup
-  }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
-  satGroup.addTo(map);
-
-  // 红色标记点 + 脉冲圆圈
-  const markerIcon = L.divIcon({
-    className: 'quiz-satellite-marker',
-    html: '<div class="quiz-satellite-pin"></div><div class="quiz-satellite-pulse"></div>',
-    iconSize: [20, 20],
-    iconAnchor: [10, 10]
-  });
-
-  L.marker([lat, lng], { icon: markerIcon }).addTo(map);
-
-  // 延迟 invalidateSize 确保容器尺寸正确
-  setTimeout(() => { map.invalidateSize(); }, 100);
+  UI.createSatelliteMap(mapDiv, _currentBuilding?.lat, _currentBuilding?.lng);
 }
 
 function _appendClue(index) {
@@ -568,6 +526,39 @@ function _bindQuizEvents(container) {
   }
 }
 
+function _disableQuizInputs() {
+  const input = document.getElementById('quizAnswerInput');
+  if (input) input.disabled = true;
+  const submitBtn = document.getElementById('quizSubmit');
+  if (submitBtn) submitBtn.disabled = true;
+  ['quizMoreHint', 'quizSkip', 'quizReveal'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+function _showFinalResult(type, icon, title, extraHtml) {
+  const resultArea = document.getElementById('quizResult');
+  if (!resultArea) return;
+  resultArea.style.display = 'block';
+  resultArea.className = `quiz-result quiz-result-${type}`;
+  resultArea.innerHTML = `
+    <div class="quiz-result-icon">${icon}</div>
+    <div class="quiz-result-title">${title}</div>
+    ${extraHtml || ''}
+    <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
+    <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
+    <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>
+    <div class="quiz-result-actions">
+      <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
+      <button class="quiz-btn quiz-btn-outline" id="quizNextBtn">继续下一题 →</button>
+    </div>`;
+  document.getElementById('quizNextBtn').addEventListener('click', () => {
+    _startRound(document.getElementById('mainContent'), true);
+  });
+  _disableQuizInputs();
+}
+
 function _handleSubmit() {
   const input = document.getElementById('quizAnswerInput');
   const resultArea = document.getElementById('quizResult');
@@ -576,7 +567,6 @@ function _handleSubmit() {
   const userAnswer = input.value.trim();
   if (!userAnswer) return;
 
-  // 清除旧结果，新提交将生成新结果
   _wrongResultHtml = null;
   _totalAttempts++;
   const isCorrect = Utils.checkAnswer(userAnswer, _currentBuilding.name);
@@ -587,10 +577,8 @@ function _handleSubmit() {
     const buildingKey = `${_currentBuilding.provinceId}_${_currentBuilding.district}_${_currentBuilding.name}`;
     _usedBuildingKeys.add(buildingKey);
     _quizFinished = true;
-    _wrongResultHtml = null;
     _saveState();
 
-    const correctSet = new Set(_currentBuilding.name);
     const coloredChars = userAnswer.split('').map(ch =>
       `<span class="char-correct">${ch}</span>`
     ).join('');
@@ -600,29 +588,18 @@ function _handleSubmit() {
     resultArea.innerHTML = `
       <div class="quiz-result-icon">✅</div>
       <div class="quiz-result-title">回答正确！</div>
-      <div class="quiz-result-chars">
-        <div class="quiz-result-chars-row">${coloredChars}</div>
-      </div>
+      <div class="quiz-result-chars"><div class="quiz-result-chars-row">${coloredChars}</div></div>
       <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
       <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
       <div class="quiz-result-level">⬆ 境界提升至 <strong>${_getLevelName()}</strong></div>
       <div class="quiz-result-actions">
         <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
-        <button class="quiz-btn quiz-btn-outline" id="quizNextRound">继续下一题 →</button>
+        <button class="quiz-btn quiz-btn-outline" id="quizNextBtn">继续下一题 →</button>
       </div>`;
-
-    document.getElementById('quizNextRound').addEventListener('click', () => {
+    document.getElementById('quizNextBtn').addEventListener('click', () => {
       _startRound(document.getElementById('mainContent'), true);
     });
-
-    input.disabled = true;
-    document.getElementById('quizSubmit').disabled = true;
-    const hintBtn = document.getElementById('quizMoreHint');
-    if (hintBtn) hintBtn.style.display = 'none';
-    const skipBtn = document.getElementById('quizSkip');
-    if (skipBtn) skipBtn.style.display = 'none';
-    const revealBtn = document.getElementById('quizReveal');
-    if (revealBtn) revealBtn.style.display = 'none';
+    _disableQuizInputs();
   } else {
     if (_userLevel > 0) _userLevel--;
     _saveState();
@@ -658,37 +635,7 @@ function _handleReveal(container) {
   _usedBuildingKeys.add(buildingKey);
   _quizFinished = true;
   _saveState();
-
-  const resultArea = document.getElementById('quizResult');
-  if (resultArea) {
-    resultArea.style.display = 'block';
-    resultArea.className = 'quiz-result quiz-result-reveal';
-    resultArea.innerHTML = `
-      <div class="quiz-result-icon">💡</div>
-      <div class="quiz-result-title">答案揭晓</div>
-      <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
-      <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
-      <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>
-      <div class="quiz-result-actions">
-        <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
-        <button class="quiz-btn quiz-btn-outline" id="quizNextRound">继续下一题 →</button>
-      </div>`;
-
-    document.getElementById('quizNextRound').addEventListener('click', () => {
-      _startRound(document.getElementById('mainContent'), true);
-    });
-
-    const input = document.getElementById('quizAnswerInput');
-    if (input) input.disabled = true;
-    const submitBtn = document.getElementById('quizSubmit');
-    if (submitBtn) submitBtn.disabled = true;
-    const hintBtn = document.getElementById('quizMoreHint');
-    if (hintBtn) hintBtn.style.display = 'none';
-    const skipBtn = document.getElementById('quizSkip');
-    if (skipBtn) skipBtn.style.display = 'none';
-    const revealBtn = document.getElementById('quizReveal');
-    if (revealBtn) revealBtn.style.display = 'none';
-  }
+  _showFinalResult('reveal', '💡', '答案揭晓');
 }
 
 function _handleSkip(container) {
@@ -699,37 +646,7 @@ function _handleSkip(container) {
   _usedBuildingKeys.add(buildingKey);
   _quizFinished = true;
   _saveState();
-
-  const resultArea = document.getElementById('quizResult');
-  if (resultArea) {
-    resultArea.style.display = 'block';
-    resultArea.className = 'quiz-result quiz-result-skip';
-    resultArea.innerHTML = `
-      <div class="quiz-result-icon">⏭️</div>
-      <div class="quiz-result-title">已跳过</div>
-      <div class="quiz-result-answer">答案：<strong>${_currentBuilding.name}</strong></div>
-      <div class="quiz-result-detail">${_currentBuilding.province} · ${_currentBuilding.districtName} · ${_currentBuilding.era}</div>
-      <div class="quiz-result-level">⬇ 境界降至 <strong>${_getLevelName()}</strong></div>
-      <div class="quiz-result-actions">
-        <a href="${Utils.generateBuildingHash(_currentBuilding, State.getProvinceName.bind(State))}" class="quiz-btn quiz-btn-outline" target="_blank">查看详情 ↗</a>
-        <button class="quiz-btn quiz-btn-outline" id="quizNextRoundSkip">继续下一题 →</button>
-      </div>`;
-
-    document.getElementById('quizNextRoundSkip').addEventListener('click', () => {
-      _startRound(document.getElementById('mainContent'), true);
-    });
-
-    const input = document.getElementById('quizAnswerInput');
-    if (input) input.disabled = true;
-    const submitBtn = document.getElementById('quizSubmit');
-    if (submitBtn) submitBtn.disabled = true;
-    const hintBtn = document.getElementById('quizMoreHint');
-    if (hintBtn) hintBtn.style.display = 'none';
-    const skipBtn = document.getElementById('quizSkip');
-    if (skipBtn) skipBtn.style.display = 'none';
-    const revealBtn = document.getElementById('quizReveal');
-    if (revealBtn) revealBtn.style.display = 'none';
-  }
+  _showFinalResult('skip', '⏭️', '已跳过');
 }
 
 export async function render(container) {

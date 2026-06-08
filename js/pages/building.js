@@ -1,6 +1,3 @@
-/**
- * 建筑详情页
- */
 import { HashSearch, Config, State, Utils } from '../core.js';
 
 export async function render(container) {
@@ -70,16 +67,16 @@ export async function render(container) {
               ${building.worldHeritage ? `<div class="info-item heritage"><span class="info-label">世界遗产</span><span class="info-value">${building.worldHeritageYear}年 🌍</span></div>` : ''}
             </div>
           </div>
-          <div class="building-detail-section"><h3><span class="section-icon">✨</span> 特色介绍</h3><p class="detail-paragraph">${building.description}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">📜</span> 历史背景</h3><p class="detail-paragraph">${building.history}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">🏗️</span> 建筑风格</h3><p class="detail-paragraph">${building.architecture}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">💎</span> 特色与价值</h3><p class="detail-paragraph">${building.features}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">✨</span> 初见惊鸿・千年开胜迹</h3><p class="detail-paragraph">${building.description}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">📜</span> 史海钩沉・百代证沧桑</h3><p class="detail-paragraph">${building.history}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">🏗️</span> 匠心营造・妙构凝风骨</h3><p class="detail-paragraph">${building.architecture}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">💎</span> 华夏瑰宝・奇珍耀国光</h3><p class="detail-paragraph">${building.features}</p></div>
           ${building.sections ? `
           <div class="building-detail-section"><h3><span class="section-icon">🗺️</span> 分段信息</h3>
             <div class="sections-grid">${building.sections.map(s => `<div class="section-card"><div class="section-name">${s.name}</div><div class="section-province">${s.province}</div></div>`).join('')}</div>
           </div>` : ''}
           <div class="building-detail-section">
-            <h3><span class="section-icon">🏷️</span> 标签</h3>
+            <h3><span class="section-icon">🏷️</span> 特色标签</h3>
             <div class="building-detail-tags">
               ${(building.tags || []).map((tag, idx) => {
                 const ts = Config.getTagStyle(tag, idx);
@@ -100,23 +97,20 @@ export async function render(container) {
 
 function getRelatedBuildings(building, limit = 4) {
   const allBuildings = State.getAllBuildings();
-  const related = [];
   const buildingTags = building.tags || [];
-  const sameDistrict = allBuildings.filter(b => b.district === building.district && b.name !== building.name);
-  related.push(...sameDistrict);
-  if (related.length < limit) {
-    const sameTags = allBuildings.filter(b => {
-      if (b.name === building.name || related.some(r => r.name === b.name)) return false;
-      return (b.tags && buildingTags.some(tag => b.tags.includes(tag)));
-    });
-    related.push(...sameTags);
+  const buildingEra = building.era || '';
+  const scored = [];
+
+  for (const b of allBuildings) {
+    if (b.name === building.name) continue;
+    let score = 0;
+    if (b.district === building.district) score += 3;
+    if (b.tags && buildingTags.some(tag => b.tags.includes(tag))) score += 2;
+    if (b.era && buildingEra && b.era === buildingEra) score += 1;
+    if (score > 0) scored.push({ b, score });
   }
-  if (related.length < limit) {
-    const sameEra = allBuildings.filter(b => {
-      if (b.name === building.name || related.some(r => r.name === b.name)) return false;
-      return b.era && b.era === building.era;
-    });
-    related.push(...sameEra);
-  }
+
+  scored.sort((a, b) => b.score - a.score);
+  const related = scored.slice(0, limit * 2).map(s => s.b);
   return Utils.shuffleArray(related).slice(0, limit);
 }

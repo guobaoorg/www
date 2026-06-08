@@ -1,9 +1,3 @@
-/**
- * core.js — 核心模块合并文件
- * 合并 hash-search.js + config.js + state.js + utils.js + ui.js + router.js
- * 减少 HTTP 请求数，消除并发加载排队
- */
-
 // ==================== HashSearch ====================
 
 const HashSearch = {
@@ -21,7 +15,7 @@ const HashSearch = {
       this._cacheSet(url, data);
       return data;
     } catch (e) {
-      console.error('HashSearch.fetchJSON?失败:', url, e);
+      console.error('HashSearch.fetchJSON失败:', url, e);
       return null;
     }
   },
@@ -47,16 +41,30 @@ const HashSearch = {
     return this._cache.get(`province:${provinceId}`) || null;
   },
 
+  _allProvinceCache: null,
+
   getAllProvinceData() {
+    if (this._allProvinceCache && this._allProvinceCache.size === this._loadedData.size) return this._allProvinceCache;
     const result = new Map();
     for (const id of this._loadedData) {
       const data = this._cache.get(`province:${id}`);
       if (data) result.set(id, data);
     }
+    this._allProvinceCache = result;
     return result;
   },
 
-  getParams() { return new URLSearchParams(window.location.search); },
+  _lastSearch: null,
+  _cachedParams: null,
+
+  getParams() {
+    const search = window.location.search;
+    if (search !== this._lastSearch) {
+      this._lastSearch = search;
+      this._cachedParams = new URLSearchParams(search);
+    }
+    return this._cachedParams;
+  },
   getParam(key) { return this.getParams().get(key); },
 
   buildURL(params) {
@@ -83,15 +91,17 @@ const HashSearch = {
     };
   },
 
+  _fieldLabels: {
+    name: '名称匹配', location: '地点匹配', era: '年代匹配',
+    type: '类型匹配', districtName: '地区匹配', tags: '标签匹配',
+    description: '描述匹配', history: '历史匹配',
+    architecture: '建筑匹配', features: '特色匹配'
+  },
+
   fuzzySearch(items, query, fields) {
     const lowerQuery = query.toLowerCase().trim();
     if (!lowerQuery) return [];
-    const fieldLabels = {
-      name: '名称匹配', location: '地点匹配', era: '年代匹配',
-      type: '类型匹配', districtName: '地区匹配', tags: '标签匹配',
-      description: '描述匹配', history: '历史匹配',
-      architecture: '建筑匹配', features: '特色匹配'
-    };
+    const fieldLabels = this._fieldLabels;
     const results = [];
     for (const item of items) {
       const reasons = [];
@@ -274,8 +284,16 @@ const Config = {
     'culture': ['教育','学校','大学','学院','科研','图书','医疗','慈善']
   },
 
+  _tagCategoryCache: null,
+
   getTagCategory(tagName) {
-    for (const cat of this.tagCategories) { if (cat.tags.includes(tagName)) return cat; }
+    if (!this._tagCategoryCache) {
+      this._tagCategoryCache = {};
+      for (const cat of this.tagCategories) {
+        for (const t of cat.tags) this._tagCategoryCache[t] = cat;
+      }
+    }
+    if (this._tagCategoryCache[tagName]) return this._tagCategoryCache[tagName];
     for (const [catId, keywords] of Object.entries(this.tagCategoryKeywords)) {
       for (const kw of keywords) { if (tagName.includes(kw)) return this.tagCategories.find(c => c.id === catId) || null; }
     }
@@ -342,45 +360,52 @@ const Config = {
   },
 
   getProvinceStyle(provinceId) {
-    return this.provinceStyles[provinceId] || { icon: '📍', color: '#3498db', bgColor: '#ebf5fb' };
+    return this.provinceStyles[provinceId] || this._defaultProvinceStyle;
   },
 
+  _defaultProvinceStyle: { icon: '📍', color: '#3498db', bgColor: '#ebf5fb' },
+
+  _buildingCategoriesArray: null,
+
   getBuildingCategory(building) {
+    if (!this._buildingCategoriesArray) {
+      this._buildingCategoriesArray = Object.entries(this.buildingCategories).map(([key, cat]) => ({ ...cat, key }));
+    }
     const type = building.type || '';
-    for (const [key, cat] of Object.entries(this.buildingCategories)) {
+    for (const cat of this._buildingCategoriesArray) {
       if (cat.matchTypes.includes(type)) {
-        const isWorldHeritage = (building.tags || []).includes('世界遗产');
-        const result = { ...cat, key };
-        if (isWorldHeritage) { result.size = 26; result.isWorldHeritage = true; }
-        return result;
+        if (!(building.tags || []).includes('世界遗产')) return cat;
+        return { ...cat, size: 26, isWorldHeritage: true };
       }
     }
-    return { ...this.buildingCategories.other, key: 'other' };
+    return this._buildingCategoriesArray[this._buildingCategoriesArray.length - 1];
   },
 
   getTagStyle(tagName, index) {
-    const style = this.tagStyles[tagName] || { icon: '🏷️' };
-    const palette = this.colorPalette[index % this.colorPalette.length];
-    return { ...style, color: palette.color, bg: palette.bg };
+    const base = this.tagStyles[tagName] || { icon: '🏷️' };
+    const pal = this.colorPalette[index % this.colorPalette.length];
+    return { icon: base.icon, color: pal.color, bg: pal.bg };
   },
+
+  _dynastyCache: new Map(),
 
   getEarliestDynasty(eraStr) {
     if (!eraStr || eraStr === '待考' || eraStr.startsWith('不可考') || eraStr.startsWith('估计')) return null;
-    const matches = [];
+    if (this._dynastyCache.has(eraStr)) return this._dynastyCache.get(eraStr);
     for (const e of this.eras) {
-      for (const kw of e.keywords) { if (eraStr.includes(kw)) { matches.push(e); break; } }
+      for (const kw of e.keywords) { if (eraStr.includes(kw)) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
     }
-    if (matches.length > 0) return matches[0].id;
     const yearNums = [...eraStr.matchAll(/(\d{3,4})/g)].map(m => parseInt(m[1])).filter(y => y > 0 && y < 2030);
     if (yearNums.length > 0) {
       const year = Math.min(...yearNums);
-      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) return e.id; }
+      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
     }
     const centuryMatch = eraStr.match(/(\d{1,2})世纪/);
     if (centuryMatch) {
       const year = (parseInt(centuryMatch[1]) - 1) * 100 + 1;
-      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) return e.id; }
+      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
     }
+    this._dynastyCache.set(eraStr, null);
     return null;
   },
 
@@ -432,19 +457,34 @@ const State = {
   getProvinceMeta() { return this._provinceMeta; },
   getTrailRegistry() { return this._trailRegistry; },
 
+  _provinceByIdCache: {},
+
   getProvinceById(provinceId) {
-    return this._provinceMeta?.provinces?.find(p => p.id === provinceId);
+    if (this._provinceByIdCache[provinceId]) return this._provinceByIdCache[provinceId];
+    const p = this._provinceMeta?.provinces?.find(p => p.id === provinceId) || null;
+    this._provinceByIdCache[provinceId] = p;
+    return p;
   },
+
+  _provinceNameCache: {},
 
   getProvinceName(provinceId) {
     if (!provinceId) return '';
     if (provinceId === 'cross') return '跨省';
+    if (this._provinceNameCache[provinceId]) return this._provinceNameCache[provinceId];
     const p = this.getProvinceById(provinceId);
-    return p ? p.name : provinceId;
+    const name = p ? p.name : provinceId;
+    this._provinceNameCache[provinceId] = name;
+    return name;
   },
 
+  _protectionLabelCache: {},
+
   getProtectionLabel(provinceId) {
-    return this._provinceMeta?.protectionLabels?.[provinceId] || '全国重点文物保护单位';
+    if (this._protectionLabelCache[provinceId]) return this._protectionLabelCache[provinceId];
+    const label = this._provinceMeta?.protectionLabels?.[provinceId] || '全国重点文物保护单位';
+    this._protectionLabelCache[provinceId] = label;
+    return label;
   },
 
   getAllBuildings() {
@@ -457,9 +497,10 @@ const State = {
       const provinceName = this.getProvinceName(provinceId);
       if (data.buildings) {
         for (const b of data.buildings) {
-          const entry = { ...b, province: provinceName, provinceId };
-          all.push(entry);
-          this._buildingNameIndex.set(`${provinceName}${b.districtName || ''}${b.name}`, entry);
+          b.province = provinceName;
+          b.provinceId = provinceId;
+          all.push(b);
+          this._buildingNameIndex.set(`${provinceName}${b.districtName || ''}${b.name}`, b);
         }
       }
     }
@@ -487,7 +528,11 @@ const State = {
     const data = HashSearch.getProvinceData(provinceId);
     if (!data?.buildings) return [];
     const provinceName = this.getProvinceName(provinceId);
-    return data.buildings.filter(b => b.district === districtId).map(b => ({ ...b, province: provinceName, provinceId }));
+    return data.buildings.filter(b => {
+      if (b.district !== districtId) return false;
+      if (!b.provinceId) { b.province = provinceName; b.provinceId = provinceId; }
+      return true;
+    });
   },
 
   getDistrictData(provinceId, districtId) {
@@ -552,8 +597,6 @@ const State = {
 // ==================== Utils ====================
 
 const Utils = {
-  _cache: new Map(),
-  _cacheLimits: { protectionBadges: 50 },
 
   truncateText(text, maxLength, suffix = '...') {
     if (!text) return '';
@@ -581,13 +624,14 @@ const Utils = {
 
   getLocationClue(b) { return b.location || '暂无地区信息'; },
 
+  _hintPrompts: [
+    '🤔提示？它的建筑风格很特别！', '🧐没头绪？我来描绘它的特色～',
+    '🎯再想想？它的特点会有帮助！', '📖或许答案就在它的故事里：',
+    '🗺️方向不对？看看它在哪里！', '⏳最后一击！年代即将揭晓～'
+  ],
+
   getHintPrompt(nextStageIndex) {
-    const prompts = [
-      '🤔提示？它的建筑风格很特别！', '🧐没头绪？我来描绘它的特色～',
-      '🎯再想想？它的特点会有帮助！', '📖或许答案就在它的故事里：',
-      '🗺️方向不对？看看它在哪里！', '⏳最后一击！年代即将揭晓～'
-    ];
-    return prompts[nextStageIndex] || '💡 让我来帮你！';
+    return this._hintPrompts[nextStageIndex] || '💡 让我来帮你！';
   },
 
   getClueText(stageKey, building) {
@@ -630,44 +674,48 @@ const Utils = {
     return { correctLen, inputLen, correctChars, wrongChars: inputLen - correctChars, minInputLen };
   },
 
+  _escapeRegex(str) {
+    const cache = this._escapeCache || (this._escapeCache = new Map());
+    if (cache.has(str)) return cache.get(str);
+    const r = str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cache.set(str, r);
+    return r;
+  },
+
   sanitizeClueText(text, building, stageKey) {
     if (!text || !building) return text;
     let result = text;
     const name = building.name;
-    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const escaped = this._escapeRegex(name);
     result = result.replace(new RegExp(escaped, 'g'), '该建筑');
     const coreName = name.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
     if (coreName !== name && coreName.length >= 2) {
-      const coreEscaped = coreName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const coreEscaped = this._escapeRegex(coreName);
       result = result.replace(new RegExp(`(^|[。，；：、！？""''\\s（）])${coreEscaped}(?=[。，；：、！？""''\\s（）的是了在为与和及等也都就已将被从由对向于至]|$)`, 'g'), '$1该建筑');
     }
     if (stageKey && stageKey !== 'location' && stageKey !== 'era') {
       if (building.province) {
-        result = result.replace(new RegExp(building.province.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), '该地区');
+        result = result.replace(new RegExp(this._escapeRegex(building.province), 'g'), '该地区');
       }
       if (building.districtName) {
-        result = result.replace(new RegExp(building.districtName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), '当地');
+        result = result.replace(new RegExp(this._escapeRegex(building.districtName), 'g'), '当地');
       }
       if (building.era) {
-        result = result.replace(new RegExp(building.era.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), '某个时期');
+        result = result.replace(new RegExp(this._escapeRegex(building.era), 'g'), '某个时期');
       }
     }
     return result;
   },
 
   generateProtectionBadge(building) {
-    const pl = building.protectionLevel || '全国重点文物保护单位';
-    const cacheKey = `badge_${building.worldHeritage}_${building.worldHeritageYear}_${pl}_${building.protectionBatch}`;
-    if (this._cache.has(cacheKey)) return this._cache.get(cacheKey);
-    let result = '';
     if (building.worldHeritage) {
-      result = `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.worldHeritageYear ? '·' + building.worldHeritageYear : ''}</span>`;
-    } else if (pl.includes('全国重点文物保护单位')) {
-      result = `<span class="protection-badge protection-badge--national">${building.protectionBatch || '全国重点'}</span>`;
+      return `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.worldHeritageYear ? '·' + building.worldHeritageYear : ''}</span>`;
     }
-    if (this._cache.size >= this._cacheLimits.protectionBadges) this._cache.delete(this._cache.keys().next().value);
-    this._cache.set(cacheKey, result);
-    return result;
+    const pl = building.protectionLevel || '';
+    if (pl.includes('全国重点文物保护单位')) {
+      return `<span class="protection-badge protection-badge--national">${building.protectionBatch || '全国重点'}</span>`;
+    }
+    return '';
   },
 
   generateBuildingHash(building, getProvinceName) {
@@ -677,18 +725,20 @@ const Utils = {
     return `?page=building&name=${encodeURIComponent(`${provinceName}${districtName}${building.name}`)}${pid}`;
   },
 
+  _cardPriorityMap: new Map([['世界遗产',1],['古建筑',1],['近代建筑',1],['寺庙',1],['宫殿',1],['园林',1],['陵墓',1],['石窟',1],['塔',1],['桥梁',1],['革命遗址',1],['名人故居',1]]),
+
   createBuildingCard(building, opts = {}) {
     const { matchReasons, maxTags = 5 } = opts;
     const href = this.generateBuildingHash(building, State.getProvinceName.bind(State));
     const provinceStyle = Config.getProvinceStyle(building.provinceId);
     const protectionBadge = this.generateProtectionBadge(building);
     const shortDesc = this.truncateText(building.description, 60, '');
-    const priorityTags = ['世界遗产', '古建筑', '近代建筑', '寺庙', '宫殿', '园林', '陵墓', '石窟', '塔', '桥梁', '革命遗址', '名人故居'];
+    const priorityMap = this._cardPriorityMap;
     const tags = building.tags || [];
     const sortedTags = [...tags].sort((a, b) => {
-      const ap = priorityTags.indexOf(a), bp = priorityTags.indexOf(b);
-      if (ap !== -1 && bp === -1) return -1;
-      if (ap === -1 && bp !== -1) return 1;
+      const ap = priorityMap.has(a), bp = priorityMap.has(b);
+      if (ap && !bp) return -1;
+      if (!ap && bp) return 1;
       return 0;
     });
     const matchReasonsHtml = matchReasons?.length
@@ -741,9 +791,7 @@ const UI = {
     });
     document.addEventListener('click', (e) => {
       const card = e.target.closest('.building-card');
-      if (card) { e.preventDefault(); e.stopPropagation(); onNavigate(card.getAttribute('data-href')); }
-    });
-    document.addEventListener('click', (e) => {
+      if (card) { e.preventDefault(); onNavigate(card.getAttribute('data-href')); return; }
       const link = e.target.closest('[data-nav]');
       if (link) { e.preventDefault(); onNavigate(link.getAttribute('href') || link.getAttribute('data-nav')); }
     });
@@ -810,6 +858,27 @@ const UI = {
     });
   },
 
+  createSatelliteMap(mapDiv, lat, lng) {
+    if (!mapDiv || !lat || !lng) return;
+    const map = L.map(mapDiv, {
+      center: [lat, lng], zoom: 15, zoomControl: true, attributionControl: false
+    });
+    const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom: 18, attribution: '© OpenStreetMap' });
+    const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: 19 });
+    const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom: 18, opacity: 0.7 });
+    const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom: 18, opacity: 0.6 });
+    const satGroup = L.layerGroup([sat, road, labels]);
+    L.control.layers({ '标准': osm, '卫星': satGroup }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
+    satGroup.addTo(map);
+    const markerIcon = L.divIcon({
+      className: 'quiz-satellite-marker',
+      html: '<div class="quiz-satellite-pin"></div><div class="quiz-satellite-pulse"></div>',
+      iconSize: [20, 20], iconAnchor: [10, 10]
+    });
+    L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+    setTimeout(() => { map.invalidateSize(); }, 100);
+  },
+
   injectStructuredData() {
     let script = document.getElementById('ld-json');
     if (!script) {
@@ -835,8 +904,6 @@ const UI = {
 // ==================== Router ====================
 
 const Router = {
-  _currentView: 'home',
-
   parseParams() {
     const parsed = HashSearch.autoRetrieve();
     State.currentView = parsed.view;
@@ -847,7 +914,6 @@ const Router = {
     State.currentTrailId = parsed.trailId;
     State.currentTrailType = parsed.trailType;
     State.currentTagCategory = parsed.tagCategory;
-    this._currentView = parsed.view;
     document.querySelector('.nav-menu')?.classList.remove('active');
     return parsed;
   },
@@ -858,25 +924,28 @@ const Router = {
     window.dispatchEvent(new CustomEvent('route-change'));
   },
 
+  _moduleMap: {
+    'home': () => import('./pages/home.js'),
+    'map': () => import('./pages/map.js'),
+    'provinces': () => import('./pages/provinces.js'),
+    'province': () => import('./pages/province.js'),
+    'district': () => import('./pages/district.js'),
+    'building': () => import('./pages/building.js'),
+    'tags': () => import('./pages/tags.js'),
+    'tag': () => import('./pages/tag.js'),
+    'search': () => import('./pages/search.js'),
+    'cross': () => import('./pages/cross.js'),
+    'trail': () => import('./pages/trail.js'),
+    'trail-detail': () => import('./pages/trail-detail.js'),
+    'quiz': () => import('./pages/quiz.js')
+  },
+  _moduleCache: {},
+
   async loadPageModule(viewName) {
-    const moduleMap = {
-      'home': () => import('./pages/home.js'),
-      'map': () => import('./pages/map.js'),
-      'provinces': () => import('./pages/provinces.js'),
-      'province': () => import('./pages/province.js'),
-      'district': () => import('./pages/district.js'),
-      'building': () => import('./pages/building.js'),
-      'tags': () => import('./pages/tags.js'),
-      'tag': () => import('./pages/tag.js'),
-      'search': () => import('./pages/search.js'),
-      'cross': () => import('./pages/cross.js'),
-      'trail': () => import('./pages/trail.js'),
-      'trail-detail': () => import('./pages/trail-detail.js'),
-      'quiz': () => import('./pages/quiz.js')
-    };
-    const loader = moduleMap[viewName];
+    if (this._moduleCache[viewName]) return this._moduleCache[viewName];
+    const loader = this._moduleMap[viewName];
     if (loader) {
-      try { const mod = await loader(); return mod.default || mod; }
+      try { const mod = await loader(); const m = mod.default || mod; this._moduleCache[viewName] = m; return m; }
       catch (e) { console.error(`Failed to load page module: ${viewName}`, e); return null; }
     }
     return null;

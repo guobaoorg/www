@@ -1,6 +1,3 @@
-/**
- * 足迹详情页
- */
 import { HashSearch, State, Utils } from '../core.js';
 
 export async function render(container) {
