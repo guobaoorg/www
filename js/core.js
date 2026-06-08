@@ -138,10 +138,45 @@ const HashSearch = {
 
   getLoadedProvinceIds() {
     return new Set(this._loadedData);
+  },
+
+  _bgActive: false,
+
+  _bgProgress: { loaded: 0, total: 0 },
+
+  async startBgPreload(provinceIds, trailFiles) {
+    if (this._bgActive) return;
+    this._bgActive = true;
+    this._bgProgress = { loaded: this._loadedData.size, total: (provinceIds?.length || 0) + (trailFiles?.length || 0) };
+    const batchSize = 5;
+    try {
+      if (provinceIds?.length) {
+        for (let i = 0; i < provinceIds.length; i += batchSize) {
+          const batch = provinceIds.slice(i, i + batchSize);
+          const unloaded = batch.filter(id => !this._loadedData.has(id));
+          if (unloaded.length) {
+            await this.loadProvinces(unloaded);
+            State.clearCache();
+          }
+          this._bgProgress.loaded = this._loadedData.size;
+          await new Promise(r => setTimeout(r, 0));
+        }
+      }
+      if (trailFiles?.length) {
+        for (let i = 0; i < trailFiles.length; i += batchSize) {
+          const batch = trailFiles.slice(i, i + batchSize);
+          await Promise.all(batch.map(f => this.fetchJSON(`/trail/${f}`).catch(() => {})));
+          this._bgProgress.loaded = this._loadedData.size + Math.min(i + batchSize, trailFiles.length);
+          await new Promise(r => setTimeout(r, 0));
+        }
+      }
+    } catch (e) {
+      console.error('后台预加载失败:', e);
+    }
+    this._bgActive = false;
+    window.dispatchEvent(new CustomEvent('bg-preload-complete'));
   }
 };
-
-// ==================== Config ====================
 
 const Config = {
   provinceStyles: {

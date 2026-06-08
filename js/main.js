@@ -1,4 +1,4 @@
-import { State, Router, UI } from './core.js';
+import { HashSearch, State, Router, UI } from './core.js';
 
 let _currentDestroyMap = null;
 let _cachedMain = null;
@@ -10,12 +10,21 @@ async function init() {
   _cachedMain = document.getElementById('mainContent');
   _cachedBreadcrumb = document.querySelector('.breadcrumb');
   await State.initMeta();
+  startBgPreload();
   Router.parseParams();
   window.addEventListener('route-change', () => {
     Router.parseParams();
     renderPage();
   });
   await renderPage();
+}
+
+function startBgPreload() {
+  const meta = State.getProvinceMeta();
+  if (!meta?.provinces) return;
+  const provinceIds = [...meta.provinces.map(p => p.id), 'cross'];
+  const trailFiles = (State.getTrailRegistry() || []).map(t => t.fileName).filter(Boolean);
+  HashSearch.startBgPreload(provinceIds, trailFiles);
 }
 
 async function renderPage() {
