@@ -94,7 +94,11 @@ a:hover { color: var(--accent-hover); }
     max-width: 1200px;
 }
 
-@media (min-width: 640px) { .container { padding: 0 20px; } }
+@media (min-width: 640px) {
+  .container { padding: 0 20px; }
+  .building-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.25rem; }
+  .building-grid.compact { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
 @media (min-width: 768px) { .container { padding: 0 24px; } }
 
 /* Header */
@@ -294,13 +298,12 @@ a:hover { color: var(--accent-hover); }
 }
 
 @media (min-width: 480px) { .building-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 640px) { .building-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1.25rem; } }
-@media (min-width: 1024px) { .building-grid { gap: 1.5rem; } }
-@media (min-width: 1200px) { .building-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
 
 .building-grid.compact { grid-template-columns: 1fr; gap: 1rem; }
 @media (min-width: 480px) { .building-grid.compact { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 640px) { .building-grid.compact { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); } }
+
+@media (min-width: 1024px) { .building-grid { gap: 1.5rem; } }
+@media (min-width: 1200px) { .building-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); } }
 
 /* Building Card */
 .building-card {
@@ -311,8 +314,6 @@ a:hover { color: var(--accent-hover); }
     transition: var(--transition);
     border: 1px solid var(--border-light);
     border-left: 3px solid;
-    content-visibility: auto;
-    contain-intrinsic-size: 140px;
 }
 
 .building-card:hover {
@@ -1016,8 +1017,6 @@ a:hover { color: var(--accent-hover); }
     align-items: flex-start;
     gap: 0.875rem;
     border-left: 4px solid;
-    content-visibility: auto;
-    contain-intrinsic-size: 120px;
 }
 
 .topic-card:hover {
@@ -1315,7 +1314,7 @@ a:hover { color: var(--accent-hover); }
     font-size: 0.8125rem;
     font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 }
 
 .video-link:hover { transform: translateY(-1px); }
@@ -1497,7 +1496,7 @@ a:hover { color: var(--accent-hover); }
     width: 100%;
     height: calc(100vh - var(--header-height) - 0.75rem);
     min-height: 500px;
-    padding-top: var(--header-height);
+    padding-top: 36px;
     box-sizing: border-box;
     overflow: hidden;
 }

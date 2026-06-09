@@ -9,7 +9,7 @@ export function render(container) {
       <div class="province-grid">
         ${provinces.map(province => {
           const style = Config.getProvinceStyle(province.id);
-          return `<div class="province-card ${province.count > 0 ? 'has-data' : 'no-data'}" data-nav href="?page=province&id=${province.id}" style="border-left-color: ${style.color};">
+          return `<div class="province-card ${province.count > 0 ? '' : 'no-data'}" data-nav href="?page=province&id=${province.id}" style="border-left-color: ${style.color};">
             <div class="province-icon" style="background: ${style.bgColor}; color: ${style.color};">${style.icon}</div>
             <div class="province-info">
               <div class="province-name">${province.name}</div>

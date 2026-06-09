@@ -132,11 +132,7 @@ function _refreshMarkers() {
   let visible = 0;
   const provSet = new Set();
   for (const { marker, categoryKey, eraId } of _mapMarkers) {
-    if (_activeCategoryFilter === 'all' && _activeEraFilter === 'all') {
-      _markerCluster.addLayer(marker);
-      visible++;
-      if (marker._provinceId) provSet.add(marker._provinceId);
-    } else if (_passesFilters(categoryKey, eraId)) {
+    if (_passesFilters(categoryKey, eraId)) {
       _markerCluster.addLayer(marker);
       visible++;
       if (marker._provinceId) provSet.add(marker._provinceId);
@@ -232,6 +228,8 @@ async function _loadMapDataAsync(allIds) {
   const loadedProvinces = new Set();
   const batchSize = 6;
   const progressFill = document.getElementById('mapProgressFill');
+  const statLoaded = document.getElementById('mapStatLoaded');
+  const statTotal = document.getElementById('mapStatTotal');
   const visibleEras = Config.eras.filter(e => e.timeline !== false);
 
   for (let i = 0; i < allIds.length; i += batchSize) {
@@ -263,8 +261,6 @@ async function _loadMapDataAsync(allIds) {
 
     const batchLoaded = loadedProvinces.size;
     const pct = Math.round(batchLoaded / allIds.length * 100);
-    const statLoaded = document.getElementById('mapStatLoaded');
-    const statTotal = document.getElementById('mapStatTotal');
     if (statLoaded) statLoaded.textContent = batchLoaded;
     if (statTotal) statTotal.textContent = totalBuildings;
     if (progressFill) progressFill.style.width = pct + '%';

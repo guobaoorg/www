@@ -9,14 +9,21 @@ async function init() {
   UI.setupEventListeners((url) => Router.navigateTo(url));
   _cachedMain = document.getElementById('mainContent');
   _cachedBreadcrumb = document.querySelector('.breadcrumb');
-  await State.initMeta();
-  startBgPreload();
   Router.parseParams();
   window.addEventListener('route-change', () => {
     Router.parseParams();
     renderPage();
   });
+  // Render immediately if meta is cached, update after fetch
+  const metaPromise = State.initMeta();
   await renderPage();
+  await metaPromise;
+  // Defer background preload to idle time
+  if (window.requestIdleCallback) {
+    requestIdleCallback(() => startBgPreload(), { timeout: 3000 });
+  } else {
+    setTimeout(startBgPreload, 2000);
+  }
 }
 
 function startBgPreload() {
@@ -33,7 +40,10 @@ async function renderPage() {
   const view = State.currentView;
   if (!mainContent) return;
 
-  if (breadcrumb) breadcrumb.style.display = view === 'map' ? 'none' : '';
+  const hideBreadcrumbViews = new Set(['home', 'map', 'trail', 'provinces', 'tags', 'quiz', 'search']);
+  const hide = hideBreadcrumbViews.has(view);
+  if (breadcrumb) breadcrumb.style.display = hide ? 'none' : '';
+  mainContent.style.paddingTop = (hide && view !== 'map') ? '60px' : '';
 
   window.scrollTo(0, 0);
 

@@ -26,7 +26,7 @@ const HashSearch = {
     const fileName = provinceId === 'cross' ? 'cross-province.json' : `${provinceId}.json`;
     const promise = this.fetchJSON(`/data/${fileName}`).then(data => {
       delete this._pendingLoads[provinceId];
-      if (data) { this._loadedData.add(provinceId); this._cacheSet(`province:${provinceId}`, data); }
+      if (data) { this._loadedData.add(provinceId); this._cacheSet(`province:${provinceId}`, data); this._allProvinceCache = null; }
       return data;
     });
     this._pendingLoads[provinceId] = promise;
@@ -42,15 +42,17 @@ const HashSearch = {
   },
 
   _allProvinceCache: null,
+  _cachedLoadedCount: 0,
 
   getAllProvinceData() {
-    if (this._allProvinceCache && this._allProvinceCache.size === this._loadedData.size) return this._allProvinceCache;
+    if (this._allProvinceCache && this._cachedLoadedCount === this._loadedData.size) return this._allProvinceCache;
     const result = new Map();
     for (const id of this._loadedData) {
       const data = this._cache.get(`province:${id}`);
       if (data) result.set(id, data);
     }
     this._allProvinceCache = result;
+    this._cachedLoadedCount = this._loadedData.size;
     return result;
   },
 
@@ -66,15 +68,6 @@ const HashSearch = {
     return this._cachedParams;
   },
   getParam(key) { return this.getParams().get(key); },
-
-  buildURL(params) {
-    const sp = new URLSearchParams();
-    for (const [key, value] of Object.entries(params)) {
-      if (value !== null && value !== undefined && value !== '') sp.set(key, value);
-    }
-    const qs = sp.toString();
-    return qs ? '?' + qs : '?page=home';
-  },
 
   autoRetrieve() {
     const params = this.getParams();
@@ -130,6 +123,8 @@ const HashSearch = {
     this._cache.clear();
     this._loadedData.clear();
     this._pendingLoads = {};
+    this._allProvinceCache = null;
+    this._cachedLoadedCount = 0;
   },
 
   getCacheStats() {
@@ -156,7 +151,6 @@ const HashSearch = {
           const unloaded = batch.filter(id => !this._loadedData.has(id));
           if (unloaded.length) {
             await this.loadProvinces(unloaded);
-            State.clearCache();
           }
           this._bgProgress.loaded = this._loadedData.size;
           await new Promise(r => setTimeout(r, 0));
@@ -173,6 +167,7 @@ const HashSearch = {
     } catch (e) {
       console.error('后台预加载失败:', e);
     }
+    State.clearCache();
     this._bgActive = false;
     window.dispatchEvent(new CustomEvent('bg-preload-complete'));
   }
@@ -320,6 +315,7 @@ const Config = {
   },
 
   _tagCategoryCache: null,
+  _keywordToCategory: null,
 
   getTagCategory(tagName) {
     if (!this._tagCategoryCache) {
@@ -329,8 +325,15 @@ const Config = {
       }
     }
     if (this._tagCategoryCache[tagName]) return this._tagCategoryCache[tagName];
-    for (const [catId, keywords] of Object.entries(this.tagCategoryKeywords)) {
-      for (const kw of keywords) { if (tagName.includes(kw)) return this.tagCategories.find(c => c.id === catId) || null; }
+    // 关键词反向索引：一次构建，多次复用
+    if (!this._keywordToCategory) {
+      this._keywordToCategory = [];
+      for (const [catId, keywords] of Object.entries(this.tagCategoryKeywords)) {
+        for (const kw of keywords) this._keywordToCategory.push({ kw, catId });
+      }
+    }
+    for (const { kw, catId } of this._keywordToCategory) {
+      if (tagName.includes(kw)) return this.tagCategories.find(c => c.id === catId) || null;
     }
     return null;
   },
@@ -475,6 +478,16 @@ const State = {
   _cachedLoadedCount: 0,
 
   async initMeta() {
+    // Try localStorage cache first for instant first render
+    const cacheKey = 'guobao_meta_v1';
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        this._provinceMeta = parsed.provinces;
+        this._trailRegistry = parsed.trail;
+      }
+    } catch (_) {}
     try {
       const [provincesRes, trailRes] = await Promise.all([
         HashSearch.fetchJSON('/data/provinces.json'),
@@ -482,10 +495,10 @@ const State = {
       ]);
       this._provinceMeta = provincesRes;
       this._trailRegistry = trailRes;
+      try { localStorage.setItem(cacheKey, JSON.stringify({ provinces: provincesRes, trail: trailRes })); } catch (_) {}
     } catch (e) {
       console.error('Failed to load meta data:', e);
-      this._provinceMeta = { provinces: [], protectionLabels: {} };
-      this._trailRegistry = [];
+      if (!this._provinceMeta) { this._provinceMeta = { provinces: [], protectionLabels: {} }; this._trailRegistry = []; }
     }
   },
 
@@ -565,7 +578,8 @@ const State = {
     const provinceName = this.getProvinceName(provinceId);
     return data.buildings.filter(b => {
       if (b.district !== districtId) return false;
-      if (!b.provinceId) { b.province = provinceName; b.provinceId = provinceId; }
+      b.province = b.province || provinceName;
+      b.provinceId = b.provinceId || provinceId;
       return true;
     });
   },
@@ -611,13 +625,6 @@ const State = {
       return allBuildings.find(b => b.name === buildingRef.name && b.provinceId === buildingRef.province) || byName;
     }
     return byName;
-  },
-
-  async ensureDataLoaded() {
-    if (HashSearch.getCacheStats().loadedProvinces === 0) {
-      const allIds = this._provinceMeta?.provinces?.map(p => p.id) || [];
-      await HashSearch.loadProvinces(allIds);
-    }
   },
 
   clearCache() {
@@ -698,46 +705,19 @@ const Utils = {
     return false;
   },
 
-  getMatchInfo(input, correctName) {
-    const correctLen = correctName.length;
-    const inputStr = input.trim();
-    const inputLen = inputStr.length;
-    const minInputLen = correctLen <= 3 ? correctLen : Math.max(3, Math.ceil(correctLen * 0.75));
-    const correctSet = new Set(correctName);
-    let correctChars = 0;
-    for (const ch of inputStr) { if (correctSet.has(ch)) correctChars++; }
-    return { correctLen, inputLen, correctChars, wrongChars: inputLen - correctChars, minInputLen };
-  },
-
-  _escapeRegex(str) {
-    const cache = this._escapeCache || (this._escapeCache = new Map());
-    if (cache.has(str)) return cache.get(str);
-    const r = str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    cache.set(str, r);
-    return r;
-  },
-
   sanitizeClueText(text, building, stageKey) {
     if (!text || !building) return text;
     let result = text;
-    const name = building.name;
-    const escaped = this._escapeRegex(name);
-    result = result.replace(new RegExp(escaped, 'g'), '该建筑');
-    const coreName = name.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
-    if (coreName !== name && coreName.length >= 2) {
-      const coreEscaped = this._escapeRegex(coreName);
-      result = result.replace(new RegExp(`(^|[。，；：、！？""''\\s（）])${coreEscaped}(?=[。，；：、！？""''\\s（）的是了在为与和及等也都就已将被从由对向于至]|$)`, 'g'), '$1该建筑');
+    // Simple replacements using replaceAll (no regex overhead)
+    result = result.replaceAll(building.name, '该建筑');
+    const coreName = building.name.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
+    if (coreName !== building.name && coreName.length >= 2) {
+      result = result.replaceAll(coreName, '该建筑');
     }
     if (stageKey && stageKey !== 'location' && stageKey !== 'era') {
-      if (building.province) {
-        result = result.replace(new RegExp(this._escapeRegex(building.province), 'g'), '该地区');
-      }
-      if (building.districtName) {
-        result = result.replace(new RegExp(this._escapeRegex(building.districtName), 'g'), '当地');
-      }
-      if (building.era) {
-        result = result.replace(new RegExp(this._escapeRegex(building.era), 'g'), '某个时期');
-      }
+      if (building.province) result = result.replaceAll(building.province, '该地区');
+      if (building.districtName) result = result.replaceAll(building.districtName, '当地');
+      if (building.era) result = result.replaceAll(building.era, '某个时期');
     }
     return result;
   },
@@ -825,9 +805,11 @@ const UI = {
       document.querySelector('.nav-menu')?.classList.toggle('active');
     });
     document.addEventListener('click', (e) => {
-      const card = e.target.closest('.building-card');
+      const target = e.target;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') return;
+      const card = target.closest('.building-card');
       if (card) { e.preventDefault(); onNavigate(card.getAttribute('data-href')); return; }
-      const link = e.target.closest('[data-nav]');
+      const link = target.closest('[data-nav]');
       if (link) { e.preventDefault(); onNavigate(link.getAttribute('href') || link.getAttribute('data-nav')); }
     });
     window.addEventListener('popstate', () => { window.dispatchEvent(new CustomEvent('route-change')); });
