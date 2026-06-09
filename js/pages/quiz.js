@@ -39,6 +39,9 @@ let _bgLoading = false;
 let _bgTotal = 0;
 let _bgLoaded = 0;
 let _loadedBuildingKey = null;
+let _cachedCandidates = null;
+let _cachedFilterProvince = 'all';
+let _cachedFilterEra = 'all';
 
 function _saveState() {
   try {
@@ -67,7 +70,10 @@ function _getLevelProgress() { return _userLevel < LEVELS.length - 1 ? `${_userL
 function _levelDown() { if (_userLevel > 0) _userLevel--; }
 
 function _getCandidateBuildings() {
-  return State.getAllBuildings().filter(b => {
+  if (_cachedCandidates && _cachedFilterProvince === _filterProvince && _cachedFilterEra === _filterEra) return _cachedCandidates;
+  _cachedFilterProvince = _filterProvince;
+  _cachedFilterEra = _filterEra;
+  _cachedCandidates = State.getAllBuildings().filter(b => {
     if (!b.architecture && !b.description && !b.features && !b.history) return false;
     if (_filterProvince !== 'all' && b.provinceId !== _filterProvince) return false;
     if (_filterEra !== 'all') {
@@ -76,6 +82,7 @@ function _getCandidateBuildings() {
     }
     return true;
   });
+  return _cachedCandidates;
 }
 
 function _pickRandomBuilding() {
@@ -202,8 +209,9 @@ function _renderQuizUI(container) {
         <div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">没有符合条件的建筑</div><p>${totalCandidates === 0 ? '当前筛选条件下无建筑，请调整地区或年代' : '所有建筑已答完，请调整筛选条件或继续答题'}</p>${totalCandidates === 0 ? '<button class="quiz-btn quiz-btn-submit" style="margin-top:0.75rem;" id="quizResetFilters">重置筛选</button>' : ''}</div>
       </div></div>`;
 
-    document.getElementById('quizFilterApply')?.addEventListener('click', () => { _filterProvince = document.getElementById('quizFilterProvince')?.value || 'all'; _filterEra = document.getElementById('quizFilterEra')?.value || 'all'; _saveState(); _quizFinished = true; _startRound(container, true); });
-    document.getElementById('quizResetFilters')?.addEventListener('click', () => { _filterProvince = 'all'; _filterEra = 'all'; _saveState(); _quizFinished = true; _startRound(container, true); });
+    const applyFilter = () => { _filterProvince = document.getElementById('quizFilterProvince')?.value || 'all'; _filterEra = document.getElementById('quizFilterEra')?.value || 'all'; _cachedCandidates = null; _saveState(); _quizFinished = true; _startRound(container, true); };
+    document.getElementById('quizFilterApply')?.addEventListener('click', applyFilter);
+    document.getElementById('quizResetFilters')?.addEventListener('click', () => { _filterProvince = 'all'; _filterEra = 'all'; _cachedCandidates = null; _saveState(); _quizFinished = true; _startRound(container, true); });
     return;
   }
 
@@ -267,7 +275,7 @@ function _bindQuizEvents(container) {
   filterApply?.addEventListener('click', () => {
     _filterProvince = document.getElementById('quizFilterProvince')?.value || 'all';
     _filterEra = document.getElementById('quizFilterEra')?.value || 'all';
-    _saveState(); _quizFinished = true; _startRound(container, true);
+    _cachedCandidates = null; _saveState(); _quizFinished = true; _startRound(container, true);
   });
 }
 
@@ -284,7 +292,6 @@ function _handleFinal(container, type, icon, title) {
   resultArea.style.display = 'block';
   resultArea.className = `quiz-result quiz-result-${type}`;
   resultArea.innerHTML = finalResultHTML(_currentBuilding, type, icon, title, _getLevelName(), State.getProvinceName.bind(State));
-  document.getElementById('quizNextBtn')?.addEventListener('click', () => _startRound(document.getElementById('mainContent'), true));
   disableQuizInputs();
 }
 
@@ -306,7 +313,6 @@ function _handleSubmit() {
     resultArea.style.display = 'block';
     resultArea.className = 'quiz-result quiz-result-correct';
     resultArea.innerHTML = correctResultHTML(_currentBuilding, userAnswer, true, _getLevelName(), State.getProvinceName.bind(State));
-    document.getElementById('quizNextBtn')?.addEventListener('click', () => _startRound(document.getElementById('mainContent'), true));
     disableQuizInputs();
   } else {
     _levelDown(); _saveState();

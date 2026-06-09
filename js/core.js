@@ -24,11 +24,22 @@ const HashSearch = {
     if (this._loadedData.has(provinceId)) return this._cache.get(`province:${provinceId}`);
     if (this._pendingLoads[provinceId]) return this._pendingLoads[provinceId];
     const fileName = provinceId === 'cross' ? 'cross-province.json' : `${provinceId}.json`;
-    const promise = this.fetchJSON(`/data/${fileName}`).then(data => {
+    const promise = (async () => {
+      const data = await this.fetchJSON(`/data/${fileName}`);
       delete this._pendingLoads[provinceId];
-      if (data) { this._loadedData.add(provinceId); this._cacheSet(`province:${provinceId}`, data); this._allProvinceCache = null; }
+      if (data) {
+        this._loadedData.add(provinceId);
+        this._cacheSet(`province:${provinceId}`, data);
+        this._allProvinceCache = null;
+        // resolve districtName from districts lookup at load time
+        if (data.districts && data.buildings) {
+          for (const b of data.buildings) {
+            if (!b.districtName && b.district) b.districtName = data.districts[b.district]?.name || b.districtName || '';
+          }
+        }
+      }
       return data;
-    });
+    })();
     this._pendingLoads[provinceId] = promise;
     return promise;
   },
@@ -51,9 +62,9 @@ const HashSearch = {
       const data = this._cache.get(`province:${id}`);
       if (data) result.set(id, data);
     }
-    this._allProvinceCache = result;
+    this._allProvinceCache = result.size > 0 ? result : this._allProvinceCache;
     this._cachedLoadedCount = this._loadedData.size;
-    return result;
+    return this._allProvinceCache || result;
   },
 
   _lastSearch: null,
@@ -79,8 +90,7 @@ const HashSearch = {
       tagName: params.get('name') && params.get('page') === 'tag' ? params.get('name') : null,
       trailId: params.get('id') && params.get('page') === 'trail-detail' ? params.get('id') : null,
       trailType: params.get('type') || null,
-      tagCategory: params.get('cat') || null,
-      rawParams: params
+      tagCategory: params.get('cat') || null
     };
   },
 
@@ -398,7 +408,11 @@ const Config = {
   },
 
   getProvinceStyle(provinceId) {
-    return this.provinceStyles[provinceId] || this._defaultProvinceStyle;
+    const style = this.provinceStyles[provinceId] || this._defaultProvinceStyle;
+    if (State.theme === 'dark') {
+      return { ...style, bgColor: Utils.darkenHexBg(style.bgColor) };
+    }
+    return style;
   },
 
   _defaultProvinceStyle: { icon: '📍', color: '#3498db', bgColor: '#ebf5fb' },
@@ -422,14 +436,16 @@ const Config = {
   getTagStyle(tagName, index) {
     const base = this.tagStyles[tagName] || { icon: '🏷️' };
     const pal = this.colorPalette[index % this.colorPalette.length];
-    return { icon: base.icon, color: pal.color, bg: pal.bg };
+    const bg = State.theme === 'dark' ? Utils.darkenHexBg(pal.bg) : pal.bg;
+    return { icon: base.icon, color: pal.color, bg };
   },
 
-  _dynastyCache: new Map(),
+  _dynastyCache: null,
 
   getEarliestDynasty(eraStr) {
     if (!eraStr || eraStr === '待考' || eraStr.startsWith('不可考') || eraStr.startsWith('估计')) return null;
-    if (this._dynastyCache.has(eraStr)) return this._dynastyCache.get(eraStr);
+    if (this._dynastyCache?.has(eraStr)) return this._dynastyCache.get(eraStr);
+    if (!this._dynastyCache) this._dynastyCache = new Map();
     for (const e of this.eras) {
       for (const kw of e.keywords) { if (eraStr.includes(kw)) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
     }
@@ -508,7 +524,7 @@ const State = {
   _provinceByIdCache: {},
 
   getProvinceById(provinceId) {
-    if (this._provinceByIdCache[provinceId]) return this._provinceByIdCache[provinceId];
+    if (provinceId in this._provinceByIdCache) return this._provinceByIdCache[provinceId];
     const p = this._provinceMeta?.provinces?.find(p => p.id === provinceId) || null;
     this._provinceByIdCache[provinceId] = p;
     return p;
@@ -519,7 +535,7 @@ const State = {
   getProvinceName(provinceId) {
     if (!provinceId) return '';
     if (provinceId === 'cross') return '跨省';
-    if (this._provinceNameCache[provinceId]) return this._provinceNameCache[provinceId];
+    if (provinceId in this._provinceNameCache) return this._provinceNameCache[provinceId];
     const p = this.getProvinceById(provinceId);
     const name = p ? p.name : provinceId;
     this._provinceNameCache[provinceId] = name;
@@ -529,7 +545,7 @@ const State = {
   _protectionLabelCache: {},
 
   getProtectionLabel(provinceId) {
-    if (this._protectionLabelCache[provinceId]) return this._protectionLabelCache[provinceId];
+    if (provinceId in this._protectionLabelCache) return this._protectionLabelCache[provinceId];
     const label = this._provinceMeta?.protectionLabels?.[provinceId] || '全国重点文物保护单位';
     this._protectionLabelCache[provinceId] = label;
     return label;
@@ -545,6 +561,7 @@ const State = {
       const provinceName = this.getProvinceName(provinceId);
       if (data.buildings) {
         for (const b of data.buildings) {
+          if (!b.districtName && b.district) b.districtName = data.districts?.[b.district]?.name || '';
           b.province = provinceName;
           b.provinceId = provinceId;
           all.push(b);
@@ -639,6 +656,20 @@ const State = {
 // ==================== Utils ====================
 
 const Utils = {
+
+  darkenHexBg(hex) {
+    // Convert a light pastel hex bg color to a dark-friendly version
+    if (!hex || !hex.startsWith('#')) return hex || '';
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    // Darken by blending with dark background: mix with #0d1117 at ~15% lightness
+    const dr = Math.round(r * 0.2 + 13 * 0.8);
+    const dg = Math.round(g * 0.2 + 17 * 0.8);
+    const db = Math.round(b * 0.2 + 23 * 0.8);
+    const toHex = (v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0');
+    return `#${toHex(dr)}${toHex(dg)}${toHex(db)}`;
+  },
 
   truncateText(text, maxLength, suffix = '...') {
     if (!text) return '';
@@ -740,22 +771,20 @@ const Utils = {
     return `?page=building&name=${encodeURIComponent(`${provinceName}${districtName}${building.name}`)}${pid}`;
   },
 
-  _cardPriorityMap: new Map([['世界遗产',1],['古建筑',1],['近代建筑',1],['寺庙',1],['宫殿',1],['园林',1],['陵墓',1],['石窟',1],['塔',1],['桥梁',1],['革命遗址',1],['名人故居',1]]),
+  _cardPriority: {'世界遗产':1,'古建筑':1,'近代建筑':1,'寺庙':1,'宫殿':1,'园林':1,'陵墓':1,'石窟':1,'塔':1,'桥梁':1,'革命遗址':1,'名人故居':1},
 
   createBuildingCard(building, opts = {}) {
     const { matchReasons, maxTags = 5 } = opts;
     const href = this.generateBuildingHash(building, State.getProvinceName.bind(State));
     const provinceStyle = Config.getProvinceStyle(building.provinceId);
     const protectionBadge = this.generateProtectionBadge(building);
-    const shortDesc = this.truncateText(building.description, 60, '');
-    const priorityMap = this._cardPriorityMap;
+    const shortDesc = building.description ? (building.description.length > 60 ? building.description.slice(0, 60) : building.description) : '';
+    const priority = this._cardPriority;
     const tags = building.tags || [];
-    const sortedTags = [...tags].sort((a, b) => {
-      const ap = priorityMap.has(a), bp = priorityMap.has(b);
-      if (ap && !bp) return -1;
-      if (!ap && bp) return 1;
-      return 0;
-    });
+    const sortedTags = tags.length > maxTags ? [...tags].sort((a, b) => {
+      const ap = priority[a]|0, bp = priority[b]|0;
+      return bp - ap;
+    }) : tags;
     const matchReasonsHtml = matchReasons?.length
       ? `<div class="match-reasons">${matchReasons.map(r => `<span class="match-reason">${r}</span>`).join('')}</div>` : '';
     return `
@@ -810,7 +839,10 @@ const UI = {
       const card = target.closest('.building-card');
       if (card) { e.preventDefault(); onNavigate(card.getAttribute('data-href')); return; }
       const link = target.closest('[data-nav]');
-      if (link) { e.preventDefault(); onNavigate(link.getAttribute('href') || link.getAttribute('data-nav')); }
+      if (link) {
+        if (link.getAttribute('target') === '_blank') return;
+        e.preventDefault(); onNavigate(link.getAttribute('href') || link.getAttribute('data-nav'));
+      }
     });
     window.addEventListener('popstate', () => { window.dispatchEvent(new CustomEvent('route-change')); });
   },

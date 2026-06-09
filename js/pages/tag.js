@@ -4,7 +4,7 @@ export async function render(container) {
   const tag = decodeURIComponent(State.currentTag);
 
   if (HashSearch.getCacheStats().loadedProvinces > 0 && State._tagBuildingsCache[tag]) {
-    return renderTag(container, tag);
+    return _renderTag(container, tag);
   }
 
   const ts = Config.getTagStyle(tag, 0);
@@ -19,21 +19,17 @@ export async function render(container) {
     </div>`;
 
   if (!HashSearch._bgActive) {
-    const ids = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
-    await HashSearch.startBgPreload(ids);
+    await HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   } else {
     await new Promise(resolve => {
-      const check = () => {
-        if (State._tagBuildingsCache[tag] || !HashSearch._bgActive) resolve();
-        else setTimeout(check, 300);
-      };
+      const check = () => { if (State._tagBuildingsCache[tag] || !HashSearch._bgActive) resolve(); else setTimeout(check, 300); };
       check();
     });
   }
-  renderTag(container, tag);
+  _renderTag(container, tag);
 }
 
-function renderTag(container, tag) {
+function _renderTag(container, tag) {
   const buildings = State.getBuildingsByTag(tag);
   const ts = Config.getTagStyle(tag, 0);
   container.innerHTML = `

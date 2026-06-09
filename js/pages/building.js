@@ -88,8 +88,7 @@ export async function render(container) {
       </article>
       ${relatedBuildings.length > 0 ? `
       <section class="related-buildings-section">
-        <h2 class="section-title"><span class="section-icon">🔗</span> 相关推荐</h2>
-        <p class="related-hint">同地区或同类型的其他文物保护单位</p>
+        <h2 class="section-title"><span class="section-icon">📝</span> 周边推荐</h2>
         <div class="building-grid">${relatedBuildings.map(b => Utils.createBuildingCard(b)).join('')}</div>
       </section>` : ''}
     </div>`;
@@ -97,20 +96,17 @@ export async function render(container) {
 
 function getRelatedBuildings(building, limit = 4) {
   const allBuildings = State.getAllBuildings();
-  const buildingTags = building.tags || [];
-  const buildingEra = building.era || '';
-  const scored = [];
+  if (allBuildings.length < 2) return [];
+  const district = building.district;
+  const name = building.name;
+  const sameDistrict = [];
 
-  for (const b of allBuildings) {
-    if (b.name === building.name) continue;
-    let score = 0;
-    if (b.district === building.district) score += 3;
-    if (b.tags && buildingTags.some(tag => b.tags.includes(tag))) score += 2;
-    if (b.era && buildingEra && b.era === buildingEra) score += 1;
-    if (score > 0) scored.push({ b, score });
+  for (let i = 0; i < allBuildings.length; i++) {
+    const b = allBuildings[i];
+    if (b.name === name || b.district !== district) continue;
+    sameDistrict.push(b);
+    if (sameDistrict.length >= limit * 2) break;
   }
 
-  scored.sort((a, b) => b.score - a.score);
-  const related = scored.slice(0, limit * 2).map(s => s.b);
-  return Utils.shuffleArray(related).slice(0, limit);
+  return Utils.shuffleArray(sameDistrict).slice(0, limit);
 }

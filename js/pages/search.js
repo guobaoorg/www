@@ -1,7 +1,5 @@
 import { HashSearch, State, Utils } from '../core.js';
 
-let _debounce = null;
-
 export async function render(container) {
   container.innerHTML = `
     <div class="container">
@@ -17,37 +15,34 @@ export async function render(container) {
     </div>`;
 
   if (HashSearch.getCacheStats().loadedProvinces === 0 && !HashSearch._bgActive) {
-    const ids = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
-    HashSearch.startBgPreload(ids);
+    HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   }
 
   const input = document.getElementById('searchPageInput');
   const clearBtn = document.getElementById('searchPageClear');
   const results = document.getElementById('searchPageResults');
+  if (!input || !results) return;
+  input.focus();
 
-  if (input) {
-    input.focus();
-    input.addEventListener('input', (e) => {
-      const q = e.target.value.trim();
-      if (_debounce) clearTimeout(_debounce);
-      if (q) {
-        clearBtn.style.display = 'flex';
-        _debounce = setTimeout(() => runSearch(q, results), 200);
-      } else {
-        clearBtn.style.display = 'none';
-        results.innerHTML = '<div class="search-page-hint"><p>输入关键词搜索</p></div>';
-      }
-    });
-  }
-
-  if (clearBtn) {
-    clearBtn.addEventListener('click', () => {
-      input.value = '';
+  let debounce = null;
+  input.addEventListener('input', (e) => {
+    const q = e.target.value.trim();
+    if (debounce) clearTimeout(debounce);
+    if (q) {
+      clearBtn.style.display = 'flex';
+      debounce = setTimeout(() => runSearch(q, results), 200);
+    } else {
       clearBtn.style.display = 'none';
       results.innerHTML = '<div class="search-page-hint"><p>输入关键词搜索</p></div>';
-      input.focus();
-    });
-  }
+    }
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.style.display = 'none';
+    results.innerHTML = '<div class="search-page-hint"><p>输入关键词搜索</p></div>';
+    input.focus();
+  });
 }
 
 function runSearch(query, container) {

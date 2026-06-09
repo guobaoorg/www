@@ -1,10 +1,11 @@
-import { State } from '../core.js';
+import { State, Utils } from '../core.js';
 
 export function render(container) {
   const registry = State.getTrailRegistry() || [];
   const typeFilter = State.currentTrailType;
   const filtered = typeFilter ? registry.filter(t => t.type === typeFilter) : registry;
-  const typeLabels = { game: '🎮 游戏', story: '📚 故事', route: '🗺️ 路线' };
+  const typeLabels = { game: '🎮 游戏', literature: '📖 文学', journal: '📝 游记' };
+  const isDark = State.theme === 'dark';
 
   container.innerHTML = `
     <div class="container">
@@ -19,7 +20,7 @@ export function render(container) {
       <div class="topics-grid">
         ${filtered.map(trail => `
           <div class="topic-card" data-nav href="?page=trail-detail&id=${trail.id}" style="border-left-color: ${trail.color};">
-            <div class="topic-card-icon" style="background: ${trail.bgColor}; color: ${trail.color};">${trail.icon}</div>
+            <div class="topic-card-icon" style="background: ${isDark ? Utils.darkenHexBg(trail.bgColor) : trail.bgColor}; color: ${trail.color};">${trail.icon}</div>
             <div class="topic-card-content">
               <div class="topic-card-title">${trail.title}</div>
               <div class="topic-card-subtitle">${typeLabels[trail.type] || ''} · ${trail.subtitle}</div>

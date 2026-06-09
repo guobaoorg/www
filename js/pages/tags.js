@@ -1,33 +1,28 @@
-/**
- * 标签总览页 — 标签分类和云展示
- */
 import { HashSearch, Config, State } from '../core.js';
 
 export async function render(container) {
-  const existing = State._allTagsCache;
-  if (existing && existing.length > 0) return renderAll(container, existing);
+  if (State._allTagsCache?.length) return _renderAll(container, State._allTagsCache);
 
   container.innerHTML = `<div class="container"><h2 class="section-title"><span class="section-icon">🏷️</span> 标签</h2><div class="loading"><div class="loading__icon">🏷️</div><div>正在加载标签数据...</div></div></div>`;
 
   if (HashSearch.getCacheStats().loadedProvinces > 0) {
-    return renderAll(container, State.getAllTags());
+    return _renderAll(container, State.getAllTags());
   }
 
   if (!HashSearch._bgActive) {
-    const ids = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
-    HashSearch.startBgPreload(ids);
+    HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   }
 
   const onComplete = () => {
     window.removeEventListener('bg-preload-complete', onComplete);
     if (document.getElementById('mainContent')?.contains(container)) {
-      renderAll(container, State.getAllTags());
+      _renderAll(container, State.getAllTags());
     }
   };
   window.addEventListener('bg-preload-complete', onComplete);
 }
 
-function renderAll(container, tags) {
+function _renderAll(container, tags) {
   if (!tags?.length) {
     container.innerHTML = '<div class="container"><div class="empty-state"><div class="empty-state-icon">🏷️</div><div class="empty-state-title">暂无标签数据</div></div></div>';
     return;
@@ -41,10 +36,8 @@ function renderAll(container, tags) {
     else { uncategorized.push(tag); }
   }
 
-  const allGroups = [
-    ...Config.tagCategories.map(c => ({ ...c, tags: grouped[c.id] || [] })),
-    ...(uncategorized.length ? [{ id: 'other', icon: '🔭', name: '其他', tags: uncategorized }] : [])
-  ].filter(g => g.tags.length > 0);
+  const allGroups = Config.tagCategories.map(c => ({ ...c, tags: grouped[c.id] || [] })).filter(g => g.tags.length > 0);
+  if (uncategorized.length) allGroups.push({ id: 'other', icon: '🔭', name: '其他', tags: uncategorized });
 
   const activeCategory = State.currentTagCategory;
   const displayGroups = activeCategory ? allGroups.filter(g => g.id === activeCategory) : allGroups;
@@ -62,10 +55,7 @@ function renderAll(container, tags) {
 function _renderFilterBar(allGroups, activeCategory) {
   return `<div class="tag-filter-bar">
     <a href="?page=tags" class="trail-filter-btn ${!activeCategory ? 'active' : ''}" data-nav>全部</a>
-    ${allGroups.map(g => `
-      <a href="?page=tags&cat=${g.id}" class="trail-filter-btn ${activeCategory === g.id ? 'active' : ''}" data-nav>
-        <span>${g.icon}</span> ${g.name}</a>`
-    ).join('')}
+    ${allGroups.map(g => `<a href="?page=tags&cat=${g.id}" class="trail-filter-btn ${activeCategory === g.id ? 'active' : ''}" data-nav><span>${g.icon}</span> ${g.name}</a>`).join('')}
   </div>`;
 }
 

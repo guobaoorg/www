@@ -1,788 +1,609 @@
 {
   "id": "xuxiake-journey",
   "title": "徐霞客游记",
-  "subtitle": "追随游圣足迹，徒步中国山川",
+  "subtitle": "三十四年徒步中国 · 八十余处国保巡礼",
   "icon": "🥾",
   "color": "#8B4513",
   "bgColor": "#FDF5E6",
-  "description": "跟随明代旅行家徐霞客的足迹，从江南水乡到西南边陲，探访那些见证游圣传奇旅程的历史古建与自然奇观。",
+  "description": "徐弘祖（徐霞客），明代地理学家、旅行家、文学家。从二十二岁起，三十四年间徒步遍及今21个省区市，留下六十余万字的《徐霞客游记》，被称为\"千古奇人\"。本路线追随游圣足迹，串联其途经的80余处全国重点文物保护单位。",
   "route": {
-    "title": "徐霞客游记：三十四年徒步中国的传奇之旅",
-    "intro": "\"大丈夫当朝碧海而暮苍梧。\"这是明代地理学家、旅行家徐霞客的人生信条。从二十二岁起，他用三十四年时间，徒步走遍大半个中国，留下了六十万字的《徐霞客游记》。\n\n从江苏江阴的故乡出发，他游历了浙江的天台山、雁荡山，安徽的黄山，江西的庐山，福建的武夷山，河南的嵩山，山东的泰山，陕西的华山，湖南的衡山，广西的桂林，贵州的黄果树，直至云南的丽江、大理、腾冲。他以脚步丈量山河，以笔墨记录奇观，成为中国历史上最伟大的旅行家。\n\n让我们追随游圣的足迹，开启一场跨越三百年的徒步之旅。",
+    "title": "徐霞客游记：三十四年徒步中国的国保之旅",
+    "intro": "<div class=\"xuxiake-quote\">大丈夫当朝碧海而暮苍梧</div>\n\n徐弘祖（1587—1641），号霞客，南直隶江阴（今江苏江阴）人。明万历三十五年（1607年），二十二岁的徐霞客从家乡出发，开始了长达三十四年的徒步旅行。他四次长途远游，足迹遍及今江苏、浙江、安徽、江西、福建、河南、山东、陕西、湖北、湖南、广东、广西、贵州、云南、山西、河北、北京等21个省区市，是中国历史上最伟大的旅行家。\n\n《徐霞客游记》开篇之日（1613年5月19日）被定为中国旅游日。他以科学精神考察地貌、水文、植被，对喀斯特地貌、丹霞地貌、火山地热的记录领先世界数百年。\n\n让我们追随游圣的足迹，从江南水乡到西南边陲，从五岳名山到桂林山水，开启一场跨越三百年的徒步之旅，探访那些见证传奇旅程的全国重点文物保护单位。",
     "stops": [
       {
-        "title": "第一站：南京——江南文枢的起点",
+        "title": "第一站：江阴：游圣故里",
+        "icon": "🏠",
+        "content": "徐霞客，名弘祖，号霞客，明万历十五年（1587年）出生在江阴一户书香门第。他从小不爱读四书五经，却把《山海经》《水经注》翻得滚瓜烂熟。父亲去世后，他对母亲说：\"大丈夫当朝碧海而暮苍梧\"——说什么也要出去走走，亲眼看看书里写的那些山川。二十二岁那年春天，他背上行囊出发了，这一走就是三十四年。\n\n他出生的老宅如今还在，就是那座三进的明代院落——<a href=\"?page=building&name=江苏省无锡市徐霞客故居及晴山堂石刻&pid=jiangsu\" target=\"_blank\" data-nav>徐霞客故居及晴山堂石刻</a>。宅子里的晴山堂是他当年读书的地方，堂前石刻记录着徐家与文人名流的交往。站在江阴长江边望去，江水浩浩荡荡东流——那个背着小包袱离家远行的年轻人大概也没想到，自己这一走，就走成了千古奇人。",
+        "buildings": [
+          {
+            "name": "徐霞客故居及晴山堂石刻",
+            "province": "jiangsu",
+            "district": "jiangsu_wuxi"
+          }
+        ]
+      },
+      {
+        "title": "第二站：南京：江南文枢",
         "icon": "🏯",
-        "content": "万历三十五年（1607年），二十二岁的徐霞客从江苏江阴出发，开始了他的第一次远游。他沿长江而下，首先来到了南京。\n\n【明孝陵】位于南京市玄武区钟山南麓，是明太祖朱元璋与马皇后的合葬陵墓。徐霞客游历南京时，曾在此凭吊这位开国皇帝。陵墓始建于明洪武十四年（1381年），至永乐三年（1405年）建成，历时25年，是明清皇家陵寝的典范，2003年入选世界文化遗产。\n\n【南京城墙】是世界现存规模最大、保存最完整的古代都城城墙。徐霞客在南京期间，曾多次登临城墙，俯瞰这座江南重镇。城墙始建于元至正二十六年（1366年），明洪武十九年（1386年）建成，全长约35.3公里。\n\n从南京出发，徐霞客开始了他的浙东之旅，前往天台山。",
+        "content": "万历三十五年（1607年），二十二岁的徐霞客沿长江东下，第一站就到了南京——大明留都，六朝古都。\n\n他先去拜谒了<a href=\"?page=building&name=江苏省南京市明孝陵&pid=jiangsu\" target=\"_blank\" data-nav>明孝陵</a>，这座明太祖朱元璋的陵墓规模惊人，神道两旁的石像生默默守护了一百多年。随后登上<a href=\"?page=building&name=江苏省南京市南京城墙&pid=jiangsu\" target=\"_blank\" data-nav>南京城墙</a>，站在城楼上一看——秦淮河水弯弯曲曲像条绸带，远处的钟山巍峨耸立。\n\n在南京那些天，他还出城看了一千五百年前的<a href=\"?page=building&name=江苏省南京市南京南朝陵墓石刻&pid=jiangsu\" target=\"_blank\" data-nav>南京南朝陵墓石刻</a>，又去栖霞山看了<a href=\"?page=building&name=江苏省南京市栖霞寺舍利塔&pid=jiangsu\" target=\"_blank\" data-nav>栖霞寺舍利塔</a>，南唐石塔雕得精细极了。南京这一趟让年轻的徐霞客真切感到——书斋外面的世界，比书里写的还精彩。",
         "buildings": [
           {
             "name": "明孝陵",
             "province": "jiangsu",
-            "district": "jiangsu_nanjing",
-            "embedded": null
+            "district": "jiangsu_nanjing"
           },
           {
             "name": "南京城墙",
             "province": "jiangsu",
-            "district": "jiangsu_nanjing",
-            "embedded": null
+            "district": "jiangsu_nanjing"
+          },
+          {
+            "name": "南京南朝陵墓石刻",
+            "province": "jiangsu",
+            "district": "jiangsu_nanjing"
+          },
+          {
+            "name": "栖霞寺舍利塔",
+            "province": "jiangsu",
+            "district": "jiangsu_nanjing"
           }
         ]
       },
       {
-        "title": "第二站：天台山——佛宗道源的神山",
-        "icon": "⛰️",
-        "content": "万历四十一年（1613年），徐霞客首次游历浙江天台山。他在《游天台山日记》中详细记录了这次旅程，这也是《徐霞客游记》的开篇之作。\n\n【国清寺】位于浙江省天台县，是天台宗祖庭，隋代创建，现存建筑为清代重建。隋开皇十八年（598年）晋王杨广承智者大师遗愿建。徐霞客在天台山期间，曾在此参访，对寺院的古朴庄严赞叹不已。国清寺是中日韩天台宗发祥地。\n\n【石梁飞瀑】徐霞客曾两次游览石梁飞瀑，在游记中详细描述了瀑布的壮观景象。石梁是天台山的标志性景观，一道天然石梁横跨两崖，瀑布从梁下飞流直下，蔚为壮观。\n\n从天台山出发，徐霞客继续东行，前往雁荡山。",
+        "title": "第三站：镇江·扬州：长江两岸",
+        "icon": "🌊",
+        "content": "离开南京沿大运河北上，就到了镇江和扬州。两座城市一刚一柔——镇江守着长江险要关隘，扬州靠着运河繁华码头。\n\n在镇江焦山钻进碑林看了半天的<a href=\"?page=building&name=江苏省镇江市焦山碑林&pid=jiangsu\" target=\"_blank\" data-nav>焦山碑林</a>，从六朝到民国的碑刻满满当当。过江到扬州，在<a href=\"?page=building&name=江苏省扬州市个园&pid=jiangsu\" target=\"_blank\" data-nav>个园</a>和<a href=\"?page=building&name=江苏省扬州市何园&pid=jiangsu\" target=\"_blank\" data-nav>何园</a>穿行，扬州跟镇江不同——水更软，话更糯，南来北往的商客文人擦肩而过，热闹得很。",
         "buildings": [
           {
-            "name": "国清寺",
-            "province": "zhejiang",
-            "district": "zhejiang_taizhou",
-            "embedded": null
+            "name": "焦山碑林",
+            "province": "jiangsu",
+            "district": "jiangsu_zhenjiang"
+          },
+          {
+            "name": "个园",
+            "province": "jiangsu",
+            "district": "jiangsu_yangzhou"
+          },
+          {
+            "name": "何园",
+            "province": "jiangsu",
+            "district": "jiangsu_yangzhou"
           }
         ]
       },
       {
-        "title": "第三站：雁荡山——东南第一山",
-        "icon": "🏔️",
-        "content": "万历四十一年（1613年），徐霞客在游览天台山后，又前往雁荡山。他在《游雁宕山日记》中记录了这次探险之旅。\n\n【灵峰】是雁荡山的标志性景观，以奇峰怪石著称。徐霞客在游记中详细描述了灵峰的奇特地貌，尤其是夜晚月光下的灵峰，更是变幻莫测，令人叹为观止。\n\n【灵岩】徐霞客曾在此考察地形地貌，对这里的火山流纹岩地貌进行了详细记录。灵岩的飞渡表演，至今仍吸引着无数游客。\n\n【大龙湫】徐霞客在游记中盛赞大龙湫瀑布的壮观。瀑布落差达197米，是中国四大名瀑之一。\n\n从雁荡山返回后，徐霞客又多次游历苏州园林。",
+        "title": "第四站：苏州：园林之城",
+        "icon": "🏘️",
+        "content": "苏州在明代已是江南最繁华的地方。他把苏州名园逛了个遍——<a href=\"?page=building&name=江苏省苏州市拙政园&pid=jiangsu\" target=\"_blank\" data-nav>拙政园</a>的水景堪称一绝，亭台楼榭全建在水边，走一步换个景。旁边的<a href=\"?page=building&name=江苏省苏州市留园&pid=jiangsu\" target=\"_blank\" data-nav>留园</a>又是另一种味道，太湖石堆出来的假山曲里拐弯。还有元代的<a href=\"?page=building&name=江苏省苏州市狮子林&pid=jiangsu\" target=\"_blank\" data-nav>狮子林</a>和精巧的<a href=\"?page=building&name=江苏省苏州市网师园&pid=jiangsu\" target=\"_blank\" data-nav>网师园</a>。\n\n苏州不只有园林。他登上微微倾斜的<a href=\"?page=building&name=江苏省苏州市云岩寺塔&pid=jiangsu\" target=\"_blank\" data-nav>云岩寺塔</a>，这座北宋砖塔俯瞰着苏州城两千五百年。运河边上的<a href=\"?page=building&name=江苏省苏州市宝带桥&pid=jiangsu\" target=\"_blank\" data-nav>宝带桥</a>五十三孔三百多米长，桥下运粮船来来往往——好一幅热闹的江南画卷。",
         "buildings": [
           {
             "name": "拙政园",
             "province": "jiangsu",
-            "district": "jiangsu_suzhou",
-            "embedded": null
+            "district": "jiangsu_suzhou"
           },
           {
             "name": "留园",
             "province": "jiangsu",
-            "district": "jiangsu_suzhou",
-            "embedded": null
+            "district": "jiangsu_suzhou"
+          },
+          {
+            "name": "云岩寺塔",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou"
+          },
+          {
+            "name": "宝带桥",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou"
+          },
+          {
+            "name": "狮子林",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou"
+          },
+          {
+            "name": "网师园",
+            "province": "jiangsu",
+            "district": "jiangsu_suzhou"
           }
         ]
       },
       {
-        "title": "第四站：黄山——五岳归来不看山",
+        "title": "无锡·宜兴：太湖明珠",
+        "icon": "🏘️",
+        "content": "无锡紧挨着江阴，徐霞客来过好几回。惠山脚下的<a href=\"?page=building&name=江苏省无锡市寄畅园&pid=jiangsu\" target=\"_blank\" data-nav>寄畅园</a>是兵部尚书秦金修的花园，把整座惠山锡山的景致都借到自个儿园子里来了。不远处的<a href=\"?page=building&name=江苏省无锡市东林书院&pid=jiangsu\" target=\"_blank\" data-nav>东林书院</a>是东林党讲学的地方，当年顾宪成那句\"风声雨声读书声\"传遍天下。\n\n惠山上的<a href=\"?page=building&name=江苏省无锡市天下第二泉庭院及石刻&pid=jiangsu\" target=\"_blank\" data-nav>天下第二泉庭院及石刻</a>是茶圣陆羽评的天下第二泉，苏东坡来这里喝过茶写过诗。徐霞客也在泉边坐下喝茶，跟山中僧人有一搭没一搭聊天，惬意得很。",
+        "buildings": [
+          {
+            "name": "寄畅园",
+            "province": "jiangsu",
+            "district": "jiangsu_wuxi"
+          },
+          {
+            "name": "东林书院",
+            "province": "jiangsu",
+            "district": "jiangsu_wuxi"
+          },
+          {
+            "name": "天下第二泉庭院及石刻",
+            "province": "jiangsu",
+            "district": "jiangsu_wuxi"
+          }
+        ]
+      },
+      {
+        "title": "第五站：太湖：三万六千顷烟波",
+        "icon": "🚣",
+        "content": "从无锡出来泛舟太湖，三万六千顷烟波浩渺，七十二峰若隐若现。他在游记里详细记录了太湖水文和沿岸风物。面对浩渺烟波，二十四岁的徐霞客第一次真切感受到\"江山如此多娇\"的壮阔。",
+        "buildings": []
+      },
+      {
+        "title": "第六站：杭州：东南形胜",
+        "icon": "🌅",
+        "content": "杭州西湖名满天下。他登上钱塘江边的<a href=\"?page=building&name=浙江省杭州市六和塔&pid=zhejiang\" target=\"_blank\" data-nav>六和塔</a>远眺，江水如银带蜿蜒入海。在灵隐寺前被<a href=\"?page=building&name=浙江省杭州市飞来峰造像（含西湖南山造像）&pid=zhejiang\" target=\"_blank\" data-nav>飞来峰造像（含西湖南山造像）</a>深深吸引——元代石刻造像栩栩如生。又专程拜谒了<a href=\"?page=building&name=浙江省杭州市岳飞墓&pid=zhejiang\" target=\"_blank\" data-nav>岳飞墓</a>，岳王庙前香火不断，秦桧跪像永远钉在耻辱柱上——忠奸善恶，历史自有公论。",
+        "buildings": [
+          {
+            "name": "六和塔",
+            "province": "zhejiang",
+            "district": "zhejiang_hangzhou"
+          },
+          {
+            "name": "飞来峰造像（含西湖南山造像）",
+            "province": "zhejiang",
+            "district": "zhejiang_hangzhou"
+          },
+          {
+            "name": "岳飞墓",
+            "province": "zhejiang",
+            "district": "zhejiang_hangzhou"
+          },
+          {
+            "name": "兰亭",
+            "province": "zhejiang",
+            "district": "zhejiang_shaoxing"
+          }
+        ]
+      },
+      {
+        "title": "第七站：绍兴：水乡文脉",
+        "icon": "📚",
+        "content": "绍兴是一座漂在水上的古城。他拜谒了<a href=\"?page=building&name=浙江省绍兴市大禹陵&pid=zhejiang\" target=\"_blank\" data-nav>大禹陵</a>，四千年前治水英雄的陵墓坐落在会稽山麓。又寻访了<a href=\"?page=building&name=浙江省绍兴市兰亭&pid=zhejiang\" target=\"_blank\" data-nav>兰亭</a>——东晋王羲之写下\"天下第一行书\"的地方，曲水流觞的风雅让他心驰神往。还经过<a href=\"?page=building&name=浙江省绍兴市绍兴古桥群（含八字桥）&pid=zhejiang\" target=\"_blank\" data-nav>绍兴古桥群（含八字桥）</a>，南宋石桥下乌篷船悠然穿过——这种活着的古迹，比什么宏大建筑都动人。",
+        "buildings": [
+          {
+            "name": "大禹陵",
+            "province": "zhejiang",
+            "district": "zhejiang_shaoxing"
+          },
+          {
+            "name": "绍兴古桥群（含八字桥）",
+            "province": "zhejiang",
+            "district": "zhejiang_shaoxing"
+          }
+        ]
+      },
+      {
+        "title": "第八站：天台山：《徐霞客游记》开篇之地",
+        "icon": "⛰️",
+        "content": "万历四十一年（1613年）三月三十日（公历5月19日），徐霞客前往天台山。这一天如今被定为中国旅游日——因为这一天的游记正是《徐霞客游记》的开篇之作。\n\n他走进<a href=\"?page=building&name=浙江省台州市国清寺&pid=zhejiang\" target=\"_blank\" data-nav>国清寺</a>，隋代创建的天台宗祖庭，寺内隋塔和隋梅见证了一千四百年岁月。他两次攀登华顶寻找石梁飞瀑的源头——一道天然石梁横跨两崖，瀑布从梁下飞流直下声如雷鸣。他这种追根究底的精神，正是《徐霞客游记》至今被地理学界推崇的原因。",
+        "buildings": [
+          {
+            "name": "国清寺",
+            "province": "zhejiang",
+            "district": "zhejiang_taizhou"
+          }
+        ]
+      },
+      {
+        "title": "第九站：雁荡山：东南第一山",
+        "icon": "🏔️",
+        "content": "游完天台山，徐霞客赶往雁荡山。这里火山流纹岩地貌形成了奇峰怪石的独特景观。他冒险攀登绝壁寻找大龙湫瀑布源头——落差近两百米的大龙湫是中国四大名瀑之一。灵峰在月光下变幻莫测如梦幻之境。他对火山流纹岩地貌的考察比欧洲科学家早了三百多年。",
+        "buildings": []
+      },
+      {
+        "title": "第十站：黄山：五岳归来不看山",
         "icon": "🌄",
-        "content": "万历四十四年（1616年）和崇祯元年（1628年），徐霞客两次游览黄山。他在游记中留下了\"五岳归来不看山，黄山归来不看岳\"的千古名句。\n\n【黄山古建筑群】沿黄山盘山路从山麓到山顶排列的宫观、亭坊、桥等众多古建筑。徐霞客在黄山期间，曾寄宿于这些古刹道观之中。包括慈光阁、半山寺、玉屏楼、北海宾馆旧址等，2006年被公布为第六批全国重点文物保护单位。\n\n【天都峰】徐霞客曾冒险攀登天都峰，在游记中详细记录了攀登的艰险和峰顶的壮丽景色。天都峰是黄山三大主峰之一，海拔1810米。\n\n【迎客松】徐霞客在游记中提到的古松，就是今天著名的迎客松。这棵松树已有800多年历史，是黄山的标志性景观。\n\n从黄山出发，徐霞客继续西行，前往庐山。",
+        "content": "万历四十四年（1616年）二月，徐霞客冒雪登黄山。他写下\"五岳归来不看山，黄山归来不看岳\"的千古名句，让黄山从此成为中国人心中第一奇山。\n\n<a href=\"?page=building&name=安徽省黄山市黄山登山古道及古建筑&pid=anhui\" target=\"_blank\" data-nav>黄山登山古道及古建筑</a>从慈光阁到北海依山就势，与奇松怪石融为一体。他冒险登顶天都峰——\"手足并用，从石峡中攀援而上\"——登顶后的壮丽让一切辛苦都值了。崇祯元年（1628年）他再次游黄山，可能是世界上最早记录黄山花岗岩地貌的人。",
         "buildings": [
           {
-            "name": "黄山古建筑群",
+            "name": "黄山登山古道及古建筑",
             "province": "anhui",
-            "district": "anhui_huangshan",
-            "embedded": null
+            "district": "anhui_huangshan"
           }
         ]
       },
       {
-        "title": "第五站：庐山——匡庐奇秀甲天下",
+        "title": "第十一站：庐山：匡庐奇秀甲天下",
         "icon": "🌫️",
-        "content": "万历四十六年（1618年），徐霞客游览庐山。他在《游庐山日记》中记录了这次旅程，对庐山的地质地貌进行了详细考察。\n\n【白鹿洞书院】位于庐山五老峰下，是中国古代四大书院之一。徐霞客在游览庐山期间，曾到访这座著名的书院。书院始建于唐代，宋代朱熹重修，成为理学传播的重要场所。\n\n【仙人洞】徐霞客在游记中描述了仙人洞的奇特景观。相传唐代吕洞宾曾在此修炼，故名仙人洞。\n\n【三叠泉】徐霞客曾徒步前往三叠泉，在游记中详细记录了瀑布的三级跌落景观。三叠泉落差达155米，是庐山最壮观的瀑布。\n\n从庐山出发，徐霞客继续南下，前往福建武夷山。",
+        "content": "万历四十六年（1618年），徐霞客来到庐山。他拜访了<a href=\"?page=building&name=江西省九江市白鹿书院&pid=jiangxi\" target=\"_blank\" data-nav>白鹿书院</a>，这座四大书院之一因朱熹讲学而声名远播。徒步前往三叠泉，瀑布三级跌落落差一百五十五米，水花四溅如碎玉飞雪。他对庐山地质地貌的考察极为精准。",
         "buildings": [
           {
-            "name": "白鹿洞书院",
+            "name": "白鹿书院",
             "province": "jiangxi",
-            "district": "jiangxi_jiujiang",
-            "embedded": null
+            "district": "jiujiang"
           }
         ]
       },
       {
-        "title": "第六站：武夷山——碧水丹山",
+        "title": "第十二站：武夷山：碧水丹山",
         "icon": "🍃",
-        "content": "万历四十七年（1619年），徐霞客游历福建武夷山。他在游记中详细考察了这里的丹霞地貌和茶文化。\n\n【城村汉城遗址】位于武夷山市兴田镇城村，是中国东南地区保存最完整的汉代诸侯王城遗址，为西汉闽越国王城。徐霞客在武夷山期间，曾考察这座古城遗址。遗址距今约2200年，1996年被公布为第四批全国重点文物保护单位。\n\n【武夷山崖墓群】位于武夷山九曲溪两岸的悬崖洞穴中，以\"架壑船棺\"最为著名。徐霞客在游记中对这些神秘的崖墓进行了记录。崖墓群始建于商周时期，延续至宋代，是研究中国南方古代葬俗的重要实物。\n\n【九曲溪】徐霞客曾乘竹筏游览九曲溪，在游记中详细描述了沿途的奇峰异石。九曲溪是武夷山的灵魂，两岸丹霞地貌景观令人叹为观止。\n\n从武夷山返回后，徐霞客又北上考察了嵩山少林寺。",
+        "content": "万历四十七年（1619年），徐霞客来到福建武夷山。丹霞地貌红褐色的山体在碧水环绕下格外壮观。他乘竹筏游九曲溪，考察了<a href=\"?page=building&name=福建省南平市城村汉城遗址&pid=fujian\" target=\"_blank\" data-nav>城村汉城遗址</a>——西汉闽越国王城面积四十八万平方米。最神秘的是悬崖上的<a href=\"?page=building&name=福建省南平市武夷山崖墓群&pid=fujian\" target=\"_blank\" data-nav>武夷山崖墓群</a>，\"架壑船棺\"是古越人的悬棺葬俗，古人怎么把棺木放上数十米高的悬崖的，至今仍是谜。",
         "buildings": [
           {
             "name": "城村汉城遗址",
             "province": "fujian",
-            "district": "fujian_nanping",
-            "embedded": null
+            "district": "fujian_nanping"
           },
           {
             "name": "武夷山崖墓群",
             "province": "fujian",
-            "district": "fujian_nanping",
-            "embedded": null
+            "district": "fujian_nanping"
           }
         ]
       },
       {
-        "title": "第七站：嵩山——天地之中",
+        "title": "第十三站：嵩山：天地之中",
         "icon": "🏛️",
-        "content": "天启三年（1623年），徐霞客北上河南，游览嵩山。他在《游嵩山日记》中记录了这次旅程，对嵩山的地质地貌和古建筑进行了详细考察。\n\n【嵩岳寺塔】位于登封市嵩山南麓嵩岳寺内，是中国现存最古老的密檐式砖塔，也是唯一一座十二边形塔。徐霞客在游览嵩山期间，曾登临此塔。塔始建于北魏正光四年（523年），高约37米，十五层密檐，造型极为优美。\n\n【少林寺】位于嵩山五乳峰下，是中国佛教禅宗祖庭和少林武术的发源地。徐霞客在游记中描述了少林寺的宏伟规模和武术传统。少林寺始建于北魏太和十九年（495年），被誉为\"天下第一名刹\"。\n\n【中岳庙】徐霞客曾在此考察中国古代的封禅文化。中岳庙是祭祀嵩山神的庙宇，规模宏大，保存完好。\n\n从嵩山出发，徐霞客又东行考察了泰山。",
+        "content": "天启三年（1623年），徐霞客北上中岳嵩山。他登上<a href=\"?page=building&name=河南省郑州市嵩岳寺塔&pid=henan\" target=\"_blank\" data-nav>嵩岳寺塔</a>——中国现存最古老的砖塔，全国唯一的十二边形塔，历经一千五百年风雨依然屹立。到了<a href=\"?page=building&name=河南省郑州市少林寺&pid=henan\" target=\"_blank\" data-nav>少林寺</a>——禅宗祖庭少林武术发源地。还考察了汉代的<a href=\"?page=building&name=河南省郑州市太室阙&pid=henan\" target=\"_blank\" data-nav>太室阙</a>、<a href=\"?page=building&name=河南省郑州市少室阙&pid=henan\" target=\"_blank\" data-nav>少室阙</a>、<a href=\"?page=building&name=河南省郑州市启母阙&pid=henan\" target=\"_blank\" data-nav>启母阙</a>，这些石阙是中国现存最古老的建筑之一。又去了嵩阳书院和郭守敬建的<a href=\"?page=building&name=河南省郑州市观星台&pid=henan\" target=\"_blank\" data-nav>观星台</a>。",
         "buildings": [
           {
             "name": "嵩岳寺塔",
             "province": "henan",
-            "district": "zhengzhou",
-            "embedded": null
+            "district": "zhengzhou"
           },
           {
             "name": "少林寺",
             "province": "henan",
-            "district": "zhengzhou",
-            "embedded": null
+            "district": "zhengzhou"
+          },
+          {
+            "name": "观星台",
+            "province": "henan",
+            "district": "zhengzhou"
+          },
+          {
+            "name": "太室阙",
+            "province": "henan",
+            "district": "zhengzhou"
+          },
+          {
+            "name": "少室阙",
+            "province": "henan",
+            "district": "zhengzhou"
+          },
+          {
+            "name": "启母阙",
+            "province": "henan",
+            "district": "zhengzhou"
           }
         ]
       },
       {
-        "title": "第八站：泰山——五岳独尊",
+        "title": "开封：东京梦华",
+        "icon": "🏯",
+        "content": "从中岳向西到洛阳。他看了<a href=\"?page=building&name=河南省洛阳市龙门石窟&pid=henan\" target=\"_blank\" data-nav>龙门石窟</a>——两千多个窟龛十万余尊佛像，奉先寺卢舍那大佛高十七米，据说是以武则天为原型。又去了<a href=\"?page=building&name=河南省洛阳市白马寺&pid=henan\" target=\"_blank\" data-nav>白马寺</a>——佛教传入中国后兴建的第一座寺院，\"白马驮经\"的故事传颂了近两千年。",
+        "buildings": [
+          {
+            "name": "祐国寺塔",
+            "province": "henan",
+            "district": "kaifeng"
+          },
+          {
+            "name": "开封城墙",
+            "province": "henan",
+            "district": "kaifeng"
+          },
+          {
+            "name": "相国寺",
+            "province": "henan",
+            "district": "kaifeng"
+          },
+          {
+            "name": "山陕甘会馆",
+            "province": "henan",
+            "district": "kaifeng"
+          }
+        ]
+      },
+      {
+        "title": "第十四站：洛阳·开封：中原古都",
+        "icon": "🏺",
+        "content": "从洛阳东行到开封。他登上<a href=\"?page=building&name=河南省开封市祐国寺塔&pid=henan\" target=\"_blank\" data-nav>祐国寺塔</a>——这座北宋琉璃砖塔因呈褐色远望似铁而得名铁塔。又登<a href=\"?page=building&name=河南省开封市开封城墙&pid=henan\" target=\"_blank\" data-nav>开封城墙</a>俯瞰古城，在<a href=\"?page=building&name=河南省开封市相国寺&pid=henan\" target=\"_blank\" data-nav>相国寺</a>参访，去<a href=\"?page=building&name=河南省开封市山陕甘会馆&pid=henan\" target=\"_blank\" data-nav>山陕甘会馆</a>欣赏精美的砖木石三雕。",
+        "buildings": [
+          {
+            "name": "龙门石窟",
+            "province": "henan",
+            "district": "luoyang"
+          },
+          {
+            "name": "白马寺",
+            "province": "henan",
+            "district": "luoyang"
+          },
+          {
+            "name": "灵岩寺",
+            "province": "shandong",
+            "district": "shandong_jinan"
+          },
+          {
+            "name": "曲阜孔庙及孔府",
+            "province": "shandong",
+            "district": "shandong_jining"
+          },
+          {
+            "name": "孔林",
+            "province": "shandong",
+            "district": "shandong_jining"
+          }
+        ]
+      },
+      {
+        "title": "第十五站：泰山：五岳独尊",
         "icon": "🌅",
-        "content": "天启三年（1623年），徐霞客在游览嵩山后，又东行来到山东泰山。他在《游泰山日记》中记录了这次登顶之旅。\n\n【岱庙】位于泰安市泰山区东岳大街，是历代帝王封禅泰山、举行大典的地方，是泰山最大古建筑群。徐霞客在泰山期间，曾在此参拜。岱庙仿帝王宫城式建筑，有遥参亭、天贶殿、寝宫等，天贶殿内有巨幅壁画《泰山神启跸回銮图》。\n\n【泰山古建筑群】沿泰山盘山路从山麓到山顶排列的宫观、亭坊、桥等众多古建筑。徐霞客徒步攀登泰山，沿途考察了这些古建筑。包括岱宗坊、红门宫、南天门、碧霞祠等共数十处，2006年被公布为第六批全国重点文物保护单位。\n\n【玉皇顶】徐霞客曾登顶玉皇顶，在游记中记录了\"会当凌绝顶，一览众山小\"的壮阔景象。玉皇顶是泰山最高峰，海拔1545米。\n\n从泰山返回后，徐霞客又西行考察了华山。",
+        "content": "天启三年（1623年），徐霞客东行到泰山——五岳之首。从<a href=\"?page=building&name=山东省泰安市岱庙&pid=shandong\" target=\"_blank\" data-nav>岱庙</a>出发，天贶殿壁画《泰山神启跸回銮图》气势恢宏。沿登山路而上，<a href=\"?page=building&name=山东省泰安市泰山古建筑群&pid=shandong\" target=\"_blank\" data-nav>泰山古建筑群</a>从山脚到山顶绵延十多公里。在南天门驻足，在玉皇顶远眺——壮阔景象让他热血沸腾。\n\n他还寻访了济南的<a href=\"?page=building&name=山东省济南市灵岩寺&pid=shandong\" target=\"_blank\" data-nav>灵岩寺</a>——海内四大名刹之一，南下曲阜拜谒了<a href=\"?page=building&name=山东省济宁市曲阜孔庙及孔府&pid=shandong\" target=\"_blank\" data-nav>曲阜孔庙及孔府</a>和<a href=\"?page=building&name=山东省济宁市孔林&pid=shandong\" target=\"_blank\" data-nav>孔林</a>，在孔子故里感受儒家文化千年传承。",
         "buildings": [
           {
             "name": "岱庙",
             "province": "shandong",
-            "district": "shandong_taian",
-            "embedded": null
+            "district": "shandong_taian"
           },
           {
             "name": "泰山古建筑群",
             "province": "shandong",
-            "district": "shandong_taian",
-            "embedded": null
+            "district": "shandong_taian"
           }
         ]
       },
       {
-        "title": "第九站：华山——奇险天下第一山",
+        "title": "第十六站：华山：奇险天下第一山",
         "icon": "⛰️",
-        "content": "崇祯元年（1628年），徐霞客西行陕西，游览华山。他在《游华山日记》中记录了这次惊险的攀登之旅。\n\n【华山古建筑群】分布在华山五峰之上，包括玉泉院、东道院、镇岳宫等。徐霞客在华山期间，曾寄宿于这些道观之中。华山是道教全真派圣地，有\"第四洞天\"之称。\n\n【长空栈道】徐霞客曾冒险行走长空栈道，在游记中详细记录了这段惊险的经历。长空栈道位于华山南峰，是华山最险峻的景点之一。\n\n【鹞子翻身】徐霞客在游记中描述了鹞子翻身的险峻。这是通往华山著名景点下棋亭的必经之路，需要面壁挽索，脚尖探寻石窝，交替而下。\n\n从华山返回后，徐霞客开始了他的西南万里遐征。",
+        "content": "崇祯元年（1628年），徐霞客西行游览华山。冒险行走长空栈道——栈道宽不足半米下临万丈深渊。华山下就是长安，他观摩了<a href=\"?page=building&name=陕西省西安市西安碑林&pid=shaanxi\" target=\"_blank\" data-nav>西安碑林</a>——四千余方碑石堪称书法宝库；登上<a href=\"?page=building&name=陕西省西安市西安城墙&pid=shaanxi\" target=\"_blank\" data-nav>西安城墙</a>俯瞰十三朝古都；拜谒了<a href=\"?page=building&name=陕西省西安市大雁塔&pid=shaanxi\" target=\"_blank\" data-nav>大雁塔</a>——玄奘为供奉印度佛经所建。",
         "buildings": [
           {
             "name": "西安碑林",
             "province": "shaanxi",
-            "district": "shaanxi_xian",
-            "embedded": null
+            "district": "shaanxi_xian"
+          },
+          {
+            "name": "西安城墙",
+            "province": "shaanxi",
+            "district": "shaanxi_xian"
+          },
+          {
+            "name": "大雁塔",
+            "province": "shaanxi",
+            "district": "shaanxi_xian"
           }
         ]
       },
       {
-        "title": "第十站：衡山——南岳独秀",
+        "title": "第十七站：武当山：道教圣境",
+        "icon": "☯️",
+        "content": "游完嵩山华山后南下湖北登上武当山。<a href=\"?page=building&name=湖北省十堰市武当山建筑群&pid=hubei\" target=\"_blank\" data-nav>武当山建筑群</a>从山脚到金顶绵延不绝——金殿是中国最大铜铸鎏金大殿，紫霄宫气势恢宏，南岩宫悬于绝壁之上。明成祖朱棣大修武当历时十二年，徐霞客登金顶时对紫霄宫的宏伟赞叹不已。",
+        "buildings": [
+          {
+            "name": "武当山建筑群",
+            "province": "hubei",
+            "district": "hubei_shiyan"
+          }
+        ]
+      },
+      {
+        "title": "第十八站：衡山：南岳独秀",
         "icon": "🏔️",
-        "content": "崇祯九年（1636年），五十一岁的徐霞客开始了他的\"万里遐征\"，从江苏出发，经浙江、江西、湖南，来到南岳衡山。\n\n【南岳大庙】位于衡阳市南岳区，是中国南方最大的古建筑群之一。徐霞客在衡山期间，曾在此参拜。大庙始建于唐代，现存建筑为清代所建，规模宏大，气势磅礴。\n\n【祝融峰】徐霞客曾登顶祝融峰，在游记中记录了峰顶的壮丽景色。祝融峰是衡山最高峰，海拔1300米，是火神祝融的封地。\n\n【藏经殿】徐霞客在游记中描述了藏经殿的古朴典雅。藏经殿位于衡山祥光峰下，是衡山最古老的寺庙之一。\n\n从衡山出发，徐霞客继续西行，前往广西桂林。",
+        "content": "崇祯九年（1636年），五十一岁的徐霞客开始了震惊后世的\"万里遐征\"——走浙江、江西、湖南、广西、贵州、云南，西南的半壁江山。他沿湘江南下到衡山，<a href=\"?page=building&name=湖南省衡阳市南岳庙&pid=hunan\" target=\"_blank\" data-nav>南岳庙</a>是中国南方最大的古建筑群之一。登顶祝融峰，又到长沙<a href=\"?page=building&name=湖南省长沙市岳麓书院&pid=hunan\" target=\"_blank\" data-nav>岳麓书院</a>感受千年文脉。在洞庭湖畔登<a href=\"?page=building&name=湖南省岳阳市岳阳楼&pid=hunan\" target=\"_blank\" data-nav>岳阳楼</a>，范仲淹\"先天下之忧而忧\"回荡千年。",
         "buildings": [
           {
             "name": "岳阳楼",
             "province": "hunan",
-            "district": "hunan_yueyang",
-            "embedded": null
-          }
-        ]
-      },
-      {
-        "title": "第十一站：桂林——山水甲天下",
-        "icon": "🚣",
-        "content": "崇祯十年（1637年），徐霞客进入广西，游览桂林山水。他在《粤西游日记》中详细记录了这次旅程。\n\n【靖江王府】位于桂林市中心，是明代藩王靖江王的王府。徐霞客在桂林期间，曾在此停留。王府始建于明洪武五年（1372年），是现存最完整的明代藩王府邸。\n\n【象鼻山】徐霞客在游记中描述了象鼻山的奇特景观。象鼻山因形似大象饮水而得名，是桂林的标志性景观。\n\n【漓江】徐霞客曾乘船游览漓江，在游记中详细描述了沿途的喀斯特地貌景观。漓江山水是桂林风光的精华所在。\n\n从桂林出发，徐霞客继续西行，进入贵州。",
-        "buildings": [
-          {
-            "name": "崇圣寺三塔",
-            "province": "yunnan",
-            "district": "yunnan_dali",
-            "embedded": null
-          }
-        ]
-      },
-      {
-        "title": "第十二站：大理——风花雪月",
-        "icon": "🏛️",
-        "content": "崇祯十一年（1638年），徐霞客进入云南，首先来到大理。他在《滇游日记》中记录了这次旅程。\n\n【崇圣寺三塔】位于大理古城西北角，背靠苍山，面临洱海。徐霞客在大理期间，曾登临此塔。三塔由一大二小三座佛塔组成，大塔\"千寻塔\"建于南诏国时期，高69.13米，是云南古代文明的首要象征。\n\n【大理古城】徐霞客在游记中描述了大理古城的繁华景象。大理是南诏国和大理国的都城，历史悠久，文化灿烂。\n\n【苍山洱海】徐霞客曾泛舟洱海，攀登苍山，在游记中详细记录了这里的自然风光和人文景观。\n\n从大理出发，徐霞客继续北上，前往丽江。",
-        "buildings": [
-          {
-            "name": "崇圣寺三塔",
-            "province": "yunnan",
-            "district": "yunnan_dali",
-            "embedded": null
-          }
-        ]
-      },
-      {
-        "title": "第十三站：丽江——纳西古韵",
-        "icon": "🏘️",
-        "content": "崇祯十一年（1638年），徐霞客来到丽江，受到纳西族土司木增的热情接待。他在丽江停留了十五天，详细考察了这里的地理民情。\n\n【丽江古城】徐霞客在游记中描述了丽江古城的独特风貌。古城始建于宋末元初，是纳西族的政治经济文化中心。1997年被列入世界文化遗产名录。\n\n【木府】徐霞客曾做客木府，与土司木增畅谈。木府是纳西族土司的府邸，建筑宏伟，有\"宫室之丽，拟于王者\"之称。\n\n【玉龙雪山】徐霞客在游记中记录了玉龙雪山的壮丽景色。玉龙雪山是纳西族的神山，主峰扇子陡海拔5596米。\n\n从丽江出发，徐霞客继续西行，前往腾冲。",
-        "buildings": [
-          {
-            "name": "青城山古建筑群",
-            "province": "sichuan",
-            "district": "sichuan_chengdu",
-            "embedded": null
-          }
-        ]
-      },
-      {
-        "title": "第十四站：腾冲——极边第一城",
-        "icon": "🌋",
-        "content": "崇祯十二年（1639年），徐霞客来到腾冲，这是他一生中最远的旅行。他在腾冲考察了四十余天，详细记录了这里的火山地热景观。\n\n【腾冲火山群】徐霞客在游记中详细描述了腾冲的火山地貌。腾冲是中国著名的火山地热区，有\"火山地质博物馆\"之称。\n\n【热海】徐霞客曾考察热海温泉，在游记中记录了这里的地热奇观。热海是腾冲最著名的温泉景区，有大滚锅、珍珠泉等众多温泉。\n\n【和顺古镇】徐霞客在游记中提到了这座古镇。和顺是云南著名的侨乡，文化底蕴深厚。\n\n崇祯十三年（1640年），徐霞客因病双足俱废，由云南木增土司派人护送回乡。1641年，这位伟大的旅行家在家中病逝，享年五十四岁。",
-        "buildings": [
-          {
-            "name": "乐山大佛",
-            "province": "sichuan",
-            "district": "sichuan_leshan",
-            "embedded": null
+            "district": "hunan_yueyang"
           },
           {
-            "name": "峨眉山古建筑群",
-            "province": "sichuan",
-            "district": "sichuan_leshan",
-            "embedded": null
+            "name": "南岳庙",
+            "province": "hunan",
+            "district": "hunan_hengyang"
+          },
+          {
+            "name": "岳麓书院",
+            "province": "hunan",
+            "district": "hunan_changsha"
+          }
+        ]
+      },
+      {
+        "title": "第十九站：桂林：山水甲天下",
+        "icon": "🚣",
+        "content": "崇祯十年（1637年），徐霞客进入广西桂林。喀斯特地貌奇峰林立碧水环绕。参观<a href=\"?page=building&name=广西壮族自治区桂林市靖江王府及王陵&pid=guangxi\" target=\"_blank\" data-nav>靖江王府及王陵</a>——比故宫还早建三十四年的明代藩王府；考察了<a href=\"?page=building&name=广西壮族自治区桂林市灵渠&pid=guangxi\" target=\"_blank\" data-nav>灵渠</a>——秦始皇开凿连接湘江漓江的运河。<a href=\"?page=building&name=广西壮族自治区桂林市桂林石刻&pid=guangxi\" target=\"_blank\" data-nav>桂林石刻</a>散布在龙隐岩叠彩山，唐宋摩崖数以百计。<a href=\"?page=building&name=广西壮族自治区桂林市甑皮岩遗址&pid=guangxi\" target=\"_blank\" data-nav>甑皮岩遗址</a>是新石器时代洞穴遗址。漓江八十三公里风光，是他笔下最美的山水诗篇。",
+        "buildings": [
+          {
+            "name": "靖江王府及王陵",
+            "province": "guangxi",
+            "district": "guangxi_guilin"
+          },
+          {
+            "name": "灵渠",
+            "province": "guangxi",
+            "district": "guangxi_guilin"
+          },
+          {
+            "name": "桂林石刻",
+            "province": "guangxi",
+            "district": "guangxi_guilin"
+          },
+          {
+            "name": "甑皮岩遗址",
+            "province": "guangxi",
+            "district": "guangxi_guilin"
+          }
+        ]
+      },
+      {
+        "title": "第二十站：贵州：喀斯特秘境",
+        "icon": "🌿",
+        "content": "崇祯十一年（1638年），徐霞客进入贵州。喀斯特地貌壮观——溶洞暗河天坑遍布，他的记录比欧洲早了两百多年。在贵阳登<a href=\"?page=building&name=贵州省贵阳市文昌阁和甲秀楼&pid=guizhou\" target=\"_blank\" data-nav>文昌阁和甲秀楼</a>，寻访<a href=\"?page=building&name=贵州省贵阳市阳明洞和阳明祠&pid=guizhou\" target=\"_blank\" data-nav>阳明洞和阳明祠</a>——王阳明龙场悟道之处。在安顺看中国最大瀑布黄果树，参观<a href=\"?page=building&name=贵州省安顺市安顺文庙&pid=guizhou\" target=\"_blank\" data-nav>安顺文庙</a>和建于天台山顶的<a href=\"?page=building&name=贵州省安顺市天台山伍龙寺&pid=guizhou\" target=\"_blank\" data-nav>天台山伍龙寺</a>。",
+        "buildings": [
+          {
+            "name": "文昌阁和甲秀楼",
+            "province": "guizhou",
+            "district": "guizhou_guiyang"
+          },
+          {
+            "name": "阳明洞和阳明祠",
+            "province": "guizhou",
+            "district": "guizhou_guiyang"
+          },
+          {
+            "name": "安顺文庙",
+            "province": "guizhou",
+            "district": "guizhou_anshun"
+          },
+          {
+            "name": "天台山伍龙寺",
+            "province": "guizhou",
+            "district": "guizhou_anshun"
+          }
+        ]
+      },
+      {
+        "title": "第二十一站：昆明：春城花海",
+        "icon": "🌸",
+        "content": "进入云南到昆明。登鸣凤山看<a href=\"?page=building&name=云南省昆明市太和宫金殿&pid=yunnan\" target=\"_blank\" data-nav>太和宫金殿</a>——中国现存最大纯铜铸造宫殿；参观<a href=\"?page=building&name=云南省昆明市真庆观古建筑群&pid=yunnan\" target=\"_blank\" data-nav>真庆观古建筑群</a>——明代道教建筑群；到安宁泡<a href=\"?page=building&name=云南省昆明市温泉摩崖石刻群&pid=yunnan\" target=\"_blank\" data-nav>温泉摩崖石刻群</a>的温泉。在滇池边远眺西山——滇池的壮阔已经美得令人窒息。",
+        "buildings": [
+          {
+            "name": "太和宫金殿",
+            "province": "yunnan",
+            "district": "yunnan_kunming"
+          },
+          {
+            "name": "真庆观古建筑群",
+            "province": "yunnan",
+            "district": "yunnan_kunming"
+          },
+          {
+            "name": "温泉摩崖石刻群",
+            "province": "yunnan",
+            "district": "yunnan_kunming"
+          }
+        ]
+      },
+      {
+        "title": "第二十二站：大理：风花雪月",
+        "icon": "🏛️",
+        "content": "从昆明西行到大理。苍山洱海间的古城曾是南诏国和大理国都城。<a href=\"?page=building&name=云南省大理白族自治州崇圣寺三塔&pid=yunnan\" target=\"_blank\" data-nav>崇圣寺三塔</a>呈鼎足之势耸立，大塔\"千寻塔\"高六十九米。<a href=\"?page=building&name=云南省大理白族自治州太和城遗址（含南诏德化碑）&pid=yunnan\" target=\"_blank\" data-nav>太和城遗址（含南诏德化碑）</a>是南诏王都所在。<a href=\"?page=building&name=云南省大理白族自治州喜洲白族古建筑群&pid=yunnan\" target=\"_blank\" data-nav>喜洲白族古建筑群</a>粉墙黛瓦雕梁画栋。泛舟洱海仰望苍山——此景只应天上有。",
+        "buildings": [
+          {
+            "name": "崇圣寺三塔",
+            "province": "yunnan",
+            "district": "yunnan_dali"
+          },
+          {
+            "name": "太和城遗址（含南诏德化碑）",
+            "province": "yunnan",
+            "district": "yunnan_dali"
+          },
+          {
+            "name": "喜洲白族古建筑群",
+            "province": "yunnan",
+            "district": "yunnan_dali"
+          }
+        ]
+      },
+      {
+        "title": "第二十三站：丽江：纳西古韵",
+        "icon": "🏘️",
+        "content": "崇祯十二年（1639年），徐霞客来到丽江。纳西族土司木增热情接待他，两人一见如故把酒言天下。丽江古城\"居庐骈集，萦坡带谷\"。在木府做客，又游览了城北的<a href=\"?page=building&name=云南省丽江市黑龙潭古建筑群&pid=yunnan\" target=\"_blank\" data-nav>黑龙潭古建筑群</a>，得月楼倒映水中如诗如画。在木增帮助下编纂了《鸡足山志》。他是最早关注纳西族文化的内地学者。",
+        "buildings": [
+          {
+            "name": "黑龙潭古建筑群",
+            "province": "yunnan",
+            "district": "yunnan_lijiang"
+          }
+        ]
+      },
+      {
+        "title": "第二十四站：鸡足山：佛门圣地",
+        "icon": "🪷",
+        "content": "从丽江南下到宾川鸡足山——迦叶菩萨道场，汉传佛教与藏传佛教在此交融。在此停留数月编纂《鸡足山志》，对山中水系详细考察并绘制山图。崇祯十三年（1640年），徐霞客因病双足俱废，木增派八名壮汉抬着他历时一百五十多天送回江阴老家。次年这位伟大的旅行家在家中病逝，临终将手稿托付给好友——这就是流传后世的《徐霞客游记》。",
+        "buildings": []
+      },
+      {
+        "title": "第二十五站：腾冲：极边第一城",
+        "icon": "🌋",
+        "content": "崇祯十二年（1639年），徐霞客来到他一生中最远的地方——腾冲。在此考察四十多天详细记录火山地热。打鹰山三百年前喷发痕迹触目惊心，热海大滚锅温度高达九十多度。他是全世界最早记录火山地热的旅行家之一，对腾冲火山群的描述被认为是中国最早的火山科学考察报告。",
+        "buildings": []
+      },
+      {
+        "title": "第二十六站：五台山·恒山：北国佛韵（附记）",
+        "icon": "❄️",
+        "content": "崇祯六年（1633年），徐霞客北上山西。五台山是文殊菩萨道场，台怀镇寺庙群金碧辉煌。到大同看<a href=\"?page=building&name=山西省大同市云冈石窟&pid=shanxi\" target=\"_blank\" data-nav>云冈石窟</a>——四十五个洞窟五万余尊佛像，佛教艺术巅峰。走访<a href=\"?page=building&name=山西省大同市华严寺&pid=shanxi\" target=\"_blank\" data-nav>华严寺</a>和<a href=\"?page=building&name=山西省大同市善化寺&pid=shanxi\" target=\"_blank\" data-nav>善化寺</a>，登恒山<a href=\"?page=building&name=山西省大同市悬空寺&pid=shanxi\" target=\"_blank\" data-nav>悬空寺</a>如挂半空。经过应县木塔——世界最高木塔。南下平遥考察<a href=\"?page=building&name=山西省晋中市平遥城墙&pid=shanxi\" target=\"_blank\" data-nav>平遥城墙</a>——保存最完整的明清县城城墙。",
+        "buildings": [
+          {
+            "name": "悬空寺",
+            "province": "shanxi",
+            "district": "shanxi_datong"
+          },
+          {
+            "name": "云冈石窟",
+            "province": "shanxi",
+            "district": "shanxi_datong"
+          },
+          {
+            "name": "华严寺",
+            "province": "shanxi",
+            "district": "shanxi_datong"
+          },
+          {
+            "name": "善化寺",
+            "province": "shanxi",
+            "district": "shanxi_datong"
+          },
+          {
+            "name": "平遥城墙",
+            "province": "shanxi",
+            "district": "shanxi_jinzhong"
+          }
+        ]
+      },
+      {
+        "title": "第二十七站：京师：北国中枢（附记）",
+        "icon": "🏯",
+        "content": "崇祯二年（1629年），徐霞客北上京师。拜谒了<a href=\"?page=building&name=北京市东城区天坛&pid=beijing\" target=\"_blank\" data-nav>天坛</a>——明清皇帝祭天之所；<a href=\"?page=building&name=北京市东城区故宫&pid=beijing\" target=\"_blank\" data-nav>故宫</a>——紫禁城的恢弘让他震撼；去昌平<a href=\"?page=building&name=北京市昌平区十三陵&pid=beijing\" target=\"_blank\" data-nav>十三陵</a>——明朝十三位皇帝长眠之处。参观<a href=\"?page=building&name=北京市东城区智化寺&pid=beijing\" target=\"_blank\" data-nav>智化寺</a>——明代木构寺院以藻井闻名；登上<a href=\"?page=building&name=北京市东城区古观象台&pid=beijing\" target=\"_blank\" data-nav>古观象台</a>——让他这位地理爱好者流连忘返。<a href=\"?page=building&name=北京市东城区北京城东南角楼&pid=beijing\" target=\"_blank\" data-nav>北京城东南角楼</a>和<a href=\"?page=building&name=北京市东城区正阳门&pid=beijing\" target=\"_blank\" data-nav>正阳门</a>感受城防雄伟。出居庸关登上八达岭长城——蜿蜒在群山之巅的巨龙让他心潮澎湃。至此游圣足迹已遍布大半个中国，三十四年徒步之旅堪称人类探险史上最伟大的壮举。",
+        "buildings": [
+          {
+            "name": "天坛",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
+          },
+          {
+            "name": "十三陵",
+            "province": "beijing",
+            "district": "beijing_changping"
+          },
+          {
+            "name": "古观象台",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
+          },
+          {
+            "name": "智化寺",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
+          },
+          {
+            "name": "北京城东南角楼",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
+          },
+          {
+            "name": "正阳门",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
+          },
+          {
+            "name": "故宫",
+            "province": "beijing",
+            "district": "beijing_dongcheng"
           }
         ]
       }
-    ],
-    "allBuildings": [
-      {
-        "name": "明孝陵",
-        "province": "jiangsu",
-        "district": "jiangsu_nanjing",
-        "stop": 1
-      },
-      {
-        "name": "南京城墙",
-        "province": "jiangsu",
-        "district": "jiangsu_nanjing",
-        "stop": 1
-      },
-      {
-        "name": "国清寺",
-        "province": "zhejiang",
-        "district": "zhejiang_taizhou",
-        "stop": 2
-      },
-      {
-        "name": "拙政园",
-        "province": "jiangsu",
-        "district": "jiangsu_suzhou",
-        "stop": 3
-      },
-      {
-        "name": "留园",
-        "province": "jiangsu",
-        "district": "jiangsu_suzhou",
-        "stop": 3
-      },
-      {
-        "name": "黄山古建筑群",
-        "province": "anhui",
-        "district": "anhui_huangshan",
-        "stop": 4
-      },
-      {
-        "name": "白鹿洞书院",
-        "province": "jiangxi",
-        "district": "jiangxi_jiujiang",
-        "stop": 5
-      },
-      {
-        "name": "城村汉城遗址",
-        "province": "fujian",
-        "district": "fujian_nanping",
-        "stop": 6
-      },
-      {
-        "name": "武夷山崖墓群",
-        "province": "fujian",
-        "district": "fujian_nanping",
-        "stop": 6
-      },
-      {
-        "name": "嵩岳寺塔",
-        "province": "henan",
-        "district": "zhengzhou",
-        "stop": 7
-      },
-      {
-        "name": "少林寺",
-        "province": "henan",
-        "district": "zhengzhou",
-        "stop": 7
-      },
-      {
-        "name": "岱庙",
-        "province": "shandong",
-        "district": "shandong_taian",
-        "stop": 8
-      },
-      {
-        "name": "泰山古建筑群",
-        "province": "shandong",
-        "district": "shandong_taian",
-        "stop": 8
-      },
-      {
-        "name": "西安碑林",
-        "province": "shaanxi",
-        "district": "shaanxi_xian",
-        "stop": 9
-      },
-      {
-        "name": "岳阳楼",
-        "province": "hunan",
-        "district": "hunan_yueyang",
-        "stop": 10
-      },
-      {
-        "name": "崇圣寺三塔",
-        "province": "yunnan",
-        "district": "yunnan_dali",
-        "stop": 11
-      },
-      {
-        "name": "崇圣寺三塔",
-        "province": "yunnan",
-        "district": "yunnan_dali",
-        "stop": 12
-      },
-      {
-        "name": "青城山古建筑群",
-        "province": "sichuan",
-        "district": "sichuan_chengdu",
-        "stop": 13
-      },
-      {
-        "name": "乐山大佛",
-        "province": "sichuan",
-        "district": "sichuan_leshan",
-        "stop": 14
-      },
-      {
-        "name": "峨眉山古建筑群",
-        "province": "sichuan",
-        "district": "sichuan_leshan",
-        "stop": 14
-      }
     ]
-  },
-  "embeddedBuildings": {
-    "明孝陵": {
-      "name": "明孝陵",
-      "province": "jiangsu",
-      "district": "jiangsu_nanjing",
-      "provinceId": "jiangsu",
-      "districtName": "南京市",
-      "location": "江苏省南京市玄武区钟山南麓",
-      "era": "明",
-      "type": "古墓葬",
-      "tags": [
-        "陵墓建筑",
-        "明代建筑",
-        "世界文化遗产",
-        "皇家陵寝",
-        "文化旅游"
-      ],
-      "description": "明太祖朱元璋与马皇后的合葬陵墓，包含吴良墓、徐达墓、李杰墓、邓愈墓、常遇春墓、李文忠墓、仇成墓、吴祯墓等明代开国功臣陪葬墓。",
-      "history": "明孝陵始建于明洪武十四年（1381年），至永乐三年（1405年）建成，历时25年，是明清皇家陵寝的典范，2003年入选世界文化遗产。",
-      "architecture": "陵区分为神道和陵宫两部分。神道蜿蜒曲折，排列石像生12对；陵宫布局严谨，包含碑殿、享殿、方城明楼、宝顶等。",
-      "features": "明孝陵开创了明清两代500余年皇家陵寝规制的先河，神道弯曲的布局在中国帝陵中极为罕见。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "南京城墙": {
-      "name": "南京城墙",
-      "province": "jiangsu",
-      "district": "jiangsu_nanjing",
-      "provinceId": "jiangsu",
-      "districtName": "南京市",
-      "location": "江苏省南京市明城墙沿线",
-      "era": "明",
-      "type": "古建筑",
-      "tags": [
-        "城墙",
-        "明代建筑",
-        "军事防御",
-        "文化遗产",
-        "城市地标"
-      ],
-      "description": "世界现存规模最大、保存最完整的古代都城城墙，是明代南京都城的重要防御体系。",
-      "history": "南京城墙始建于元至正二十六年（1366年），明洪武十九年（1386年）建成，历时21年。由宫城、皇城、京城、外郭四重城垣组成，现存主要为京城城墙。",
-      "architecture": "城墙全长约35.3公里，最高处26米，顶宽4至10米。城砖来自长江中下游五省，每块砖都刻有铭文，记载产地和责任人。",
-      "features": "南京城墙不仅是军事防御工程，更是中国古代筑城技术的巅峰之作，现为国家5A级旅游景区。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "国清寺": {
-      "name": "国清寺",
-      "province": "zhejiang",
-      "district": "zhejiang_taizhou",
-      "provinceId": "zhejiang",
-      "districtName": "台州市",
-      "location": "浙江省天台县国清景区",
-      "era": "清",
-      "type": "古建筑",
-      "tags": [
-        "佛教",
-        "天台宗",
-        "寺院",
-        "隋代始建"
-      ],
-      "description": "国清寺是天台宗祖庭，隋代创建，现存建筑为清代重建。",
-      "history": "隋开皇十八年（598年）晋王杨广承智者大师遗愿建。",
-      "architecture": "有弥勒殿、雨花殿、大雄宝殿等，依山而建。",
-      "features": "中日韩天台宗发祥地。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第五批"
-    },
-    "拙政园": {
-      "name": "拙政园",
-      "province": "jiangsu",
-      "district": "jiangsu_suzhou",
-      "provinceId": "jiangsu",
-      "districtName": "苏州市",
-      "location": "江苏省苏州市姑苏区东北街178号",
-      "era": "明",
-      "type": "古建筑",
-      "tags": [
-        "园林建筑",
-        "明代",
-        "世界文化遗产",
-        "江南园林",
-        "文化旅游"
-      ],
-      "description": "苏州最大的古典园林，中国四大名园之一，江南古典园林的杰出代表。",
-      "history": "拙政园始建于明正德四年（1509年），为王献臣弃官回乡后所建。此后屡易其主，经多次改建增修。1997年被列入世界文化遗产。",
-      "architecture": "全园分东、中、西三部分，以水为主景，亭台楼榭临水而建，借景远山，山水萦绕，极具江南水乡韵味。",
-      "features": "拙政园是中国古典园林艺术的巅峰之作，完美诠释了\"虽由人作，宛自天开\"的造园理念。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "留园": {
-      "name": "留园",
-      "province": "jiangsu",
-      "district": "jiangsu_suzhou",
-      "provinceId": "jiangsu",
-      "districtName": "苏州市",
-      "location": "江苏省苏州市姑苏区留园路338号",
-      "era": "明至清",
-      "type": "古建筑",
-      "tags": [
-        "园林建筑",
-        "清代",
-        "世界文化遗产",
-        "古典园林",
-        "文化旅游"
-      ],
-      "description": "苏州四大名园之一，以建筑空间处理精湛著称，是世界文化遗产。",
-      "history": "留园始建于明代万历年间，为徐泰时的东园。清代嘉庆年间归刘恕所有，改建后称寒碧山庄，俗称刘园，后谐音改名留园。",
-      "architecture": "园内以中部山水、东部建筑庭院、西部山林野趣为特色，冠云峰为江南园林中最高大的太湖石峰。",
-      "features": "留园以其层层相属的建筑空间和精湛的叠山理水手法享誉于世，是研究中国造园空间的必读案例。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "黄山古建筑群": {
-      "name": "黄山古建筑群",
-      "province": "anhui",
-      "district": "anhui_huangshan",
-      "provinceId": "anhui",
-      "districtName": "黄山市",
-      "location": "安徽省黄山市黄山风景区",
-      "era": "明至清",
-      "type": "古建筑",
-      "tags": [
-        "古建筑群",
-        "黄山",
-        "道教建筑",
-        "佛教建筑",
-        "风景名胜"
-      ],
-      "description": "黄山古建筑群包括慈光阁、半山寺、玉屏楼、北海等，是黄山人文景观的重要组成部分。",
-      "history": "黄山古建筑始建于唐代，明清时期达到鼎盛。2006年被公布为第六批全国重点文物保护单位。",
-      "architecture": "包括慈光阁、半山寺、玉屏楼、北海宾馆旧址等，依山就势而建，与自然山水融为一体。",
-      "features": "黄山古建筑群是黄山世界文化与自然遗产的重要组成部分。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第六批"
-    },
-    "白鹿洞书院": {
-      "name": "白鹿洞书院",
-      "province": "jiangxi",
-      "district": "jiangxi_jiujiang",
-      "provinceId": "jiangxi",
-      "districtName": "九江市",
-      "location": "江西省九江市庐山五老峰下",
-      "era": "清",
-      "type": "古建筑",
-      "tags": [
-        "书院",
-        "古代教育",
-        "理学",
-        "文化旅游"
-      ],
-      "description": "白鹿洞书院是中国古代四大书院之一，享有\"海内第一书院\"之誉。",
-      "history": "始建于南唐，宋代朱熹重修并讲学，成为理学传播的重要场所。",
-      "architecture": "书院依山傍水，有棂星门、泮池、礼圣殿、朱子祠等建筑。",
-      "features": "是中国古代教育和理学研究的重要遗址。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第三批"
-    },
-    "城村汉城遗址": {
-      "name": "城村汉城遗址",
-      "province": "fujian",
-      "district": "fujian_nanping",
-      "provinceId": "fujian",
-      "districtName": "南平市",
-      "location": "福建省武夷山市兴田镇城村",
-      "era": "汉",
-      "type": "古遗址",
-      "tags": [
-        "汉代遗址",
-        "闽越国",
-        "古城遗址",
-        "考古遗址",
-        "世界遗产"
-      ],
-      "description": "城村汉城遗址是中国东南地区保存最完整的汉代诸侯王城遗址，为西汉闽越国王城。",
-      "history": "城村汉城为西汉闽越国王城，距今约2200年。1996年被公布为第四批全国重点文物保护单位，1999年作为武夷山世界文化与自然遗产的重要组成部分被列入世界遗产名录。",
-      "architecture": "城址平面近似长方形，南北长860米，东西宽约550米，周长2896米，面积约48万平方米。",
-      "features": "城村汉城遗址是世界遗产\"武夷山\"的核心组成部分，是研究汉代闽越国历史的重要遗址。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第四批"
-    },
-    "武夷山崖墓群": {
-      "name": "武夷山崖墓群",
-      "province": "fujian",
-      "district": "fujian_nanping",
-      "provinceId": "fujian",
-      "districtName": "南平市",
-      "location": "福建省武夷山市",
-      "era": "商周至宋",
-      "type": "古墓葬",
-      "tags": [
-        "崖墓",
-        "悬棺葬",
-        "商周时期",
-        "古代墓葬",
-        "世界遗产"
-      ],
-      "description": "武夷山崖墓群（架壑船棺）是东南地区延续时间最长的崖葬遗存。",
-      "history": "武夷山崖墓群始建于商周时期，延续至宋代。2006年被公布为第六批全国重点文物保护单位，是武夷山世界文化遗产的组成部分。",
-      "architecture": "崖墓多位于武夷山九曲溪两岸的悬崖洞穴中，以\"架壑船棺\"最为著名。",
-      "features": "武夷山崖墓群是研究中国南方古代葬俗的重要实物。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第六批"
-    },
-    "嵩岳寺塔": {
-      "name": "嵩岳寺塔",
-      "province": "henan",
-      "district": "zhengzhou",
-      "provinceId": "henan",
-      "districtName": "郑州市",
-      "location": "河南省郑州市登封市嵩山南麓嵩岳寺内",
-      "era": "北魏",
-      "type": "古建筑",
-      "tags": [
-        "佛塔",
-        "砖塔",
-        "密檐式塔",
-        "北魏建筑"
-      ],
-      "description": "嵩岳寺塔是中国现存最古老的密檐式砖塔，也是唯一一座十二边形塔。",
-      "history": "始建于北魏正光四年（523年），原为嵩岳寺内佛塔，寺已毁，唯塔独存。",
-      "architecture": "塔高约37米，十五层密檐，外形呈抛物线状，造型极为优美。",
-      "features": "该塔为世界建筑史上罕见的十二边形塔实例，是中国古代建筑的重要里程碑。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "少林寺": {
-      "name": "少林寺",
-      "province": "henan",
-      "district": "zhengzhou",
-      "provinceId": "henan",
-      "districtName": "郑州市",
-      "location": "河南省郑州市登封市嵩山五乳峰下",
-      "era": "北魏至清",
-      "type": "古建筑",
-      "tags": [
-        "佛教寺院",
-        "禅宗祖庭",
-        "少林武术"
-      ],
-      "description": "少林寺是中国佛教禅宗祖庭和少林武术的发源地。",
-      "history": "始建于北魏太和十九年（495年），因坐落在少室山密林中而得名。",
-      "architecture": "常住院、塔林、初祖庵等构成庞大的建筑群。",
-      "features": "少林寺被誉为\"天下第一名刹\"，在世界范围影响巨大。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第二批"
-    },
-    "岱庙": {
-      "name": "岱庙",
-      "province": "shandong",
-      "district": "shandong_taian",
-      "provinceId": "shandong",
-      "districtName": "泰安市",
-      "location": "山东省泰安市泰山区东岳大街",
-      "era": "宋至清",
-      "type": "古建筑",
-      "tags": [
-        "道教建筑",
-        "东岳庙",
-        "古代祭祀",
-        "泰山"
-      ],
-      "description": "历代帝王封禅泰山、举行大典的地方，是泰山最大古建筑群。",
-      "history": "1988年公布为第三批全国重点文物保护单位。",
-      "architecture": "仿帝王宫城式建筑，有遥参亭、天贶殿、寝宫等，天贶殿内有巨幅壁画《泰山神启跸回銮图》。",
-      "features": "中国古代四大建筑群之一，封禅文化的集中体现。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第三批"
-    },
-    "泰山古建筑群": {
-      "name": "泰山古建筑群",
-      "province": "shandong",
-      "district": "shandong_taian",
-      "provinceId": "shandong",
-      "districtName": "泰安市",
-      "location": "山东省泰安市泰山登山盘路沿线",
-      "era": "汉至清",
-      "type": "古建筑",
-      "tags": [
-        "道教建筑",
-        "古建筑群",
-        "泰山",
-        "盘山路"
-      ],
-      "description": "沿泰山盘山路从山麓到山顶排列的宫观、亭坊、桥等众多古建筑。",
-      "history": "2006年公布为第六批全国重点文物保护单位。",
-      "architecture": "包括岱宗坊、红门宫、南天门、碧霞祠等共数十处，随山势布局，与自然融为一体。",
-      "features": "绵延十多公里的立体文化景观轴线，体现了天人合一思想。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第六批"
-    },
-    "西安碑林": {
-      "name": "西安碑林",
-      "province": "shaanxi",
-      "district": "shaanxi_xian",
-      "provinceId": "shaanxi",
-      "districtName": "西安市",
-      "location": "陕西省西安市碑林区三学街15号",
-      "era": "汉至近代",
-      "type": "石窟寺及石刻",
-      "tags": [
-        "碑刻",
-        "石刻",
-        "书法艺术",
-        "博物馆",
-        "文化保护"
-      ],
-      "description": "西安碑林是中国收藏古代碑石时间最早、名碑最多的文化艺术宝库。",
-      "history": "始建于北宋元祐二年（1087年），原为保存唐代《开成石经》而建。",
-      "architecture": "收藏自汉至清的碑石4000余方，包括颜真卿、柳公权、欧阳询等书法名家的碑刻。",
-      "features": "是中国古代书法艺术的集大成者，被誉为\"东方文化的宝库\"。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "岳阳楼": {
-      "name": "岳阳楼",
-      "province": "hunan",
-      "district": "hunan_yueyang",
-      "provinceId": "hunan",
-      "districtName": "岳阳市",
-      "location": "湖南省岳阳市岳阳楼区洞庭北路",
-      "era": "清",
-      "type": "古建筑",
-      "tags": [
-        "楼阁建筑",
-        "古建筑",
-        "文化旅游",
-        "城市地标"
-      ],
-      "description": "岳阳楼是中国江南三大名楼之一，因范仲淹《岳阳楼记》而闻名天下。",
-      "history": "岳阳楼始建于东汉末期，屡毁屡建。现存建筑为清光绪六年（1880年）重建。",
-      "architecture": "岳阳楼主楼高19.42米，为三层四柱飞檐盔顶式纯木结构建筑。",
-      "features": "岳阳楼是中国古代建筑艺术的杰出代表，为国家5A级旅游景区。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第三批"
-    },
-    "崇圣寺三塔": {
-      "name": "崇圣寺三塔",
-      "province": "yunnan",
-      "district": "yunnan_dali",
-      "provinceId": "yunnan",
-      "districtName": "大理白族自治州",
-      "location": "云南省大理白族自治州大理市大理古城西北角",
-      "era": "唐、五代",
-      "type": "古建筑",
-      "tags": [
-        "佛塔",
-        "唐代建筑",
-        "密檐塔",
-        "大理国",
-        "地标"
-      ],
-      "description": "崇圣寺三塔背靠苍山，面临洱海，由一大二小三座佛塔组成，气势雄伟，是云南古代文明的首要象征。",
-      "history": "大塔\"千寻塔\"建于南诏国丰祐时期（约公元9世纪），为16级密檐式空心砖塔，高69.13米。南北小塔为大理国时期建造。",
-      "architecture": "三塔呈鼎足之势。千寻塔轮廓秀美，外形和西安小雁塔相类。",
-      "features": "三塔代表了中国西南佛教石塔建设的最高水平，印证了唐宋时期云南与中原、吐蕃文化之间的深度交流。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第一批"
-    },
-    "青城山古建筑群": {
-      "name": "青城山古建筑群",
-      "province": "sichuan",
-      "district": "sichuan_chengdu",
-      "provinceId": "sichuan",
-      "districtName": "成都市",
-      "location": "四川省成都市都江堰市青城山",
-      "era": "清至民国",
-      "type": "古建筑",
-      "tags": [
-        "道教建筑",
-        "道教名山",
-        "世界文化遗产",
-        "古建筑群",
-        "风景名胜区"
-      ],
-      "description": "青城山是中国道教发祥地之一，山上古建筑群以道教宫观为主，被誉为\"青城天下幽\"。",
-      "history": "青城山道教历史可追溯至东汉，张道陵曾在此创立五斗米道。现存建筑主要为清代至民国时期重建。2000年与都江堰一同列入世界文化遗产名录。2013年被国务院公布为第七批全国重点文物保护单位。",
-      "architecture": "包括建福宫、天师洞、上清宫、祖师殿、圆明宫、老君阁等多处宫观，依山就势而建，与自然山水融为一体。",
-      "features": "青城山是道教\"第五洞天\"，古建筑群与自然景观完美融合，是道教文化和传统建筑艺术的重要遗产。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第七批"
-    },
-    "乐山大佛": {
-      "name": "乐山大佛",
-      "province": "sichuan",
-      "district": "sichuan_leshan",
-      "provinceId": "sichuan",
-      "districtName": "乐山市",
-      "location": "四川省乐山市市中区凌云路2435号",
-      "era": "唐",
-      "type": "古建筑",
-      "tags": [
-        "摩崖造像",
-        "巨型佛像",
-        "唐代石刻",
-        "世界文化遗产",
-        "世界自然与文化遗产",
-        "风景名胜区"
-      ],
-      "description": "乐山大佛是世界上最大的摩崖石刻弥勒佛坐像，通高71米，是中国古代石刻艺术的巅峰之作。",
-      "history": "开凿于唐玄宗开元元年（713年），由海通和尚发起，历时约九十年完成。1982年被国务院公布为第二批全国重点文物保护单位。1996年与峨眉山一同列入世界文化与自然遗产名录。",
-      "architecture": "大佛为弥勒佛坐像，通高71米，头高14.7米，肩宽24米。大佛右侧有凌云栈道，左侧有九曲栈道。",
-      "features": "世界最大的摩崖石刻佛像，是中国古代石刻艺术的最高成就之一，为世界文化与自然双重遗产。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第二批"
-    },
-    "峨眉山古建筑群": {
-      "name": "峨眉山古建筑群",
-      "province": "sichuan",
-      "district": "sichuan_leshan",
-      "provinceId": "sichuan",
-      "districtName": "乐山市",
-      "location": "四川省乐山市峨眉山市峨眉山",
-      "era": "明至清",
-      "type": "古建筑",
-      "tags": [
-        "佛教名山",
-        "古建筑群",
-        "世界文化遗产",
-        "佛教寺院",
-        "普贤道场",
-        "国家级风景名胜区"
-      ],
-      "description": "峨眉山是中国四大佛教名山之一，普贤菩萨道场。古建筑群包括报国寺、伏虎寺、万年寺、清音阁、洪椿坪等。",
-      "history": "佛教传入峨眉山始于东汉，明代达到鼎盛。1996年与乐山大佛一同列入世界遗产。2006年被国务院公布为第六批全国重点文物保护单位。",
-      "architecture": "包括报国寺圣积铜钟、伏虎寺圣积寺铜塔、万年寺铜铁佛像（北宋铸造的普贤菩萨铜像为全国重点文物）、清音阁、洪椿坪等。",
-      "features": "峨眉山古建筑群是汉传佛教寺院建筑的杰出代表，与自然山水完美融合。",
-      "protectionLevel": "全国重点文物保护单位",
-      "protectionBatch": "第六批"
-    }
   }
 }

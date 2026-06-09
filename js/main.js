@@ -3,6 +3,7 @@ import { HashSearch, State, Router, UI } from './core.js';
 let _currentDestroyMap = null;
 let _cachedMain = null;
 let _cachedBreadcrumb = null;
+const _hideBreadcrumbViews = new Set(['home', 'map', 'trail', 'provinces', 'tags', 'quiz', 'search']);
 
 async function init() {
   UI.setupTheme();
@@ -40,8 +41,7 @@ async function renderPage() {
   const view = State.currentView;
   if (!mainContent) return;
 
-  const hideBreadcrumbViews = new Set(['home', 'map', 'trail', 'provinces', 'tags', 'quiz', 'search']);
-  const hide = hideBreadcrumbViews.has(view);
+  const hide = _hideBreadcrumbViews.has(view);
   if (breadcrumb) breadcrumb.style.display = hide ? 'none' : '';
   mainContent.style.paddingTop = (hide && view !== 'map') ? '60px' : '';
 
@@ -68,7 +68,7 @@ async function renderPage() {
 
   UI.updateBreadcrumb();
   UI.updateActiveNav();
-  UI.injectStructuredData();
+  if (!hide) UI.injectStructuredData();
 }
 
 document.addEventListener('DOMContentLoaded', init);
