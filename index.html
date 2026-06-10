@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://server.arcgisonline.com">
   <link rel="preconnect" href="https://www.clarity.ms">
   <link rel="modulepreload" href="/js/core.js">
+  <link rel="preload" href="/data/daily.json" as="fetch" crossorigin>
   <link rel="prefetch" href="/data/provinces.json">
   <link rel="prefetch" href="/trail/registry.json">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'">
@@ -46,6 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 .loading{text-align:center;padding:3rem 1.5rem;color:var(--text-muted);font-size:.875rem}
 .loading__icon{font-size:2.5rem;margin-bottom:.75rem;animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.skeleton{background:linear-gradient(90deg,var(--bg-secondary) 25%,var(--bg-hover) 50%,var(--bg-secondary) 75%);background-size:200% 100%;animation:skeleton-shine 1.5s infinite;border-radius:var(--radius)}.skeleton-lg{height:120px;margin-bottom:.75rem}.skeleton-md{height:48px;margin-bottom:.625rem}.skeleton-sm{height:20px;margin-bottom:.5rem;width:60%}.skeleton-xs{height:14px;margin-bottom:.375rem;width:40%}@keyframes skeleton-shine{0%{background-position:200% 0}to{background-position:-200% 0}}
 @media(max-width:768px){.nav-menu{display:none;position:absolute;top:var(--header-height);left:0;right:0;background:var(--bg-card);flex-direction:column;padding:.5rem;border-bottom:1px solid var(--border-color);box-shadow:var(--shadow-lg)}.nav-menu.active{display:flex}.nav-toggle{display:flex}}</style>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
@@ -86,9 +88,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
   <main id="mainContent">
     <div class="container">
-      <div class="loading">
-        <div class="loading__icon" aria-hidden="true">🏛️</div>
-        <div>正在加载...</div>
+      <div class="daily-quiz-header skeleton-header">
+        <div class="skeleton skeleton-lg" style="margin:0"></div>
+      </div>
+      <div class="quiz-clue-list">
+        <div class="skeleton skeleton-md" style="height:80px"></div>
+        <div class="skeleton skeleton-sm"></div>
+        <div class="skeleton skeleton-xs"></div>
+        <div class="skeleton skeleton-sm" style="width:80%"></div>
+        <div class="skeleton skeleton-md" style="margin-top:1rem"></div>
       </div>
     </div>
   </main>
