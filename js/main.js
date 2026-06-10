@@ -19,9 +19,8 @@ async function init() {
   const metaPromise = State.initMeta();
   await renderPage();
   await metaPromise;
-  if (State.currentView === 'home') {
-    startBgPreload();
-  }
+  // 首次加载如果是首页，确保 meta 就绪后触发预加载（renderPage 内那次可能 meta 未就绪）
+  if (State.currentView === 'home') startBgPreload();
 }
 
 function startBgPreload() {
@@ -78,6 +77,9 @@ async function renderPage() {
   } else {
     mainContent.innerHTML = '<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">页面未找到</div></div></div>';
   }
+
+  // 首页渲染完成后，后台持续加载全站数据，加速其他页面打开
+  if (view === 'home') startBgPreload();
 
   UI.updateBreadcrumb();
   UI.updateActiveNav();
