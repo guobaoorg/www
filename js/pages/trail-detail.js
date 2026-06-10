@@ -8,7 +8,8 @@ export async function render(container) {
     return;
   }
 
-  const data = await HashSearch.fetchJSON(`/trail/${meta.fileName}`);
+  const manifest = await HashSearch._loadManifest();
+  const data = await HashSearch.loadEncrypted(`/_t/${manifest.t[meta.fileName]}.dat`);
   if (!data) {
     container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">⚠️</div><div class="empty-state-title">加载失败</div></div></div>`;
     return;

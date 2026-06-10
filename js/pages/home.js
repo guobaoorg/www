@@ -5,7 +5,8 @@ let _dailyCache = null;
 
 async function _loadDaily() {
   if (_dailyCache) return _dailyCache;
-  const data = await HashSearch.fetchJSON('/data/daily.json');
+  const manifest = await HashSearch._loadManifest();
+  const data = await HashSearch.loadEncrypted(`/_d/${manifest.p.daily}.dat`);
   if (data?.bs?.length) {
     _dailyCache = data.bs;
   }

@@ -1,3 +1,23 @@
+// ==================== 数据加密解密 ====================
+const _K = 'dfc3627b883d2c5253b8785d8068dadc8d4ced5507ec17b490b67c81727e3f81';
+const _KEY = new Uint8Array(_K.match(/.{2}/g).map(b => parseInt(b, 16)));
+let _cryptoKey = null;
+
+async function _getCryptoKey() {
+  if (_cryptoKey) return _cryptoKey;
+  _cryptoKey = await crypto.subtle.importKey('raw', _KEY, { name: 'AES-GCM' }, false, ['decrypt']);
+  return _cryptoKey;
+}
+
+async function _decryptData(encryptedBase64) {
+  const key = await _getCryptoKey();
+  const raw = Uint8Array.from(atob(encryptedBase64), c => c.charCodeAt(0));
+  const iv = raw.slice(0, 12);
+  const ct = raw.slice(12);
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
 // ==================== HashSearch ====================
 
 const HashSearch = {
@@ -6,13 +26,13 @@ const HashSearch = {
   _loadedData: new Set(),
   _pendingLoads: {},
 
-  async fetchJSON(url) {
+  async fetchJSON(url, rawText = false) {
     if (this._cache.has(url)) return this._cache.get(url);
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
-      const data = await res.json();
-      this._cacheSet(url, data);
+      const data = rawText ? await res.text() : await res.json();
+      if (!rawText) this._cacheSet(url, data);
       return data;
     } catch (e) {
       console.error('HashSearch.fetchJSON失败:', url, e);
@@ -20,10 +40,27 @@ const HashSearch = {
     }
   },
 
+  _manifest: null,
+
+  async _loadManifest() {
+    if (this._manifest) return this._manifest;
+    this._manifest = await this.fetchJSON('/_d/_m.json');
+    return this._manifest;
+  },
+
+  async loadEncrypted(encPath) {
+    const encrypted = await this.fetchJSON(encPath, true);
+    return encrypted ? _decryptData(encrypted) : null;
+  },
+
   async loadProvinceData(provinceId) {
     if (this._loadedData.has(provinceId)) return this._cache.get(`province:${provinceId}`);
     if (this._pendingLoads[provinceId]) return this._pendingLoads[provinceId];
-    const fileName = provinceId === 'cross' ? 'cross-province.json' : `${provinceId}.json`;
+
+    const manifest = await this._loadManifest();
+    const encName = manifest.p[provinceId === 'cross' ? 'cross' : provinceId];
+    if (!encName) { console.error('无清单映射:', provinceId); return null; }
+
     const cacheKey = `guobao_pd_v1:${provinceId}`;
     // 优先从 localStorage 读取（7天有效）
     try {
@@ -34,22 +71,24 @@ const HashSearch = {
           this._loadedData.add(provinceId);
           this._cacheSet(`province:${provinceId}`, data);
           // 后台静默更新（延迟 invalidate）
-          setTimeout(() => this._refreshProvince(provinceId, fileName, cacheKey), 200);
+          setTimeout(() => this._refreshProvince(provinceId, encName, cacheKey), 200);
           return data;
         }
       }
     } catch (_) {}
-    // 从网络加载
+    // 从网络加载加密数据
     const promise = (async () => {
-      const data = await this.fetchJSON(`/data/${fileName}`);
+      const encrypted = await this.fetchJSON(`/_d/${encName}.dat`, true);
       delete this._pendingLoads[provinceId];
-      if (data) {
+      if (encrypted) {
+        const data = await _decryptData(encrypted);
         this._loadedData.add(provinceId);
         this._cacheSet(`province:${provinceId}`, data);
         this._resolveDistrictNames(data);
         try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
+        return data;
       }
-      return data;
+      return null;
     })();
     this._pendingLoads[provinceId] = promise;
     return promise;
@@ -63,9 +102,10 @@ const HashSearch = {
     }
   },
 
-  _refreshProvince(provinceId, fileName, cacheKey) {
-    this.fetchJSON(`/data/${fileName}`).then(data => {
-      if (data) {
+  _refreshProvince(provinceId, encName, cacheKey) {
+    this.fetchJSON(`/_d/${encName}.dat`, true).then(async encrypted => {
+      if (encrypted) {
+        const data = await _decryptData(encrypted);
         this._cacheSet(`province:${provinceId}`, data);
         this._resolveDistrictNames(data);
         try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
@@ -194,9 +234,18 @@ const HashSearch = {
       }
       // 所有省份数据加载完成后，再加载 trail 下的数据
       if (trailFiles?.length) {
+        const manifest = await this._loadManifest();
         for (let i = 0; i < trailFiles.length; i += batchSize) {
           const batch = trailFiles.slice(i, i + batchSize);
-          await Promise.all(batch.map(f => this.fetchJSON(`/trail/${f}`).catch(() => {})));
+          await Promise.all(batch.map(async f => {
+            const encName = manifest.t[f];
+            if (!encName) return;
+            const encrypted = await this.fetchJSON(`/_t/${encName}.dat`, true).catch(() => null);
+            if (encrypted) {
+              const data = await _decryptData(encrypted).catch(() => null);
+              if (data) this._cacheSet(`trail:${f}`, data);
+            }
+          }));
           await new Promise(r => setTimeout(r, 0));
         }
       }
@@ -587,9 +636,14 @@ const State = {
       }
     } catch (_) {}
     try {
+      const manifest = await HashSearch._loadManifest();
+      const [provRaw, regRaw] = await Promise.all([
+        HashSearch.fetchJSON(`/_d/${manifest.p.provinces}.dat`, true),
+        HashSearch.fetchJSON(`/_t/${manifest.t['registry.json']}.dat`, true)
+      ]);
       const [provincesRes, trailRes] = await Promise.all([
-        HashSearch.fetchJSON('/data/provinces.json'),
-        HashSearch.fetchJSON('/trail/registry.json')
+        provRaw ? _decryptData(provRaw) : null,
+        regRaw ? _decryptData(regRaw) : null
       ]);
       this._provinceMeta = provincesRes;
       this._trailRegistry = trailRes;
