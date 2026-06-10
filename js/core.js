@@ -56,9 +56,9 @@ const HashSearch = {
   },
 
   _resolveDistrictNames(data) {
-    if (data.districts && data.buildings) {
-      for (const b of data.buildings) {
-        if (!b.districtName && b.district) b.districtName = data.districts[b.district]?.name || '';
+    if (data.ds && data.bs) {
+      for (const b of data.bs) {
+        if (!b.dn && b.d) b.dn = data.ds[b.d]?.n || '';
       }
     }
   },
@@ -124,10 +124,10 @@ const HashSearch = {
   },
 
   _fieldLabels: {
-    name: '名称匹配', location: '地点匹配', era: '年代匹配',
-    type: '类型匹配', districtName: '地区匹配', tags: '标签匹配',
-    description: '描述匹配', history: '历史匹配',
-    architecture: '建筑匹配', features: '特色匹配'
+    n: '名称匹配', l: '地点匹配', e: '年代匹配',
+    t: '类型匹配', dn: '地区匹配', g: '标签匹配',
+    desc: '描述匹配', hist: '历史匹配',
+    arch: '建筑匹配', feat: '特色匹配'
   },
 
   fuzzySearch(items, query, fields) {
@@ -179,7 +179,7 @@ const HashSearch = {
   async startBgPreload(provinceIds, trailFiles) {
     if (this._bgActive) return;
     this._bgActive = true;
-    const batchSize = 5;
+    const batchSize = 8;
     try {
       if (provinceIds?.length) {
         for (let i = 0; i < provinceIds.length; i += batchSize) {
@@ -206,6 +206,46 @@ const HashSearch = {
     window.dispatchEvent(new CustomEvent('bg-preload-complete'));
   }
 };
+
+// ==================== Leaflet 按需加载 ====================
+
+let _leafletReady = null;
+
+function ensureLeaflet() {
+  if (window.L && window.L.MarkerClusterGroup) return Promise.resolve();
+  if (_leafletReady) return _leafletReady;
+
+  _leafletReady = new Promise((resolve) => {
+    const base = 'https://unpkg.com';
+    // CSS
+    const cssUrls = [
+      `${base}/leaflet@1.9.4/dist/leaflet.css`,
+      `${base}/leaflet.markercluster@1.5.3/dist/MarkerCluster.css`,
+      `${base}/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css`
+    ];
+    cssUrls.forEach(href => {
+      if (!document.querySelector(`link[href="${href}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+      }
+    });
+    // JS: Leaflet → MarkerCluster
+    const s1 = document.createElement('script');
+    s1.src = `${base}/leaflet@1.9.4/dist/leaflet.js`;
+    s1.async = true;
+    s1.onload = () => {
+      const s2 = document.createElement('script');
+      s2.src = `${base}/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js`;
+      s2.async = true;
+      s2.onload = () => resolve();
+      document.head.appendChild(s2);
+    };
+    document.head.appendChild(s1);
+  });
+  return _leafletReady;
+}
 
 const Config = {
   provinceStyles: {
@@ -457,10 +497,10 @@ const Config = {
 
   getBuildingCategory(building) {
     this._initBuildCatArray();
-    const type = building.type || '';
+    const type = building.t || '';
     for (const cat of this._buildingCategoriesArray) {
       if (cat.matchTypes.includes(type)) {
-        if (!(building.tags || []).includes('世界遗产')) return cat;
+        if (!(building.g || []).includes('世界遗产')) return cat;
         return { ...cat, size: 26, isWorldHeritage: true };
       }
     }
@@ -599,13 +639,13 @@ const State = {
     const allData = HashSearch.getAllProvinceData();
     for (const [provinceId, data] of allData) {
       const provinceName = this.getProvinceName(provinceId);
-      if (data.buildings) {
+      if (data.bs) {
         HashSearch._resolveDistrictNames(data);
-        for (const b of data.buildings) {
-          b.province = provinceName;
-          b.provinceId = provinceId;
+        for (const b of data.bs) {
+          b.p = provinceName;
+          b.pid = provinceId;
           all.push(b);
-          this._buildingNameIndex.set(`${provinceName}${b.districtName || ''}${b.name}`, b);
+          this._buildingNameIndex.set(`${provinceName}${b.dn || ''}${b.n}`, b);
         }
       }
     }
@@ -617,55 +657,55 @@ const State = {
   getAllTags() {
     if (this._allTagsCache) return this._allTagsCache;
     const tagCount = {};
-    this.getAllBuildings().forEach(b => { if (b.tags) b.tags.forEach(tag => { tagCount[tag] = (tagCount[tag] || 0) + 1; }); });
+    this.getAllBuildings().forEach(b => { if (b.g) b.g.forEach(tag => { tagCount[tag] = (tagCount[tag] || 0) + 1; }); });
     this._allTagsCache = Object.entries(tagCount).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
     return this._allTagsCache;
   },
 
   getBuildingsByTag(tag) {
     if (this._tagBuildingsCache[tag]) return this._tagBuildingsCache[tag];
-    const result = this.getAllBuildings().filter(b => b.tags && b.tags.some(t => t === tag));
+    const result = this.getAllBuildings().filter(b => b.g && b.g.some(t => t === tag));
     this._tagBuildingsCache[tag] = result;
     return result;
   },
 
   getBuildingsByDistrict(provinceId, districtId) {
     const data = HashSearch.getProvinceData(provinceId);
-    if (!data?.buildings) return [];
+    if (!data?.bs) return [];
     const provinceName = this.getProvinceName(provinceId);
-    return data.buildings.filter(b => {
-      if (b.district !== districtId) return false;
-      b.province = b.province || provinceName;
-      b.provinceId = b.provinceId || provinceId;
+    return data.bs.filter(b => {
+      if (b.d !== districtId) return false;
+      b.p = b.p || provinceName;
+      b.pid = b.pid || provinceId;
       return true;
     });
   },
 
   getDistrictData(provinceId, districtId) {
     const data = HashSearch.getProvinceData(provinceId);
-    if (data?.districts?.[districtId]) return { id: districtId, ...data.districts[districtId] };
+    if (data?.ds?.[districtId]) return { id: districtId, ...data.ds[districtId] };
     return null;
   },
 
   getAllDistricts(provinceId) {
     const data = HashSearch.getProvinceData(provinceId);
-    if (!data?.districts) return [];
-    return Object.entries(data.districts).map(([id, d]) => ({ id, ...d }));
+    if (!data?.ds) return [];
+    return Object.entries(data.ds).map(([id, d]) => ({ id, ...d }));
   },
 
   findBuildingByFullPath(fullPath) {
     if (!fullPath) return null;
     if (this._buildingNameIndex?.has(fullPath)) return this._buildingNameIndex.get(fullPath);
     const allBuildings = this.getAllBuildings();
-    let building = allBuildings.find(b => b.name === fullPath);
-    if (!building) building = allBuildings.find(b => { const dn = b.districtName || ''; return `${b.province}${dn}${b.name}` === fullPath; });
+    let building = allBuildings.find(b => b.n === fullPath);
+    if (!building) building = allBuildings.find(b => { const dn = b.dn || ''; return `${b.p}${dn}${b.n}` === fullPath; });
     if (!building) {
       const allData = HashSearch.getAllProvinceData();
       for (const [provinceId, data] of allData) {
-        if (!data.buildings) continue;
+        if (!data.bs) continue;
         const provinceName = this.getProvinceName(provinceId);
-        for (const b of data.buildings) {
-          if (`${provinceName}${b.districtName || ''}${b.name}` === fullPath) return { ...b, province: provinceName, provinceId };
+        for (const b of data.bs) {
+          if (`${provinceName}${b.dn || ''}${b.n}` === fullPath) return { ...b, province: provinceName, provinceId };
         }
       }
     }
@@ -676,10 +716,10 @@ const State = {
     if (!buildingRef) return null;
     if (buildingRef.embedded) return buildingRef.embedded;
     const allBuildings = this.getAllBuildings();
-    const byName = allBuildings.find(b => b.name === buildingRef.name);
+    const byName = allBuildings.find(b => b.n === buildingRef.n);
     if (!byName) return null;
-    if (buildingRef.province && byName.provinceId !== buildingRef.province) {
-      return allBuildings.find(b => b.name === buildingRef.name && b.provinceId === buildingRef.province) || byName;
+    if (buildingRef.p && byName.pid !== buildingRef.p) {
+      return allBuildings.find(b => b.n === buildingRef.n && b.pid === buildingRef.p) || byName;
     }
     return byName;
   },
@@ -735,7 +775,7 @@ const Utils = {
     { key: 'era', label: '年代', icon: '📅', hint: '它属于什么年代？' }
   ],
 
-  getLocationClue(b) { return b.location || '暂无地区信息'; },
+  getLocationClue(b) { return b.l || '暂无地区信息'; },
 
   _hintPrompts: [
     '🤔提示？它的建筑风格很特别！', '🧐没头绪？我来描绘它的特色～',
@@ -749,14 +789,14 @@ const Utils = {
 
   getClueText(stageKey, building) {
     switch (stageKey) {
-      case 'architecture': return building.architecture || '暂无建筑风格信息';
-      case 'description': return building.description || '暂无特色介绍';
-      case 'features': return building.features || '暂无特色与价值信息';
-      case 'history': return building.history || '暂无历史背景信息';
+      case 'architecture': return building.arch || '暂无建筑风格信息';
+      case 'description': return building.desc || '暂无特色介绍';
+      case 'features': return building.feat || '暂无特色与价值信息';
+      case 'history': return building.hist || '暂无历史背景信息';
       case 'location': return this.getLocationClue(building) || '暂无地区信息';
       case 'era': {
-        const eraTags = (building.tags || []).join(' · ');
-        return `年代：${building.era || '暂无信息'} · ${eraTags || '暂无标签'}`;
+        const eraTags = (building.g || []).join(' · ');
+        return `年代：${building.e || '暂无信息'} · ${eraTags || '暂无标签'}`;
       }
       default: return '';
     }
@@ -780,35 +820,35 @@ const Utils = {
     if (!text || !building) return text;
     let result = text;
     // Simple replacements using replaceAll (no regex overhead)
-    result = result.replaceAll(building.name, '该建筑');
-    const coreName = building.name.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
-    if (coreName !== building.name && coreName.length >= 2) {
+    result = result.replaceAll(building.n, '该建筑');
+    const coreName = building.n.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
+    if (coreName !== building.n && coreName.length >= 2) {
       result = result.replaceAll(coreName, '该建筑');
     }
     if (stageKey && stageKey !== 'location' && stageKey !== 'era') {
-      if (building.province) result = result.replaceAll(building.province, '该地区');
-      if (building.districtName) result = result.replaceAll(building.districtName, '当地');
-      if (building.era) result = result.replaceAll(building.era, '某个时期');
+      if (building.p) result = result.replaceAll(building.p, '该地区');
+      if (building.dn) result = result.replaceAll(building.dn, '当地');
+      if (building.e) result = result.replaceAll(building.e, '某个时期');
     }
     return result;
   },
 
   generateProtectionBadge(building) {
-    if (building.worldHeritage) {
-      return `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.worldHeritageYear ? '·' + building.worldHeritageYear : ''}</span>`;
+    if (building.wh) {
+      return `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.why ? '·' + building.why : ''}</span>`;
     }
     const pl = building.protectionLevel || '';
     if (pl.includes('全国重点文物保护单位')) {
-      return `<span class="protection-badge protection-badge--national">${building.protectionBatch || '全国重点'}</span>`;
+      return `<span class="protection-badge protection-badge--national">${building.pb || '全国重点'}</span>`;
     }
     return '';
   },
 
   generateBuildingHash(building, getProvinceName) {
-    const provinceName = building.province || (getProvinceName ? getProvinceName(building.provinceId) : '') || '';
-    const districtName = building.districtName || '';
-    const pid = building.provinceId ? `&pid=${building.provinceId}` : '';
-    return `?page=building&name=${encodeURIComponent(`${provinceName}${districtName}${building.name}`)}${pid}`;
+    const provinceName = building.p || (getProvinceName ? getProvinceName(building.pid) : '') || '';
+    const districtName = building.dn || '';
+    const pid = building.pid ? `&pid=${building.pid}` : '';
+    return `?page=building&name=${encodeURIComponent(`${provinceName}${districtName}${building.n}`)}${pid}`;
   },
 
   _cardPriority: {'世界遗产':1,'古建筑':1,'近代建筑':1,'寺庙':1,'宫殿':1,'园林':1,'陵墓':1,'石窟':1,'塔':1,'桥梁':1,'革命遗址':1,'名人故居':1},
@@ -818,11 +858,11 @@ const Utils = {
     const { matchReasons, maxTags = 5 } = opts;
     if (!this._cachedProvinceNameFn) this._cachedProvinceNameFn = State.getProvinceName.bind(State);
     const href = this.generateBuildingHash(building, this._cachedProvinceNameFn);
-    const provinceStyle = Config.getProvinceStyle(building.provinceId);
+    const provinceStyle = Config.getProvinceStyle(building.pid);
     const protectionBadge = this.generateProtectionBadge(building);
-    const shortDesc = building.description ? (building.description.length > 60 ? building.description.slice(0, 60) : building.description) : '';
+    const shortDesc = building.desc ? (building.desc.length > 60 ? building.desc.slice(0, 60) : building.desc) : '';
     const priority = this._cardPriority;
-    const tags = building.tags || [];
+    const tags = building.g || [];
     const sortedTags = tags.length > maxTags ? [...tags].sort((a, b) => {
       const ap = priority[a]|0, bp = priority[b]|0;
       return bp - ap;
@@ -834,16 +874,16 @@ const Utils = {
       <div class="building-card-header" style="background: ${provinceStyle.bgColor};">
         <div class="building-card-header-left">
           <div class="building-province-icon" style="color: ${provinceStyle.color};">${provinceStyle.icon}</div>
-          <div class="building-district">${building.districtName === '跨省文物保护单位' ? '跨省' : building.districtName}</div>
+          <div class="building-district">${building.dn === '跨省文物保护单位' ? '跨省' : building.dn}</div>
         </div>
         ${protectionBadge}
       </div>
       <div class="building-content">
-        <h3 class="building-title">${building.name}</h3>
+        <h3 class="building-title">${building.n}</h3>
         ${matchReasonsHtml}
         <div class="building-meta">
-          <span class="building-era">📅 ${building.era}</span>
-          <span class="building-type">${this.truncateText(building.type, 12)}</span>
+          <span class="building-era">📅 ${building.e}</span>
+          <span class="building-type">${this.truncateText(building.t, 12)}</span>
         </div>
         <p class="building-desc">${shortDesc}</p>
         <div class="building-tags">
@@ -904,20 +944,20 @@ const UI = {
       const province = State.getProvinceById(State.currentProvince);
       if (province) items.push({ name: `${Config.getProvinceStyle(State.currentProvince).icon} ${province.name}`, href: `?page=province&id=${province.id}` });
       const district = State.getDistrictData(State.currentProvince, State.currentDistrict);
-      if (district) items.push({ name: `📍 ${district.name}` });
+      if (district) items.push({ name: `📍 ${district.n}` });
     } else if (v === 'building' && State.currentBuildingName) {
       const building = State.findBuildingByFullPath(State.currentBuildingName);
       items.push({ name: '🗺️ 省份', href: '?page=provinces' });
       if (building) {
-        const pStyle = Config.getProvinceStyle(building.provinceId);
-        if (building.provinceId === 'cross') {
-          items.push({ name: `${pStyle.icon} ${building.province}`, href: '?page=cross' });
-          items.push({ name: `📍 ${building.districtName}`, href: '?page=cross' });
+        const pStyle = Config.getProvinceStyle(building.pid);
+        if (building.pid === 'cross') {
+          items.push({ name: `${pStyle.icon} ${building.p}`, href: '?page=cross' });
+          items.push({ name: `📍 ${building.dn}`, href: '?page=cross' });
         } else {
-          items.push({ name: `${pStyle.icon} ${building.province}`, href: `?page=province&id=${building.provinceId}` });
-          items.push({ name: `📍 ${building.districtName}`, href: `?page=district&pid=${building.provinceId}&did=${building.district}` });
+          items.push({ name: `${pStyle.icon} ${building.p}`, href: `?page=province&id=${building.pid}` });
+          items.push({ name: `📍 ${building.dn}`, href: `?page=district&pid=${building.pid}&did=${building.d}` });
         }
-        items.push({ name: `🏛️ ${building.name}` });
+        items.push({ name: `🏛️ ${building.n}` });
       }
     } else if (v === 'tags') items.push({ name: '🏷️ 标签' });
     else if (v === 'tag') {
@@ -953,8 +993,9 @@ const UI = {
     });
   },
 
-  createSatelliteMap(mapDiv, lat, lng) {
+  async createSatelliteMap(mapDiv, lat, lng) {
     if (!mapDiv || !lat || !lng) return;
+    await ensureLeaflet();
     const map = L.map(mapDiv, {
       center: [lat, lng], zoom: 15, zoomControl: true, attributionControl: false
     });
@@ -1048,4 +1089,4 @@ const Router = {
 };
 
 // ==================== 统一导出 ====================
-export { HashSearch, Config, State, Utils, UI, Router };
+export { HashSearch, Config, State, Utils, UI, Router, ensureLeaflet };

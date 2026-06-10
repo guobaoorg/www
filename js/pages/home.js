@@ -7,8 +7,8 @@ let _bgStarted = false;
 async function _loadDaily() {
   if (_dailyCache) return _dailyCache;
   const data = await HashSearch.fetchJSON('/data/daily.json');
-  if (data?.buildings?.length) {
-    _dailyCache = data.buildings;
+  if (data?.bs?.length) {
+    _dailyCache = data.bs;
   }
   return _dailyCache || [];
 }
@@ -50,7 +50,7 @@ export async function render(container) {
     try { sessionStorage.setItem(sessionKey, JSON.stringify({ clueIndex: currentClueIndex, finished: quizFinished, wrongResultHtml: wrongResultHtml || null })); } catch (_) {}
   }
 
-  function getProvinceName() { return dailyBuilding.province || ''; }
+  function getProvinceName() { return dailyBuilding.p || ''; }
 
   function renderHomeQuiz() {
     const clues = renderAllClues(dailyBuilding, currentClueIndex);
@@ -94,11 +94,11 @@ export async function render(container) {
     if (input) input.focus();
     submitBtn?.addEventListener('click', () => handleSubmit(input, resultArea));
     input?.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(input, resultArea); });
-    hintBtn?.addEventListener('click', () => {
+    hintBtn?.addEventListener('click', async () => {
       if (currentClueIndex < Utils.CLUE_STAGES.length - 1) {
         currentClueIndex++;
         saveState();
-        appendClue(dailyBuilding, currentClueIndex);
+        await appendClue(dailyBuilding, currentClueIndex);
         const remaining = Utils.CLUE_STAGES.length - currentClueIndex - 1;
         if (remaining > 0) hintBtn.textContent = Utils.getHintPrompt(currentClueIndex + 1);
         else hintBtn.style.display = 'none';
@@ -119,7 +119,7 @@ export async function render(container) {
     const userAnswer = input.value.trim();
     if (!userAnswer) return;
     wrongResultHtml = null;
-    if (Utils.checkAnswer(userAnswer, dailyBuilding.name)) {
+    if (Utils.checkAnswer(userAnswer, dailyBuilding.n)) {
       quizFinished = true;
       saveState();
       resultArea.style.display = 'block';
@@ -127,7 +127,7 @@ export async function render(container) {
       resultArea.innerHTML = correctResultHTML(dailyBuilding, userAnswer, false, null, getProvinceName);
       disableQuizInputs();
     } else {
-      wrongResultHtml = wrongResultHTML(userAnswer, dailyBuilding.name, null);
+      wrongResultHtml = wrongResultHTML(userAnswer, dailyBuilding.n, null);
       resultArea.style.display = 'block';
       resultArea.className = 'quiz-result quiz-result-wrong';
       resultArea.innerHTML = wrongResultHtml;

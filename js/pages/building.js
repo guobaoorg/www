@@ -19,7 +19,7 @@ export async function render(container) {
   // 回退：在已加载数据中按名称尾部匹配查找
   if (!building) {
     const allBuildings = State.getAllBuildings();
-    building = allBuildings.find(b => buildingName.endsWith(b.name));
+    building = allBuildings.find(b => buildingName.endsWith(b.n));
   }
 
   if (!building) {
@@ -27,8 +27,8 @@ export async function render(container) {
     return;
   }
 
-  const provinceStyle = Config.getProvinceStyle(building.provinceId);
-  const searchKeyword = encodeURIComponent((building.province || State.getProvinceName(building.provinceId) || '') + (building.districtName || '') + building.name);
+  const provinceStyle = Config.getProvinceStyle(building.pid);
+  const searchKeyword = encodeURIComponent((building.p || State.getProvinceName(building.pid) || '') + (building.dn || '') + building.n);
   const relatedBuildings = getRelatedBuildings(building, 4);
 
   container.innerHTML = `
@@ -37,12 +37,12 @@ export async function render(container) {
         <header class="building-detail-header" style="border-left-color: ${provinceStyle.color};">
           <div class="building-detail-icon" style="background: ${provinceStyle.bgColor}; color: ${provinceStyle.color};">🏛️</div>
           <div class="building-detail-title-wrapper">
-            <h2 class="building-detail-title">${building.name}</h2>
+            <h2 class="building-detail-title">${building.n}</h2>
             <p class="building-detail-location">
-              <span class="location-icon">📍</span> ${building.location}
+              <span class="location-icon">📍</span> ${building.l}
               <span class="map-links-inline">
                 <a href="https://ditu.amap.com/search?query=${searchKeyword}" target="_blank" class="map-link-inline amap" title="高德地图">🗺️</a>
-                <a href="https://www.google.com/maps/search/${encodeURIComponent(building.location)}" target="_blank" class="map-link-inline google" title="谷歌地图">🌐</a>
+                <a href="https://www.google.com/maps/search/${encodeURIComponent(building.l)}" target="_blank" class="map-link-inline google" title="谷歌地图">🌐</a>
               </span>
             </p>
           </div>
@@ -59,26 +59,26 @@ export async function render(container) {
           <div class="building-detail-section">
             <h3><span class="section-icon">📋</span> 基本信息</h3>
             <div class="info-grid">
-              <div class="info-item"><span class="info-label">年代</span><span class="info-value">${building.era}</span></div>
-              <div class="info-item"><span class="info-label">类型</span><span class="info-value">${building.type}</span></div>
-              <div class="info-item"><span class="info-label">地区</span><span class="info-value">${building.province} ${building.districtName}</span></div>
+              <div class="info-item"><span class="info-label">年代</span><span class="info-value">${building.e}</span></div>
+              <div class="info-item"><span class="info-label">类型</span><span class="info-value">${building.t}</span></div>
+              <div class="info-item"><span class="info-label">地区</span><span class="info-value">${building.p} ${building.dn}</span></div>
               <div class="info-item"><span class="info-label">级别</span><span class="info-value">${building.protectionLevel || '全国重点文物保护单位'}</span></div>
-              <div class="info-item"><span class="info-label">批次</span><span class="info-value">${building.protectionBatch}</span></div>
-              ${building.worldHeritage ? `<div class="info-item heritage"><span class="info-label">世界遗产</span><span class="info-value">${building.worldHeritageYear}年 🌍</span></div>` : ''}
+              <div class="info-item"><span class="info-label">批次</span><span class="info-value">${building.pb}</span></div>
+              ${building.wh ? `<div class="info-item heritage"><span class="info-label">世界遗产</span><span class="info-value">${building.why}年 🌍</span></div>` : ''}
             </div>
           </div>
-          <div class="building-detail-section"><h3><span class="section-icon">✨</span> 初见惊鸿・千年开胜迹</h3><p class="detail-paragraph">${building.description}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">📜</span> 史海钩沉・百代证沧桑</h3><p class="detail-paragraph">${building.history}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">🏗️</span> 匠心营造・妙构凝风骨</h3><p class="detail-paragraph">${building.architecture}</p></div>
-          <div class="building-detail-section"><h3><span class="section-icon">💎</span> 华夏瑰宝・奇珍耀国光</h3><p class="detail-paragraph">${building.features}</p></div>
-          ${building.sections ? `
+          <div class="building-detail-section"><h3><span class="section-icon">✨</span> 初见惊鸿・千年开胜迹</h3><p class="detail-paragraph">${building.desc}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">📜</span> 史海钩沉・百代证沧桑</h3><p class="detail-paragraph">${building.hist}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">🏗️</span> 匠心营造・妙构凝风骨</h3><p class="detail-paragraph">${building.arch}</p></div>
+          <div class="building-detail-section"><h3><span class="section-icon">💎</span> 华夏瑰宝・奇珍耀国光</h3><p class="detail-paragraph">${building.feat}</p></div>
+          ${building.sec ? `
           <div class="building-detail-section"><h3><span class="section-icon">🗺️</span> 分段信息</h3>
-            <div class="sections-grid">${building.sections.map(s => `<div class="section-card"><div class="section-name">${s.name}</div><div class="section-province">${s.province}</div></div>`).join('')}</div>
+            <div class="sections-grid">${building.sec.map(s => `<div class="section-card"><div class="section-name">${s.n}</div><div class="section-province">${s.p}</div></div>`).join('')}</div>
           </div>` : ''}
           <div class="building-detail-section">
             <h3><span class="section-icon">🏷️</span> 特色标签</h3>
             <div class="building-detail-tags">
-              ${(building.tags || []).map((tag, idx) => {
+              ${(building.g || []).map((tag, idx) => {
                 const ts = Config.getTagStyle(tag, idx);
                 return `<span class="building-detail-tag" data-nav href="?page=tag&name=${encodeURIComponent(tag)}" style="background: ${ts.bg}; color: ${ts.color}; border-color: ${ts.color}30;"><span class="tag-icon">${ts.icon}</span> ${tag}</span>`;
               }).join('')}
@@ -97,13 +97,13 @@ export async function render(container) {
 function getRelatedBuildings(building, limit = 4) {
   const allBuildings = State.getAllBuildings();
   if (allBuildings.length < 2) return [];
-  const district = building.district;
-  const name = building.name;
+  const district = building.d;
+  const name = building.n;
   const sameDistrict = [];
 
   for (let i = 0; i < allBuildings.length; i++) {
     const b = allBuildings[i];
-    if (b.name === name || b.district !== district) continue;
+    if (b.n === name || b.d !== district) continue;
     sameDistrict.push(b);
     if (sameDistrict.length >= limit * 2) break;
   }

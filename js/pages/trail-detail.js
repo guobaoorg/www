@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, Config, State, Utils, ensureLeaflet } from '../core.js';
 
 export async function render(container) {
   const trailId = State.currentTrailId;
@@ -24,7 +24,7 @@ function darkMeta(meta) {
 
 async function _loadProvinces(stops) {
   const ids = new Set();
-  stops?.forEach(s => s.buildings?.forEach(b => { if (b?.province) ids.add(b.province); }));
+  stops?.forEach(s => s.buildings?.forEach(b => { if (b?.p) ids.add(b.p); }));
   if (ids.size > 0) await HashSearch.loadProvinces([...ids]);
 }
 
@@ -101,7 +101,7 @@ async function renderRouteDetail(container, meta, data) {
       </div>
     </div>`;
 
-  if (allBuildings.length > 0) _initBuildingMap(allBuildings, meta);
+  if (allBuildings.length > 0) { await ensureLeaflet(); _initBuildingMap(allBuildings, meta); }
   _initTOC();
   _addTooltips();
 }
@@ -111,7 +111,7 @@ function _addTooltips() {
   const all = State.getAllBuildings();
   const map = {};
   for (const b of all) {
-    if (b.name && b.description) map[b.name] = b.description;
+    if (b.n && b.desc) map[b.n] = b.desc;
   }
   document.querySelectorAll('.rstop-content a[data-nav]').forEach(el => {
     const name = el.textContent.trim();
@@ -161,8 +161,8 @@ function _initBuildingMap(buildings, meta) {
     const category = Config.getBuildingCategory(b);
     const size = category.size || 20;
     const color = category.markerColor || meta.color;
-    const buildingPath = (b.province || '') + (b.districtName || '') + b.name;
-    const buildingPid = b.provinceId || '';
+    const buildingPath = (b.p || '') + (b.dn || '') + b.n;
+    const buildingPid = b.pid || '';
     const detailUrl = `?page=building&name=${encodeURIComponent(buildingPath)}&pid=${buildingPid}`;
 
     const icon = L.divIcon({
@@ -174,20 +174,20 @@ function _initBuildingMap(buildings, meta) {
       <div class="rm-card">
         <div class="rm-card-head" style="border-left:3px solid ${color};">
           <span class="rm-card-num" style="background:${color};">${i + 1}</span>
-          <strong class="rm-card-name">${b.name}</strong>
+          <strong class="rm-card-name">${b.n}</strong>
         </div>
         <div class="rm-card-meta">
-          <span>📅 ${b.era || '年代未知'}</span>
-          <span>📍 ${b.province || ''} · ${b.districtName || ''}</span>
+          <span>📅 ${b.e || '年代未知'}</span>
+          <span>📍 ${b.p || ''} · ${b.dn || ''}</span>
         </div>
-        <p class="rm-card-desc">${Utils.truncateText(b.description, 100)}</p>
+        <p class="rm-card-desc">${Utils.truncateText(b.desc, 100)}</p>
         <div class="rm-card-actions">
           <a href="${detailUrl}" target="_blank" class="rm-card-btn">了解更多 ↗</a>
         </div>
       </div>`;
 
     const m = L.marker(ll, { icon })
-      .bindTooltip(`${i + 1}. ${b.name}`, { direction: 'top', offset: L.point(0, -12), className: 'rm-tooltip' })
+      .bindTooltip(`${i + 1}. ${b.n}`, { direction: 'top', offset: L.point(0, -12), className: 'rm-tooltip' })
       .bindPopup(popupHtml, { maxWidth: 300, className: 'rm-popup' });
 
     markers.push(m);

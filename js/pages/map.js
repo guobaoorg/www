@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, Config, State, Utils, ensureLeaflet } from '../core.js';
 
 let _map = null;
 let _markerCluster = null;
@@ -14,7 +14,25 @@ export async function render(container) {
   _activeEraFilter = 'all';
   _activeCategoryFilter = 'all';
 
-  const allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
+  let allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
+
+  // 按文件大小从小到大排序，让小文件先加载完成，更快显示进度和内容
+  const fileSizes = {
+    provinces: 1.8,
+    'cross-province': 25.9, tianjin: 28.2, daily: 30.9, hainan: 41, ningxia: 41.1,
+    guangxi: 63.8, heilongjiang: 66, qinghai: 70.4, chongqing: 75.4, shanghai: 76.6,
+    xizang: 78.2, guangdong: 80.8, jilin: 83.9, taiwan: 87.9, jiangxi: 94.6, hubei: 94.8,
+    macau: 100.1, xinjiang: 102.7, anhui: 103.8, gansu: 108.4, hongkong: 115.8, shaanxi: 116.9,
+    guizhou: 117.4, liaoning: 143.9, fujian: 153.1, zhejiang: 153.3, neimenggu: 153.8,
+    hebei: 154.1, beijing: 157.9, yunnan: 160, shandong: 163.4, hunan: 173.2, jiangsu: 185.9,
+    henan: 187.9, sichuan: 241.8, shanxi: 397.6
+  };
+
+  allProvinceIds.sort((a, b) => {
+    const sizeA = a === 'cross' ? fileSizes['cross-province'] : (fileSizes[a] || 0);
+    const sizeB = b === 'cross' ? fileSizes['cross-province'] : (fileSizes[b] || 0);
+    return sizeA - sizeB;
+  });
 
   container.innerHTML = `
     <div class="map-page">
@@ -87,7 +105,7 @@ export async function render(container) {
   }
 
   const mapEl = document.getElementById('mapFull');
-  if (mapEl) _initMap(mapEl);
+  if (mapEl) { await ensureLeaflet(); _initMap(mapEl); }
   _loadMapDataAsync(allProvinceIds);
 }
 
@@ -185,7 +203,7 @@ function _createMapMarker(building) {
   const size = category.size || 20;
   const worldClass = category.isWorldHeritage ? ' map-marker-world' : '';
   const icon = L.divIcon({
-    html: `<div class="map-marker${worldClass}" style="background:${category.markerColor}; width:${size}px; height:${size}px;" title="${building.name}"><span>${category.icon}</span></div>`,
+    html: `<div class="map-marker${worldClass}" style="background:${category.markerColor}; width:${size}px; height:${size}px;" title="${building.n}"><span>${category.icon}</span></div>`,
     className: 'map-marker-container',
     iconSize: [size + 4, size + 4],
     iconAnchor: [(size + 4) / 2, (size + 4) / 2]
@@ -195,22 +213,22 @@ function _createMapMarker(building) {
   marker.bindPopup(
     `<div class="map-popup">
       <div class="map-popup-header" style="border-left:3px solid ${category.markerColor}; padding-left:8px;">
-        <strong>${category.icon} ${building.name}</strong>
+        <strong>${category.icon} ${building.n}</strong>
       </div>
       <div class="map-popup-body">
         <div class="map-popup-info">
-          <span class="map-popup-era">📅 ${building.era}</span>
-          <span class="map-popup-district">📍 ${building.districtName}</span>
+          <span class="map-popup-era">📅 ${building.e}</span>
+          <span class="map-popup-district">📍 ${building.dn}</span>
         </div>
         ${protectionBadge ? `<div class="map-popup-badge">${protectionBadge}</div>` : ''}
-        <p class="map-popup-desc">${Utils.truncateText(building.description, 80)}</p>
+        <p class="map-popup-desc">${Utils.truncateText(building.desc, 80)}</p>
         <a href="${Utils.generateBuildingHash(building, _getProvinceName())}" target="_blank" class="map-popup-link">查看详情 →</a>
       </div>
     </div>`,
     { maxWidth: 280, className: 'map-popup-container' }
   );
   marker._categoryKey = category.key;
-  marker._provinceId = building.provinceId;
+  marker._provinceId = building.pid;
   return marker;
 }
 
@@ -228,49 +246,71 @@ async function _loadMapDataAsync(allIds) {
   let totalBuildings = 0;
   const dynastyCounts = {};
   const loadedProvinces = new Set();
-  const batchSize = 6;
+  // 增加并发数+小文件优先，浏览器最多6-8个并发请求，设置为8进一步提升加载速度
+  const maxConcurrency = 8;
   const progressFill = document.getElementById('mapProgressFill');
   const statLoaded = document.getElementById('mapStatLoaded');
   const statTotal = document.getElementById('mapStatTotal');
   const visibleEras = Config.eras.filter(e => e.timeline !== false);
 
-  for (let i = 0; i < allIds.length; i += batchSize) {
+  // 并发控制加载 - 保持最大并发数，比固定批次更高效
+  let index = 0;
+  const running = new Set();
+
+  const loadNext = async () => {
     if (!_markerCluster) return;
-    const batch = allIds.slice(i, i + batchSize);
-    try { await Promise.all(batch.map(id => HashSearch.loadProvinceData(id))); } catch (_) {}
+    while (running.size < maxConcurrency && index < allIds.length) {
+      const id = allIds[index++];
+      const promise = (async () => {
+        try {
+          const data = await HashSearch.loadProvinceData(id);
+          if (data?.bs && _markerCluster) {
+            loadedProvinces.add(id);
+            const provinceName = State.getProvinceName(id);
+            for (const b of data.bs) {
+              const key = `${id}_${b.d}_${b.n}`;
+              if (addedNames.has(key) || b.lat === undefined || b.lng === undefined) continue;
+              addedNames.add(key);
+              b.p = provinceName;
+              b.pid = id;
+              const marker = _createMapMarker(b);
+              const eraId = Config.getEarliestDynasty(b.e);
+              _mapMarkers.push({ marker, categoryKey: marker._categoryKey, eraId });
+              if (_passesFilters(marker._categoryKey, eraId)) {
+                _markerCluster.addLayer(marker);
+              }
+              totalBuildings++;
+              if (eraId) dynastyCounts[eraId] = (dynastyCounts[eraId] || 0) + 1;
+            }
 
-    for (const id of batch) {
-      const data = HashSearch.getProvinceData(id);
-      if (!data?.buildings) continue;
-      loadedProvinces.add(id);
-      const provinceName = State.getProvinceName(id);
-      for (const b of data.buildings) {
-        const key = `${id}_${b.district}_${b.name}`;
-        if (addedNames.has(key) || b.lat === undefined || b.lng === undefined) continue;
-        addedNames.add(key);
-        b.province = provinceName;
-        b.provinceId = id;
-        const marker = _createMapMarker(b);
-        const eraId = Config.getEarliestDynasty(b.era);
-        _mapMarkers.push({ marker, categoryKey: marker._categoryKey, eraId });
-        if (_passesFilters(marker._categoryKey, eraId)) {
-          _markerCluster.addLayer(marker);
-        }
-        totalBuildings++;
-        if (eraId) dynastyCounts[eraId] = (dynastyCounts[eraId] || 0) + 1;
-      }
+            // 每加载完成一个就更新进度，更快看到进度更新
+            const batchLoaded = loadedProvinces.size;
+            const pct = Math.round(batchLoaded / allIds.length * 100);
+            if (statLoaded) statLoaded.textContent = batchLoaded;
+            if (statTotal) statTotal.textContent = totalBuildings;
+            if (progressFill) progressFill.style.width = pct + '%';
+
+            // 第一个省份加载完就渲染时间轴，更早出结果
+            if (batchLoaded === 1) {
+              _renderTimeline(dynastyCounts, visibleEras);
+              _updateMapLabel();
+            }
+          }
+        } catch (_) {}
+        running.delete(promise);
+        // 继续加载下一个
+        loadNext();
+      })();
+      running.add(promise);
     }
+  };
 
-    const batchLoaded = loadedProvinces.size;
-    const pct = Math.round(batchLoaded / allIds.length * 100);
-    if (statLoaded) statLoaded.textContent = batchLoaded;
-    if (statTotal) statTotal.textContent = totalBuildings;
-    if (progressFill) progressFill.style.width = pct + '%';
+  // 启动初始批次
+  loadNext();
 
-    if (i === 0) {
-      _renderTimeline(dynastyCounts, visibleEras);
-      _updateMapLabel();
-    }
+  // 等待全部完成
+  while (running.size > 0) {
+    await Promise.race(running);
   }
 
   _updateMapLabel();

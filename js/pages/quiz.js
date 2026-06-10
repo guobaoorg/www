@@ -48,7 +48,7 @@ const _getProvinceName = () => { if (!_cachedProvinceNameFn) _cachedProvinceName
 function _saveState() {
   try {
     const state = { userLevel: _userLevel, score: _score, totalAttempts: _totalAttempts, usedBuildingKeys: [..._usedBuildingKeys], filterProvince: _filterProvince, filterEra: _filterEra, currentClueIndex: _currentClueIndex, quizFinished: _quizFinished, wrongResultHtml: _wrongResultHtml };
-    if (_currentBuilding) state.currentBuildingKey = `${_currentBuilding.provinceId || ''}_${_currentBuilding.district || ''}_${_currentBuilding.name}`;
+    if (_currentBuilding) state.currentBuildingKey = `${_currentBuilding.pid || ''}_${_currentBuilding.d || ''}_${_currentBuilding.n}`;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (_) {}
 }
@@ -76,10 +76,10 @@ function _getCandidateBuildings() {
   _cachedFilterProvince = _filterProvince;
   _cachedFilterEra = _filterEra;
   _cachedCandidates = State.getAllBuildings().filter(b => {
-    if (!b.architecture && !b.description && !b.features && !b.history) return false;
-    if (_filterProvince !== 'all' && b.provinceId !== _filterProvince) return false;
+    if (!b.arch && !b.desc && !b.feat && !b.hist) return false;
+    if (_filterProvince !== 'all' && b.pid !== _filterProvince) return false;
     if (_filterEra !== 'all') {
-      const eraId = Config.getEarliestDynasty(b.era);
+      const eraId = Config.getEarliestDynasty(b.e);
       if (eraId !== _filterEra) return false;
     }
     return true;
@@ -90,7 +90,7 @@ function _getCandidateBuildings() {
 function _pickRandomBuilding() {
   const candidates = _getCandidateBuildings();
   if (candidates.length === 0) return null;
-  const available = candidates.filter(b => { const key = `${b.provinceId}_${b.district}_${b.name}`; return !_usedBuildingKeys.has(key); });
+  const available = candidates.filter(b => { const key = `${b.pid}_${b.d}_${b.n}`; return !_usedBuildingKeys.has(key); });
   if (available.length === 0) { _usedBuildingKeys.clear(); _saveState(); return candidates[Math.floor(Math.random() * candidates.length)]; }
   return available[Math.floor(Math.random() * available.length)];
 }
@@ -110,11 +110,11 @@ async function _startRound(container, forceNew = false) {
 
   if (!_currentBuilding && _loadedBuildingKey) {
     const all = State.getAllBuildings();
-    _currentBuilding = all.find(b => { const key = `${b.provinceId || ''}_${b.district || ''}_${b.name}`; return key === _loadedBuildingKey; }) || null;
+    _currentBuilding = all.find(b => { const key = `${b.pid || ''}_${b.d || ''}_${b.n}`; return key === _loadedBuildingKey; }) || null;
     if (!_currentBuilding) {
       await HashSearch.loadProvinces(allProvinceIds);
       const all2 = State.getAllBuildings();
-      _currentBuilding = all2.find(b => { const key = `${b.provinceId || ''}_${b.district || ''}_${b.name}`; return key === _loadedBuildingKey; }) || null;
+      _currentBuilding = all2.find(b => { const key = `${b.pid || ''}_${b.d || ''}_${b.n}`; return key === _loadedBuildingKey; }) || null;
       if (!_currentBuilding) { _currentClueIndex = 0; _quizFinished = false; _loadedBuildingKey = null; }
     }
   }
@@ -260,10 +260,10 @@ function _bindQuizEvents(container) {
   submitBtn?.addEventListener('click', () => _handleSubmit());
   input?.addEventListener('keydown', e => { if (e.key === 'Enter') _handleSubmit(); });
 
-  hintBtn?.addEventListener('click', () => {
+  hintBtn?.addEventListener('click', async () => {
     if (_currentClueIndex < Utils.CLUE_STAGES.length - 1) {
       _currentClueIndex++;
-      appendClue(_currentBuilding, _currentClueIndex);
+      await appendClue(_currentBuilding, _currentClueIndex);
       const remaining = Utils.CLUE_STAGES.length - _currentClueIndex - 1;
       if (remaining > 0) hintBtn.textContent = Utils.getHintPrompt(_currentClueIndex + 1);
       else hintBtn.style.display = 'none';
@@ -282,7 +282,7 @@ function _bindQuizEvents(container) {
 }
 
 function _markCompleted() {
-  const key = `${_currentBuilding.provinceId}_${_currentBuilding.district}_${_currentBuilding.name}`;
+  const key = `${_currentBuilding.pid}_${_currentBuilding.d}_${_currentBuilding.n}`;
   _usedBuildingKeys.add(key); _totalAttempts++; _quizFinished = true; _saveState();
 }
 
@@ -306,7 +306,7 @@ function _handleSubmit() {
   if (!userAnswer) return;
 
   _wrongResultHtml = null; _totalAttempts++;
-  const isCorrect = Utils.checkAnswer(userAnswer, _currentBuilding.name);
+  const isCorrect = Utils.checkAnswer(userAnswer, _currentBuilding.n);
 
   if (isCorrect) {
     _score++;
@@ -318,7 +318,7 @@ function _handleSubmit() {
     disableQuizInputs();
   } else {
     _levelDown(); _saveState();
-    _wrongResultHtml = wrongResultHTML(userAnswer, _currentBuilding.name, _getLevelName());
+    _wrongResultHtml = wrongResultHTML(userAnswer, _currentBuilding.n, _getLevelName());
     resultArea.style.display = 'block';
     resultArea.className = 'quiz-result quiz-result-wrong';
     resultArea.innerHTML = _wrongResultHtml;

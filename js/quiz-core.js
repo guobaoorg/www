@@ -13,7 +13,7 @@ export function renderAllClues(building, currentClueIndex) {
   });
 }
 
-export function appendClue(building, clueIndex) {
+export async function appendClue(building, clueIndex) {
   const clueList = document.querySelector('.quiz-clue-list');
   if (!clueList || !building) return;
   const stage = Utils.CLUE_STAGES[clueIndex];
@@ -23,7 +23,7 @@ export function appendClue(building, clueIndex) {
   div.className = 'quiz-clue-card quiz-clue-card-newest';
   div.innerHTML = `<div class="quiz-clue-content"><p>${text}</p>${hasMap ? '<div class="quiz-satellite-map"></div>' : ''}</div>`;
   clueList.appendChild(div);
-  if (hasMap) initSatelliteMap(building);
+  if (hasMap) await initSatelliteMap(building);
 }
 
 export function renderClueCardsHTML(clues) {
@@ -32,10 +32,10 @@ export function renderClueCardsHTML(clues) {
   ).join('');
 }
 
-export function initSatelliteMap(building) {
+export async function initSatelliteMap(building) {
   const mapDivs = document.querySelectorAll('.quiz-satellite-map');
   const mapDiv = mapDivs[mapDivs.length - 1];
-  if (mapDiv) UI.createSatelliteMap(mapDiv, building?.lat, building?.lng);
+  if (mapDiv) await UI.createSatelliteMap(mapDiv, building?.lat, building?.lng);
 }
 
 export function colorChars(answer, correctName) {
@@ -70,7 +70,7 @@ function _resultActions(building, getProvinceName) {
 }
 
 function _resultMeta(building) {
-  return `<div class="quiz-result-answer">答案：<strong>${building.name}</strong></div><div class="quiz-result-detail">${building.province} · ${building.districtName} · ${building.era}</div>`;
+  return `<div class="quiz-result-answer">答案：<strong>${building.n}</strong></div><div class="quiz-result-detail">${building.p} · ${building.dn} · ${building.e}</div>`;
 }
 
 export function correctResultHTML(building, userAnswer, showLevelUp, levelName, getProvinceName) {

@@ -22,8 +22,8 @@ export async function render(container) {
       <div class="district-header" style="background: linear-gradient(135deg, ${provinceStyle.bgColor} 0%, var(--bg-card) 100%); border: 1px solid ${provinceStyle.color}25;">
         <div class="district-header-icon" style="background: ${provinceStyle.color};">📍</div>
         <div class="district-header-info">
-          <h2 class="section-title" style="margin: 0;">${province.name} - ${district.name}</h2>
-          <p style="color: var(--text-secondary); margin: 0.5rem 0 0 0;">共有 <strong style="color: ${provinceStyle.color};">${district.count}</strong> 处${protectionLabel}</p>
+          <h2 class="section-title" style="margin: 0;">${province.name} - ${district.n}</h2>
+          <p style="color: var(--text-secondary); margin: 0.5rem 0 0 0;">共有 <strong style="color: ${provinceStyle.color};">${district.c}</strong> 处${protectionLabel}</p>
         </div>
       </div>
       <div class="building-grid">${buildings.map(b => Utils.createBuildingCard(b)).join('')}</div>

@@ -27,14 +27,20 @@
   <link rel="preload" href="/data/daily.json" as="fetch" crossorigin>
   <link rel="prefetch" href="/data/provinces.json">
   <link rel="prefetch" href="/trail/registry.json">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" media="print" onload="this.media='all'">
+  <link rel="prefetch" href="/data/tianjin.json">
+  <link rel="prefetch" href="/data/hainan.json">
+  <link rel="prefetch" href="/data/ningxia.json">
+  <link rel="prefetch" href="/data/guangxi.json">
+  <link rel="prefetch" href="/data/heilongjiang.json">
+  <link rel="prefetch" href="/data/qinghai.json">
+  <link rel="prefetch" href="/data/chongqing.json">
+  <link rel="prefetch" href="/data/shanghai.json">
+  <link rel="prefetch" href="/data/xizang.json">
+  <link rel="prefetch" href="/data/guangdong.json">
+  <link rel="prefetch" href="/data/jilin.json">
+  <link rel="prefetch" href="/data/cross-province.json">
   <link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
   <noscript>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
     <link rel="stylesheet" href="/style.css">
   </noscript>
   <style>/* Critical CSS for first paint */
@@ -49,8 +55,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 @keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
 .skeleton{background:linear-gradient(90deg,var(--bg-secondary) 25%,var(--bg-hover) 50%,var(--bg-secondary) 75%);background-size:200% 100%;animation:skeleton-shine 1.5s infinite;border-radius:var(--radius)}.skeleton-lg{height:120px;margin-bottom:.75rem}.skeleton-md{height:48px;margin-bottom:.625rem}.skeleton-sm{height:20px;margin-bottom:.5rem;width:60%}.skeleton-xs{height:14px;margin-bottom:.375rem;width:40%}@keyframes skeleton-shine{0%{background-position:200% 0}to{background-position:-200% 0}}
 @media(max-width:768px){.nav-menu{display:none;position:absolute;top:var(--header-height);left:0;right:0;background:var(--bg-card);flex-direction:column;padding:.5rem;border-bottom:1px solid var(--border-color);box-shadow:var(--shadow-lg)}.nav-menu.active{display:flex}.nav-toggle{display:flex}}</style>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" defer></script>
   <script type="module" src="/js/main.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"国保地图","alternateName":"guobao.org","url":"https://guobao.org/","description":"全国重点文物保护单位查询与文化遗产地图平台，收录34个省级行政区5000+处全国重点文物保护单位，提供国保查询、文化地图、历史故事与主题路线。","inLanguage":"zh-CN","about":{"@type":"Thing","name":"全国重点文物保护单位","description":"中国国家级文物保护单位名录与文化遗产数据库"}}</script>
 <script async defer src="https://www.clarity.ms/tag/x3kz22ilhd"></script>

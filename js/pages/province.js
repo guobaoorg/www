@@ -2,13 +2,13 @@ import { HashSearch, Config, State, Utils } from '../core.js';
 
 function getEraSummary(buildings) {
   const eras = {};
-  buildings.forEach(b => { if (b.era) eras[b.era] = (eras[b.era] || 0) + 1; });
+  buildings.forEach(b => { if (b.e) eras[b.e] = (eras[b.e] || 0) + 1; });
   return Object.entries(eras).sort((a, b) => b[1] - a[1]).slice(0, 7).map(([era, count]) => `${era}(${count})`).join(' · ');
 }
 
 function getTagSummary(buildings) {
   const tags = new Set();
-  buildings.forEach(b => { if (b.tags) b.tags.forEach(tag => tags.add(tag)); });
+  buildings.forEach(b => { if (b.g) b.g.forEach(tag => tags.add(tag)); });
   return Utils.shuffleArray([...tags]).slice(0, 7);
 }
 
@@ -31,11 +31,11 @@ export async function render(container) {
   }
 
   const districts = State.getAllDistricts(provinceId);
-  const allBuildings = data.buildings || [];
+  const allBuildings = data.bs || [];
   const buildingsByDistrict = {};
   allBuildings.forEach(b => {
-    if (!buildingsByDistrict[b.district]) buildingsByDistrict[b.district] = [];
-    buildingsByDistrict[b.district].push(b);
+    if (!buildingsByDistrict[b.d]) buildingsByDistrict[b.d] = [];
+    buildingsByDistrict[b.d].push(b);
   });
 
   const districtsWithData = districts.filter(d => {
@@ -59,17 +59,17 @@ export async function render(container) {
           const districtBuildings = buildingsByDistrict[district.id] || [];
           const eraSummary = getEraSummary(districtBuildings);
           const tagSummary = getTagSummary(districtBuildings);
-          const hasHeritage = districtBuildings.some(b => b.worldHeritage);
+          const hasHeritage = districtBuildings.some(b => b.wh);
           const featuredBuildings = Utils.shuffleArray(districtBuildings.slice(0, 20)).slice(0, 7);
           return `
             <div class="district-grid-card" data-nav href="?page=district&pid=${provinceId}&did=${district.id}" style="border-top-color: ${provinceStyle.color};">
               <div class="district-grid-card-header">
-                <span class="district-grid-card-name">${district.name}</span>
+                <span class="district-grid-card-name">${district.n}</span>
                 ${hasHeritage ? '<span class="district-grid-heritage">🌍</span>' : ''}
               </div>
               <div class="district-grid-card-count">${districtBuildings.length} 处${protectionLabel}</div>
               ${eraSummary ? `<div class="district-grid-card-eras">${eraSummary}</div>` : ''}
-              <div class="district-grid-card-examples">${featuredBuildings.map(b => `<div class="district-grid-card-example">🏛️ ${b.name}</div>`).join('')}</div>
+              <div class="district-grid-card-examples">${featuredBuildings.map(b => `<div class="district-grid-card-example">🏛️ ${b.n}</div>`).join('')}</div>
               <div class="district-grid-card-tags">
                 ${tagSummary.map((tag, idx) => {
                   const ts = Config.getTagStyle(tag, idx);

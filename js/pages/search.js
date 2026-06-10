@@ -47,7 +47,7 @@ export async function render(container) {
 
 function runSearch(query, container) {
   const all = State.getAllBuildings();
-  const fields = ['name','location','era','type','districtName','tags','description','history','architecture','features'];
+  const fields = ['n','l','e','t','dn','g','desc','hist','arch','feat'];
   const results = HashSearch.fuzzySearch(all, query, fields);
 
   if (!results.length) {
