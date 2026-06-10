@@ -1,45 +1,22 @@
 import { HashSearch, State, Utils } from '../core.js';
 import { renderAllClues, appendClue, renderClueCardsHTML, initSatelliteMap, disableQuizInputs, correctResultHTML, wrongResultHTML, finalResultHTML } from '../quiz-core.js';
 
-export async function render(container) {
-  const provinceMeta = State.getProvinceMeta();
-  const provinceIds = provinceMeta?.provinces?.map(p => p.id) || [];
-  if (provinceIds.length === 0) {
-    container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">暂无题目</div><p>请检查数据</p></div></div>`;
-    return;
-  }
+let _dailyCache = null;
 
-  container.innerHTML = `<div class="container"><div class="loading"><div class="loading__icon">❓</div><div>正在加载今日题目...</div></div></div>`;
+async function _loadDaily() {
+  if (_dailyCache) return _dailyCache;
+  const data = await HashSearch.fetchJSON('/data/daily.json');
+  if (data?.buildings?.length) {
+    _dailyCache = data.buildings;
+  }
+  return _dailyCache || [];
+}
+
+export async function render(container) {
+  container.innerHTML = `<div class="container"><div class="loading"><div class="loading__icon">🎯</div><div>正在加载今日题目...</div></div></div>`;
 
   const today = new Date();
-  const dateSeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  const selectedId = provinceIds[dateSeed % provinceIds.length];
-  await HashSearch.loadProvinces([selectedId, 'cross']);
-
-  let candidates = State.getAllBuildings().filter(b => b.architecture && b.description && b.features && b.history);
-  if (candidates.length === 0) {
-    const loadedBefore = HashSearch.getCacheStats().loadedProvinces;
-    if (!HashSearch._bgActive) {
-      await HashSearch.loadProvinces(provinceIds.filter(id => id !== selectedId && id !== 'cross').slice(0, 5));
-    } else {
-      await new Promise(resolve => {
-        const check = () => {
-          if (HashSearch.getCacheStats().loadedProvinces > loadedBefore || !HashSearch._bgActive) resolve();
-          else setTimeout(check, 200);
-        };
-        check();
-      });
-      State.clearCache();
-    }
-    candidates = State.getAllBuildings().filter(b => b.architecture && b.description && b.features && b.history);
-  }
-
-  if (candidates.length === 0) {
-    container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">暂无题目</div><p>请检查数据</p></div></div>`;
-    return;
-  }
-
-  const dailyBuilding = candidates[dateSeed % candidates.length];
+  const dayOfMonth = today.getDate() - 1;
   const dateStr = `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日`;
   const sessionKey = `guobao_daily_${today.getFullYear()}${String(today.getMonth() + 1).padStart(2, '0')}${String(today.getDate()).padStart(2, '0')}`;
 
@@ -49,11 +26,20 @@ export async function render(container) {
   let currentClueIndex = savedState?.clueIndex || 0;
   let quizFinished = savedState?.finished || false;
   let wrongResultHtml = savedState?.wrongResultHtml || null;
-  const getProvinceName = State.getProvinceName.bind(State);
+
+  const dailyBuildings = await _loadDaily();
+  if (!dailyBuildings.length) {
+    container.innerHTML = `<div class="container"><div class="empty-state"><div class="empty-state-icon">🏛️</div><div class="empty-state-title">暂无题目</div></div></div>`;
+    return;
+  }
+
+  const dailyBuilding = dailyBuildings[dayOfMonth % dailyBuildings.length];
 
   function saveState() {
     try { sessionStorage.setItem(sessionKey, JSON.stringify({ clueIndex: currentClueIndex, finished: quizFinished, wrongResultHtml: wrongResultHtml || null })); } catch (_) {}
   }
+
+  function getProvinceName() { return dailyBuilding.province || ''; }
 
   function renderHomeQuiz() {
     const clues = renderAllClues(dailyBuilding, currentClueIndex);
@@ -94,7 +80,6 @@ export async function render(container) {
     const hintBtn = document.getElementById('dailyQuizMoreHint');
     const revealBtn = document.getElementById('dailyQuizReveal');
     const resultArea = document.getElementById('dailyQuizResult');
-
     if (input) input.focus();
     submitBtn?.addEventListener('click', () => handleSubmit(input, resultArea));
     input?.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(input, resultArea); });
