@@ -2,6 +2,7 @@ import { HashSearch, State, Utils } from '../core.js';
 import { renderAllClues, appendClue, renderClueCardsHTML, initSatelliteMap, disableQuizInputs, correctResultHTML, wrongResultHTML, finalResultHTML } from '../quiz-core.js';
 
 let _dailyCache = null;
+let _bgStarted = false;
 
 async function _loadDaily() {
   if (_dailyCache) return _dailyCache;
@@ -10,6 +11,16 @@ async function _loadDaily() {
     _dailyCache = data.buildings;
   }
   return _dailyCache || [];
+}
+
+function _startBgPreload() {
+  if (_bgStarted) return;
+  _bgStarted = true;
+  const meta = State.getProvinceMeta();
+  if (!meta?.provinces) return;
+  const provinceIds = [...meta.provinces.map(p => p.id), 'cross'];
+  const trailFiles = (State.getTrailRegistry() || []).map(t => t.fileName).filter(Boolean);
+  HashSearch.startBgPreload(provinceIds, trailFiles);
 }
 
 export async function render(container) {
@@ -127,4 +138,5 @@ export async function render(container) {
   }
 
   renderHomeQuiz();
+  _startBgPreload();
 }
