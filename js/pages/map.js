@@ -18,7 +18,6 @@ export async function render(container) {
 
   // 按文件大小从小到大排序，让小文件先加载完成，更快显示进度和内容
   const fileSizes = {
-    provinces: 1.8,
     'cross-province': 25.9, tianjin: 28.2, daily: 30.9, hainan: 41, ningxia: 41.1,
     guangxi: 63.8, heilongjiang: 66, qinghai: 70.4, chongqing: 75.4, shanghai: 76.6,
     xizang: 78.2, guangdong: 80.8, jilin: 83.9, taiwan: 87.9, jiangxi: 94.6, hubei: 94.8,

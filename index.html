@@ -39,13 +39,10 @@
   <link rel="prefetch" href="/data/guangdong.json">
   <link rel="prefetch" href="/data/jilin.json">
   <link rel="prefetch" href="/data/cross-province.json">
-  <link rel="stylesheet" href="/style.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="/style.css">
-  </noscript>
+  <link rel="stylesheet" href="/style.css">
   <style>/* Critical CSS for first paint */
-:root{--bg-primary:#FAF8F3;--bg-secondary:#F5F0E8;--bg-card:#FDFCFA;--text-primary:#2C2416;--text-muted:#8B7D6B;--border-light:#E8E4DC;--border-color:#D4CFC4;--header-height:48px;--header-bg:rgba(255,255,255,.92);--accent-color:#B22222;--accent-hover:#8B1A1A;--shadow-lg:0 10px 15px rgba(0,0,0,.08)}
-[data-theme="dark"]{--header-bg:rgba(13,17,23,.92);--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#252b35;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#656d76;--border-color:#30363d;--border-light:#21262d;--accent-color:#f77866;--accent-hover:#e85d49;--shadow-lg:0 10px 15px rgba(0,0,0,.6)}
+:root{--bg-primary:#FAF8F3;--bg-secondary:#F5F0E8;--bg-card:#FDFCFA;--text-primary:#2C2416;--text-muted:#8B7D6B;--border-light:#E8E4DC;--border-color:#D4CFC4;--header-height:48px;--header-bg:rgba(255,255,255,.92);--shadow-lg:0 10px 15px rgba(0,0,0,.08)}
+[data-theme="dark"]{--header-bg:rgba(13,17,23,.92);--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#252b35;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#656d76;--border-color:#30363d;--border-light:#21262d;--shadow-lg:0 10px 15px rgba(0,0,0,.6)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.5;overflow-x:hidden;width:100%;-webkit-font-smoothing:antialiased}
 .site-header{position:fixed;top:0;left:0;right:0;height:var(--header-height);background:var(--header-bg);border-bottom:1px solid var(--border-light);z-index:1000;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
@@ -92,7 +89,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
 
   <main id="mainContent">
     <div class="container">
-      <div class="daily-quiz-header skeleton-header">
+      <div class="daily-quiz-header">
         <div class="skeleton skeleton-lg" style="margin:0"></div>
       </div>
       <div class="quiz-clue-list">

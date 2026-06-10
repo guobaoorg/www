@@ -181,6 +181,7 @@ const HashSearch = {
     this._bgActive = true;
     const batchSize = 8;
     try {
+      // 优先加载所有 data 下的省份数据
       if (provinceIds?.length) {
         for (let i = 0; i < provinceIds.length; i += batchSize) {
           const batch = provinceIds.slice(i, i + batchSize);
@@ -191,6 +192,7 @@ const HashSearch = {
           await new Promise(r => setTimeout(r, 0));
         }
       }
+      // 所有省份数据加载完成后，再加载 trail 下的数据
       if (trailFiles?.length) {
         for (let i = 0; i < trailFiles.length; i += batchSize) {
           const batch = trailFiles.slice(i, i + batchSize);
@@ -705,7 +707,7 @@ const State = {
         if (!data.bs) continue;
         const provinceName = this.getProvinceName(provinceId);
         for (const b of data.bs) {
-          if (`${provinceName}${b.dn || ''}${b.n}` === fullPath) return { ...b, province: provinceName, provinceId };
+          if (`${provinceName}${b.dn || ''}${b.n}` === fullPath) return { ...b, p: provinceName, pid: provinceId };
         }
       }
     }
@@ -837,7 +839,7 @@ const Utils = {
     if (building.wh) {
       return `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.why ? '·' + building.why : ''}</span>`;
     }
-    const pl = building.protectionLevel || '';
+    const pl = building.protectionLevel || '全国重点文物保护单位';
     if (pl.includes('全国重点文物保护单位')) {
       return `<span class="protection-badge protection-badge--national">${building.pb || '全国重点'}</span>`;
     }
