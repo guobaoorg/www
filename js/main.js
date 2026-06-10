@@ -16,15 +16,11 @@ async function init() {
     Router.parseParams();
     renderPage();
   });
-  // Render immediately if meta is cached, update after fetch
   const metaPromise = State.initMeta();
   await renderPage();
   await metaPromise;
-  // Defer background preload to idle time
-  if (window.requestIdleCallback) {
-    requestIdleCallback(() => startBgPreload(), { timeout: 3000 });
-  } else {
-    setTimeout(startBgPreload, 2000);
+  if (State.currentView === 'home') {
+    startBgPreload();
   }
 }
 
