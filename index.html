@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>国保地图 guobao.org 全国重点文物保护单位地理分布查询</title>
-  <meta name="description" content="国保地图（guobao.org）收录全国34个省级行政区5000+处全国重点文物保护单位，涵盖古建筑、古遗址、古墓葬、石窟寺及石刻、近现代重要史迹等。提供查询、地图、故事与路线。">
+  <title>国保地图 - 全国重点文物保护单位查询与文化遗产地图 guobao.org</title>
+  <meta name="description" content="国保地图（guobao.org）收录全国34个省级行政区5000+处全国重点文物保护单位（国保单位），涵盖古建筑、古遗址、古墓葬、石窟寺及石刻、近现代重要史迹等八大类别。提供国保查询、GIS地理分布地图、历史文化故事与主题旅行路线，探索中国文化遗产的数字化平台。">
+  <meta name="keywords" content="全国重点文物保护单位,国保单位,国保地图,文化遗产,古建筑,古遗址,石窟寺,文物保护单位,文物地图,guobao">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://guobao.org/">
   <meta property="og:title" content="国保地图 - 全国重点文物保护单位查询与文化遗产地图">
@@ -14,11 +15,17 @@
   <meta property="og:site_name" content="国保地图">
   <meta property="og:locale" content="zh_CN">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="国保地图 - 全国重点文物保护单位查询">
+  <meta name="twitter:description" content="5000+处全国重点文物保护单位的地理分布查询平台">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B2%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
   <link rel="preconnect" href="https://server.arcgisonline.com">
+  <link rel="preconnect" href="https://www.clarity.ms">
+  <link rel="modulepreload" href="/js/core.js">
+  <link rel="prefetch" href="/data/provinces.json">
+  <link rel="prefetch" href="/trail/registry.json">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" media="print" onload="this.media='all'">
@@ -30,8 +37,8 @@
     <link rel="stylesheet" href="/style.css">
   </noscript>
   <style>/* Critical CSS for first paint */
-:root{--color-primary:#B22222;--bg-primary:#FAF8F3;--bg-secondary:#F5F0E8;--bg-card:#FDFCFA;--text-primary:#2C2416;--text-muted:#8B7D6B;--border-light:#E8E4DC;--header-height:48px;--header-bg:rgba(255,255,255,.92);--accent-color:#B22222;--accent-hover:#8B1A1A}
-[data-theme="dark"]{--header-bg:rgba(13, 17, 23, .92);--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#252b35;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#656d76;--border-color:#30363d;--border-light:#21262d;--accent-color:#f77866;--accent-hover:#e85d49}
+:root{--bg-primary:#FAF8F3;--bg-secondary:#F5F0E8;--bg-card:#FDFCFA;--text-primary:#2C2416;--text-muted:#8B7D6B;--border-light:#E8E4DC;--border-color:#D4CFC4;--header-height:48px;--header-bg:rgba(255,255,255,.92);--accent-color:#B22222;--accent-hover:#8B1A1A;--shadow-lg:0 10px 15px rgba(0,0,0,.08)}
+[data-theme="dark"]{--header-bg:rgba(13,17,23,.92);--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#252b35;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#656d76;--border-color:#30363d;--border-light:#21262d;--accent-color:#f77866;--accent-hover:#e85d49;--shadow-lg:0 10px 15px rgba(0,0,0,.6)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.5;overflow-x:hidden;width:100%;-webkit-font-smoothing:antialiased}
 .site-header{position:fixed;top:0;left:0;right:0;height:var(--header-height);background:var(--header-bg);border-bottom:1px solid var(--border-light);z-index:1000;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
@@ -89,7 +96,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Micr
   <footer class="site-footer">
     <div class="site-footer__inner">
       <p>©<span id="footerYear">2026</span> 国保地图 guobao.org 开图寻往迹，揽胜阅千秋</p>
-<script>document.getElementById('footerYear').textContent=new Date().getFullYear()</script>
     </div>
   </footer>
 </body>
