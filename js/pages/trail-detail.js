@@ -99,6 +99,7 @@ async function renderRouteDetail(container, meta, data) {
             </div>`;
           }).join('')}
         </div>
+        <p class="building-detail-disclaimer">⚠️免责声明：内容源自互联网公开信息整理，不保证准确完整，仅供科普参考，不构成任何建议。</p>
       </div>
     </div>`;
 

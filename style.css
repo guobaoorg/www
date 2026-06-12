@@ -616,7 +616,7 @@ a:hover { color: var(--accent-hover); }
 
 .building-detail-tag:hover { transform: translateY(-1px); }
 
-.building-detail-section .building-detail-disclaimer {
+.building-detail-disclaimer {
     margin: 1rem 0;
     font-size: 0.75rem;
     color: #999;
