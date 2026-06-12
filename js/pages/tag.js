@@ -3,7 +3,7 @@ import { HashSearch, Config, State, Utils } from '../core.js';
 export async function render(container) {
   const tag = decodeURIComponent(State.currentTag);
 
-  if (HashSearch.getCacheStats().loadedProvinces > 0 && State._tagBuildingsCache[tag]) {
+  if (HashSearch.getCacheStats().loadedProvinces > 0 && State.hasTagBuildingsCache(tag)) {
     return _renderTag(container, tag);
   }
 
@@ -18,11 +18,11 @@ export async function render(container) {
       <div class="loading"><div class="loading__icon">🔄</div><div>正在加载相关建筑...</div></div>
     </div>`;
 
-  if (!HashSearch._bgActive) {
+  if (!HashSearch.isBgActive()) {
     await HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   } else {
     await new Promise(resolve => {
-      const check = () => { if (State._tagBuildingsCache[tag] || !HashSearch._bgActive) resolve(); else setTimeout(check, 300); };
+      const check = () => { if (State.hasTagBuildingsCache(tag) || !HashSearch.isBgActive()) resolve(); else setTimeout(check, 300); };
       check();
     });
   }

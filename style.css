@@ -616,6 +616,13 @@ a:hover { color: var(--accent-hover); }
 
 .building-detail-tag:hover { transform: translateY(-1px); }
 
+.building-detail-section .building-detail-disclaimer {
+    margin: 1rem 0;
+    font-size: 0.75rem;
+    color: #999;
+    line-height: 1.5;
+}
+
 /* Sections Grid */
 .sections-grid {
     display: grid;
@@ -1133,6 +1140,7 @@ a:hover { color: var(--accent-hover); }
     background: linear-gradient(180deg,
         #8B5E3C 0%, #A0714F 20%, #C49A6C 40%, #A0714F 60%, #8B5E3C 80%, #6D4528 100%);
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    border-left: 3px solid #5a3a1e; border-right: 3px solid #5a3a1e;
 }
 /* Bottom roller */
 .xuxiake-quote::after {
@@ -1142,10 +1150,8 @@ a:hover { color: var(--accent-hover); }
     background: linear-gradient(180deg,
         #6D4528 0%, #8B5E3C 20%, #A0714F 40%, #C49A6C 60%, #A0714F 80%, #8B5E3C 100%);
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    border-left: 3px solid #5a3a1e; border-right: 3px solid #5a3a1e;
 }
-/* Roller end caps (left) */
-.xuxiake-quote::before { border-left: 3px solid #5a3a1e; border-right: 3px solid #5a3a1e; }
-.xuxiake-quote::after { border-left: 3px solid #5a3a1e; border-right: 3px solid #5a3a1e; }
 /* Dark mode */
 [data-theme="dark"] .xuxiake-quote {
     color: #d4c5a9;

@@ -16,10 +16,10 @@ export async function render(container) {
     building = State.findBuildingByFullPath(buildingName);
   }
 
-  // 回退：在已加载数据中按名称尾部匹配查找
+  // 回退：在已加载数据中精确匹配或按名称尾部匹配查找
   if (!building) {
     const allBuildings = State.getAllBuildings();
-    building = allBuildings.find(b => buildingName.endsWith(b.n));
+    building = allBuildings.find(b => b.n === buildingName) || allBuildings.find(b => buildingName.endsWith(b.n));
   }
 
   if (!building) {
@@ -83,6 +83,7 @@ export async function render(container) {
                 return `<span class="building-detail-tag" data-nav href="?page=tag&name=${encodeURIComponent(tag)}" style="background: ${ts.bg}; color: ${ts.color}; border-color: ${ts.color}30;"><span class="tag-icon">${ts.icon}</span> ${tag}</span>`;
               }).join('')}
             </div>
+            <p class="building-detail-disclaimer">⚠️免责声明：内容源自互联网公开信息整理，不保证准确完整，仅供科普参考，不构成任何建议。</p>
           </div>
         </div>
       </article>

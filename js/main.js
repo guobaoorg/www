@@ -64,7 +64,7 @@ async function renderPage() {
     _currentDestroyMap = null;
   }
 
-  if (!Router._moduleCache[view]) {
+  if (!Router.hasModuleCache(view)) {
     mainContent.innerHTML = '<div class="container"><div class="loading"><div class="loading__icon">🏛️</div><div>正在加载...</div></div></div>';
   }
 

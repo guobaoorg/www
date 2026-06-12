@@ -1,7 +1,7 @@
 import { HashSearch, Config, State } from '../core.js';
 
 export async function render(container) {
-  if (State._allTagsCache?.length) return _renderAll(container, State._allTagsCache);
+  if (State.hasAllTagsCache()) return _renderAll(container, State.getAllTags());
 
   container.innerHTML = `<div class="container"><h2 class="section-title"><span class="section-icon">🏷️</span> 标签</h2><div class="loading"><div class="loading__icon">🏷️</div><div>正在加载标签数据...</div></div></div>`;
 
@@ -9,7 +9,7 @@ export async function render(container) {
     return _renderAll(container, State.getAllTags());
   }
 
-  if (!HashSearch._bgActive) {
+  if (!HashSearch.isBgActive()) {
     HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   }
 

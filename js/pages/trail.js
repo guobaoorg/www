@@ -20,7 +20,7 @@ export function render(container) {
       <div class="topics-grid">
         ${filtered.map(trail => `
           <div class="topic-card" data-nav href="?page=trail-detail&id=${trail.id}" style="border-left-color: ${trail.color};">
-            <div class="topic-card-icon" style="background: ${isDark ? Utils.darkenHexBg(trail.bgColor) : trail.bgColor}; color: ${trail.color};">${trail.icon}</div>
+            <div class="topic-card-icon" style="background: ${isDark ? Utils.darkenHexBg(trail.bgColor) : (trail.bgColor || '#f0f0f0')}; color: ${trail.color || '#666'};">${trail.icon}</div>
             <div class="topic-card-content">
               <div class="topic-card-title">${trail.title}</div>
               <div class="topic-card-subtitle">${typeLabels[trail.type] || ''} · ${trail.subtitle}</div>

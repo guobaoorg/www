@@ -14,7 +14,7 @@ export async function render(container) {
       </div>
     </div>`;
 
-  if (HashSearch.getCacheStats().loadedProvinces === 0 && !HashSearch._bgActive) {
+  if (HashSearch.getCacheStats().loadedProvinces === 0 && !HashSearch.isBgActive()) {
     HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   }
 

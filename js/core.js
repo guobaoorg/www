@@ -216,6 +216,10 @@ const HashSearch = {
 
   _bgActive: false,
 
+  isBgActive() { return this._bgActive; },
+
+  getManifest() { return this._loadManifest(); },
+
   async startBgPreload(provinceIds, trailFiles) {
     if (this._bgActive) return;
     this._bgActive = true;
@@ -636,7 +640,7 @@ const State = {
       }
     } catch (_) {}
     try {
-      const manifest = await HashSearch._loadManifest();
+      const manifest = await HashSearch.getManifest();
       const [provRaw, regRaw] = await Promise.all([
         HashSearch.fetchJSON(`/_d/${manifest.p.provinces}.dat`, true),
         HashSearch.fetchJSON(`/_t/${manifest.t['registry.json']}.dat`, true)
@@ -718,12 +722,16 @@ const State = {
     return this._allTagsCache;
   },
 
+  hasAllTagsCache() { return !!this._allTagsCache; },
+
   getBuildingsByTag(tag) {
     if (this._tagBuildingsCache[tag]) return this._tagBuildingsCache[tag];
     const result = this.getAllBuildings().filter(b => b.g && b.g.some(t => t === tag));
     this._tagBuildingsCache[tag] = result;
     return result;
   },
+
+  hasTagBuildingsCache(tag) { return !!this._tagBuildingsCache[tag]; },
 
   getBuildingsByDistrict(provinceId, districtId) {
     const data = HashSearch.getProvinceData(provinceId);
@@ -1132,6 +1140,8 @@ const Router = {
     'quiz': () => import('./pages/quiz.js')
   },
   _moduleCache: {},
+
+  hasModuleCache(viewName) { return !!this._moduleCache[viewName]; },
 
   async loadPageModule(viewName) {
     if (this._moduleCache[viewName]) return this._moduleCache[viewName];
