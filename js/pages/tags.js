@@ -13,13 +13,24 @@ export async function render(container) {
     HashSearch.startBgPreload([...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross']);
   }
 
+  let resolved = false;
   const onComplete = () => {
+    if (resolved) return;
+    resolved = true;
     window.removeEventListener('bg-preload-complete', onComplete);
+    clearTimeout(fallback);
     if (document.getElementById('mainContent')?.contains(container)) {
       _renderAll(container, State.getAllTags());
     }
   };
   window.addEventListener('bg-preload-complete', onComplete);
+  // 兜底超时：30 秒后如果事件仍未触发则强制渲染
+  const fallback = setTimeout(() => {
+    window.removeEventListener('bg-preload-complete', onComplete);
+    if (document.getElementById('mainContent')?.contains(container)) {
+      _renderAll(container, State.getAllTags());
+    }
+  }, 30000);
 }
 
 function _renderAll(container, tags) {

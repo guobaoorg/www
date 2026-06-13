@@ -45,7 +45,31 @@ export async function render(container) {
   });
 }
 
+let _searchRefreshHandler = null;
+
 function runSearch(query, container) {
+  const stats = HashSearch.getCacheStats();
+  if (stats.loadedProvinces === 0) {
+    container.innerHTML = `
+      <div class="search-page-empty">
+        <div class="search-empty-icon">⏳</div>
+        <div class="search-empty-title">数据加载中...</div>
+        <p>建筑数据正在后台加载，请稍后再试</p>
+      </div>`;
+    _startPreloadForSearch();
+    if (!_searchRefreshHandler) {
+      _searchRefreshHandler = () => {
+        const input = document.getElementById('searchPageInput');
+        if (input && input.value.trim()) {
+          const results = document.getElementById('searchPageResults');
+          if (results) runSearch(input.value.trim(), results);
+        }
+      };
+      window.addEventListener('bg-preload-complete', _searchRefreshHandler, { once: true });
+    }
+    return;
+  }
+
   const all = State.getAllBuildings();
   const fields = ['n','l','e','t','dn','g','desc','hist','arch','feat'];
   const results = HashSearch.fuzzySearch(all, query, fields);
@@ -63,4 +87,10 @@ function runSearch(query, container) {
   container.innerHTML = `
     <div class="search-results-count">找到 <strong>${results.length}</strong> 处相关建筑 <span class="search-query-text">"${query}"</span></div>
     <div class="building-grid">${results.map(b => Utils.createBuildingCard(b, { matchReasons: b.matchReasons, maxTags: 4 })).join('')}</div>`;
+}
+
+function _startPreloadForSearch() {
+  if (HashSearch.isBgActive()) return;
+  const provinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
+  HashSearch.startBgPreload(provinceIds);
 }

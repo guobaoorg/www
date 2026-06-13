@@ -1,4 +1,4 @@
-import { HashSearch, State, Router, UI } from './core.js';
+import { HashSearch, Config, State, Router, UI } from './core.js';
 
 let _currentDestroyMap = null;
 let _cachedMain = null;
@@ -11,6 +11,14 @@ async function init() {
   _cachedMain = document.getElementById('mainContent');
   _cachedBreadcrumb = document.querySelector('.breadcrumb');
   document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  // GitHub Pages 404 SPA 回退：恢复被重定向的原始 URL
+  const redirect = sessionStorage.getItem('gh-pages-redirect');
+  if (redirect) {
+    sessionStorage.removeItem('gh-pages-redirect');
+    window.history.replaceState(null, '', redirect);
+  }
+
   Router.parseParams();
   window.addEventListener('route-change', () => {
     Router.parseParams();
@@ -26,25 +34,11 @@ async function init() {
 function startBgPreload() {
   const meta = State.getProvinceMeta();
   if (!meta?.provinces) return;
-  // 空闲时全量预加载，配合 localStorage 缓存实现秒开
-  // 按文件大小从小到大预加载，优先填充小文件缓存
-  const fileSizes = {
-    'cross-province': 25.9, tianjin: 28.2, daily: 30.9, hainan: 41, ningxia: 41.1,
-    guangxi: 63.8, heilongjiang: 66, qinghai: 70.4, chongqing: 75.4, shanghai: 76.6,
-    xizang: 78.2, guangdong: 80.8, jilin: 83.9, taiwan: 87.9, jiangxi: 94.6, hubei: 94.8,
-    macau: 100.1, xinjiang: 102.7, anhui: 103.8, gansu: 108.4, hongkong: 115.8, shaanxi: 116.9,
-    guizhou: 117.4, liaoning: 143.9, fujian: 153.1, zhejiang: 153.3, neimenggu: 153.8,
-    hebei: 154.1, beijing: 157.9, yunnan: 160, shandong: 163.4, hunan: 173.2, jiangsu: 185.9,
-    henan: 187.9, sichuan: 241.8, shanxi: 397.6
-  };
-  let provinceIds = [...meta.provinces.map(p => p.id), 'cross'];
-  provinceIds.sort((a, b) => {
-    const sizeA = a === 'cross' ? fileSizes['cross-province'] : (fileSizes[a] || 0);
-    const sizeB = b === 'cross' ? fileSizes['cross-province'] : (fileSizes[b] || 0);
-    return sizeA - sizeB;
-  });
+  const provinceIds = meta.provinces.map(p => p.id);
+  // Start background preloads sorted by file size (smallest first to fill cache quickly)
+  const sorted = Config.getSortedProvinceIds(provinceIds);
   const trailFiles = (State.getTrailRegistry() || []).map(t => t.fileName).filter(Boolean);
-  HashSearch.startBgPreload(provinceIds, trailFiles);
+  HashSearch.startBgPreload(sorted, trailFiles);
 }
 
 async function renderPage() {

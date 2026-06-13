@@ -17,17 +17,20 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="国保地图 - 全国重点文物保护单位查询">
   <meta name="twitter:description" content="5000+处全国重点文物保护单位的地理分布查询平台">
+  <meta property="og:image" content="https://guobao.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://server.arcgisonline.com https://www.clarity.ms; connect-src 'self' https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://server.arcgisonline.com https://www.clarity.ms; frame-src 'none';">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%B2%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="preconnect" href="https://tile.openstreetmap.org">
-  <link rel="preconnect" href="https://server.arcgisonline.com">
-  <link rel="preconnect" href="https://www.clarity.ms">
   <link rel="modulepreload" href="/js/core.js">
+  <link rel="modulepreload" href="/js/crypto.js">
+  <link rel="modulepreload" href="/js/leaflet.js">
+  <link rel="modulepreload" href="/js/utils.js">
+  <link rel="modulepreload" href="/js/ui.js">
   <link rel="stylesheet" href="/style.css">
   <style>/* Critical CSS for first paint */
-:root{--bg-primary:#FAF8F3;--bg-secondary:#F5F0E8;--bg-card:#FDFCFA;--text-primary:#2C2416;--text-muted:#8B7D6B;--border-light:#E8E4DC;--border-color:#D4CFC4;--header-height:48px;--header-bg:rgba(255,255,255,.92);--shadow-lg:0 10px 15px rgba(0,0,0,.08)}
-[data-theme="dark"]{--header-bg:rgba(13,17,23,.92);--bg-primary:#0d1117;--bg-secondary:#161b22;--bg-card:#1c2128;--bg-hover:#252b35;--text-primary:#e6edf3;--text-secondary:#8b949e;--text-muted:#656d76;--border-color:#30363d;--border-light:#21262d;--shadow-lg:0 10px 15px rgba(0,0,0,.6)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.5;overflow-x:hidden;width:100%;-webkit-font-smoothing:antialiased}
 .site-header{position:fixed;top:0;left:0;right:0;height:var(--header-height);background:var(--header-bg);border-bottom:1px solid var(--border-light);z-index:1000;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}

@@ -19,7 +19,7 @@ export async function render(container) {
   // 回退：在已加载数据中精确匹配或按名称尾部匹配查找
   if (!building) {
     const allBuildings = State.getAllBuildings();
-    building = allBuildings.find(b => b.n === buildingName) || allBuildings.find(b => buildingName.endsWith(b.n));
+    building = allBuildings.find(b => b.n === buildingName) || allBuildings.find(b => b.n.length >= 4 && buildingName.endsWith(b.n));
   }
 
   if (!building) {

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>国保地图 - 页面跳转中</title>
+  <script>
+    // GitHub Pages SPA 路由回退
+    // 将当前路径保存到 sessionStorage，然后重定向到首页
+    // index.html 的 JS 路由器会读取并恢复导航
+    (function() {
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      if (path !== '/' && path !== '/index.html') {
+        sessionStorage.setItem('gh-pages-redirect', path);
+      }
+      window.location.replace('/');
+    })();
+  </script>
+</head>
+<body></body>
+</html>

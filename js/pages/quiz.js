@@ -283,7 +283,12 @@ function _bindQuizEvents(container) {
 
 function _markCompleted() {
   const key = `${_currentBuilding.pid}_${_currentBuilding.d}_${_currentBuilding.n}`;
-  _usedBuildingKeys.add(key); _totalAttempts++; _quizFinished = true; _saveState();
+  _usedBuildingKeys.add(key);
+  if (_usedBuildingKeys.size > 500) {
+    const arr = [..._usedBuildingKeys];
+    _usedBuildingKeys = new Set(arr.slice(arr.length - 350));
+  }
+  _totalAttempts++; _quizFinished = true; _saveState();
 }
 
 function _handleFinal(container, type, icon, title) {

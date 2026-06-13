@@ -1,22 +1,7 @@
-// ==================== 数据加密解密 ====================
-const _K = 'dfc3627b883d2c5253b8785d8068dadc8d4ced5507ec17b490b67c81727e3f81';
-const _KEY = new Uint8Array(_K.match(/.{2}/g).map(b => parseInt(b, 16)));
-let _cryptoKey = null;
-
-async function _getCryptoKey() {
-  if (_cryptoKey) return _cryptoKey;
-  _cryptoKey = await crypto.subtle.importKey('raw', _KEY, { name: 'AES-GCM' }, false, ['decrypt']);
-  return _cryptoKey;
-}
-
-async function _decryptData(encryptedBase64) {
-  const key = await _getCryptoKey();
-  const raw = Uint8Array.from(atob(encryptedBase64), c => c.charCodeAt(0));
-  const iv = raw.slice(0, 12);
-  const ct = raw.slice(12);
-  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ct);
-  return JSON.parse(new TextDecoder().decode(pt));
-}
+import { decryptData } from './crypto.js';
+import { ensureLeaflet } from './leaflet.js';
+import { Utils } from './utils.js';
+import { UI } from './ui.js';
 
 // ==================== HashSearch ====================
 
@@ -50,7 +35,7 @@ const HashSearch = {
 
   async loadEncrypted(encPath) {
     const encrypted = await this.fetchJSON(encPath, true);
-    return encrypted ? _decryptData(encrypted) : null;
+    return encrypted ? decryptData(encrypted) : null;
   },
 
   async loadProvinceData(provinceId) {
@@ -81,7 +66,7 @@ const HashSearch = {
       const encrypted = await this.fetchJSON(`/_d/${encName}.dat`, true);
       delete this._pendingLoads[provinceId];
       if (encrypted) {
-        const data = await _decryptData(encrypted);
+        const data = await decryptData(encrypted);
         this._loadedData.add(provinceId);
         this._cacheSet(`province:${provinceId}`, data);
         this._resolveDistrictNames(data);
@@ -105,7 +90,7 @@ const HashSearch = {
   _refreshProvince(provinceId, encName, cacheKey) {
     this.fetchJSON(`/_d/${encName}.dat`, true).then(async encrypted => {
       if (encrypted) {
-        const data = await _decryptData(encrypted);
+        const data = await decryptData(encrypted);
         this._cacheSet(`province:${provinceId}`, data);
         this._resolveDistrictNames(data);
         try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
@@ -246,7 +231,7 @@ const HashSearch = {
             if (!encName) return;
             const encrypted = await this.fetchJSON(`/_t/${encName}.dat`, true).catch(() => null);
             if (encrypted) {
-              const data = await _decryptData(encrypted).catch(() => null);
+              const data = await decryptData(encrypted).catch(() => null);
               if (data) this._cacheSet(`trail:${f}`, data);
             }
           }));
@@ -261,46 +246,6 @@ const HashSearch = {
     window.dispatchEvent(new CustomEvent('bg-preload-complete'));
   }
 };
-
-// ==================== Leaflet 按需加载 ====================
-
-let _leafletReady = null;
-
-function ensureLeaflet() {
-  if (window.L && window.L.MarkerClusterGroup) return Promise.resolve();
-  if (_leafletReady) return _leafletReady;
-
-  _leafletReady = new Promise((resolve) => {
-    const base = 'https://unpkg.com';
-    // CSS
-    const cssUrls = [
-      `${base}/leaflet@1.9.4/dist/leaflet.css`,
-      `${base}/leaflet.markercluster@1.5.3/dist/MarkerCluster.css`,
-      `${base}/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css`
-    ];
-    cssUrls.forEach(href => {
-      if (!document.querySelector(`link[href="${href}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        document.head.appendChild(link);
-      }
-    });
-    // JS: Leaflet → MarkerCluster
-    const s1 = document.createElement('script');
-    s1.src = `${base}/leaflet@1.9.4/dist/leaflet.js`;
-    s1.async = true;
-    s1.onload = () => {
-      const s2 = document.createElement('script');
-      s2.src = `${base}/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js`;
-      s2.async = true;
-      s2.onload = () => resolve();
-      document.head.appendChild(s2);
-    };
-    document.head.appendChild(s1);
-  });
-  return _leafletReady;
-}
 
 const Config = {
   provinceStyles: {
@@ -603,6 +548,25 @@ const Config = {
     SAT: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     ROAD: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',
     LABELS: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'
+  },
+
+  // 省份数据文件大小（KB），用于按文件大小从小到大预加载，优先填充小文件缓存
+  provinceFileSizes: {
+    'cross-province': 25.9, tianjin: 28.2, daily: 30.9, hainan: 41, ningxia: 41.1,
+    guangxi: 63.8, heilongjiang: 66, qinghai: 70.4, chongqing: 75.4, shanghai: 76.6,
+    xizang: 78.2, guangdong: 80.8, jilin: 83.9, taiwan: 87.9, jiangxi: 94.6, hubei: 94.8,
+    macau: 100.1, xinjiang: 102.7, anhui: 103.8, gansu: 108.4, hongkong: 115.8, shaanxi: 116.9,
+    guizhou: 117.4, liaoning: 143.9, fujian: 153.1, zhejiang: 153.3, neimenggu: 153.8,
+    hebei: 154.1, beijing: 157.9, yunnan: 160, shandong: 163.4, hunan: 173.2, jiangsu: 185.9,
+    henan: 187.9, sichuan: 241.8, shanxi: 397.6
+  },
+
+  getSortedProvinceIds(provinceIds) {
+    return [...provinceIds].sort((a, b) => {
+      const sizeA = a === 'cross' ? this.provinceFileSizes['cross-province'] : (this.provinceFileSizes[a] || 0);
+      const sizeB = b === 'cross' ? this.provinceFileSizes['cross-province'] : (this.provinceFileSizes[b] || 0);
+      return sizeA - sizeB;
+    });
   }
 };
 
@@ -646,8 +610,8 @@ const State = {
         HashSearch.fetchJSON(`/_t/${manifest.t['registry.json']}.dat`, true)
       ]);
       const [provincesRes, trailRes] = await Promise.all([
-        provRaw ? _decryptData(provRaw) : null,
-        regRaw ? _decryptData(regRaw) : null
+        provRaw ? decryptData(provRaw) : null,
+        regRaw ? decryptData(regRaw) : null
       ]);
       this._provinceMeta = provincesRes;
       this._trailRegistry = trailRes;
@@ -794,310 +758,6 @@ const State = {
     this._tagBuildingsCache = {};
     this._buildingNameIndex = null;
     this._cachedLoadedCount = 0;
-  }
-};
-
-// ==================== Utils ====================
-
-const Utils = {
-
-  darkenHexBg(hex) {
-    // Convert a light pastel hex bg color to a dark-friendly version
-    if (!hex || !hex.startsWith('#')) return hex || '';
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    // Darken by blending with dark background: mix with #0d1117 at ~15% lightness
-    const dr = Math.round(r * 0.2 + 13 * 0.8);
-    const dg = Math.round(g * 0.2 + 17 * 0.8);
-    const db = Math.round(b * 0.2 + 23 * 0.8);
-    const toHex = (v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0');
-    return `#${toHex(dr)}${toHex(dg)}${toHex(db)}`;
-  },
-
-  truncateText(text, maxLength, suffix = '...') {
-    if (!text) return '';
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + suffix;
-  },
-
-  shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-  },
-
-  CLUE_STAGES: [
-    { key: 'architecture', label: '建筑风格', icon: '🏗️', hint: '这道建筑以什么风格著称？' },
-    { key: 'description', label: '特色介绍', icon: '✨', hint: '看看它的特色描述...' },
-    { key: 'features', label: '特色与价值', icon: '💎', hint: '它有什么独特价值？' },
-    { key: 'history', label: '历史背景', icon: '📜', hint: '回顾它的历史...' },
-    { key: 'location', label: '地区', icon: '📍', hint: '它在哪里？' },
-    { key: 'era', label: '年代', icon: '📅', hint: '它属于什么年代？' }
-  ],
-
-  getLocationClue(b) { return b.l || '暂无地区信息'; },
-
-  _hintPrompts: [
-    '🤔提示？它的建筑风格很特别！', '🧐没头绪？我来描绘它的特色～',
-    '🎯再想想？它的特点会有帮助！', '📖或许答案就在它的故事里：',
-    '🗺️方向不对？看看它在哪里！', '⏳最后一击！年代即将揭晓～'
-  ],
-
-  getHintPrompt(nextStageIndex) {
-    return this._hintPrompts[nextStageIndex] || '💡 让我来帮你！';
-  },
-
-  getClueText(stageKey, building) {
-    switch (stageKey) {
-      case 'architecture': return building.arch || '暂无建筑风格信息';
-      case 'description': return building.desc || '暂无特色介绍';
-      case 'features': return building.feat || '暂无特色与价值信息';
-      case 'history': return building.hist || '暂无历史背景信息';
-      case 'location': return this.getLocationClue(building) || '暂无地区信息';
-      case 'era': {
-        const eraTags = (building.g || []).join(' · ');
-        return `年代：${building.e || '暂无信息'} · ${eraTags || '暂无标签'}`;
-      }
-      default: return '';
-    }
-  },
-
-  checkAnswer(userInput, correctName) {
-    if (!userInput.trim()) return false;
-    const input = userInput.trim().toLowerCase();
-    const correct = correctName.toLowerCase();
-    const correctLen = correct.length;
-    if (input === correct) return true;
-    const minInputLen = correctLen <= 3 ? correctLen : Math.max(3, Math.ceil(correctLen * 0.75));
-    const stripped = correct.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海)$/, '');
-    if (stripped !== correct && input === stripped) return true;
-    if (correct.includes(input) && input.length >= minInputLen) return true;
-    if (input.includes(correct) && correctLen >= minInputLen && correctLen >= 3) return true;
-    return false;
-  },
-
-  sanitizeClueText(text, building, stageKey) {
-    if (!text || !building) return text;
-    let result = text;
-    // Simple replacements using replaceAll (no regex overhead)
-    result = result.replaceAll(building.n, '该建筑');
-    const coreName = building.n.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
-    if (coreName !== building.n && coreName.length >= 2) {
-      result = result.replaceAll(coreName, '该建筑');
-    }
-    if (stageKey && stageKey !== 'location' && stageKey !== 'era') {
-      if (building.p) result = result.replaceAll(building.p, '该地区');
-      if (building.dn) result = result.replaceAll(building.dn, '当地');
-      if (building.e) result = result.replaceAll(building.e, '某个时期');
-    }
-    return result;
-  },
-
-  generateProtectionBadge(building) {
-    if (building.wh) {
-      return `<span class="protection-badge protection-badge--heritage">🌍 世界遗产${building.why ? '·' + building.why : ''}</span>`;
-    }
-    const pl = building.protectionLevel || '全国重点文物保护单位';
-    if (pl.includes('全国重点文物保护单位')) {
-      return `<span class="protection-badge protection-badge--national">${building.pb || '全国重点'}</span>`;
-    }
-    return '';
-  },
-
-  generateBuildingHash(building, getProvinceName) {
-    const provinceName = building.p || (getProvinceName ? getProvinceName(building.pid) : '') || '';
-    const districtName = building.dn || '';
-    const pid = building.pid ? `&pid=${building.pid}` : '';
-    return `?page=building&name=${encodeURIComponent(`${provinceName}${districtName}${building.n}`)}${pid}`;
-  },
-
-  _cardPriority: {'世界遗产':1,'古建筑':1,'近代建筑':1,'寺庙':1,'宫殿':1,'园林':1,'陵墓':1,'石窟':1,'塔':1,'桥梁':1,'革命遗址':1,'名人故居':1},
-  _cachedProvinceNameFn: null,
-
-  createBuildingCard(building, opts = {}) {
-    const { matchReasons, maxTags = 5 } = opts;
-    if (!this._cachedProvinceNameFn) this._cachedProvinceNameFn = State.getProvinceName.bind(State);
-    const href = this.generateBuildingHash(building, this._cachedProvinceNameFn);
-    const provinceStyle = Config.getProvinceStyle(building.pid);
-    const protectionBadge = this.generateProtectionBadge(building);
-    const shortDesc = building.desc ? (building.desc.length > 60 ? building.desc.slice(0, 60) : building.desc) : '';
-    const priority = this._cardPriority;
-    const tags = building.g || [];
-    const sortedTags = tags.length > maxTags ? [...tags].sort((a, b) => {
-      const ap = priority[a]|0, bp = priority[b]|0;
-      return bp - ap;
-    }) : tags;
-    const matchReasonsHtml = matchReasons?.length
-      ? `<div class="match-reasons">${matchReasons.map(r => `<span class="match-reason">${r}</span>`).join('')}</div>` : '';
-    return `
-    <div class="building-card" data-href="${href}" style="border-left-color: ${provinceStyle.color};">
-      <div class="building-card-header" style="background: ${provinceStyle.bgColor};">
-        <div class="building-card-header-left">
-          <div class="building-province-icon" style="color: ${provinceStyle.color};">${provinceStyle.icon}</div>
-          <div class="building-district">${building.dn === '跨省文物保护单位' ? '跨省' : building.dn}</div>
-        </div>
-        ${protectionBadge}
-      </div>
-      <div class="building-content">
-        <h3 class="building-title">${building.n}</h3>
-        ${matchReasonsHtml}
-        <div class="building-meta">
-          <span class="building-era">📅 ${building.e}</span>
-          <span class="building-type">${this.truncateText(building.t, 12)}</span>
-        </div>
-        <p class="building-desc">${shortDesc}</p>
-        <div class="building-tags">
-          ${sortedTags.slice(0, maxTags).map((tag, idx) => {
-            const ts = Config.getTagStyle(tag, idx);
-            return `<span class="building-tag" style="background: ${ts.bg}; color: ${ts.color};">${ts.icon} ${tag}</span>`;
-          }).join('')}
-        </div>
-      </div>
-    </div>`;
-  }
-};
-
-// ==================== UI ====================
-
-const UI = {
-  setupTheme() {
-    document.documentElement.setAttribute('data-theme', State.theme);
-  },
-
-  toggleTheme() {
-    State.theme = State.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', State.theme);
-    localStorage.setItem('theme', State.theme);
-  },
-
-  setupEventListeners(onNavigate) {
-    document.querySelector('.theme-toggle')?.addEventListener('click', () => this.toggleTheme());
-    document.querySelector('.nav-toggle')?.addEventListener('click', () => {
-      document.querySelector('.nav-menu')?.classList.toggle('active');
-    });
-    document.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT') return;
-      const card = target.closest('.building-card');
-      if (card) { e.preventDefault(); onNavigate(card.getAttribute('data-href')); return; }
-      const link = target.closest('[data-nav]');
-      if (link) {
-        if (link.getAttribute('target') === '_blank') return;
-        e.preventDefault(); onNavigate(link.getAttribute('href') || link.getAttribute('data-nav'));
-      }
-    });
-    window.addEventListener('popstate', () => { window.dispatchEvent(new CustomEvent('route-change')); });
-  },
-
-  updateBreadcrumb() {
-    const breadcrumbList = document.getElementById('breadcrumbList');
-    if (!breadcrumbList) return;
-    let items = [{ name: '🏠 首页', href: '?page=home' }];
-    const v = State.currentView;
-    if (v === 'provinces') items.push({ name: '🗺️ 省份' });
-    else if (v === 'province' && State.currentProvince) {
-      items.push({ name: '🗺️ 省份', href: '?page=provinces' });
-      const province = State.getProvinceById(State.currentProvince);
-      if (province) items.push({ name: `${Config.getProvinceStyle(State.currentProvince).icon} ${province.name}` });
-    } else if (v === 'district') {
-      items.push({ name: '🗺️ 省份', href: '?page=provinces' });
-      const province = State.getProvinceById(State.currentProvince);
-      if (province) items.push({ name: `${Config.getProvinceStyle(State.currentProvince).icon} ${province.name}`, href: `?page=province&id=${province.id}` });
-      const district = State.getDistrictData(State.currentProvince, State.currentDistrict);
-      if (district) items.push({ name: `📍 ${district.n}` });
-    } else if (v === 'building' && State.currentBuildingName) {
-      const building = State.findBuildingByFullPath(State.currentBuildingName);
-      items.push({ name: '🗺️ 省份', href: '?page=provinces' });
-      if (building) {
-        const pStyle = Config.getProvinceStyle(building.pid);
-        if (building.pid === 'cross') {
-          items.push({ name: `${pStyle.icon} ${building.p}`, href: '?page=cross' });
-          items.push({ name: `📍 ${building.dn}`, href: '?page=cross' });
-        } else {
-          items.push({ name: `${pStyle.icon} ${building.p}`, href: `?page=province&id=${building.pid}` });
-          items.push({ name: `📍 ${building.dn}`, href: `?page=district&pid=${building.pid}&did=${building.d}` });
-        }
-        items.push({ name: `🏛️ ${building.n}` });
-      }
-    } else if (v === 'tags') items.push({ name: '🏷️ 标签' });
-    else if (v === 'tag') {
-      items.push({ name: '🏷️ 标签', href: '?page=tags' });
-      items.push({ name: `${Config.getTagStyle(decodeURIComponent(State.currentTag), 0).icon} ${decodeURIComponent(State.currentTag)}` });
-    } else if (v === 'search') items.push({ name: '🔍 搜索' });
-    else if (v === 'quiz') items.push({ name: '🗝️ 猜保' });
-    else if (v === 'cross') items.push({ name: '🌊 跨省文物保护单位' });
-    else if (v === 'trail') items.push({ name: '👣 足迹' });
-    else if (v === 'map') items.push({ name: '🗺️ 地图' });
-    else if (v === 'trail-detail' && State.currentTrailId) {
-      items.push({ name: '👣 足迹', href: '?page=trail' });
-      const trail = State.getTrailRegistry()?.find(t => t.id === State.currentTrailId);
-      if (trail) {
-        const _tl = { game: '🎮 游戏', novel: '📚 古典', journal: '📝 游记', drama: '🎭 戏曲', history: '📜 历史' };
-        if (trail.type && _tl[trail.type]) items.push({ name: _tl[trail.type], href: `?page=trail&type=${trail.type}` });
-        items.push({ name: `${trail.icon} ${trail.title}` });
-      }
-    }
-    breadcrumbList.innerHTML = items.map((item, index) => {
-      if (index === items.length - 1 || !item.href) return `<li class="active">${item.name}</li>`;
-      return `<li><a href="${item.href}" data-nav>${item.name}</a></li>`;
-    }).join('');
-  },
-
-  updateActiveNav() {
-    document.querySelectorAll('.nav-menu__link').forEach(link => {
-      link.classList.remove('active');
-      const href = link.getAttribute('href');
-      const v = State.currentView;
-      if ((v === 'trail' || v === 'trail-detail') && href === '?page=trail') link.classList.add('active');
-      else if (href === `?page=${v}`) link.classList.add('active');
-    });
-  },
-
-  async createSatelliteMap(mapDiv, lat, lng) {
-    if (!mapDiv || !lat || !lng) return;
-    await ensureLeaflet();
-    const map = L.map(mapDiv, {
-      center: [lat, lng], zoom: 15, zoomControl: true, attributionControl: false
-    });
-    const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom: 18, attribution: '© OpenStreetMap' });
-    const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: 19 });
-    const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom: 18, opacity: 0.7 });
-    const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom: 18, opacity: 0.6 });
-    const satGroup = L.layerGroup([sat, road, labels]);
-    L.control.layers({ '标准': osm, '卫星': satGroup }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
-    satGroup.addTo(map);
-    const markerIcon = L.divIcon({
-      className: 'quiz-satellite-marker',
-      html: '<div class="quiz-satellite-pin"></div><div class="quiz-satellite-pulse"></div>',
-      iconSize: [20, 20], iconAnchor: [10, 10]
-    });
-    L.marker([lat, lng], { icon: markerIcon }).addTo(map);
-    setTimeout(() => { map.invalidateSize(); }, 100);
-  },
-
-  injectStructuredData() {
-    let script = document.getElementById('ld-json');
-    if (!script) {
-      script = document.createElement('script');
-      script.id = 'ld-json';
-      script.type = 'application/ld+json';
-      document.head.appendChild(script);
-    }
-    const breadcrumbs = [];
-    const items = document.querySelectorAll('#breadcrumbList li');
-    items.forEach((li, i) => {
-      const a = li.querySelector('a');
-      const name = li.textContent.trim();
-      if (a) breadcrumbs.push({ '@type': 'ListItem', position: i + 1, name, item: new URL(a.href, location.origin).href });
-      else breadcrumbs.push({ '@type': 'ListItem', position: i + 1, name });
-    });
-    const ld = { '@context': 'https://schema.org', '@graph': [] };
-    if (breadcrumbs.length > 1) ld['@graph'].push({ '@type': 'BreadcrumbList', itemListElement: breadcrumbs });
-    script.textContent = JSON.stringify(ld);
   }
 };
 
