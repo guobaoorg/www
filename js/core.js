@@ -137,7 +137,7 @@ const HashSearch = {
   autoRetrieve() {
     const params = this.getParams();
     return {
-      view: params.get('page') || 'home',
+      view: params.get('page') || 'map',
       provinceId: params.get('id') || params.get('pid') || null,
       districtId: params.get('did') || null,
       buildingName: params.get('name') || null,
@@ -552,7 +552,7 @@ const Config = {
 
   // 省份数据文件大小（KB），用于按文件大小从小到大预加载，优先填充小文件缓存
   provinceFileSizes: {
-    'cross-province': 25.9, tianjin: 28.2, daily: 30.9, hainan: 41, ningxia: 41.1,
+    'cross-province': 25.9, tianjin: 28.2, hainan: 41, ningxia: 41.1,
     guangxi: 63.8, heilongjiang: 66, qinghai: 70.4, chongqing: 75.4, shanghai: 76.6,
     xizang: 78.2, guangdong: 80.8, jilin: 83.9, taiwan: 87.9, jiangxi: 94.6, hubei: 94.8,
     macau: 100.1, xinjiang: 102.7, anhui: 103.8, gansu: 108.4, hongkong: 115.8, shaanxi: 116.9,
@@ -573,7 +573,7 @@ const Config = {
 // ==================== State ====================
 
 const State = {
-  currentView: 'home',
+  currentView: 'map',
   currentProvince: null,
   currentDistrict: null,
   currentBuildingName: null,
@@ -785,7 +785,6 @@ const Router = {
   },
 
   _moduleMap: {
-    'home': () => import('./pages/home.js'),
     'map': () => import('./pages/map.js'),
     'provinces': () => import('./pages/provinces.js'),
     'province': () => import('./pages/province.js'),

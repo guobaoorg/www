@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, Config, State, Utils, UI, ensureLeaflet } from '../core.js';
 
 function getEraSummary(buildings) {
   const eras = {};
@@ -54,6 +54,7 @@ export async function render(container) {
           <p style="color: var(--text-secondary); margin: 0.5rem 0 0 0;">共有 <strong style="color: ${provinceStyle.color};">${province.count}</strong> 处${protectionLabel}</p>
         </div>
       </div>
+      <div class="province-map" id="provinceMap"></div>
       <div class="district-grid-cards">
         ${districtsWithData.map(district => {
           const districtBuildings = buildingsByDistrict[district.id] || [];
@@ -69,7 +70,7 @@ export async function render(container) {
               </div>
               <div class="district-grid-card-count">${districtBuildings.length} 处${protectionLabel}</div>
               ${eraSummary ? `<div class="district-grid-card-eras">${eraSummary}</div>` : ''}
-              <div class="district-grid-card-examples">${featuredBuildings.map(b => `<div class="district-grid-card-example">🏛️ ${b.n}</div>`).join('')}</div>
+              <div class="district-grid-card-examples">${featuredBuildings.map(b => `<div>🏛️ ${b.n}</div>`).join('')}</div>
               <div class="district-grid-card-tags">
                 ${tagSummary.map((tag, idx) => {
                   const ts = Config.getTagStyle(tag, idx);
@@ -80,4 +81,64 @@ export async function render(container) {
         }).join('')}
       </div>
     </div>`;
+
+  // 初始化省份地图
+  const coordsBuildings = allBuildings.filter(b => b.lat != null && b.lng != null);
+  if (coordsBuildings.length > 0) {
+    _initProvinceMap(coordsBuildings);
+  }
+}
+
+async function _initProvinceMap(buildings) {
+  const mapEl = document.getElementById('provinceMap');
+  if (!mapEl) return;
+
+  await ensureLeaflet();
+  const L = window.L;
+  if (!L) return;
+
+  const map = UI.createMapWithLayers(mapEl);
+
+  // 如果建筑数量多，使用聚合标记
+  const bounds = L.latLngBounds([]);
+  if (buildings.length > 50 && L.markerClusterGroup) {
+    const cluster = L.markerClusterGroup({ maxClusterRadius: 50, spiderfyOnMaxZoom: true, showCoverageOnHover: false });
+    buildings.forEach(b => {
+      const ll = L.latLng(b.lat, b.lng);
+      bounds.extend(ll);
+      const markerIcon = L.divIcon({
+        html: `<div class="province-marker-dot"></div>`,
+        className: 'province-marker-container',
+        iconSize: [10, 10], iconAnchor: [5, 5]
+      });
+      const marker = L.marker(ll, { icon: markerIcon });
+      marker.bindPopup(`<div class="map-popup"><div class="map-popup-header"><strong>🏛️ ${b.n}</strong></div><div class="map-popup-body"><a href="${Utils.generateBuildingHash(b)}" class="map-popup-link">查看详情 →</a></div></div>`, { maxWidth: 240, className: 'map-popup-container' });
+      cluster.addLayer(marker);
+    });
+    map.addLayer(cluster);
+  } else {
+    buildings.forEach(b => {
+      const ll = L.latLng(b.lat, b.lng);
+      bounds.extend(ll);
+      const markerIcon = L.divIcon({
+        html: `<div class="province-marker-dot"></div>`,
+        className: 'province-marker-container',
+        iconSize: [10, 10], iconAnchor: [5, 5]
+      });
+      const marker = L.marker(ll, { icon: markerIcon });
+      marker.bindPopup(`<div class="map-popup"><div class="map-popup-header"><strong>🏛️ ${b.n}</strong></div><div class="map-popup-body"><a href="${Utils.generateBuildingHash(b)}" class="map-popup-link">查看详情 →</a></div></div>`, { maxWidth: 240, className: 'map-popup-container' });
+      marker.addTo(map);
+    });
+  }
+
+  map.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });
+
+  Utils.enableMapFullscreen(mapEl, () => map.invalidateSize(), (userLat, userLng) => {
+    return buildings.map(b => ({
+      name: b.n, lat: b.lat, lng: b.lng,
+      distance: Utils.haversineDistance(userLat, userLng, b.lat, b.lng),
+      icon: '🏛️',
+      detailUrl: Utils.generateBuildingHash(b)
+    })).sort((a, b) => a.distance - b.distance).slice(0, 5);
+  });
 }

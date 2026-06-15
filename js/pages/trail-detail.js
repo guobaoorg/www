@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils, ensureLeaflet } from '../core.js';
+import { HashSearch, Config, State, Utils, UI, ensureLeaflet } from '../core.js';
 
 export async function render(container) {
   const trailId = State.currentTrailId;
@@ -147,11 +147,15 @@ function _initBuildingMap(buildings, meta) {
   const mapEl = document.getElementById('routeMap');
   if (!mapEl) return;
 
-  const map = L.map(mapEl, { zoomControl: true, attributionControl: false });
-  const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: 19, minZoom: 3 });
-  const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom: 18, minZoom: 3, opacity: 0.5 });
-  const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom: 18, minZoom: 3, opacity: 0.4 });
-  L.layerGroup([sat, road, labels]).addTo(map);
+  const map = UI.createMapWithLayers(mapEl, { satMaxZoom: 19, roadOpacity: 0.5, labelOpacity: 0.4 });
+  Utils.enableMapFullscreen(mapEl, () => map.invalidateSize(), (userLat, userLng) => {
+    return buildings.map(b => ({
+      name: b.n, lat: b.lat, lng: b.lng,
+      distance: Utils.haversineDistance(userLat, userLng, b.lat, b.lng),
+      icon: Config.getBuildingCategory(b)?.icon || '🏛️',
+      detailUrl: `?page=building&name=${encodeURIComponent((b.p || '') + (b.dn || '') + b.n)}&pid=${b.pid || ''}`
+    })).sort((a, b) => a.distance - b.distance).slice(0, 5);
+  });
 
   const latlngs = [];
   const markers = [];

@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils, ensureLeaflet } from '../core.js';
+import { HashSearch, Config, State, Utils, UI, ensureLeaflet } from '../core.js';
 
 let _map = null;
 let _markerCluster = null;
@@ -90,7 +90,22 @@ export async function render(container) {
   }
 
   const mapEl = document.getElementById('mapFull');
-  if (mapEl) { await ensureLeaflet(); _initMap(mapEl); }
+  if (mapEl) { await ensureLeaflet(); _initMap(mapEl); Utils.enableMapFullscreen(mapEl, () => _map?.invalidateSize(), (userLat, userLng) => {
+    if (!_mapMarkers.length) return [];
+    const category = Config.buildingCategories;
+    return _mapMarkers
+      .map(m => {
+        const ll = m.marker.getLatLng();
+        if (!ll) return null;
+        const dist = Utils.haversineDistance(userLat, userLng, ll.lat, ll.lng);
+        const b = m.marker._building || {};
+        const cat = category[m.categoryKey];
+        return { name: b.n, lat: ll.lat, lng: ll.lng, distance: dist, icon: cat?.icon || '🏛️', detailUrl: Utils.generateBuildingHash({ ...b, lat: ll.lat, lng: ll.lng }) };
+      })
+      .filter(b => b && b.name)
+      .sort((a, b) => a.distance - b.distance)
+      .slice(0, 5);
+  }); }
   _loadMapDataAsync(allProvinceIds);
 }
 
@@ -98,14 +113,8 @@ export function destroyMap() { _destroyMap(); }
 
 function _initMap(container) {
   if (_map) { _map.invalidateSize(); return; }
-  _map = L.map(container, { center: [35.5, 105.0], zoom: 5, zoomControl: true, attributionControl: false });
-  const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom: 18, minZoom: 3, attribution: '© OpenStreetMap' });
-  const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: 18, minZoom: 3 });
-  const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom: 18, minZoom: 3, opacity: 0.7 });
-  const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom: 18, minZoom: 3, opacity: 0.6 });
-  const satGroup = L.layerGroup([sat, road, labels]);
-  L.control.layers({ '标准': osm, '卫星': satGroup }, null, { position: 'bottomleft', collapsed: true }).addTo(_map);
-  satGroup.addTo(_map);
+  _map = UI.createMapWithLayers(container);
+  _map.setView([35.5, 105.0], 5);
   _markerCluster = L.markerClusterGroup({
     maxClusterRadius: 50, spiderfyOnMaxZoom: true, showCoverageOnHover: false, zoomToBoundsOnClick: true,
     iconCreateFunction: (cluster) => {
@@ -214,6 +223,7 @@ function _createMapMarker(building) {
   );
   marker._categoryKey = category.key;
   marker._provinceId = building.pid;
+  marker._building = { n: building.n, e: building.e, dn: building.dn, pid: building.pid, p: null };
   return marker;
 }
 

@@ -3,7 +3,7 @@ import { HashSearch, Config, State, Router, UI } from './core.js';
 let _currentDestroyMap = null;
 let _cachedMain = null;
 let _cachedBreadcrumb = null;
-const _hideBreadcrumbViews = new Set(['home', 'map', 'trail', 'provinces', 'tags', 'quiz', 'search']);
+const _hideBreadcrumbViews = new Set(['map', 'trail', 'provinces', 'tags', 'quiz', 'search']);
 
 async function init() {
   UI.setupTheme();
@@ -28,7 +28,7 @@ async function init() {
   await renderPage();
   await metaPromise;
   // 首次加载如果是首页，确保 meta 就绪后触发预加载（renderPage 内那次可能 meta 未就绪）
-  if (State.currentView === 'home') startBgPreload();
+  if (State.currentView === 'map') startBgPreload();
 }
 
 function startBgPreload() {
@@ -53,7 +53,7 @@ async function renderPage() {
 
   window.scrollTo(0, 0);
 
-  if (view !== 'home' && view !== 'map' && _currentDestroyMap) {
+  if (view !== 'map' && _currentDestroyMap) {
     _currentDestroyMap();
     _currentDestroyMap = null;
   }
@@ -73,7 +73,7 @@ async function renderPage() {
   }
 
   // 首页渲染完成后，后台持续加载全站数据，加速其他页面打开
-  if (view === 'home') startBgPreload();
+  if (view === 'map') startBgPreload();
 
   UI.updateBreadcrumb();
   UI.updateActiveNav();

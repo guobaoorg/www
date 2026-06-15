@@ -35,7 +35,7 @@ export function renderClueCardsHTML(clues) {
 export async function initSatelliteMap(building) {
   const mapDivs = document.querySelectorAll('.quiz-satellite-map');
   const mapDiv = mapDivs[mapDivs.length - 1];
-  if (mapDiv) await UI.createSatelliteMap(mapDiv, building?.lat, building?.lng);
+  if (mapDiv) await UI.createSatelliteMap(mapDiv, building?.lat, building?.lng, building?.n);
 }
 
 export function colorChars(answer, correctName) {
@@ -50,8 +50,8 @@ export function greenChars(answer) {
 }
 
 function _quizInputs() {
-  const input = document.getElementById('quizAnswerInput') || document.getElementById('dailyQuizInput');
-  const submit = document.getElementById('quizSubmit') || document.getElementById('dailyQuizSubmit');
+  const input = document.getElementById('quizAnswerInput');
+  const submit = document.getElementById('quizSubmit');
   return { input, submit };
 }
 
@@ -59,7 +59,7 @@ export function disableQuizInputs() {
   const { input, submit } = _quizInputs();
   if (input) input.disabled = true;
   if (submit) submit.disabled = true;
-  ['quizMoreHint', 'dailyQuizMoreHint', 'quizSkip', 'quizReveal', 'dailyQuizReveal'].forEach(id => {
+  ['quizMoreHint', 'quizSkip', 'quizReveal'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });

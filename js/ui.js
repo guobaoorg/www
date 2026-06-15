@@ -1,6 +1,7 @@
 import { ensureLeaflet } from './leaflet.js';
 import { Config } from './core.js';
 import { State } from './core.js';
+import { Utils } from './utils.js';
 
 const UI = {
   setupTheme() {
@@ -35,7 +36,7 @@ const UI = {
   updateBreadcrumb() {
     const breadcrumbList = document.getElementById('breadcrumbList');
     if (!breadcrumbList) return;
-    let items = [{ name: '🏠 首页', href: '?page=home' }];
+    let items = [{ name: '🏠 首页', href: '?page=map' }];
     const v = State.currentView;
     if (v === 'provinces') items.push({ name: '🗺️ 省份' });
     else if (v === 'province' && State.currentProvince) {
@@ -96,25 +97,40 @@ const UI = {
     });
   },
 
-  async createSatelliteMap(mapDiv, lat, lng) {
-    if (!mapDiv || !lat || !lng) return;
-    await ensureLeaflet();
-    const map = L.map(mapDiv, {
-      center: [lat, lng], zoom: 15, zoomControl: true, attributionControl: false
-    });
-    const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom: 18, attribution: '© OpenStreetMap' });
-    const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: 19 });
-    const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom: 18, opacity: 0.7 });
-    const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom: 18, opacity: 0.6 });
+  // 创建带标准/卫星图层切换的地图，返回 { map, bounds } 方便调用方添加标记后 fitBounds
+  createMapWithLayers(mapEl, opts = {}) {
+    const L = window.L;
+    const map = L.map(mapEl, { zoomControl: true, attributionControl: false });
+    const { maxZoom = 18, minZoom = 3, satMaxZoom = maxZoom, roadOpacity = 0.7, labelOpacity = 0.6 } = opts;
+    const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom, minZoom, attribution: '© OpenStreetMap' });
+    const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: satMaxZoom, minZoom });
+    const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom, minZoom, opacity: roadOpacity });
+    const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom, minZoom, opacity: labelOpacity });
     const satGroup = L.layerGroup([sat, road, labels]);
     L.control.layers({ '标准': osm, '卫星': satGroup }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
     satGroup.addTo(map);
+    mapEl._fsTileLayers = { standard: osm, satellite: satGroup };
+    mapEl._fsMap = map;
+    return map;
+  },
+
+  async createSatelliteMap(mapDiv, lat, lng, buildingName) {
+    if (!mapDiv || !lat || !lng) return;
+    await ensureLeaflet();
+    const L = window.L;
+    if (!L) return;
+    const map = this.createMapWithLayers(mapDiv);
+    map.setView([lat, lng], 15);
     const markerIcon = L.divIcon({
       className: 'quiz-satellite-marker',
       html: '<div class="quiz-satellite-pin"></div><div class="quiz-satellite-pulse"></div>',
       iconSize: [20, 20], iconAnchor: [10, 10]
     });
     L.marker([lat, lng], { icon: markerIcon }).addTo(map);
+    Utils.enableMapFullscreen(mapDiv, () => map.invalidateSize(), buildingName ? (userLat, userLng) => {
+      const dist = Utils.haversineDistance(userLat, userLng, lat, lng);
+      return [{ name: buildingName, lat, lng, distance: dist, icon: '🏛️' }];
+    } : null);
     setTimeout(() => { map.invalidateSize(); }, 100);
   },
 

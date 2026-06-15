@@ -1,4 +1,4 @@
-import { HashSearch, State, Utils } from '../core.js';
+import { HashSearch, State, Utils, Config, UI, ensureLeaflet } from '../core.js';
 
 export async function render(container) {
   container.innerHTML = `
@@ -86,11 +86,65 @@ function runSearch(query, container) {
   }
   container.innerHTML = `
     <div class="search-results-count">找到 <strong>${results.length}</strong> 处相关建筑 <span class="search-query-text">"${query}"</span></div>
+    <div class="search-map" id="searchMap"></div>
     <div class="building-grid">${results.map(b => Utils.createBuildingCard(b, { matchReasons: b.matchReasons, maxTags: 4 })).join('')}</div>`;
+
+  // 初始化搜索结果地图
+  const coordsBuildings = results.filter(b => b.lat != null && b.lng != null);
+  if (coordsBuildings.length > 0) {
+    _initSearchMap(coordsBuildings);
+  }
 }
 
 function _startPreloadForSearch() {
   if (HashSearch.isBgActive()) return;
   const provinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
   HashSearch.startBgPreload(provinceIds);
+}
+
+async function _initSearchMap(buildings) {
+  const mapEl = document.getElementById('searchMap');
+  if (!mapEl) return;
+
+  await ensureLeaflet();
+  const L = window.L;
+  if (!L) return;
+
+  const map = UI.createMapWithLayers(mapEl);
+
+  const bounds = L.latLngBounds([]);
+  buildings.forEach(b => {
+    const ll = L.latLng(b.lat, b.lng);
+    bounds.extend(ll);
+    const markerIcon = L.divIcon({
+      html: `<div class="search-marker-dot"></div>`,
+      className: 'search-marker-container',
+      iconSize: [10, 10], iconAnchor: [5, 5]
+    });
+    const marker = L.marker(ll, { icon: markerIcon });
+    marker.bindPopup(
+      `<div class="map-popup">
+        <div class="map-popup-header"><strong>🏛️ ${b.n}</strong></div>
+        <div class="map-popup-body">
+          <div class="map-popup-info">
+            <span class="map-popup-district">📍 ${b.dn || ''}</span>
+          </div>
+          <a href="${Utils.generateBuildingHash(b)}" class="map-popup-link">查看详情 →</a>
+        </div>
+      </div>`,
+      { maxWidth: 240, className: 'map-popup-container' }
+    );
+    marker.addTo(map);
+  });
+
+  map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+
+  Utils.enableMapFullscreen(mapEl, () => map.invalidateSize(), (userLat, userLng) => {
+    return buildings.map(b => ({
+      name: b.n, lat: b.lat, lng: b.lng,
+      distance: Utils.haversineDistance(userLat, userLng, b.lat, b.lng),
+      icon: '🏛️',
+      detailUrl: Utils.generateBuildingHash(b)
+    })).sort((a, b) => a.distance - b.distance).slice(0, 5);
+  });
 }

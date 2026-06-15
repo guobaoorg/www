@@ -1,4 +1,4 @@
-import { HashSearch, Config, State, Utils } from '../core.js';
+import { HashSearch, Config, State, Utils, UI } from '../core.js';
 
 export async function render(container) {
   const buildingName = State.currentBuildingName;
@@ -47,6 +47,7 @@ export async function render(container) {
             </p>
           </div>
         </header>
+        <div class="building-detail-map" id="buildingDetailMap"></div>
         <div class="building-detail-sections">
           <div class="building-detail-section">
             <h3><span class="section-icon">🎬</span> 相关视频</h3>
@@ -93,6 +94,12 @@ export async function render(container) {
         <div class="building-grid">${relatedBuildings.map(b => Utils.createBuildingCard(b)).join('')}</div>
       </section>` : ''}
     </div>`;
+
+  // 初始化地图
+  if (building.lat != null && building.lng != null) {
+    const mapDiv = document.getElementById('buildingDetailMap');
+    if (mapDiv) UI.createSatelliteMap(mapDiv, building.lat, building.lng, building.n);
+  }
 }
 
 function getRelatedBuildings(building, limit = 4) {
