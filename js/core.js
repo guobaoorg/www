@@ -7,7 +7,7 @@ import { UI } from './ui.js';
 
 const HashSearch = {
   _cache: new Map(),
-  _cacheLimit: 200,
+  _cacheLimit: 500,
   _loadedData: new Set(),
   _pendingLoads: {},
 
@@ -39,7 +39,12 @@ const HashSearch = {
   },
 
   async loadProvinceData(provinceId) {
-    if (this._loadedData.has(provinceId)) return this._cache.get(`province:${provinceId}`);
+    if (this._loadedData.has(provinceId)) {
+      const cached = this._cache.get(`province:${provinceId}`);
+      if (cached) return cached;
+      // Cache evicted but _loadedData still set — re-fetch
+      this._loadedData.delete(provinceId);
+    }
     if (this._pendingLoads[provinceId]) return this._pendingLoads[provinceId];
 
     const manifest = await this._loadManifest();
@@ -61,17 +66,19 @@ const HashSearch = {
         }
       }
     } catch (_) {}
-    // 从网络加载加密数据
     const promise = (async () => {
-      const encrypted = await this.fetchJSON(`/_d/${encName}.dat`, true);
-      delete this._pendingLoads[provinceId];
-      if (encrypted) {
-        const data = await decryptData(encrypted);
-        this._loadedData.add(provinceId);
-        this._cacheSet(`province:${provinceId}`, data);
-        this._resolveDistrictNames(data);
-        try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
-        return data;
+      try {
+        const encrypted = await this.fetchJSON(`/_d/${encName}.dat`, true);
+        if (encrypted) {
+          const data = await decryptData(encrypted);
+          this._loadedData.add(provinceId);
+          this._cacheSet(`province:${provinceId}`, data);
+          this._resolveDistrictNames(data);
+          try { localStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() })); } catch (_) {}
+          return data;
+        }
+      } finally {
+        delete this._pendingLoads[provinceId];
       }
       return null;
     })();
@@ -110,14 +117,15 @@ const HashSearch = {
   _cachedLoadedCount: 0,
 
   getAllProvinceData() {
-    if (this._allProvinceCache && this._cachedLoadedCount === this._loadedData.size) return this._allProvinceCache;
+    const curSize = this._loadedData.size;
+    if (this._allProvinceCache && this._cachedLoadedCount === curSize) return this._allProvinceCache;
     const result = new Map();
     for (const id of this._loadedData) {
       const data = this._cache.get(`province:${id}`);
       if (data) result.set(id, data);
     }
     this._allProvinceCache = result;
-    this._cachedLoadedCount = this._loadedData.size;
+    this._cachedLoadedCount = curSize;
     return result;
   },
 
@@ -159,18 +167,29 @@ const HashSearch = {
     const lowerQuery = query.toLowerCase().trim();
     if (!lowerQuery) return [];
     const fieldLabels = this._fieldLabels;
+    const searchIndex = State._searchTextIndex;
     const results = [];
-    for (const item of items) {
+    for (let i = 0, ilen = items.length; i < ilen; i++) {
+      const item = items[i];
+      // Fast pre-filter using combined search index
+      if (searchIndex) {
+        const combined = searchIndex.get(item);
+        if (!combined || !combined.includes(lowerQuery)) continue;
+      }
       const reasons = [];
-      for (const field of fields) {
-        const val = item[field];
+      for (let f = 0, flen = fields.length; f < flen; f++) {
+        const val = item[fields[f]];
         if (!val) continue;
         let matched = false;
         if (typeof val === 'string') matched = val.toLowerCase().includes(lowerQuery);
-        else if (Array.isArray(val)) matched = val.some(v => typeof v === 'string' && v.toLowerCase().includes(lowerQuery));
-        if (matched) reasons.push(fieldLabels[field] || field + '匹配');
+        else if (Array.isArray(val)) {
+          for (let v = 0, vlen = val.length; v < vlen; v++) {
+            if (typeof val[v] === 'string' && val[v].toLowerCase().includes(lowerQuery)) { matched = true; break; }
+          }
+        }
+        if (matched) reasons.push(fieldLabels[fields[f]] || fields[f] + '匹配');
       }
-      if (reasons.length > 0) results.push({ ...item, matchReasons: reasons });
+      if (reasons.length > 0) results.push(Object.assign({}, item, { matchReasons: reasons }));
     }
     return results;
   },
@@ -178,7 +197,7 @@ const HashSearch = {
   _cacheSet(key, value) {
     if (this._cache.size >= this._cacheLimit) {
       const firstKey = this._cache.keys().next().value;
-      this._cache.delete(firstKey);
+      if (firstKey !== undefined) this._cache.delete(firstKey);
     }
     this._cache.set(key, value);
   },
@@ -189,6 +208,8 @@ const HashSearch = {
     this._pendingLoads = {};
     this._allProvinceCache = null;
     this._cachedLoadedCount = 0;
+    this._lastSearch = null;
+    this._cachedParams = null;
   },
 
   getCacheStats() {
@@ -196,7 +217,7 @@ const HashSearch = {
   },
 
   getLoadedProvinceIds() {
-    return new Set(this._loadedData);
+    return this._loadedData;
   },
 
   _bgActive: false,
@@ -210,20 +231,16 @@ const HashSearch = {
     this._bgActive = true;
     const batchSize = 8;
     try {
-      // 优先加载所有 data 下的省份数据
       if (provinceIds?.length) {
         for (let i = 0; i < provinceIds.length; i += batchSize) {
           const batch = provinceIds.slice(i, i + batchSize);
           const unloaded = batch.filter(id => !this._loadedData.has(id));
-          if (unloaded.length) {
-            await this.loadProvinces(unloaded);
-          }
+          if (unloaded.length) await this.loadProvinces(unloaded);
           await new Promise(r => setTimeout(r, 0));
         }
       }
-      // 所有省份数据加载完成后，再加载 trail 下的数据
       if (trailFiles?.length) {
-        const manifest = await this._loadManifest();
+        const manifest = this._manifest || await this._loadManifest();
         for (let i = 0; i < trailFiles.length; i += batchSize) {
           const batch = trailFiles.slice(i, i + batchSize);
           await Promise.all(batch.map(async f => {
@@ -521,33 +538,62 @@ const Config = {
   },
 
   _dynastyCache: null,
+  _dynastyKwMap: null,
+
+  _buildDynastyKwMap() {
+    this._dynastyKwMap = new Map();
+    for (const e of this.eras) {
+      for (const kw of e.keywords) this._dynastyKwMap.set(kw, e.id);
+    }
+  },
+
+  _dynastyYearRanges: null,
+
+  _buildDynastyYearRanges() {
+    this._dynastyYearRanges = this.eras.filter(e => isFinite(e.yearMin));
+  },
 
   getEarliestDynasty(eraStr) {
     if (!eraStr || eraStr === '待考' || eraStr.startsWith('不可考') || eraStr.startsWith('估计')) return null;
     if (this._dynastyCache?.has(eraStr)) return this._dynastyCache.get(eraStr);
     if (!this._dynastyCache) this._dynastyCache = new Map();
-    for (const e of this.eras) {
-      for (const kw of e.keywords) { if (eraStr.includes(kw)) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
+    if (!this._dynastyKwMap) this._buildDynastyKwMap();
+    for (const [kw, id] of this._dynastyKwMap) {
+      if (eraStr.includes(kw)) { this._dynastyCache.set(eraStr, id); return id; }
     }
-    const yearNums = [...eraStr.matchAll(/(\d{3,4})/g)].map(m => parseInt(m[1])).filter(y => y > 0 && y < 2030);
-    if (yearNums.length > 0) {
-      const year = Math.min(...yearNums);
-      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
+    if (!this._dynastyYearRanges) this._buildDynastyYearRanges();
+    const yearNums = eraStr.match(/(\d{3,4})/g);
+    if (yearNums) {
+      let minYear = Infinity;
+      for (let i = 0; i < yearNums.length; i++) {
+        const y = parseInt(yearNums[i]);
+        if (y > 0 && y < 2030 && y < minYear) minYear = y;
+      }
+      if (minYear < Infinity) {
+        for (let i = 0, len = this._dynastyYearRanges.length; i < len; i++) {
+          const e = this._dynastyYearRanges[i];
+          if (minYear >= e.yearMin && minYear <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; }
+        }
+      }
     }
     const centuryMatch = eraStr.match(/(\d{1,2})世纪/);
     if (centuryMatch) {
       const year = (parseInt(centuryMatch[1]) - 1) * 100 + 1;
-      for (const e of this.eras) { if (year >= e.yearMin && year <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; } }
+      for (let i = 0, len = this._dynastyYearRanges.length; i < len; i++) {
+        const e = this._dynastyYearRanges[i];
+        if (year >= e.yearMin && year <= e.yearMax) { this._dynastyCache.set(eraStr, e.id); return e.id; }
+      }
     }
     this._dynastyCache.set(eraStr, null);
     return null;
   },
 
   TILE_URLS: {
-    OSM: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    OSM_DE: 'https://tile.openstreetmap.de/{z}/{x}/{y}.png',
     SAT: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     ROAD: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}',
-    LABELS: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}'
+    LABELS: 'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+    OHM: 'https://tile.openhistoricalmap.org/{z}/{x}/{y}.png'
   },
 
   // 省份数据文件大小（KB），用于按文件大小从小到大预加载，优先填充小文件缓存
@@ -590,36 +636,43 @@ const State = {
   _allTagsCache: null,
   _tagBuildingsCache: {},
   _buildingNameIndex: null,
+  _searchTextIndex: null,
   _cachedLoadedCount: 0,
 
+  _metaPromise: null,
+
   async initMeta() {
-    // Try localStorage cache first for instant first render
-    const cacheKey = 'guobao_meta_v1';
-    try {
-      const cached = localStorage.getItem(cacheKey);
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        this._provinceMeta = parsed.provinces;
-        this._trailRegistry = parsed.trail;
+    if (this._metaPromise) return this._metaPromise;
+    this._metaPromise = (async () => {
+      // Try localStorage cache first for instant first render
+      const cacheKey = 'guobao_meta_v1';
+      try {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          this._provinceMeta = parsed.provinces;
+          this._trailRegistry = parsed.trail;
+        }
+      } catch (_) {}
+      try {
+        const manifest = await HashSearch.getManifest();
+        const [provRaw, regRaw] = await Promise.all([
+          HashSearch.fetchJSON(`/_d/${manifest.p.provinces}.dat`, true),
+          HashSearch.fetchJSON(`/_t/${manifest.t['registry.json']}.dat`, true)
+        ]);
+        const [provincesRes, trailRes] = await Promise.all([
+          provRaw ? decryptData(provRaw) : null,
+          regRaw ? decryptData(regRaw) : null
+        ]);
+        this._provinceMeta = provincesRes;
+        this._trailRegistry = trailRes;
+        try { localStorage.setItem(cacheKey, JSON.stringify({ provinces: provincesRes, trail: trailRes })); } catch (_) {}
+      } catch (e) {
+        console.error('Failed to load meta data:', e);
+        if (!this._provinceMeta) { this._provinceMeta = { provinces: [], protectionLabels: {} }; this._trailRegistry = []; }
       }
-    } catch (_) {}
-    try {
-      const manifest = await HashSearch.getManifest();
-      const [provRaw, regRaw] = await Promise.all([
-        HashSearch.fetchJSON(`/_d/${manifest.p.provinces}.dat`, true),
-        HashSearch.fetchJSON(`/_t/${manifest.t['registry.json']}.dat`, true)
-      ]);
-      const [provincesRes, trailRes] = await Promise.all([
-        provRaw ? decryptData(provRaw) : null,
-        regRaw ? decryptData(regRaw) : null
-      ]);
-      this._provinceMeta = provincesRes;
-      this._trailRegistry = trailRes;
-      try { localStorage.setItem(cacheKey, JSON.stringify({ provinces: provincesRes, trail: trailRes })); } catch (_) {}
-    } catch (e) {
-      console.error('Failed to load meta data:', e);
-      if (!this._provinceMeta) { this._provinceMeta = { provinces: [], protectionLabels: {} }; this._trailRegistry = []; }
-    }
+    })();
+    return this._metaPromise;
   },
 
   getProvinceMeta() { return this._provinceMeta; },
@@ -660,16 +713,21 @@ const State = {
     if (this._allBuildingsCache && currentLoadedCount === this._cachedLoadedCount) return this._allBuildingsCache;
     const all = [];
     this._buildingNameIndex = new Map();
+    this._searchTextIndex = new Map();
     const allData = HashSearch.getAllProvinceData();
     for (const [provinceId, data] of allData) {
       const provinceName = this.getProvinceName(provinceId);
       if (data.bs) {
         HashSearch._resolveDistrictNames(data);
-        for (const b of data.bs) {
+        const bs = data.bs;
+        for (let i = 0, len = bs.length; i < len; i++) {
+          const b = bs[i];
           b.p = provinceName;
           b.pid = provinceId;
           all.push(b);
-          this._buildingNameIndex.set(`${provinceName}${b.dn || ''}${b.n}`, b);
+          const key = `${provinceName}${b.dn || ''}${b.n}`;
+          this._buildingNameIndex.set(key, b);
+          this._searchTextIndex.set(b, [b.n, b.l, b.e, b.t, b.dn, (b.g||[]).join(' '), b.desc, b.hist, b.arch, b.feat].filter(Boolean).join('|').toLowerCase());
         }
       }
     }
@@ -681,8 +739,14 @@ const State = {
   getAllTags() {
     if (this._allTagsCache) return this._allTagsCache;
     const tagCount = {};
-    this.getAllBuildings().forEach(b => { if (b.g) b.g.forEach(tag => { tagCount[tag] = (tagCount[tag] || 0) + 1; }); });
-    this._allTagsCache = Object.entries(tagCount).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
+    const all = this.getAllBuildings();
+    for (let i = 0, len = all.length; i < len; i++) {
+      const g = all[i].g;
+      if (g) for (let j = 0, jlen = g.length; j < jlen; j++) tagCount[g[j]] = (tagCount[g[j]] || 0) + 1;
+    }
+    const entries = Object.entries(tagCount);
+    entries.sort((a, b) => b[1] - a[1]);
+    this._allTagsCache = entries.map(([name, count]) => ({ name, count }));
     return this._allTagsCache;
   },
 
@@ -690,7 +754,12 @@ const State = {
 
   getBuildingsByTag(tag) {
     if (this._tagBuildingsCache[tag]) return this._tagBuildingsCache[tag];
-    const result = this.getAllBuildings().filter(b => b.g && b.g.some(t => t === tag));
+    const all = this.getAllBuildings();
+    const result = [];
+    for (let i = 0, len = all.length; i < len; i++) {
+      const b = all[i];
+      if (b.g && b.g.indexOf(tag) !== -1) result.push(b);
+    }
     this._tagBuildingsCache[tag] = result;
     return result;
   },
@@ -701,12 +770,17 @@ const State = {
     const data = HashSearch.getProvinceData(provinceId);
     if (!data?.bs) return [];
     const provinceName = this.getProvinceName(provinceId);
-    return data.bs.filter(b => {
-      if (b.d !== districtId) return false;
-      b.p = b.p || provinceName;
-      b.pid = b.pid || provinceId;
-      return true;
-    });
+    const bs = data.bs;
+    const result = [];
+    for (let i = 0, len = bs.length; i < len; i++) {
+      const b = bs[i];
+      if (b.d === districtId) {
+        b.p = b.p || provinceName;
+        b.pid = b.pid || provinceId;
+        result.push(b);
+      }
+    }
+    return result;
   },
 
   getDistrictData(provinceId, districtId) {
@@ -724,32 +798,19 @@ const State = {
   findBuildingByFullPath(fullPath) {
     if (!fullPath) return null;
     if (this._buildingNameIndex?.has(fullPath)) return this._buildingNameIndex.get(fullPath);
-    const allBuildings = this.getAllBuildings();
-    let building = allBuildings.find(b => b.n === fullPath);
-    if (!building) building = allBuildings.find(b => { const dn = b.dn || ''; return `${b.p}${dn}${b.n}` === fullPath; });
-    if (!building) {
-      const allData = HashSearch.getAllProvinceData();
-      for (const [provinceId, data] of allData) {
-        if (!data.bs) continue;
-        const provinceName = this.getProvinceName(provinceId);
-        for (const b of data.bs) {
-          if (`${provinceName}${b.dn || ''}${b.n}` === fullPath) return { ...b, p: provinceName, pid: provinceId };
-        }
-      }
-    }
-    return building;
+    this.getAllBuildings();
+    return this._buildingNameIndex?.get(fullPath) || null;
   },
 
   resolveBuildingRef(buildingRef) {
     if (!buildingRef) return null;
     if (buildingRef.embedded) return buildingRef.embedded;
     const allBuildings = this.getAllBuildings();
-    const byName = allBuildings.find(b => b.n === buildingRef.n);
-    if (!byName) return null;
-    if (buildingRef.p && byName.pid !== buildingRef.p) {
-      return allBuildings.find(b => b.n === buildingRef.n && b.pid === buildingRef.p) || byName;
+    for (let i = 0, len = allBuildings.length; i < len; i++) {
+      const b = allBuildings[i];
+      if (b.n === buildingRef.n && (!buildingRef.p || b.pid === buildingRef.p)) return b;
     }
-    return byName;
+    return null;
   },
 
   clearCache() {
@@ -757,6 +818,7 @@ const State = {
     this._allTagsCache = null;
     this._tagBuildingsCache = {};
     this._buildingNameIndex = null;
+    this._searchTextIndex = null;
     this._cachedLoadedCount = 0;
   }
 };
@@ -780,7 +842,6 @@ const Router = {
 
   navigateTo(url) {
     window.history.pushState({}, '', url);
-    this.parseParams();
     window.dispatchEvent(new CustomEvent('route-change'));
   },
 

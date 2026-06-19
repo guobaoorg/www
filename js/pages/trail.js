@@ -1,10 +1,11 @@
 import { State, Utils } from '../core.js';
 
+const _typeLabels = { game: '🎮 游戏', novel: '📚 古典', journal: '📝 游记', drama: '🎭 戏曲', history: '📜 历史' };
+
 export function render(container) {
   const registry = State.getTrailRegistry() || [];
   const typeFilter = State.currentTrailType;
   const filtered = typeFilter ? registry.filter(t => t.type === typeFilter) : registry;
-  const typeLabels = { game: '🎮 游戏', novel: '📚 古典', journal: '📝 游记', drama: '🎭 戏曲', history: '📜 历史' };
   const isDark = State.theme === 'dark';
 
   container.innerHTML = `
@@ -13,7 +14,7 @@ export function render(container) {
       <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">玩游戏，听故事，走古道，看建筑——全方位的中国古建之旅</p>
       <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
         <a href="?page=trail" class="trail-filter-btn ${!typeFilter ? 'active' : ''}" data-nav>全部</a>
-        ${Object.entries(typeLabels).map(([type, label]) =>
+        ${Object.entries(_typeLabels).map(([type, label]) =>
           `<a href="?page=trail&type=${type}" class="trail-filter-btn ${typeFilter === type ? 'active' : ''}" data-nav>${label}</a>`
         ).join('')}
       </div>
@@ -23,7 +24,7 @@ export function render(container) {
             <div class="topic-card-icon" style="background: ${isDark ? Utils.darkenHexBg(trail.bgColor) : (trail.bgColor || '#f0f0f0')}; color: ${trail.color || '#666'};">${trail.icon}</div>
             <div class="topic-card-content">
               <div class="topic-card-title">${trail.title}</div>
-              <div class="topic-card-subtitle">${typeLabels[trail.type] || ''} · ${trail.subtitle}</div>
+              <div class="topic-card-subtitle">${_typeLabels[trail.type] || ''} · ${trail.subtitle}</div>
               <div class="topic-card-desc">${trail.description}</div>
             </div>
           </div>`).join('')}

@@ -76,8 +76,7 @@ const UI = {
       items.push({ name: '👣 足迹', href: '?page=trail' });
       const trail = State.getTrailRegistry()?.find(t => t.id === State.currentTrailId);
       if (trail) {
-        const _tl = { game: '🎮 游戏', novel: '📚 古典', journal: '📝 游记', drama: '🎭 戏曲', history: '📜 历史' };
-        if (trail.type && _tl[trail.type]) items.push({ name: _tl[trail.type], href: `?page=trail&type=${trail.type}` });
+          if (trail.type && _tlMap[trail.type]) items.push({ name: _tlMap[trail.type], href: `?page=trail&type=${trail.type}` });
         items.push({ name: `${trail.icon} ${trail.title}` });
       }
     }
@@ -97,20 +96,52 @@ const UI = {
     });
   },
 
-  // 创建带标准/卫星图层切换的地图，返回 { map, bounds } 方便调用方添加标记后 fitBounds
+  // 创建带街道/卫星/历史图图层切换的地图
   createMapWithLayers(mapEl, opts = {}) {
     const L = window.L;
     const map = L.map(mapEl, { zoomControl: true, attributionControl: false });
     const { maxZoom = 18, minZoom = 3, satMaxZoom = maxZoom, roadOpacity = 0.7, labelOpacity = 0.6 } = opts;
-    const osm = L.tileLayer(Config.TILE_URLS.OSM, { maxZoom, minZoom, attribution: '© OpenStreetMap' });
+    const street = L.tileLayer(Config.TILE_URLS.OSM_DE, { maxZoom, minZoom });
     const sat = L.tileLayer(Config.TILE_URLS.SAT, { maxZoom: satMaxZoom, minZoom });
     const road = L.tileLayer(Config.TILE_URLS.ROAD, { maxZoom, minZoom, opacity: roadOpacity });
     const labels = L.tileLayer(Config.TILE_URLS.LABELS, { maxZoom, minZoom, opacity: labelOpacity });
     const satGroup = L.layerGroup([sat, road, labels]);
-    L.control.layers({ '标准': osm, '卫星': satGroup }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
+    const historical = L.tileLayer(Config.TILE_URLS.OHM, { maxZoom: 18, minZoom: 3 });
+    L.control.layers({ '街道': street, '卫星': satGroup, '历史': historical }, null, { position: 'bottomleft', collapsed: true }).addTo(map);
     satGroup.addTo(map);
-    mapEl._fsTileLayers = { standard: osm, satellite: satGroup };
+
+    // 左下图层选择框图标：随当前底图切换
+    const CTRL_ICONS = { street: '🗺️', satellite: '🛰️', historical: '📜' };
+    let _toggleEl = null;
+    const _updateToggle = (name) => {
+      if (!_toggleEl) _toggleEl = map.getContainer().querySelector('.leaflet-control-layers-toggle');
+      if (_toggleEl) _toggleEl.innerHTML = CTRL_ICONS[name] || '';
+    };
+    setTimeout(() => _updateToggle('satellite'), 0);
+
+    // 右下角动态版权信息：显示当前激活底图的版权
+    const ATTR_TEXT = {
+      street: '© <a href="https://www.openstreetmap.de">OSM</a>',
+      satellite: '© <a href="https://www.esri.com">Esri</a>',
+      historical: '© <a href="https://www.openhistoricalmap.org">OpenHistoricalMap</a>'
+    };
+    const NAME_MAP = { '街道': 'street', '卫星': 'satellite', '历史': 'historical' };
+    const attrDiv = L.DomUtil.create('div', 'leaflet-control-attribution');
+    const attrCtrl = L.control({ position: 'bottomright' });
+    attrCtrl.onAdd = () => attrDiv;
+    attrCtrl.addTo(map);
+    const _updateAttr = (name) => { attrDiv.innerHTML = ATTR_TEXT[name] || ''; };
+    _updateAttr('satellite');
+
+    map.on('baselayerchange', (e) => {
+      const name = NAME_MAP[e.name] || 'satellite';
+      _updateToggle(name);
+      _updateAttr(name);
+    });
+
+    mapEl._fsTileLayers = { standard: street, satellite: satGroup, historical };
     mapEl._fsMap = map;
+    mapEl._updateAttr = _updateAttr;
     return map;
   },
 
@@ -155,5 +186,7 @@ const UI = {
     script.textContent = JSON.stringify(ld);
   }
 };
+
+const _tlMap = { game: '🎮 游戏', novel: '📚 古典', journal: '📝 游记', drama: '🎭 戏曲', history: '📜 历史' };
 
 export { UI };

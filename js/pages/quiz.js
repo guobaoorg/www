@@ -42,8 +42,7 @@ let _loadedBuildingKey = null;
 let _cachedCandidates = null;
 let _cachedFilterProvince = 'all';
 let _cachedFilterEra = 'all';
-let _cachedProvinceNameFn = null;
-const _getProvinceName = () => { if (!_cachedProvinceNameFn) _cachedProvinceNameFn = State.getProvinceName.bind(State); return _cachedProvinceNameFn; };
+const _getProvinceName = Utils.getProvinceNameFn;
 
 function _saveState() {
   try {
@@ -95,10 +94,8 @@ function _pickRandomBuilding() {
   return available[Math.floor(Math.random() * available.length)];
 }
 
-function _shortProvince(name) {
-  const map = { '内蒙古自治区': '内蒙古', '广西壮族自治区': '广西', '西藏自治区': '西藏', '宁夏回族自治区': '宁夏', '新疆维吾尔自治区': '新疆', '香港特别行政区': '香港', '澳门特别行政区': '澳门' };
-  return map[name] || name;
-}
+const _provinceShortMap = { '内蒙古自治区': '内蒙古', '广西壮族自治区': '广西', '西藏自治区': '西藏', '宁夏回族自治区': '宁夏', '新疆维吾尔自治区': '新疆', '香港特别行政区': '香港', '澳门特别行政区': '澳门' };
+function _shortProvince(name) { return _provinceShortMap[name] || name; }
 
 function _shortEra(name) { return name === '中华人民共和国' ? '共和国' : name; }
 

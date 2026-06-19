@@ -1,5 +1,5 @@
-import { Config } from './core.js';
-import { State } from './core.js';
+import { Config, State, UI } from './core.js';
+import { ensureLeaflet } from './leaflet.js';
 
 const Utils = {
 
@@ -84,13 +84,9 @@ const Utils = {
 
   sanitizeClueText(text, building, stageKey) {
     if (!text || !building) return text;
-    let result = text;
-    // Simple replacements using replaceAll (no regex overhead)
-    result = result.replaceAll(building.n, '该建筑');
+    let result = text.replaceAll(building.n, '该建筑');
     const coreName = building.n.replace(/(故城|遗址|古城|墓群|陵墓|石窟|寺庙|塔|桥|村|镇|山|河|湖|海|旧址|古墓|建筑群|衙门|祠堂|民居|大院|庄园|关隘|长城|烽燧|驿站|会馆|书院|孔庙|文庙|道观|佛寺|寺院|庵堂|宫观|教堂|清真寺|墓园|石刻|碑林|造像|经幢|古建|群)$/, '');
-    if (coreName !== building.n && coreName.length >= 2) {
-      result = result.replaceAll(coreName, '该建筑');
-    }
+    if (coreName !== building.n && coreName.length >= 2) result = result.replaceAll(coreName, '该建筑');
     if (stageKey && stageKey !== 'location' && stageKey !== 'era') {
       if (building.p) result = result.replaceAll(building.p, '该地区');
       if (building.dn) result = result.replaceAll(building.dn, '当地');
@@ -118,7 +114,8 @@ const Utils = {
   },
 
   _cardPriority: {'世界遗产':1,'古建筑':1,'近代建筑':1,'寺庙':1,'宫殿':1,'园林':1,'陵墓':1,'石窟':1,'塔':1,'桥梁':1,'革命遗址':1,'名人故居':1},
-  _cachedProvinceNameFn: null,
+
+  _fmtDist(d) { return d < 1 ? `${Math.round(d * 1000)}m` : `${d.toFixed(1)}km`; },
 
   haversineDistance(lat1, lng1, lat2, lng2) {
     const R = 6371;
@@ -129,46 +126,33 @@ const Utils = {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   },
 
+  _getProvinceNameCached() {
+    return this.getProvinceNameFn();
+  },
+
   createBuildingCard(building, opts = {}) {
     const { matchReasons, maxTags = 5 } = opts;
-    if (!this._cachedProvinceNameFn) this._cachedProvinceNameFn = State.getProvinceName.bind(State);
-    const href = this.generateBuildingHash(building, this._cachedProvinceNameFn);
+    const href = this.generateBuildingHash(building, this._getProvinceNameCached());
     const provinceStyle = Config.getProvinceStyle(building.pid);
     const protectionBadge = this.generateProtectionBadge(building);
-    const shortDesc = building.desc ? (building.desc.length > 60 ? building.desc.slice(0, 60) : building.desc) : '';
-    const priority = this._cardPriority;
+    const desc = building.desc;
+    const shortDesc = desc ? (desc.length > 60 ? desc.slice(0, 60) : desc) : '';
     const tags = building.g || [];
-    const sortedTags = tags.length > maxTags ? [...tags].sort((a, b) => {
-      const ap = priority[a]|0, bp = priority[b]|0;
-      return bp - ap;
-    }) : tags;
-    const matchReasonsHtml = matchReasons?.length
-      ? `<div class="match-reasons">${matchReasons.map(r => `<span class="match-reason">${r}</span>`).join('')}</div>` : '';
-    return `
-    <div class="building-card" data-href="${href}" style="border-left-color: ${provinceStyle.color};">
-      <div class="building-card-header" style="background: ${provinceStyle.bgColor};">
-        <div class="building-card-header-left">
-          <div class="building-province-icon" style="color: ${provinceStyle.color};">${provinceStyle.icon}</div>
-          <div class="building-district">${building.dn === '跨省文物保护单位' ? '跨省' : building.dn}</div>
-        </div>
-        ${protectionBadge}
-      </div>
-      <div class="building-content">
-        <h3 class="building-title">${building.n}</h3>
-        ${matchReasonsHtml}
-        <div class="building-meta">
-          <span class="building-era">📅 ${building.e}</span>
-          <span class="building-type">${this.truncateText(building.t, 12)}</span>
-        </div>
-        <p class="building-desc">${shortDesc}</p>
-        <div class="building-tags">
-          ${sortedTags.slice(0, maxTags).map((tag, idx) => {
-            const ts = Config.getTagStyle(tag, idx);
-            return `<span class="building-tag" style="background: ${ts.bg}; color: ${ts.color};">${ts.icon} ${tag}</span>`;
-          }).join('')}
-        </div>
-      </div>
-    </div>`;
+    const maxT = maxTags;
+    const tagCount = tags.length;
+    let sortedTags = tags;
+    if (tagCount > maxT) {
+      const priority = this._cardPriority;
+      sortedTags = [...tags].sort((a, b) => (priority[b] || 0) - (priority[a] || 0));
+    }
+    const matchHtml = matchReasons?.length ? `<div class="match-reasons">${matchReasons.map(r => `<span class="match-reason">${r}</span>`).join('')}</div>` : '';
+    const dn = building.dn === '跨省文物保护单位' ? '跨省' : building.dn;
+    const t12 = this.truncateText(building.t, 12);
+    const tagsHtml = sortedTags.slice(0, maxT).map((tag, idx) => {
+      const ts = Config.getTagStyle(tag, idx);
+      return `<span class="building-tag" style="background:${ts.bg};color:${ts.color};">${ts.icon} ${tag}</span>`;
+    }).join('');
+    return `<div class="building-card" data-href="${href}" style="border-left-color:${provinceStyle.color};"><div class="building-card-header" style="background:${provinceStyle.bgColor};"><div class="building-card-header-left"><div class="building-province-icon" style="color:${provinceStyle.color};">${provinceStyle.icon}</div><div class="building-district">${dn}</div></div>${protectionBadge}</div><div class="building-content"><h3 class="building-title">${building.n}</h3>${matchHtml}<div class="building-meta"><span class="building-era">📅 ${building.e}</span><span class="building-type">${t12}</span></div><p class="building-desc">${shortDesc}</p><div class="building-tags">${tagsHtml}</div></div></div>`;
   },
 
   // 全屏地图功能：注入展开/关闭/定位按钮，返回 invalidate 回调
@@ -190,11 +174,14 @@ const Utils = {
     `;
     containerEl.appendChild(controls);
 
-    // 距离面板
+    // 距离面板（使用事件代理监听折叠）
     const distPanel = document.createElement('div');
     distPanel.className = 'map-fs-dist-panel';
     distPanel.style.display = 'none';
     containerEl.appendChild(distPanel);
+    distPanel.addEventListener('click', (e) => {
+      if (e.target.closest('.map-fs-dist-header')) distPanel.classList.toggle('collapsed');
+    });
 
     let _userMarker = null;
     let _geoWatchId = null;
@@ -224,39 +211,41 @@ const Utils = {
 
     const geoBtn = controls.querySelector('.map-fs-geo');
     const layerBtn = controls.querySelector('.map-fs-layer-btn');
-    let _isSatellite = false;
+    const LAYER_NAMES = ['standard', 'satellite', 'historical'];
+    const LAYER_ICONS = ['🗺️', '🛰️', '📜'];
+    let _layerIndex = 1;
 
     // 自动检测初始图层状态
     if (containerEl._fsTileLayers) {
       const tl = containerEl._fsTileLayers;
-      if (tl.standard && tl.satellite) {
-        _isSatellite = !tl.standard._map && tl.satellite._map;
-        layerBtn.textContent = _isSatellite ? '🛰️' : '🗺️';
-      }
+      if (tl.satellite?._map) _layerIndex = 1;
+      else if (tl.standard?._map) _layerIndex = 0;
+      else if (tl.historical?._map) _layerIndex = 2;
+      layerBtn.textContent = LAYER_ICONS[_layerIndex];
     }
 
-    // 图层切换
+    // 图层切换（循环切换：街道 → 卫星 → 历史 → 街道）
     layerBtn.addEventListener('click', () => {
       const tileLayers = containerEl._fsTileLayers;
       if (!tileLayers) return;
       const mapInstance = _findLeafletMap(containerEl);
       if (!mapInstance) return;
 
-      _isSatellite = !_isSatellite;
-      if (_isSatellite) {
-        tileLayers.standard && mapInstance.removeLayer(tileLayers.standard);
-        tileLayers.satellite && mapInstance.addLayer(tileLayers.satellite);
-        layerBtn.textContent = '🛰️';
-      } else {
-        tileLayers.satellite && mapInstance.removeLayer(tileLayers.satellite);
-        tileLayers.standard && mapInstance.addLayer(tileLayers.standard);
-        layerBtn.textContent = '🗺️';
+      const prev = LAYER_NAMES[_layerIndex];
+      _layerIndex = (_layerIndex + 1) % LAYER_NAMES.length;
+      const next = LAYER_NAMES[_layerIndex];
+      if (prev !== next) {
+        if (tileLayers[prev]) mapInstance.removeLayer(tileLayers[prev]);
+        if (tileLayers[next]) mapInstance.addLayer(tileLayers[next]);
       }
+      layerBtn.textContent = LAYER_ICONS[_layerIndex];
+      if (containerEl._updateAttr) containerEl._updateAttr(next);
     });
 
     const _stopGeolocation = () => {
       if (_geoWatchId) { navigator.geolocation.clearWatch(_geoWatchId); _geoWatchId = null; }
-      if (_userMarker && _userMarker._map) { _userMarker.remove(); _userMarker = null; }
+      if (_userMarker && _userMarker._map) _userMarker.remove();
+      _userMarker = null;
       _clearNearbyMarkers();
       geoBtn.classList.remove('active');
       geoBtn.textContent = '📍';
@@ -264,7 +253,10 @@ const Utils = {
     };
 
     const _clearNearbyMarkers = () => {
-      _nearbyMarkers.forEach(m => { if (m._map) m.remove(); });
+      for (let i = 0; i < _nearbyMarkers.length; i++) {
+        const m = _nearbyMarkers[i];
+        if (m._map) m.remove();
+      }
       _nearbyMarkers = [];
     };
 
@@ -279,127 +271,116 @@ const Utils = {
 
       _clearNearbyMarkers();
       const L = window.L;
+      const top5 = buildings.slice(0, 5);
 
-      // 添加距离标记
-      buildings.slice(0, 5).forEach((b, i) => {
-        if (!b.lat || !b.lng) return;
-        const distLabel = b.distance < 1
-          ? `${Math.round(b.distance * 1000)}m`
-          : `${b.distance.toFixed(1)}km`;
+      for (let i = 0; i < top5.length; i++) {
+        const b = top5[i];
+        if (!b.lat || !b.lng) continue;
         const icon = L.divIcon({
-          html: `<div class="map-fs-dist-marker">${distLabel}</div>`,
+          html: `<div class="map-fs-dist-marker">${this._fmtDist(b.distance)}</div>`,
           className: 'map-fs-dist-marker-container',
           iconSize: [60, 22], iconAnchor: [30, 28]
         });
-        const m = L.marker([b.lat, b.lng], { icon, interactive: false, zIndexOffset: 5000 + i }).addTo(mapInstance);
-        _nearbyMarkers.push(m);
-      });
+        _nearbyMarkers.push(L.marker([b.lat, b.lng], { icon, interactive: false, zIndexOffset: 5000 + i }).addTo(mapInstance));
+      }
 
-      distPanel.innerHTML = `
-        <div class="map-fs-dist-header">
-          <div class="map-fs-dist-title">📍 已定位 · 附近国保</div>
-          <button class="map-fs-dist-toggle" aria-label="折叠面板">▼</button>
-        </div>
-        ${buildings.slice(0, 5).map(b => {
-          const distStr = b.distance < 1
-            ? `${Math.round(b.distance * 1000)}m`
-            : `${b.distance.toFixed(1)}km`;
-          return `<a class="map-fs-dist-item" ${b.detailUrl ? `href="${b.detailUrl}" target="_blank"` : ''}>
-            <span class="map-fs-dist-icon">${b.icon || '🏛️'}</span>
-            <span class="map-fs-dist-name">${b.name}</span>
-            <span class="map-fs-dist-val">${distStr}</span>
-          </a>`;
-        }).join('')}
-      `;
+      distPanel.innerHTML = `<div class="map-fs-dist-header"><div class="map-fs-dist-title">📍 已定位 · 附近国保</div><button class="map-fs-dist-toggle" aria-label="折叠面板">▼</button></div>${top5.map(b => `<a class="map-fs-dist-item"${b.detailUrl ? ` href="${b.detailUrl}" target="_blank"` : ''}><span class="map-fs-dist-icon">${b.icon || '🏛️'}</span><span class="map-fs-dist-name">${b.name}</span><span class="map-fs-dist-val">${this._fmtDist(b.distance)}</span></a>`).join('')}`;
       distPanel.style.display = 'block';
 
-      // 折叠/展开切换
-      distPanel.querySelector('.map-fs-dist-header').addEventListener('click', () => {
-        distPanel.classList.toggle('collapsed');
-      });
     };
 
     const _findLeafletMap = (el) => el._fsMap || null;
 
+    const _geoBtnMsg = (msg, ms) => { geoBtn.textContent = msg; if (ms) setTimeout(() => { geoBtn.textContent = '📍'; }, ms); };
+
     geoBtn.addEventListener('click', () => {
-      if (_geoWatchId) { _stopGeolocation(); geoBtn.classList.remove('active'); return; }
-
-      // 安全上下文检测：移动端定位需要 HTTPS 或 localhost
-      if (!window.isSecureContext) {
-        geoBtn.textContent = '📍 需HTTPS';
-        setTimeout(() => { geoBtn.textContent = '📍'; }, 2500);
-        return;
-      }
-
-      if (!navigator.geolocation) {
-        geoBtn.textContent = '📍 不支持';
-        setTimeout(() => { geoBtn.textContent = '📍'; }, 2000);
-        return;
-      }
+      if (_geoWatchId) { _stopGeolocation(); return; }
+      if (!window.isSecureContext) { _geoBtnMsg('📍 需HTTPS', 2500); return; }
+      if (!navigator.geolocation) { _geoBtnMsg('📍 不支持', 2000); return; }
 
       geoBtn.classList.add('map-fs-geo-pulse');
       geoBtn.textContent = '📍 定位中...';
-
       const L = window.L;
-      if (!L) { geoBtn.textContent = '📍'; geoBtn.classList.remove('map-fs-geo-pulse'); return; }
-
       const mapInstance = _findLeafletMap(containerEl);
-      if (!mapInstance) { geoBtn.textContent = '📍'; geoBtn.classList.remove('map-fs-geo-pulse'); return; }
+      if (!L || !mapInstance) { _geoBtnMsg('📍', 0); geoBtn.classList.remove('map-fs-geo-pulse'); return; }
 
       const _onPosition = (pos) => {
         geoBtn.classList.remove('map-fs-geo-pulse');
         geoBtn.classList.add('active');
         geoBtn.textContent = '📍';
         const latlng = L.latLng(pos.coords.latitude, pos.coords.longitude);
-        if (_userMarker) {
-          _userMarker.setLatLng(latlng);
-        } else {
-          const icon = L.divIcon({ className: 'user-location-dot', iconSize: [16, 16], iconAnchor: [8, 8] });
-          _userMarker = L.marker(latlng, { icon, zIndexOffset: 10000 }).addTo(mapInstance);
-        }
+        if (_userMarker) _userMarker.setLatLng(latlng);
+        else _userMarker = L.marker(latlng, { icon: L.divIcon({ className: 'user-location-dot', iconSize: [16, 16], iconAnchor: [8, 8] }), zIndexOffset: 10000 }).addTo(mapInstance);
 
-        // 获取附近国宝并调整视野同时显示用户位置和国宝位置
         if (getNearby) {
           const buildings = getNearby(pos.coords.latitude, pos.coords.longitude);
           if (buildings && buildings.length > 0) {
             const bounds = L.latLngBounds([latlng]);
-            buildings.slice(0, 5).forEach(b => {
+            for (let i = 0; i < buildings.length && i < 5; i++) {
+              const b = buildings[i];
               if (b.lat && b.lng) bounds.extend(L.latLng(b.lat, b.lng));
-            });
+            }
             mapInstance.fitBounds(bounds, { padding: [50, 50], maxZoom: 15 });
-          } else {
-            mapInstance.setView(latlng, Math.max(mapInstance.getZoom(), 14));
-          }
-        } else {
-          mapInstance.setView(latlng, Math.max(mapInstance.getZoom(), 14));
-        }
-
+          } else mapInstance.setView(latlng, Math.max(mapInstance.getZoom(), 14));
+        } else mapInstance.setView(latlng, Math.max(mapInstance.getZoom(), 14));
         _updateDistPanel(pos.coords.latitude, pos.coords.longitude, mapInstance);
       };
 
       const _onError = (err) => {
         geoBtn.classList.remove('map-fs-geo-pulse');
         if (_geoWatchId) { navigator.geolocation.clearWatch(_geoWatchId); _geoWatchId = null; }
-        switch (err.code) {
-          case err.PERMISSION_DENIED: geoBtn.textContent = '📍 已拒绝'; break;
-          case err.POSITION_UNAVAILABLE: geoBtn.textContent = '📍 无信号'; break;
-          case err.TIMEOUT: geoBtn.textContent = '📍 超时'; break;
-          default: geoBtn.textContent = '📍 定位失败';
-        }
-        setTimeout(() => { geoBtn.textContent = '📍'; }, 2500);
+        const msgs = { 1: '📍 已拒绝', 2: '📍 无信号', 3: '📍 超时' };
+        _geoBtnMsg(msgs[err.code] || '📍 定位失败', 2500);
       };
 
-      // 先用 getCurrentPosition 触发权限弹窗（移动端首次更可靠），再 watch
       navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          _onPosition(pos);
-          // 首次成功后开启持续追踪
-          _geoWatchId = navigator.geolocation.watchPosition(_onPosition, _onError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 });
-        },
-        (err) => { _onError(err); },
+        pos => { _onPosition(pos); _geoWatchId = navigator.geolocation.watchPosition(_onPosition, _onError, { enableHighAccuracy: true, timeout: 15000, maximumAge: 30000 }); },
+        _onError,
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
       );
     });
+  },
+
+  // Shared province name function (avoids duplication across files)
+  getProvinceNameFn() {
+    if (!this._provinceNameFn) this._provinceNameFn = State.getProvinceName.bind(State);
+    return this._provinceNameFn;
+  },
+
+  // Shared simple marker creation (eliminates duplication in 5+ page modules)
+  createSimpleMarker(building, opts = {}) {
+    const L = window.L;
+    if (!L) return null;
+    const { popupHTML, className = 'marker-dot', containerClass = 'marker-container', iconSize = 10, maxWidth = 240 } = opts;
+    const ll = L.latLng(building.lat, building.lng);
+    const divIcon = L.divIcon({ html: `<div class="${className}"></div>`, className: containerClass, iconSize: [iconSize, iconSize], iconAnchor: [iconSize / 2, iconSize / 2] });
+    const marker = L.marker(ll, { icon: divIcon });
+    marker.bindTooltip(building.n, { direction: 'top', offset: L.point(0, -iconSize / 2 - 4), className: 'rm-tooltip' });
+    if (popupHTML) marker.bindPopup(popupHTML, { maxWidth, className: 'map-popup-container' });
+    return marker;
+  },
+
+  // Setup a simple building map with markers (replaces 5+ nearly identical functions)
+  async setupBuildingMap(mapEl, buildings, opts = {}) {
+    if (!mapEl || !buildings?.length) return;
+    await ensureLeaflet();
+    const L = window.L;
+    if (!L) return;
+    const map = UI.createMapWithLayers(mapEl);
+    const bounds = L.latLngBounds([]);
+    const _pfn = this.getProvinceNameFn();
+    const _hash = b => this.generateBuildingHash(b, _pfn);
+    const defaultPopup = b => `<div class="map-popup"><div class="map-popup-header"><strong>🏛️ ${b.n}</strong></div><div class="map-popup-body"><a href="${_hash(b)}" class="map-popup-link">查看详情 →</a></div></div>`;
+    const popupBuilder = opts.popupBuilder ? b => opts.popupBuilder(b, _hash) : defaultPopup;
+    buildings.forEach(b => {
+      bounds.extend(L.latLng(b.lat, b.lng));
+      const marker = this.createSimpleMarker(b, { popupHTML: popupBuilder(b) });
+      if (marker) marker.addTo(map);
+    });
+    map.fitBounds(bounds, { padding: [30, 30], maxZoom: opts.maxZoom || 14 });
+    this.enableMapFullscreen(mapEl, () => map.invalidateSize(), (userLat, userLng) => buildings.map(b => ({
+      name: b.n, lat: b.lat, lng: b.lng, distance: this.haversineDistance(userLat, userLng, b.lat, b.lng), icon: '🏛️', detailUrl: _hash(b)
+    })).sort((a, b) => a.distance - b.distance).slice(0, 5));
   }
 };
 

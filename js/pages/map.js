@@ -5,14 +5,31 @@ let _markerCluster = null;
 let _mapMarkers = [];
 let _activeEraFilter = 'all';
 let _activeCategoryFilter = 'all';
-let _filteredMarkerCount = 0;
-let _cachedProvinceNameFn = null;
-const _getProvinceName = () => { if (!_cachedProvinceNameFn) _cachedProvinceNameFn = State.getProvinceName.bind(State); return _cachedProvinceNameFn; };
+const _el = {};
+
+function _nearbyCallback(userLat, userLng) {
+    if (!_mapMarkers.length) return [];
+    const category = Config.buildingCategories;
+    return _mapMarkers.reduce((acc, m) => {
+      const ll = m.marker.getLatLng();
+      if (!ll) return acc;
+      const b = m.marker._building || {};
+      const cat = category[m.categoryKey];
+      if (!b.n) return acc;
+      acc.push({ name: b.n, lat: ll.lat, lng: ll.lng, distance: Utils.haversineDistance(userLat, userLng, ll.lat, ll.lng), icon: cat?.icon || '🏛️', detailUrl: `?page=building&name=${encodeURIComponent((b.p||'')+(b.dn||'')+b.n)}&pid=${b.pid||''}` });
+      return acc;
+    }, []).sort((a, b) => a.distance - b.distance).slice(0, 5);
+}
 
 export async function render(container) {
   _destroyMap();
   _activeEraFilter = 'all';
   _activeCategoryFilter = 'all';
+
+  // 确保省份元数据已加载，否则无缓存首次访问时 allProvinceIds 只有 ['cross']
+  if (!State.getProvinceMeta()) {
+    await State.initMeta();
+  }
 
   let allProvinceIds = [...(State.getProvinceMeta()?.provinces?.map(p => p.id) || []), 'cross'];
 
@@ -65,47 +82,26 @@ export async function render(container) {
       </div>
     </div>`;
 
-  const timeline = document.getElementById('mapTimeline');
-  if (timeline) {
-    timeline.addEventListener('click', e => {
-      const allBtn = e.target.closest('.era-timeline-all');
-      const block = e.target.closest('.era-timeline-block');
-      if (allBtn) { _setEraFilter('all'); return; }
-      if (!block || block.classList.contains('empty')) return;
-      const eraId = block.dataset.era;
-      if (eraId) _setEraFilter(eraId);
-    });
-  }
+  _cacheDOM();
+  _el.timeline?.addEventListener('click', e => {
+    const allBtn = e.target.closest('.era-timeline-all');
+    const block = e.target.closest('.era-timeline-block');
+    if (allBtn) { _setEraFilter('all'); return; }
+    if (!block || block.classList.contains('empty')) return;
+    const eraId = block.dataset.era;
+    if (eraId) _setEraFilter(eraId);
+  });
 
-  const legendEl = document.getElementById('mapLegend');
-  if (legendEl) {
-    legendEl.addEventListener('click', e => {
-      const item = e.target.closest('.map-legend-item');
-      if (!item) return;
-      const cat = item.dataset.cat;
-      legendEl.querySelectorAll('.map-legend-item').forEach(el => el.classList.remove('active'));
-      item.classList.add('active');
-      _setCategoryFilter(cat);
-    });
-  }
+  _el.legend?.addEventListener('click', e => {
+    const item = e.target.closest('.map-legend-item');
+    if (!item) return;
+    const cat = item.dataset.cat;
+    _el.legend.querySelectorAll('.map-legend-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+    _setCategoryFilter(cat);
+  });
 
-  const mapEl = document.getElementById('mapFull');
-  if (mapEl) { await ensureLeaflet(); _initMap(mapEl); Utils.enableMapFullscreen(mapEl, () => _map?.invalidateSize(), (userLat, userLng) => {
-    if (!_mapMarkers.length) return [];
-    const category = Config.buildingCategories;
-    return _mapMarkers
-      .map(m => {
-        const ll = m.marker.getLatLng();
-        if (!ll) return null;
-        const dist = Utils.haversineDistance(userLat, userLng, ll.lat, ll.lng);
-        const b = m.marker._building || {};
-        const cat = category[m.categoryKey];
-        return { name: b.n, lat: ll.lat, lng: ll.lng, distance: dist, icon: cat?.icon || '🏛️', detailUrl: Utils.generateBuildingHash({ ...b, lat: ll.lat, lng: ll.lng }) };
-      })
-      .filter(b => b && b.name)
-      .sort((a, b) => a.distance - b.distance)
-      .slice(0, 5);
-  }); }
+  if (_el.mapFull) { await ensureLeaflet(); _initMap(_el.mapFull); Utils.enableMapFullscreen(_el.mapFull, () => _map?.invalidateSize(), _nearbyCallback); }
   _loadMapDataAsync(allProvinceIds);
 }
 
@@ -140,24 +136,34 @@ function _passesFilters(categoryKey, eraId) {
          (_activeEraFilter === 'all' || (eraId && eraId === _activeEraFilter));
 }
 
+function _cacheDOM() {
+  _el.timeline = document.getElementById('mapTimeline');
+  _el.legend = document.getElementById('mapLegend');
+  _el.mapFull = document.getElementById('mapFull');
+  _el.statTotal = document.getElementById('mapStatTotal');
+  _el.statProvinces = document.getElementById('mapStatProvinces');
+  _el.statLoaded = document.getElementById('mapStatLoaded');
+  _el.statLoading = document.getElementById('mapStatLoading');
+  _el.progressFill = document.getElementById('mapProgressFill');
+  _el.statLabel = document.getElementById('mapStatLabel');
+  _el.eraTrack = document.getElementById('eraTimelineTrack');
+}
+
 function _refreshMarkers() {
   if (!_markerCluster || !_mapMarkers) return;
   _markerCluster.clearLayers();
   let visible = 0;
   const provSet = new Set();
-  for (const { marker, categoryKey, eraId } of _mapMarkers) {
+  for (let i = 0, len = _mapMarkers.length; i < len; i++) {
+    const { marker, categoryKey, eraId } = _mapMarkers[i];
     if (_passesFilters(categoryKey, eraId)) {
       _markerCluster.addLayer(marker);
       visible++;
       if (marker._provinceId) provSet.add(marker._provinceId);
     }
   }
-  _filteredMarkerCount = visible;
-
-  const statTotal = document.getElementById('mapStatTotal');
-  const provEl = document.getElementById('mapStatProvinces');
-  if (statTotal) statTotal.textContent = visible;
-  if (provEl) provEl.textContent = provSet.size || State.getProvinceMeta()?.provinces?.length || 0;
+  if (_el.statTotal) _el.statTotal.textContent = visible;
+  if (_el.statProvinces) _el.statProvinces.textContent = provSet.size || State.getProvinceMeta()?.provinces?.length || 0;
 }
 
 function _setCategoryFilter(categoryKey) {
@@ -169,66 +175,44 @@ function _setCategoryFilter(categoryKey) {
 function _setEraFilter(eraId) {
   _activeEraFilter = eraId;
   _refreshMarkers();
-  const timelineEl = document.getElementById('mapTimeline');
-  if (timelineEl) {
-    timelineEl.querySelectorAll('.era-timeline-block, .era-timeline-all').forEach(el => el.classList.remove('active'));
-    if (eraId === 'all') {
-      const allBtn = timelineEl.querySelector('.era-timeline-all');
-      if (allBtn) allBtn.classList.add('active');
-    } else {
-      const activeEl = timelineEl.querySelector(`[data-era="${eraId}"]`);
-      if (activeEl) activeEl.classList.add('active');
-    }
+  if (_el.timeline) {
+    _el.timeline.querySelectorAll('.era-timeline-block, .era-timeline-all').forEach(el => el.classList.remove('active'));
+    const target = _el.timeline.querySelector(eraId === 'all' ? '.era-timeline-all' : `[data-era="${eraId}"]`);
+    if (target) target.classList.add('active');
   }
   _updateMapLabel();
 }
 
 function _updateMapLabel() {
-  const labelEl = document.getElementById('mapStatLabel');
-  if (!labelEl) return;
-  const activeEra = _activeEraFilter && _activeEraFilter !== 'all' ? Config.eras.find(e => e.id === _activeEraFilter) : null;
-  const activeCat = _activeCategoryFilter && _activeCategoryFilter !== 'all' ? Config.buildingCategories[_activeCategoryFilter] : null;
-  const parts = [activeEra ? activeEra.name : '全部年代', activeCat ? activeCat.label : '全部分类'];
-  labelEl.textContent = parts.join(' · ');
+  if (!_el.statLabel) return;
+  const ae = _activeEraFilter;
+  const ac = _activeCategoryFilter;
+  const eraName = ae && ae !== 'all' ? (Config.eras.find(e => e.id === ae)?.name || ae) : '全部年代';
+  const catName = ac && ac !== 'all' ? (Config.buildingCategories[ac]?.label || ac) : '全部分类';
+  _el.statLabel.textContent = eraName + ' · ' + catName;
 }
 
 function _createMapMarker(building) {
   const category = Config.getBuildingCategory(building);
   const size = category.size || 20;
-  const worldClass = category.isWorldHeritage ? ' map-marker-world' : '';
+  const wh = category.isWorldHeritage;
+  const mc = category.markerColor;
   const icon = L.divIcon({
-    html: `<div class="map-marker${worldClass}" style="background:${category.markerColor}; width:${size}px; height:${size}px;" title="${building.n}"><span>${category.icon}</span></div>`,
-    className: 'map-marker-container',
-    iconSize: [size + 4, size + 4],
-    iconAnchor: [(size + 4) / 2, (size + 4) / 2]
+    html: `<div class="map-marker${wh ? ' map-marker-world' : ''}" style="background:${mc};width:${size}px;height:${size}px;" title="${building.n}"><span>${category.icon}</span></div>`,
+    className: 'map-marker-container', iconSize: [size + 4, size + 4], iconAnchor: [(size + 4) / 2, (size + 4) / 2]
   });
   const marker = L.marker([building.lat, building.lng], { icon });
-  const protectionBadge = Utils.generateProtectionBadge(building);
-  marker.bindPopup(
-    `<div class="map-popup">
-      <div class="map-popup-header" style="border-left:3px solid ${category.markerColor}; padding-left:8px;">
-        <strong>${category.icon} ${building.n}</strong>
-      </div>
-      <div class="map-popup-body">
-        <div class="map-popup-info">
-          <span class="map-popup-era">📅 ${building.e}</span>
-          <span class="map-popup-district">📍 ${building.dn}</span>
-        </div>
-        ${protectionBadge ? `<div class="map-popup-badge">${protectionBadge}</div>` : ''}
-        <p class="map-popup-desc">${Utils.truncateText(building.desc, 80)}</p>
-        <a href="${Utils.generateBuildingHash(building, _getProvinceName())}" target="_blank" class="map-popup-link">查看详情 →</a>
-      </div>
-    </div>`,
-    { maxWidth: 280, className: 'map-popup-container' }
-  );
+  marker.bindTooltip(building.n, { direction: 'top', offset: L.point(0, -size / 2 - 4), className: 'rm-tooltip' });
+  const badge = Utils.generateProtectionBadge(building);
+  marker.bindPopup(`<div class="map-popup"><div class="map-popup-header" style="border-left:3px solid ${mc};padding-left:8px;"><strong>${category.icon} ${building.n}</strong></div><div class="map-popup-body"><div class="map-popup-info"><span class="map-popup-era">📅 ${building.e}</span><span class="map-popup-district">📍 ${building.dn}</span></div>${badge ? `<div class="map-popup-badge">${badge}</div>` : ''}<p class="map-popup-desc">${Utils.truncateText(building.desc, 80)}</p><a href="?page=building&name=${encodeURIComponent((building.p||'')+(building.dn||'')+building.n)}&pid=${building.pid||''}" target="_blank" class="map-popup-link">查看详情 →</a></div></div>`, { maxWidth: 280, className: 'map-popup-container' });
   marker._categoryKey = category.key;
   marker._provinceId = building.pid;
   marker._building = { n: building.n, e: building.e, dn: building.dn, pid: building.pid, p: null };
   return marker;
 }
 
-// Precomputed timeline flex values
-const _timelineFlexCache = Config.eras.filter(e => e.timeline !== false).map(e => {
+const _visibleEras = Config.eras.filter(e => e.timeline !== false);
+const _timelineFlexCache = _visibleEras.map(e => {
   if (!isFinite(e.yearMin)) return Math.max(3, Math.min(14, 100));
   const rawSpan = Math.max(1, e.yearMax - e.yearMin);
   const exponent = e.yearMax < -1000 ? 0.18 : 0.32;
@@ -241,95 +225,61 @@ async function _loadMapDataAsync(allIds) {
   let totalBuildings = 0;
   const dynastyCounts = {};
   const loadedProvinces = new Set();
-  // 增加并发数+小文件优先，浏览器最多6-8个并发请求，设置为8进一步提升加载速度
   const maxConcurrency = 8;
-  const progressFill = document.getElementById('mapProgressFill');
-  const statLoaded = document.getElementById('mapStatLoaded');
-  const statTotal = document.getElementById('mapStatTotal');
-  const visibleEras = Config.eras.filter(e => e.timeline !== false);
-
-  // 并发控制加载 - 保持最大并发数，比固定批次更高效
-  let index = 0;
-  const running = new Set();
-
-  const loadNext = async () => {
-    if (!_markerCluster) return;
-    while (running.size < maxConcurrency && index < allIds.length) {
-      const id = allIds[index++];
-      const promise = (async () => {
-        try {
-          const data = await HashSearch.loadProvinceData(id);
-          if (data?.bs && _markerCluster) {
-            loadedProvinces.add(id);
-            const provinceName = State.getProvinceName(id);
-            for (const b of data.bs) {
-              const key = `${id}_${b.d}_${b.n}`;
-              if (addedNames.has(key) || b.lat === undefined || b.lng === undefined) continue;
-              addedNames.add(key);
-              b.p = provinceName;
-              b.pid = id;
-              const marker = _createMapMarker(b);
-              const eraId = Config.getEarliestDynasty(b.e);
-              _mapMarkers.push({ marker, categoryKey: marker._categoryKey, eraId });
-              if (_passesFilters(marker._categoryKey, eraId)) {
-                _markerCluster.addLayer(marker);
-              }
-              totalBuildings++;
-              if (eraId) dynastyCounts[eraId] = (dynastyCounts[eraId] || 0) + 1;
-            }
-
-            // 每加载完成一个就更新进度，更快看到进度更新
-            const batchLoaded = loadedProvinces.size;
-            const pct = Math.round(batchLoaded / allIds.length * 100);
-            if (statLoaded) statLoaded.textContent = batchLoaded;
-            if (statTotal) statTotal.textContent = totalBuildings;
-            if (progressFill) progressFill.style.width = pct + '%';
-
-            // 第一个省份加载完就渲染时间轴，更早出结果
-            if (batchLoaded === 1) {
-              _renderTimeline(dynastyCounts, visibleEras);
-              _updateMapLabel();
-            }
-          }
-        } catch (_) {}
-        running.delete(promise);
-        // 继续加载下一个
-        loadNext();
-      })();
-      running.add(promise);
+  const _processProvince = (id, data) => {
+    if (!data?.bs || !_markerCluster) return;
+    loadedProvinces.add(id);
+    const provinceName = State.getProvinceName(id);
+    const batch = [];
+    const bs = data.bs;
+    for (let i = 0, len = bs.length; i < len; i++) {
+      const b = bs[i];
+      const key = `${id}_${b.d}_${b.n}`;
+      if (addedNames.has(key) || b.lat === undefined || b.lng === undefined) continue;
+      addedNames.add(key);
+      b.p = provinceName;
+      b.pid = id;
+      const marker = _createMapMarker(b);
+      const eraId = Config.getEarliestDynasty(b.e);
+      _mapMarkers.push({ marker, categoryKey: marker._categoryKey, eraId });
+      if (_passesFilters(marker._categoryKey, eraId)) batch.push(marker);
+      totalBuildings++;
+      if (eraId) dynastyCounts[eraId] = (dynastyCounts[eraId] || 0) + 1;
     }
+    if (batch.length > 0) _markerCluster.addLayers(batch);
+    const batchLoaded = loadedProvinces.size;
+    const pct = Math.round(batchLoaded / allIds.length * 100);
+    if (_el.statLoaded) _el.statLoaded.textContent = batchLoaded;
+    if (_el.statTotal) _el.statTotal.textContent = totalBuildings;
+    if (_el.progressFill) _el.progressFill.style.width = pct + '%';
+    if (batchLoaded === 1) { _renderTimeline(dynastyCounts, _visibleEras); _updateMapLabel(); }
   };
 
-  // 启动初始批次
-  loadNext();
-
-  // 等待全部完成
-  while (running.size > 0) {
-    await Promise.race(running);
-  }
+  const queue = [...allIds];
+  const workers = Array.from({ length: maxConcurrency }, () => (async () => {
+    while (queue.length > 0 && _markerCluster) {
+      const id = queue.shift();
+      try { const data = await HashSearch.loadProvinceData(id); _processProvince(id, data); } catch (_) {}
+    }
+  })());
+  await Promise.allSettled(workers);
 
   _updateMapLabel();
-  if (progressFill) { progressFill.style.width = '100%'; progressFill.style.opacity = '0'; }
-  const doneLoadingEl = document.getElementById('mapStatLoading');
-  if (doneLoadingEl) doneLoadingEl.style.display = 'none';
-
-  _renderTimeline(dynastyCounts, visibleEras);
+  if (_el.progressFill) { _el.progressFill.style.width = '100%'; _el.progressFill.style.opacity = '0'; }
+  if (_el.statLoading) _el.statLoading.style.display = 'none';
+  _renderTimeline(dynastyCounts, _visibleEras);
   if (_activeEraFilter !== 'all') {
-    const activeBlock = document.querySelector(`.era-timeline-block[data-era="${_activeEraFilter}"]`);
+    const activeBlock = _el.timeline?.querySelector(`.era-timeline-block[data-era="${_activeEraFilter}"]`);
     if (activeBlock) activeBlock.classList.add('active');
   }
 }
 
 function _renderTimeline(dynastyCounts, visibleEras) {
-  const track = document.getElementById('eraTimelineTrack');
-  if (!track) return;
-  track.innerHTML = visibleEras.map((e, idx) => {
+  if (!_el.eraTrack) return;
+  _el.eraTrack.innerHTML = visibleEras.map((e, idx) => {
     const count = dynastyCounts[e.id] || 0;
     const color = Config.eraColors[e.id] || '#888';
     const flexVal = _timelineFlexCache[idx];
-    return `<div class="era-timeline-block${count === 0 ? ' empty' : ''}"
-      data-era="${e.id}" style="flex:${flexVal}; background:${color};" title="${e.name}（${count}处）">
-      <span class="era-timeline-label">${e.name}</span>
-    </div>`;
+    return `<div class="era-timeline-block${count === 0 ? ' empty' : ''}" data-era="${e.id}" style="flex:${flexVal};background:${color};" title="${e.name}（${count}处）"><span class="era-timeline-label">${e.name}</span></div>`;
   }).join('');
 }

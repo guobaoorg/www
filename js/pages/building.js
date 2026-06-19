@@ -108,13 +108,9 @@ function getRelatedBuildings(building, limit = 4) {
   const district = building.d;
   const name = building.n;
   const sameDistrict = [];
-
-  for (let i = 0; i < allBuildings.length; i++) {
+  for (let i = 0, len = allBuildings.length; i < len && sameDistrict.length < limit * 2; i++) {
     const b = allBuildings[i];
-    if (b.n === name || b.d !== district) continue;
-    sameDistrict.push(b);
-    if (sameDistrict.length >= limit * 2) break;
+    if (b.n !== name && b.d === district) sameDistrict.push(b);
   }
-
   return Utils.shuffleArray(sameDistrict).slice(0, limit);
 }
