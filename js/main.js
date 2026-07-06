@@ -273,6 +273,7 @@ function _setupLangSwitch() {
         curUrl.searchParams.delete('lang');
       }
       window.history.pushState({}, '', curUrl.pathname + curUrl.search);
+      try { localStorage.setItem('guobao_lang', newLang); } catch (_) { /* private browsing */ }
       await State.switchLang(newLang);
       updateBtn();
       _updateStaticText();

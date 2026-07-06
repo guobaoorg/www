@@ -263,8 +263,22 @@ let _state = null;
 function setState(s) { _state = s; }
 
 function detectLang() {
+  // 1. URL 参数优先（显式分享链接）
   const params = new URLSearchParams(window.location.search);
-  return params.get('lang') === 'en' ? 'en' : 'zh';
+  if (params.get('lang') === 'en') return 'en';
+  if (params.get('lang') === 'zh') return 'zh';
+  // 2. localStorage 用户偏好
+  try {
+    const stored = localStorage.getItem('guobao_lang');
+    if (stored === 'en' || stored === 'zh') return stored;
+  } catch (_) { /* private browsing */ }
+  // 3. 浏览器/系统语言自动检测
+  try {
+    const navLang = (navigator.language || '').toLowerCase();
+    if (navLang.startsWith('en')) return 'en';
+  } catch (_) { /* not available */ }
+  // 4. 默认中文
+  return 'zh';
 }
 
 function t(key) {
