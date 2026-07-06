@@ -1,0 +1,117 @@
+{
+  "id": "yanyun-shiliusheng",
+  "title": "Where Winds Meet",
+  "subtitle": "Dreaming of Yan Cloud · Touching Song Dynasty Craftsmanship in the Digital Jianghu",
+  "icon": "🏯",
+  "color": "#8D6E63",
+  "bgColor": "#EFEBE9",
+  "description": "Where Winds Meet is an open-world martial arts game developed by NetEase Games. Set in the turbulent era of the Five Dynasties and Ten Kingdoms and the early Northern Song, players travel across the Sixteen Prefectures of Yan and Cloud, writing their own legend of brotherhood and home between flashing blades. The game team deeply investigated a large number of Tang and Song ancient buildings, striving to recreate in the digital world that era of supreme craftsmanship. This article follows the footsteps of the wanderer, passing through Song-style pavilions and Great Wall beacon towers, seeking those thousand-year heritage sites brought into the game.",
+  "route": {
+    "title": "Where Winds Meet: A Journey of Craftsmanship Across a Thousand Years",
+    "intro": "<div class=\"xuxiake-quote\">Sixteen notes of Yan Cloud, a single song of the Jianghu dream</div>\n\nIn the history of Chinese gaming, few works have taken 'architecture' itself as the core soul of a game as Where Winds Meet has. While most martial arts games use mere textures to gloss over ancient buildings as backdrops, the development team of Where Winds Meet did something almost obsessive — they visited dozens of Tang and Song dynasty heritage sites across Shanxi, Hebei, Henan, Gansu, and beyond, conducting extensive field surveys of flying eaves, bracket sets, mortise-and-tenon joints, and painted decorations.\n\nAnd so we see those truly 'living' Song dynasty buildings: the tiered taverns and shops of Kaifeng city, whose prototypes trace back to the dense bracket sets of Wanrong's Feiyun Pavilion and the grand scale of Zhengding's Longxing Temple; the beacon towers and fortress towns winding along the Hexi Corridor, which are precision replicas of the Yumen Pass Han Great Wall ruins.\n\nLet us step together into this great Song empire rebuilt in code — you will discover that the bustling Bianliang and the clanging Yan Cloud, long invisible in reality, have been hidden all along within the beams and pillars of these thousand-year heritage sites.",
+    "stops": [
+      {
+        "title": "Stop 1: Kaifeng Fan Tower — The Ultimate Timber Craft of a Thousand Brackets",
+        "icon": "🏯",
+        "content": "Entering the Kaifeng city in the game, the first thing that strikes you is the towering, layered tavern in the city center, its bracket sets like clouds — that is 'Fan Tower.'\n\nThe game's Fan Tower stands three stories high, with a cross-hip roof, a majestic all-wooden structure. Its prototype is not a single building but the game art team's synthesis of multiple heritage timber structures:\n\nFirst inspiration comes from the <a href=\"?page=building&name=万荣东岳庙&pid=shanxi\" target=\"_blank\" data-nav>Wanrong Dongyue Temple</a> in Yuncheng, Shanxi — its Feiyun Pavilion is hailed as 'China's First Timber Tower.' The entire pavilion is pure wood, not a single iron nail, with over three hundred bracket sets layered like clusters of clouds. Together with the Yingxian Wooden Pagoda, it is known as 'Southern Tower, Northern Pagoda,' a masterstroke of Chinese pavilion architecture. The bracket set layering of the game's Fan Tower draws direct inspiration from Feiyun Pavilion's dense bracket arrangement — the angle of each tier's projection and the rhythm of each bracket set can withstand architectural scrutiny.\n\nSecond inspiration comes from <a href=\"?page=building&name=介休后土庙&pid=shanxi\" target=\"_blank\" data-nav>Jiexiu Houtu Temple</a> in Jinzhong, Shanxi — a pinnacle of Ming-Qing glazed artistry, its yellow, green, and blue glazed tiles covering all the hall roofs, with ornate chiwen finials, pagodas, and auspicious beasts. The roof colors and glazed elements of the game's Fan Tower are a digital translation of this glazed treasure.\n\nThird inspiration comes from <a href=\"?page=building&name=隆兴寺&pid=hebei\" target=\"_blank\" data-nav>Longxing Temple</a> in Zhengding, Hebei — the largest and best-preserved Song dynasty Buddhist monastery complex in China. Its Mani Hall, with a rare cross-shaped plan, was hailed by Liang Sicheng as a 'masterwork of art.' Inside the Dabei Pavilion, the 21.3-meter-tall Thousand-Armed, Thousand-Eyed Guanyin bronze statue is the tallest ancient bronze Guanyin in China — this coexistence of grand structure and precision directly influenced the sense of scale and spatial design of the game's Fan Tower.\n\nThe Song dynasty notebook Dongjing Menghua Lu records that the real Kaifeng Fan Tower had 'three stories rising high, five towers facing each other, each with flying bridges and railings, bright and dark spaces connected.' Alas, the real Northern Song Fan Tower has long been buried beneath the Yellow River's silt. But Where Winds Meet, drawing on these surviving heritage structures, has rebuilt in the digital world that glorious tower of 'pearl curtains and embroidered door hangings, lamps and candles aglow.'",
+        "buildings": [
+          {
+            "n": "Wanrong Dongyue Temple",
+            "p": "shanxi",
+            "d": "shanxi_yuncheng"
+          },
+          {
+            "n": "Jiexiu Houtu Temple",
+            "p": "shanxi",
+            "d": "shanxi_jinzhong"
+          },
+          {
+            "n": "Longxing Temple",
+            "p": "hebei",
+            "d": "hebei_shijiazhuang"
+          }
+        ]
+      },
+      {
+        "title": "Stop 2: Rainbow Bridge and Bian River — The Digital Rebirth of Spring Festival on the River",
+        "icon": "🌉",
+        "content": "Leaving Fan Tower and heading south along the game's Vermilion Bird Avenue, through bustling markets and shops, the view suddenly opens — a wide river lies before you, spanned by a massive wooden arch bridge, traffic flowing on the bridge deck, boats shuttling beneath. This is one of the most heart-stirring scenes in Where Winds Meet: the Rainbow Bridge and the Bian River.\n\nThe most striking wooden arch bridge from Along the River During the Qingming Festival — a bridge with no piers, relying solely on a huge wooden arch spanning the river — has been fully 'revived' in the game. The game team reconstructed this nearly lost ancient technique based on the rainbow bridge structure from the Song dynasty Yingzao Fashi manual, using the technical principle of stacked-beam wooden arches. Every intersection of the crossbeams and every stress angle of the tenon-and-mortise joints was calculated in the physics engine, making this bridge not only visually stunning but structurally sound.\n\nOn both banks of the Bian River below the bridge lies the most prosperous commercial district of the Northern Song eastern capital. The game references the <a href=\"?page=building&name=开封城墙&pid=henan\" target=\"_blank\" data-nav>Kaifeng City Wall</a> — the largest extant Qing city wall in China after Nanjing's, with a circumference of approximately 14.4 kilometers, its gate towers and barbicans well preserved. Most remarkably, beneath this wall lie superimposed layers of city walls from the Tang, Song, Jin, Yuan, Ming, and Qing dynasties, forming the rare wonder of 'city upon city.' The reason the game's Kaifeng city can present such a profound sense of historical layering is precisely because the art team referenced this stratified urban fabric.\n\nThe riverside shop buildings, meanwhile, draw from the exquisite brick and wood carvings of Kaifeng's <a href=\"?page=building&name=山陕甘会馆&pid=henan\" target=\"_blank\" data-nav>Shanxi-Shaanxi-Gansu Guild Hall</a> — built by merchants from those three provinces during the Qing dynasty, its screen walls, archways, and opera stages are among Henan's finest carvings. Those intricate entwined lotus patterns, opera characters, and auspicious animals have been transplanted onto the game's street facades, making every shop along the Bian River seem ready to tell a story.\n\nStanding on this digital Rainbow Bridge, the wind of the Bian River blows through your headphones. What you see is not a high-definition texture, but a reconstruction of craftsmanship spanning nine hundred years.",
+        "buildings": [
+          {
+            "n": "Kaifeng City Wall",
+            "p": "henan",
+            "d": "kaifeng"
+          },
+          {
+            "n": "Shan Shaan Gan Guild Hall",
+            "p": "henan",
+            "d": "kaifeng"
+          }
+        ]
+      },
+      {
+        "title": "Stop 3: Daxiangguo Temple — Where the Buddha Land Meets the Jianghu",
+        "icon": "🛕",
+        "content": "Through the bustling market, at the bend of the Bian River, a magnificent monastery appears on the horizon — Daxiangguo Temple.\n\nIn Where Winds Meet, Daxiangguo Temple is not only a landmark but also the stage for an important storyline. The game reconstructs it as an imposing Song dynasty imperial monastery: along the central axis, the Heavenly King Hall, Mahavira Hall, Octagonal Glazed Hall, and Sutra Library rise in succession, with side halls arranged symmetrically on east and west, red walls and yellow tiles solemn and majestic amid morning bells and evening drums.\n\nHistorically, the real Daxiangguo Temple originally stood on the former residence of Lord Xinling of the Warring States period, converted to a temple in the Northern Qi, named 'Daxiangguo Temple' by Emperor Ruizong of Tang with his own calligraphy. It reached its zenith in the Northern Song, becoming the largest Buddhist monastery in the Eastern Capital and the national center of Buddhism. But the Yellow River's floods and the vicissitudes of war meant the Song dynasty original structure long since vanished.\n\nIn rebuilding the temple, the game art team extensively referenced surviving Song dynasty heritage structures. The most important reference was Kaifeng's <a href=\"?page=building&name=祐国寺塔&pid=henan\" target=\"_blank\" data-nav>Youguo Temple Pagoda</a> — commonly known as the Kaifeng Iron Pagoda, built in the first year of the Northern Song's Huangyou era (1049), thirteen stories on an octagonal plan, about 55 meters tall. Though called the Iron Pagoda, it is actually built of brown glazed bricks, looking like cast iron from a distance. Over nine hundred years, it has survived thirty-seven earthquakes, eighteen great storms, and fifteen floods, still standing tall — the tallest and oldest glazed pagoda in China. The color scheme of the game's Daxiangguo Temple pagoda spire and glazed components draws inspiration from this 'Number One Glazed Pagoda Under Heaven.'\n\nAdditionally, the temple's building scale and layout reference the spatial dimensions of Kaifeng's <a href=\"?page=building&name=开封东大寺&pid=henan\" target=\"_blank\" data-nav>Dongda Mosque</a> — the largest mosque in Kaifeng, bearing witness to centuries of multi-faith交融 in this ancient capital of thirteen dynasties, its spatial rhythm providing a reference for the game's monastery.\n\nAs you walk through this digital Daxiangguo Temple, from the incense smoke beneath the banner poles toward the splendor of the Mahavira Hall — you are actually walking through a thousand years of time, from the Northern Qi to today, from Lord Xinling's residence to the imperial monastery of the Northern Song.",
+        "buildings": [
+          {
+            "n": "Huguo Temple Pagoda (Tie Pagoda)",
+            "p": "henan",
+            "d": "kaifeng"
+          },
+          {
+            "n": "Kaifeng Dongda Temple",
+            "p": "henan",
+            "d": "kaifeng"
+          }
+        ]
+      },
+      {
+        "title": "Stop 4: Songzhou Ancient City — A Strategic Pass Where Swords Gleam Like Frost",
+        "icon": "🏰",
+        "content": "Heading west from Dongjing Kaifeng, through Tong Pass and across Longxi, the game's landscape shifts from plains to plateaus, from bustling markets to vast borderlands. When beacon-fire signals begin to rise from distant snowy peaks, Songzhou Ancient City has been reached.\n\n'Songzhou' in the game is a heavily fortified military town controlling the northwestern strategic choke point — high, thick rammed-earth walls, four-cornered watchtowers with crenellations, and a fierce atmosphere within the barbican. This city's design is not凭空 imagined; its architectural language comes from a real fortress on the Hexi Corridor — the westernmost starting point of the Ming Great Wall, <a href=\"?page=building&name=万里长城-嘉峪关&pid=gansu\" target=\"_blank\" data-nav>Jiayuguan Pass</a>. Built in the fifth year of the Ming Hongwu era (1372), it consists of an inner city, outer city, rampart city, and barbican, with gate towers, arrow towers, and watchtowers all in brick and wood, magnificent in scale, hailed as 'the First Grand Pass Under Heaven.' The game's Songzhou city defense system — the barbican's semicircular structure, the spacing of crenellations, the projection angles of watchtowers — strictly follows the architectural logic of Jiayuguan.\n\nBut the game's imagination of Songzhou goes beyond the Ming fortress. In this架空 world, Songzhou superimposes older layers — a faintly visible earlier wall within the rammed earth, referencing the <a href=\"?page=building&name=玉门关及长城烽燧遗址&pid=gansu\" target=\"_blank\" data-nav>Yumen Pass and Great Wall Beacon Tower Site</a> near Dunhuang. Yumen Pass was a vital pass on the northern route of the Han dynasty Silk Road. The surviving Xiaofangpan Castle and Han Great Wall beacon towers are all rammed earth, their every decoration worn away by two millennia of wind and sand, leaving only the purest texture of soil. 'The spring breeze never crosses Yumen Pass' — that desolation sung by countless frontier poets has been blended by the game team into the texture of Songzhou's walls.\n\nAscending Songzhou's gate tower and looking far into the distance: to the north,连绵 snow-capped peaks; to the south, the rolling Yellow River; to the west — the direction the game's story will soon take you — the endless Hexi Corridor stretches out of sight. The wind on the tower is strong, rattling the flagstaff. You know the true trial lies not within the city, but in the ten-thousand-mile battlefield beyond.",
+        "buildings": [
+          {
+            "n": "Great Wall - Jiayuguan",
+            "p": "gansu",
+            "d": "gansu_jiayuguan"
+          },
+          {
+            "n": "Yumen Guan and Great Wall Beacon",
+            "p": "gansu",
+            "d": "gansu_jiuquan"
+          }
+        ]
+      },
+      {
+        "title": "Stop 5: Hexi Corridor — Beacon Towers Touching the Sky Along the Ancient Road",
+        "icon": "🔥",
+        "content": "Exiting Songzhou's west gate, you set foot on the ancient post road worn smooth by a millennium of camel bells. The game scene transitions from the stark border fortress to the vast desert Gobi. Every few dozen li, a solitary beacon tower rises on the horizon — this is Where Winds Meet's most stunning visual design along the Hexi Corridor section.\n\nBeacon towers were the 'signal fire platforms' of the ancient Great Wall defense line — when enemy activity was detected, they sent smoke by day and fire by night, passing military intelligence from one tower to the next. The game's Hexi beacon system is modeled almost exactly on Han dynasty beacon tower ruins. Those rammed-earth platforms standing in the desert, with squared bases and remnants of scorched black at the top from burnt signal fires, are restored with astonishing detail in the game.\n\nThe core reference for this scene is Dunhuang's <a href=\"?page=building&name=玉门关及长城烽燧遗址&pid=gansu\" target=\"_blank\" data-nav>Yumen Pass and Great Wall Beacon Tower Site</a>. Along the Han Great Wall, beacon towers were placed roughly every five li, forming a严密 military communication network. The sense of solitude as you gallop between these towers in the game is precisely the daily experience of the border guards two thousand years ago.\n\nAnd in the distance beyond the beacon line, faintly visible cliff faces of grottoes pay homage to <a href=\"?page=building&name=莫高窟（含西千佛洞）&pid=gansu\" target=\"_blank\" data-nav>Mogao Caves (Including the Western Thousand Buddha Caves)</a> — the 'Eastern Louvre' in the desert, continuously carved over a millennium starting from 366 CE during the Former Qin, with 735 existing caves, 45,000 square meters of murals, and 2,415 colored sculptures, constituting the greatest Buddhist art sanctuary on the Silk Road. The game has designed多处 cliff paintings and grotto ruins along the beacon route as hidden exploration points. Though rendered as textures, the apsaras and Buddha figures reference classic models from Mogao mural painting.\n\nAs you gallop at full speed along this beacon line — the setting sun molten gold, the Gobi burning like fire — behind you lies the silhouette of Jiayuguan, ahead lies the direction of Yumen Pass. You suddenly understand the desolation Wang Zhihuan felt when he wrote 'The spring breeze never crosses Yumen Pass,' and why Where Winds Meet etched those five characters beneath the game's startup screen.",
+        "buildings": [
+          {
+            "n": "Yumen Guan and Great Wall Beacon",
+            "p": "gansu",
+            "d": "gansu_jiuquan"
+          },
+          {
+            "n": "Mogao Grottoes",
+            "p": "gansu",
+            "d": "gansu_jiuquan"
+          }
+        ]
+      },
+      {
+        "title": "Epilogue: The Unfinished Journey in Digital Craftsmanship",
+        "icon": "🗺️",
+        "content": "Where Winds Meet is still in ongoing development. The maps already revealed unfold a magnificent画卷 from the bustle of Bianliang to the desolation of the Hexi Corridor. But the Sixteen Prefectures of Yan and Cloud extend far beyond this — Youzhou (modern Beijing), Yunzhou (modern Datong), Shuozhou, Weizhou... the true 'Sixteen Notes' are still to come.\n\nThe game team's ambition goes beyond making an entertaining martial arts game; it aims to do a 'digital rescue' of Chinese ancient architecture using digital technology. As they said in a developer interview: 'Every Tang and Song dynasty building we can still see today is a survivor. Many more times that number were destroyed by war and time. What we want to do is to return those vanished buildings to the player.'\n\nAnd so we see scenes that can probably never be rebuilt in reality — a bridge of pure wood without a single nail spanning the Bian River, the Northern Song Xiangguo Temple, long sunk beneath the Yellow River silt, ringing its bells once more, Han Great Wall beacon towers lighting their smoke signals under a virtual sunset.\n\nWhen we look ahead to future game versions — the Huayan Temple's Bojiajiaozang Hall in Yunzhou (Datong), which Liang Sicheng called 'a unique treasure under heaven,' whose smiling, teeth-baring Guanyin statue may one day shine again in digital form — this Liao-dynasty great temple coincides perfectly with the game's setting of the late Five Dynasties and early Northern Song. Under the same sky, wooden structures from different eras echoing each other — that is the deepest meaning behind the title 'Where Winds Meet.'\n\nThis is a romance unique to video games, and a new possibility for the transmission of traditional Chinese architectural culture.",
+        "buildings": [
+          {
+            "n": "Huayan Temple",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          }
+        ]
+      }
+    ]
+  }
+}

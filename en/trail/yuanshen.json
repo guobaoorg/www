@@ -1,0 +1,92 @@
+{
+  "id": "yuanshen",
+  "title": "Genshin Impact",
+  "subtitle": "In Search of Liyue · Encountering the Divine Land on the Continent of Teyvat",
+  "icon": "🌙",
+  "color": "#FF9800",
+  "bgColor": "#FFF8E1",
+  "description": "Genshin Impact is an open-world role-playing game developed by miHoYo, set in the vast fantasy world of 'Teyvat.' The China-inspired region of 'Liyue' fuses the towering peaks of Zhangjiajie, the landscapes of Guilin, the gardens of Suzhou, the tulou of Fujian, and the hanging temple of Shanxi into a feast of Eastern fantasy. This article travels through the game screen, seeking among real heritage sites the architectural codes that designers meticulously encoded into the virtual world.",
+  "route": {
+    "title": "Genshin Impact · Liyue: When the Geo Archon Meets the Manual of Architecture",
+    "intro": "<div class=\"xuxiake-quote\">A contract is a contract, and breach of contract shall be punished by the Wrath of the Rock</div>\n\nWhen the bells of Liyue Harbor chime, every Genshin Impact player cannot help but slow their steps. This port city, built at the foot of 'Mount Tianheng,' is the boldest experiment in Chinese classical architecture and landscape aesthetics in gaming history.\n\nIn creating Liyue, miHoYo's design team did something incredible — they did not copy any specific Chinese city, yet made Liyue feel more 'Chinese' than any 'ancient-style' game. The secret lay in their design logic: extracting architectural genes from real heritage sites, then fusing them into the架空 world-building of Teyvat.\n\nAnd so you see: Wangshu Inn suspended on a cliff face, much like the embedded timber structure of Mount Heng's Hanging Temple; the garden corridors along the shores of Dihua Marsh, clearly drawn from the stacked rocks and flowing waters of Suzhou's Humble Administrator's Garden; the circular settlements scattered outside the Chasm, which are the rammed-earth giants of western Fujian tulou filtered through a fantasy lens.\n\nLet us enter Liyue — or rather, let us enter the thousand-year craftsmanship hidden behind those digital textures.",
+    "stops": [
+      {
+        "title": "Stop 1: Liyue Harbor — The Poetic Foundation of Suzhou Gardens",
+        "icon": "🏡",
+        "content": "If Mondstadt is the city of wind and freedom, then Liyue Harbor is a poem of mountains and stone, water and courtyard.\n\nAs you pass through Liyue Harbor's vermilion gate and slowly ascend the bluestone steps toward Yujing Terrace, you pass through one refined courtyard after another: behind a moon gate, a rockery of Taihu stones; at the end of a winding corridor, a small water court with koi swimming in the pond and wind chimes tinkling under the eaves. This spatial narrative of 'scenery changing with each step' is almost pure Suzhou garden technique.\n\nThe design team clearly drew extensively from <a href=\"?page=building&name=拙政园&pid=jiangsu\" target=\"_blank\" data-nav>Humble Administrator's Garden</a> — one of China's four great famous gardens and Suzhou's largest classical garden. Built in the fourth year of the Ming Zhengde era (1509), it centers on water, with pavilions, terraces, and towers arranged around it, perfectly embodying the garden philosophy of 'though man-made, it seems heaven-sent.' The seemingly casual yet carefully designed techniques of borrowed scenery, framed scenery, and obstructive scenery — seeing a pavilion just visible through a hexagonal window, a whole expanse of water suddenly opening before you after rounding a rockery — are the fundamental spatial grammar of Suzhou gardens.\n\nAnd Liyue Harbor's smaller 'garden within garden' courtyards draw more from the refined layout of <a href=\"?page=building&name=留园&pid=jiangsu\" target=\"_blank\" data-nav>Lingering Garden</a>. Built during the Ming Wanli era, it is renowned for its层层相属 architectural spaces and masterful rock and water techniques. The most recognizable 'Lingering Garden gene' in the game is the spatial sequence connected by corridors — in the Lingering Garden, you pass through eight turns from the entrance to the Crown Cloud Peak; at Yujing Terrace, from the mountain gate to the Statue of the Seven, you同样 experience repeated spatial expansions and contractions.\n\nAs you stroll through the courtyards of Liyue Harbor, with erhu and zither weaving the background music, Taihu stones and oil-paper umbrellas before your eyes — you are actually walking through a highly refined 'Chinese garden archetype.'",
+        "buildings": [
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Liuyuan Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 2: Qingce Village — The Mirror-Poem of Hani Rice Terraces",
+        "icon": "🌾",
+        "content": "Heading north from Liyue Harbor over several mountains, the first time you see Qingce Village, the visual impact is no less than any scenic masterpiece: layer upon layer of paddy fields climbing from the mountain base to the waist, flooded terraces shimmering silver in the sunlight like countless shattered mirrors spread across the entire valley.\n\nThis is not a凭空 invented fantasy landscape — its prototype is the real Hani Rice Terraces in Honghe, Yunnan. Over 1,300 years, the Hani people carved tens of thousands of terraced fields into the steep slopes of the Ailao Mountains, rising over 2,000 meters from base to summit. During the transplanting season in late spring and early summer, the shimmering water and hazy mountains create a dreamlike visual effect that has captivated countless photographers.\n\nThe game team perfectly captured two core aesthetic features of the terraces in Qingce Village: first, the 'horizontal lines' — each terrace ridge traces a graceful curve parallel to the contour line; second, the 'mirror effect' — the flooded surfaces reflect the sky and distant mountains, making the ground seem like an extension of the heavens.\n\nBut Qingce Village has more than terraces — it also has distinctive folk dwellings of bamboo and wood structure, overhanging roofs, and open verandas. Although they primarily reference southern minority settlement patterns, the sacrificial building at the highest point, with its double-eaved歇山顶, subtly echoes the secluded character of <a href=\"?page=building&name=青城山古建筑群&pid=sichuan\" target=\"_blank\" data-nav>Mount Qingcheng Ancient Architecture Complex</a>. Mount Qingcheng is one of the birthplaces of Daoism, known for being 'secluded under heaven,' seeking not splendor but harmony with the landscape. The tranquility and depth of Qingce Village are a Teyvat-ized expression of this Eastern landscape philosophy.\n\nStanding on the highest terrace of Qingce Village, watching the sunset slip behind the distant mountains at the valley's end — in that moment you are not playing a game so much as sitting on some mountainside in Yunnan, quietly watching an ancient sunset.",
+        "buildings": [
+          {
+            "n": "Qingcheng Mountain Ancient Buildings",
+            "p": "sichuan",
+            "d": "sichuan_chengdu"
+          }
+        ]
+      },
+      {
+        "title": "Stop 3: Mingyun Village and the Chasm Settlements — The Fantastic Transformation of Fujian Tulou",
+        "icon": "🟤",
+        "content": "If you head northwest from Liyue Harbor, through the ruins of Guili Plains and the lotus ponds of Luhua Pool, and finally reach the area near the Chasm, you will encounter a completely different kind of architecture: enormous circular rammed-earth compounds forming complete rings, with communal space at the center and multi-story living quarters around the perimeter — this is Genshin Impact's 'Teyvat-style' adaptation of Fujian tulou.\n\nIn the real world, <a href=\"?page=building&name=福建土楼&pid=fujian\" target=\"_blank\" data-nav>Fujian Tulou</a> is a UNESCO World Heritage site, distributed across Nanjing and Yongding counties in Fujian. Built primarily from raw earth mixed with lime, fine sand, bamboo strips, and other materials, then repeatedly pounded and compacted, the most famous is the Nanjing Tianluokeng tulou cluster, consisting of one square and four circular tulou, colloquially known as 'four dishes and a soup.' Hegui Lou was built on a swamp, while Huaiyuan Lou is an exquisite double-ring circular building, with a unique circular street between the inner and outer rings.\n\nThe design intent of these circular buildings was defense — hundreds of people living together as a clan, with outer walls as high and thick as a fortress, able to close the gates and hold out for months when attacked. Tulou are warm in winter and cool in summer, soundproof and insulating — a unique form of communal architecture created by the Hakka people for the mountainous environment of western Fujian.\n\nThe circular enclosure of a tulou also produces a unique acoustic focusing effect: speaking softly in the center of the courtyard, the echo travels along the circular walls to every floor, allowing the entire building's inhabitants to hear. For centuries, the Hakka used this 'natural amplifier' to relay messages — a mother calling 'Lunch is ready!' from the courtyard would bring children running from all four floors. Genshin Impact transforms this acoustic property into an exploration mechanism: playing specific instruments or using Geo element skills in a circular settlement's courtyard triggers hidden treasure chests — turning a physical phenomenon unconsciously discovered by the Hakka in daily life into an adventure moment on the continent of Teyvat.\n\nIn Genshin Impact, these circular buildings are placed near the mining area — several circular settlements scattered at the entrance to the Chasm. Their exteriors retain the circular structure and rammed-earth texture of tulou, with modifications better suited to game mechanics: climbing points added to the outer walls, multiple floors opened up internally. The game even preserves the most iconic detail of tulou — regularly spaced arrow slits in the earth walls, designed to repel bandits in reality and to repel monsters in the game.\n\nWhen you stand in the circular courtyard looking up at the sky — it is exactly the same thing a Hakka youth did three hundred years ago in his own tulou.",
+        "buildings": [
+          {
+            "n": "Anxi Tulou",
+            "p": "fujian",
+            "d": "fujian_zhangzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 4: Wangshu Inn — A Celestial Realm Suspended on a Precipice",
+        "icon": "⛰️",
+        "content": "Of all the buildings in Liyue, none is more unforgettable than Wangshu Inn.\n\nIt is built atop a colossal stone pillar between Guili Plains and Dihua Marsh — a multi-story timber structure 'growing' out of the vertical cliff face, connected to the outside world by plank paths and drawbridges. Travelers rest here, merchants trade here, warriors gather intelligence here — it is both an inn and a vertical city.\n\nIf you feel it is 'not something humans could build,' you are right — in the real world, the only thing comparable is Shanxi Hunyuan's <a href=\"?page=building&name=悬空寺&pid=shanxi\" target=\"_blank\" data-nav>Hanging Temple</a>. Built in the late Northern Wei, this temple combining Buddhism, Daoism, and Confucianism hangs on the semi-precipice of Cuiping Peak on the west side of金龙 Gorge on Mount Heng, about 50 meters above ground. An old poem describes it: 'Hanging Temple, half a sky high, three马尾 hanging in the air.' The principle is to chisel beams into the cliff face as a foundation, then erect pillars and beams on those beams — it is not 'hung' on the cliff, but 'inserted' into it.\n\nThe design of Wangshu Inn clearly reinterprets the Hanging Temple: the Hanging Temple is extremely narrow, a thin layer of architecture 'pasted' onto the cliff face; Wangshu Inn amplifies this vertical concept — extending upward into multiple floors, each with a viewing platform. The spatial experience of the game's famous spiraling wooden staircase is similar to the vertigo felt on the Hanging Temple's narrow plank paths when you lean sideways and glimpse the abyss below.\n\nWhat's even more brilliant is the combination of Wangshu Inn's waterwheel and windmill — this is not an element from the Hanging Temple, but a reference to traditional Chinese agricultural water infrastructure. The game team placed the Hanging Temple's 'precariousness' and agricultural culture's 'moisture' in the same building, creating a miracle that is both ethereally xianxia-fantasy and rooted in real architectural logic.\n\nEvery time you teleport to Wangshu Inn in the game, leap from that platform, and unfold your glider, the whole of Dihua Marsh spreads out beneath you — you have surely said to yourself: this is a place I want to see for real.",
+        "buildings": [
+          {
+            "n": "Xuankong Temple",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          }
+        ]
+      },
+      {
+        "title": "Stop 5: Jueyun Karst and Huaguang Stone Forest — The Floating Wonderland of Zhangjiajie",
+        "icon": "🏔️",
+        "content": "If Liyue's surface architecture is a tribute to Chinese ancient architecture, then Liyue's 'terrain' is a direct嫁接 of another world heritage site — the quartz sandstone peak forest of Zhangjiajie in Hunan.\n\nHeading west from Dihua Marsh and crossing several mountain ridges, the first time you step into Jueyun Karst, the scene suddenly becomes incredible: countless giant stone pillars rise from the sea of clouds, their shafts straight and smooth, their summits covered with verdant pines and ancient pavilions. These pillars are connected by swaying wooden bridges, and waterfalls cascade hundreds of meters from the pillar tops — this is 'Huaguang Stone Forest,' the most faithful digital reproduction of Zhangjiajie's Wulingyuan in the game.\n\nThe Wulingyuan Scenic Area of Zhangjiajie features over three thousand quartz sandstone peak pillars, the tallest exceeding three hundred meters. These pillars are shallow-sea deposits from over three hundred million years ago, shaped by crustal uplift, water erosion, gravitational collapse, and wind weathering into today's wonder of 'enlarged bonsai, miniature fairyland.' The floating mountains of Pandora in the 2009 film Avatar drew inspiration from Zhangjiajie.\n\nGenshin Impact's design team clearly did not avoid this 'déjà vu,' but deliberately emphasized it. They added symbols of Chinese ancient architecture to the pillars — double-eaved pavilions, vermilion-railed plank paths, suspended viewing platforms — transforming these geological wonders from mere 'natural scenery' into 'nature overlaid with human culture.' This aesthetic philosophy is itself deeply Chinese: Chinese landscape painting was never pure landscape sketching; every landscape hides a pavilion, a fishing boat, a porter — the trace of humanity in the mountains is the finishing touch.\n\nIt is worth noting that the immortal dwelling hidden in the clouds deep in Jueyun Karst traces its architectural inspiration to <a href=\"?page=building&name=五台山古建筑群&pid=shanxi\" target=\"_blank\" data-nav>Mount Wutai Ancient Architecture Complex</a> — the coexistence of Han and Tibetan Buddhist architecture, the principle of选址 with ancient temples hidden in deep mountains — all continued in this Teyvat 'cavern of blessedness.'\n\nClimb to the top of the tallest pillar — beneath your feet, surging seas of clouds; above your head, cold moonlight; in the distance, the lights of Liyue Harbor flickering through the mist. In this moment you suddenly understand what 'heaven on earth' truly means.",
+        "buildings": [
+          {
+            "n": "Mount Wutai Ancient Architecture Complex",
+            "p": "shanxi",
+            "d": "shanxi_xinzhou"
+          }
+        ]
+      },
+      {
+        "title": "Final Chapter: From Teyvat Back to the Divine Land",
+        "icon": "🗺️",
+        "content": "Liyue is not any real Chinese place — it is Zhangjiajie's stone pillars plus Guilin's waters, Suzhou's gardens plus Shanxi's Hanging Temple, Fujian's tulou plus Yunnan's terraces. Yet this 'collage' not only avoids dissonance but has been accepted by global players as a highly unified 'Oriental fantasy style.'\n\nWhy? Because every element is not凭空 invented — they all come from real Chinese building traditions. Bracket sets look beautiful not because of the designer's genius, but because Chinese artisans refined their proportions over a thousand years of trial and error. The Hanging Temple is awe-inspiring not because of the game engine's power, but because Northern Wei craftsmen achieved a physical miracle on a cliff face.\n\nThe best thing a game can do is not to 'create' a new architectural tradition, but to let more people 'see' the tradition that has always been there.\n\nGenshin Impact has tens of millions of players worldwide, many of whom have never been to China. But to these players, Liyue Harbor is their 'China.' They learned 'scenery changing with each step' in Liyue's courtyards, experienced 'suspension in midair' at Wangshu Inn, felt 'mountains reflected in water' among Qingce Village's terraces — the game became their first window into Chinese architectural aesthetics. And when we players who have actually trod the stone paths of the Humble Administrator's Garden see foreign players excitedly discussing 'borrowed scenery techniques in Chinese gardens' on forums, that cultural pride is more real than any promotional video.\n\nAnd for us who have already 'seen' it — next time you stand before the real Humble Administrator's Garden's Yuanxiang Hall or on the real Hanging Temple's plank path — will an image of another you appear in your mind, flying from Liyue Harbor toward Jueyun Karst?",
+        "buildings": [
+          {
+            "n": "The Palace Museum",
+            "p": "beijing",
+            "d": "beijing"
+          }
+        ]
+      }
+    ]
+  }
+}

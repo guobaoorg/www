@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+  <title>国保地图：全国重点文物保护单位查询与文化遗产地图 guobao.org</title>
+  <meta name="description" content="国保地图（guobao.org）收录全国34个省级行政区5000+处全国重点文物保护单位（国保单位），涵盖古建筑、古遗址、古墓葬、石窟寺及石刻、近现代重要史迹等八大类别。提供国保查询、GIS地理分布地图、历史文化故事与主题旅行路线，探索中国文化遗产的数字化平台。">
+  <meta name="keywords" content="全国重点文物保护单位,国保单位,国保地图,文化遗产,古建筑,古遗址,石窟寺,文物保护单位,文物地图,guobao">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#B22222">
+
+  <link rel="canonical" href="https://guobao.org/">
+  <link rel="alternate" hreflang="zh" href="https://guobao.org/">
+  <link rel="alternate" hreflang="en" href="https://guobao.org/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://guobao.org/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐲%3C/text%3E%3C/svg%3E">
+  <meta property="og:title" content="国保地图 - 全国重点文物保护单位查询与文化遗产地图">
+  <meta property="og:description" content="收录34个省级行政区5000+处全国重点文物保护单位，提供国保单位查询、文化地图、历史故事与主题路线。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://guobao.org/">
+  <meta property="og:site_name" content="国保地图">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="国保地图 - 全国重点文物保护单位查询">
+  <meta name="twitter:description" content="5000+处全国重点文物保护单位的地理分布查询平台">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="国保地图">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.de https://server.arcgisonline.com; connect-src 'self' https://tile.openstreetmap.de https://server.arcgisonline.com https://silentforms.com; frame-src https://silentforms.com; form-action *;">
+  <link rel="preconnect" href="https://tile.openstreetmap.de">
+  <link rel="preconnect" href="https://server.arcgisonline.com">
+  <link rel="modulepreload" href="/js/leaflet.js">
+  <link rel="modulepreload" href="/js/i18n.js">
+  <link rel="modulepreload" href="/js/config.js">
+  <link rel="modulepreload" href="/js/cache.js">
+  <link rel="modulepreload" href="/js/vendor/msgpack.js">
+  <link rel="modulepreload" href="/js/hash-search.js">
+  <link rel="modulepreload" href="/js/state.js">
+  <link rel="modulepreload" href="/js/router.js">
+  <link rel="modulepreload" href="/js/ui.js">
+  <link rel="modulepreload" href="/js/utils.js">
+  <link rel="stylesheet" href="/style.min.css">
+  <script type="module" src="/js/main.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"国保地图","alternateName":"guobao.org","url":"https://guobao.org/","description":"全国重点文物保护单位查询与文化遗产地图平台，收录34个省级行政区5000+处全国重点文物保护单位，提供国保查询、文化地图、历史故事与主题路线。","inLanguage":"zh-CN","about":{"@type":"Thing","name":"全国重点文物保护单位","description":"中国国家级文物保护单位名录与文化遗产数据库"}}</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header__inner">
+      <a href="?page=map" class="site-logo" data-nav aria-label="返回首页">
+        <span class="site-logo__icon" aria-hidden="true">🐲</span>
+        <span class="site-logo__text" aria-hidden="true">国保地图</span>
+        <h1 class="sr-only">国保地图 - 全国重点文物保护单位查询与文化遗产地图</h1>
+      </a>
+      <nav class="nav-menu" aria-label="主导航">
+        <a href="?page=map" class="nav-menu__link" data-nav data-i18n="nav.map">🗺️ 地图</a>
+        <a href="?page=trail" class="nav-menu__link" data-nav data-i18n="nav.trail">👣 足迹</a>
+        <a href="?page=provinces" class="nav-menu__link" data-nav data-i18n="nav.provinces">🏞️ 省份</a>
+        <a href="?page=tags" class="nav-menu__link" data-nav data-i18n="nav.tags">🏷️ 标签</a>
+        <a href="?page=quiz" class="nav-menu__link" data-nav data-i18n="nav.quiz">🗝️ 猜保</a>
+        <a href="?page=search" class="nav-menu__link" data-nav data-i18n="nav.search">🔍 搜索</a>
+      </nav>
+      <div class="nav-backdrop" aria-hidden="true"></div>
+      <div class="header__actions">
+        <button class="lang-toggle" aria-label="Switch language">EN</button>
+        <button class="theme-toggle" aria-label="切换主题">🌓</button>
+        <button class="nav-toggle" aria-label="展开菜单">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="breadcrumb" aria-label="面包屑导航">
+    <div class="breadcrumb__inner">
+      <ol id="breadcrumbList">
+        <li class="active">首页</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main id="mainContent"></main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>©<span id="footerYear">2026</span> 国保地图 guobao.org 开图寻往迹，揽胜阅千秋</p>
+    </div>
+  </footer>
+
+  <nav class="mobile-tab-bar" aria-label="底部导航">
+    <div class="mobile-tab-bar__inner">
+      <a href="?page=map" class="mobile-tab-bar__item active" data-nav aria-label="地图">
+        <span class="mobile-tab-bar__icon">🗺️</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.map">地图</span>
+      </a>
+      <a href="?page=trail" class="mobile-tab-bar__item" data-nav aria-label="足迹">
+        <span class="mobile-tab-bar__icon">👣</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.trail">足迹</span>
+      </a>
+      <a href="?page=provinces" class="mobile-tab-bar__item" data-nav aria-label="省份">
+        <span class="mobile-tab-bar__icon">🏞️</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.provinces">省份</span>
+      </a>
+      <a href="?page=tags" class="mobile-tab-bar__item" data-nav aria-label="标签">
+        <span class="mobile-tab-bar__icon">🏷️</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.tags">标签</span>
+      </a>
+      <a href="?page=quiz" class="mobile-tab-bar__item" data-nav aria-label="猜保">
+        <span class="mobile-tab-bar__icon">🗝️</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.quiz">猜保</span>
+      </a>
+      <a href="?page=search" class="mobile-tab-bar__item" data-nav aria-label="搜索">
+        <span class="mobile-tab-bar__icon">🔍</span>
+        <span class="mobile-tab-bar__label" data-i18n="nav.search">搜索</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="feedback-modal" id="feedbackModal" role="dialog" aria-label="反馈表单">
+    <div class="feedback-modal__overlay" data-close-feedback></div>
+    <div class="feedback-modal__content">
+      <button class="feedback-modal__close" data-close-feedback aria-label="关闭">&times;</button>
+      <h2 class="feedback-modal__title" data-i18n="building.feedbackTitle">反馈</h2>
+      <form class="feedback-form" id="feedbackForm" action="https://silentforms.com/api/submit" method="POST">
+        <input type="hidden" name="accessKey" value="7a2eb7b2f02c5b3c7c912e0c803375f9f51bdbbd6f91ebce51efc185473dbe5e">
+        <input type="text" name="honeypot" style="display:none">
+        <div class="feedback-form__group">
+          <label for="feedbackName" data-i18n="building.feedbackName">姓名</label>
+          <input type="text" id="feedbackName" name="name">
+        </div>
+        <div class="feedback-form__group">
+          <label for="feedbackEmail" data-i18n="building.feedbackEmail">邮箱</label>
+          <input type="email" id="feedbackEmail" name="email">
+        </div>
+        <div class="feedback-form__group">
+          <label for="feedbackMessage"><span data-i18n="building.feedbackMessage">反馈内容</span> <span class="required">*</span></label>
+          <textarea id="feedbackMessage" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="feedback-form__submit" data-i18n="building.feedbackSubmit">提交反馈</button>
+      </form>
+      <div class="feedback-form__success" id="feedbackSuccess" data-i18n="building.feedbackThanks">感谢反馈！</div>
+    </div>
+  </div>
+
+  <div class="pwa-install-banner" id="pwaInstallBanner" role="dialog" aria-label="安装应用">
+    <div class="pwa-install-banner-text">
+      <div class="pwa-install-banner-title">🐲 添加到主屏幕</div>
+      <div>像使用 App 一样访问国保地图</div>
+    </div>
+    <div class="pwa-install-banner-actions">
+      <button class="pwa-install-btn pwa-install-btn--dismiss" id="pwaDismissBtn">暂不</button>
+      <button class="pwa-install-btn pwa-install-btn--primary" id="pwaInstallBtn">安装</button>
+    </div>
+  </div>
+</body>
+</html>

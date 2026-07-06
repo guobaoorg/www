@@ -1,0 +1,102 @@
+{
+  "id": "mudanting",
+  "title": "The Peony Pavilion",
+  "subtitle": "Love Begins Unknowingly, and Deepens Ever After",
+  "icon": "🌸",
+  "color": "#C2185B",
+  "bgColor": "#FCE4EC",
+  "description": "\"The Peony Pavilion,\" full title \"The Soul's Return at the Peony Pavilion,\" is a Ming-dynasty play by Tang Xianzu. Together with \"The Story of the Western Wing,\" \"The Injustice to Dou E,\" and \"The Palace of Eternal Youth,\" it is counted among the Four Great Classical Chinese Dramas. In fifty-five scenes, it tells the fantastical story of Du Linian, who falls in love through a dream, dies for love, and is resurrected through love—a tale of极致 romance that captures the human heart's irrepressible longing for beauty and love.",
+  "route": {
+    "title": "The Peony Pavilion: Love Begins Unknowingly, and Deepens Ever After",
+    "intro": "<div class=\"xuxiake-quote\">So the gardens are all abloom with purple and red, / Yet all are abandoned to the crumbling well and wall. / What can be done on a fine day with a beautiful scene? / In whose courtyard do pleasures and joy befall?</div>\n\nTang Xianzu (1550–1616), a native of Linchuan, Jiangxi (present-day Fuzhou), earned his jinshi degree in the eleventh year of the Wanli reign. He refused to curry favor with the powerful and powerful, and his official career was fraught with setbacks. After resigning from office, he devoted himself to literary creation in the Yuming Hall at Wenchangli, Linchuan, writing \"The Peony Pavilion,\" \"The Purple Hairpin,\" \"The Story of Handan,\" and \"The Story of the Southern Bough,\" collectively known as the \"Four Dreams of Linchuan.\" When \"The Peony Pavilion\" appeared, it was said that \"every household spread it by word of mouth, almost diminishing the value of 'The Western Wing' \"—and for four hundred years, its melodies have never ceased on the stage.\n\nTang Xianzu himself wrote: \"Love begins unknowingly, and deepens ever after. The living may die for it, and the dead may be brought back to life.\" This is not only Du Liniang's story, but a declaration for everyone who has ever loved with abandon.",
+    "stops": [
+      {
+        "title": "Stop One: A Dream by the Peony Pavilion",
+        "icon": "🌸",
+        "content": "In the Shaoxing reign of the Southern Song dynasty, Du Liniang, the sixteen-year-old daughter of Du Bao, the prefect of Nan'an, lived deep within the women's quarters. Her father hired the old scholar Chen Zuiliang to teach her the \"Book of Songs.\" When he came to the lines \"Guan-guan go the ospreys, on the islet in the river,\" the old pedant recited the orthodox gloss about \"the virtue of the empress,\" but Liniang keenly sensed the surging emotion hidden in the poem. She quietly asked her maid Chunxiang, \"Is all the sage's feeling revealed here?\" In one question, she pierced through the truth obscured by centuries of propriety.\n\nChunxiang told Liniang that there was a large garden behind the house, where the flowers were in full bloom. So Liniang ventured out of her boudoir for the first time, into a world radiant with spring. A riot of purple and red burst upon her—she was stunned, and then sorrow overcame her: here she was, sixteen, and she had missed such beautiful scenery all these years! Spring passes quickly, beauty fades swiftly, and she was like a bird trapped in a cage. Returning to her room, she fell into a deep sleep. In her dream, a scholar holding a willow branch came toward her, and beside the Peony Pavilion, beneath the rail of herbaceous peonies, they fell in love at first sight. This is the immortal opening—\"If you never enter the garden, how can you know how splendid spring is?\"\n\nThe starting point of this story is at Wenchangli, Linchuan, Jiangxi. Over four hundred years ago, Tang Xianzu lived in the Wenchangli area where the <a href=\"?page=building&amp;name=抚州玉隆万寿宫&amp;pid=jiangxi\" target=\"_blank\" data-nav>Fuzhou Yulong Wanshou Palace</a> stands, and watched the flowers bloom through the four seasons outside his Yuming Hall window, writing those luminous words. In the ancient stage of the Wanshou Palace, amid the carved beams and painted rafters of Jiangxi-style architecture, the lingering echoes of \"The Peony Pavilion\" still seem to resonate.",
+        "buildings": [
+          {
+            "n": "Fuzhou Yulong Wanshou Palace",
+            "p": "jiangxi",
+            "d": "fuzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Two: Seeking the Dream and Painting the Portrait",
+        "icon": "🖌️",
+        "content": "After awakening from her dream, Liniang was listless and distracted. She returned alone to the back garden in search of the dream. The pavilion was still there, the peonies had not yet faded, but the willow-bearing scholar of her dream was nowhere to be found. She sat by the Peony Pavilion, tears streaming: \"If only these flowers and grasses could be freely loved, if only life and death could follow my will, then even bitterness and sorrow would leave no regret.\" Such loneliness, such obsession! Returning home, Liniang painted her own portrait before the mirror, wanting to preserve her likeness—she dimly sensed that she might not last much longer.\n\nAs predicted, Liniang fell ill from lovesickness, and no medicine could save her. On a rainy autumn evening, her fragrant soul departed. On her deathbed, she instructed Chunxiang to hide her self-portrait beneath the Taihu stone in the back garden, and to bury her remains beneath the plum tree. Her parents, following her last wish, built a \"Plum Blossom Nunnery\" in the garden, placing a Daoist nun in charge. Thus a single fragrant soul lingered, unable to leave, amid the scent of plum blossoms and the light of the moon.\n\nThat absolute resolve to \"die for a dream\" breaks the heart of everyone who reads \"The Peony Pavilion.\" At the <a href=\"?page=building&amp;name=全晋会馆&amp;pid=jiangsu\" target=\"_blank\" data-nav>Quanjin Guild Hall</a> in Suzhou, on the ancient stage built during the Qing dynasty's Guangxu reign, countless famous actors have performed Du Liniang's \"Departing Soul\"—a white gown, flowing water sleeves, the entire audience in tears.",
+        "buildings": [
+          {
+            "n": "Quanjin Guild Hall",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Three: Wandering Spirit and the Netherworld Judgment",
+        "icon": "👻",
+        "content": "Du Liniang's spirit drifted to the underworld. In the scene \"Netherworld Judgment,\" Tang Xianzu unleashes the most uninhibited imagination in Chinese theater—the judge is not the black-faced, fang-toothed demon of tradition, but a witty, humorous old clerk who flips through the Book of Life and Death while bantering with the minor demons. But when he reaches Du Liniang's page, he stops short: this woman \"died for love of beauty\"—she died from a spring dream! How could anyone die that way? He asked her how she died, and Liniang calmly replied: \"I dreamed of a scholar who broke off a willow branch and asked me to write a poem for him. I grieved over it and died.\" The hall full of ghostly attendants burst into laughter—laughing at her foolishness. But the judge did not laugh. He silently closed the Book of Life and Death, discovered that Liniang was fated to marry the newly-minted top scholar Liu Mengmei, and released her to return to the world of the living. In this strangely comic yet heartbreaking scene lies Tang Xianzu's deepest meaning: when obsession reaches its extreme, even Death must step aside.\n\nMeanwhile, Liu Mengmei, a scholar from Lingnan—the very willow-bearing youth of Liniang's dream—passed through Nan'an on his way to the capital for the examinations. Stricken by illness, he took lodging at the Plum Blossom Nunnery. The nunnery stood in the back garden, shaded by plum trees and overgrown with weeds. After recovering, he strolled through the garden and found a scroll beneath the Taihu stone. Unrolling it, he was thunderstruck—the woman in the painting was identical to the one who had appeared in his dreams many times! \"Seen close, she is so very like; from afar, she seems a flying immortal.\" He hung the portrait in his room and called out to it day after day—\"My lady, my beauty!\" In the deep silence of night, his cries pierced the empty halls and startled a pair of sleeping birds perched on the eaves.\n\nThese calls crossed the boundary between the living and the dead. Liniang's spirit followed the sound. She could not appear by day, but only at night. At first she timidly peeked from outside the door, then gathering her courage, she pushed the door open—it was him! The scholar she had met in her dream by the Peony Pavilion. One burned incense and prayed in the world of the living; the other listened with tears in the realm of the dead. Two people bound by a dream recognized each other across the divide of life and death. Tang Xianzu wrote: \"If the living cannot die for love, and the dead cannot be brought back to life, then it is not the ultimate love.\" This sentence stands as the most extreme definition of love in Chinese literature: only that which can cross the boundary of life and death qualifies as true love.\n\nToday, at Tang Xianzu's hometown of Fuzhou, on the site of the Yuming Hall at Wenchangli by the <a href=\"?page=building&amp;name=抚州玉隆万寿宫&amp;pid=jiangxi\" target=\"_blank\" data-nav>Fuzhou Yulong Wanshou Palace</a>, four centuries have passed. The study where Tang Xianzu wrote \"The Peony Pavilion\" no longer exists, but the old streets of that neighborhood remain, their blue flagstones polished smooth by time. Walking there, you can almost hear Du Liniang's words to the judge in the underworld: \"I dreamed of a scholar who broke off a willow branch...\" It is not an excuse, not a plea for mercy, but a soul's summary of its own life: I died for love, and I do not regret it. Go to the ancient stage of the <a href=\"?page=building&amp;name=全晋会馆&amp;pid=jiangsu\" target=\"_blank\" data-nav>Quanjin Guild Hall</a> in Suzhou, where \"Netherworld Judgment\" remains one of the most popular Kunqu scenes—the judge and demons banter and jest, drawing laughter from the audience, but before the laughter fades, Du Liniang's line \"I died for love of beauty\" brings the entire house to stunned silence. Because everyone knows: this is no joke—it is a love letter written with a woman's very life.",
+        "buildings": [
+          {
+            "n": "Fuzhou Yulong Wanshou Palace",
+            "p": "jiangxi",
+            "d": "fuzhou"
+          },
+          {
+            "n": "Quanjin Guild Hall",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Four: Resurrection",
+        "icon": "🌱",
+        "content": "Liniang told Liu Mengmei: \"I am a ghost, but I can still live. As long as you dig up the grave beneath the plum tree, I can return to life.\" Without a moment's hesitation, Liu Mengmei opened the coffin that very night. When the coffin lid was lifted, Liniang looked as if she were still alive, an exotic fragrance filled the air, and she suddenly awoke—\"Re-entering the realm of the living after fifteen years, the spring dream of dawn still lingers by my lover's side.\"\n\nThis is the most breathtaking resurrection in Chinese literary history. She is not a sleeping princess waiting for a prince's kiss—she is a woman who, driven by her own devotion, crossed one gate of life and death after another and walked back step by step. Through this seemingly impossible plot, Tang Xianzu tells us: true love can transcend all boundaries—not propriety, not social status, not even death itself.\n\nBy the shores of West Lake in Hangzhou, the Broken Bridge and lingering snow have witnessed countless lovers' vows. The Ten Scenes of West Lake from the Southern Song dynasty are now a UNESCO World Heritage site—the <a href=\"?page=building&amp;name=西湖十景&amp;pid=zhejiang\" target=\"_blank\" data-nav>Ten Scenes of West Lake</a>, from Spring Dawn at Su Causeway to Lotus in the Breeze at Crooked Courtyard, each season is a painting. Standing by the lake, you can almost see Du Liniang and Liu Mengmei walking hand in hand along the causeway—though they never visited West Lake, the poetry that flows through its mountains and waters, like the love in their hearts, forms the deepest foundation of the Chinese aesthetic world.",
+        "buildings": [
+          {
+            "n": "Ten Scenes of West Lake",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Five: Reunion in the Mortal World",
+        "icon": "🎊",
+        "content": "Liu Mengmei brought the resurrected Du Liniang to Lin'an, where he took the palace examination and emerged as the top scholar. But Du Bao, who had been promoted to grand councilor, was furious upon learning that his daughter had \"returned from the dead\" and married a poor scholar. Convinced that Liu Mengmei was a grave robber, he had him bound up and demanded punishment. In the imperial court, the emperor himself intervened to mediate. Liniang confronted her father: \"Here stands your daughter before you, alive and breathing. Her own father refuses to recognize her—but when she was a ghost for three years, a man named Liu Mengmei claimed her as his own.\"\n\nIn the end, the emperor decreed the marriage, and though Du Bao was displeased, he had no choice but to accept. The happy ending may seem conventional, but for Tang Xianzu and the audiences of his time, it carried profound meaning—it proclaimed the triumph of \"passion\" over \"principle.\" Du Liniang said it best: \"As long as love remains faithful, the Peony Pavilion marks the path of three lifetimes.\"\n\nMore than four hundred years later, at Tang Xianzu's hometown by the <a href=\"?page=building&amp;name=抚州玉隆万寿宫&amp;pid=jiangxi\" target=\"_blank\" data-nav>Fuzhou Yulong Wanshou Palace</a> at Wenchangli, on the ancient stage of the <a href=\"?page=building&amp;name=全晋会馆&amp;pid=jiangsu\" target=\"_blank\" data-nav>Quanjin Guild Hall</a> in Suzhou, and amid the lakeside scenery of the <a href=\"?page=building&amp;name=西湖十景&amp;pid=zhejiang\" target=\"_blank\" data-nav>Ten Scenes of West Lake</a> in Hangzhou, \"The Peony Pavilion\" is still performed. Du Liniang still sings: \"So the gardens are all abloom with purple and red...\" Her voice travels through time and settles in the heart of everyone who has ever truly loved.",
+        "buildings": [
+          {
+            "n": "Fuzhou Yulong Wanshou Palace",
+            "p": "jiangxi",
+            "d": "fuzhou"
+          },
+          {
+            "n": "Quanjin Guild Hall",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Ten Scenes of West Lake",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Six: Four Hundred Years of Yuming Hall's Legacy",
+        "icon": "🎭",
+        "content": "In the twenty-sixth year of the Wanli reign (1598), Tang Xianzu resigned from office and returned home. He planted a white camellia before his Yuming Hall at Wenchangli, Linchuan, and with his inspired brush, surrounded by garden flowers and trees, he wrote \"The Peony Pavilion.\" This gifted scholar who refused to fawn over the powerful could hardly have imagined that four centuries later, this work would become the world's first window into Chinese drama.\n\nKunqu is hailed as the \"ancestor of a hundred operas,\" and \"The Peony Pavilion\" is the most brilliant jewel in Kunqu's crown. In 2001, Kunqu was proclaimed a Masterpiece of the Oral and Intangible Heritage of Humanity by UNESCO. In 2004, the Youth Edition of \"The Peony Pavilion,\" produced by Kenneth Hsien-yung Pai, premiered in Taipei and later toured the globe. Du Liniang's line \"So the gardens are all abloom with purple and red\" crossed the barriers of language and culture to touch hearts directly. In China, nearly every educated young person can recite the line \"What can be done on a fine day with a beautiful scene\"—many of them have never stepped inside a theater, yet they have already been struck by Tang Xianzu's profound passion, in their textbooks, on their screens, through word of mouth.\n\nOn the ancient stage of the Quanjin Guild Hall in Suzhou, the water-like melodies of Kunqu ring out year after year. On stage, Du Liniang looks back at every step, her water sleeves fluttering like butterflies. Still she sings the same \"Black Gauze Robe\" aria, still she recites the line \"Love begins unknowingly, and deepens ever after\"—four centuries have passed, everything has changed, but the human heart has not. The audience, regardless of nationality or age, have the same tears glistening in their eyes. Because everyone carries a Peony Pavilion in their heart—where dwells a person, a dream, and a love that will never be extinguished.",
+        "buildings": [
+          {
+            "n": "Quanjin Guild Hall",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      }
+    ]
+  }
+}

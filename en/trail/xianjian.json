@@ -1,0 +1,97 @@
+{
+  "id": "xianjian",
+  "title": "The Legend of Sword and Fairy Series",
+  "subtitle": "Thirty Years on the Jianghu Road — Seeking the Divine Land's Mountains and Rivers in the Xianxia World",
+  "icon": "🗡️",
+  "color": "#7B1FA2",
+  "bgColor": "#F3E5F5",
+  "description": "The Legend of Sword and Fairy series, produced by Softstar Entertainment, has walked a legendary path of thirty years since its first installment in 1995. As a foundational work of Chinese role-playing games, the series not only moved generations of players with the stories of characters like Li Xiaoyao, Zhao Ling'er, Jing Tian, and Yun Tianhe, but also, with its steadfast dedication to depicting China's real mountains, waters, and ancient architecture, left in the digital world a 'National Geographic' of its own, created by Chinese game developers. This article follows in the footsteps of protagonists across the generations, traversing the divine land's mountains, rivers, and millennium-old heritage sites woven into the Sword and Fairy series.",
+  "route": {
+    "title": "The Legend of Sword and Fairy: Thirty Years, Traversing the Divine Land into the Sword",
+    "intro": "<div class=\"xuxiake-quote\">Riding the sword, riding the wind, slaying demons between heaven and earth</div>\n\nIn 1995, when most Chinese games were still struggling in 2D pixels, The Legend of Sword and Fairy opened with an ink-wash-style scene of Hangzhou's West Lake — Li Xiaoyao awakens in a small fishing village, with the lake, distant mountains, and misty skies outside his window. This opening stunned countless young players: so the 'China' in games could be this beautiful.\n\nOver the next thirty years, from the first to the seventh installment, the Sword and Fairy series has 'traveled' across almost all of China: the West Lake and Suzhou gardens of the first, the shadows of Mount Emei in the second, Mount Shu, Mount Qingcheng, and Wutai's Buddhist light in the third, Kunlun's幻境 in the fourth, the Three Pagodas of Dali's Chongsheng Temple in Yunnan in the fifth, the Wulingyuan peaks of Hunan in the sixth...\n\nThe Sword and Fairy series never uses 'hard replications' — it excels at blending real mountains, waters, and ancient architecture into架空 xianxia narratives. But those architectural genes deeply rooted in Chinese landscape and culture are, for those familiar with heritage sites, almost 'impossible to hide.'",
+    "stops": [
+      {
+        "title": "Stop 1: Yuhang Town — West Lake's Misty Rain Drifting into Dreams",
+        "icon": "🌊",
+        "content": "Opening The Legend of Sword and Fairy I, the first画面 is 'Yuhang Town' — a quiet little town by West Lake. The morning mist has not yet dissipated; a few fishing boats drift slowly across the lake, the distant mountain shadows pale as if washed by water. In just such a waterfront inn, Li Xiaoyao is awakened by his aunt's frying pan.\n\nThis is the first 'game scenery' for countless Chinese players. Back then, we did not know what a AAA title or an open world was — we only knew that this place called 'Yuhang' was so beautiful we did not want to fight monsters.\n\nThe Yuhang Town of Sword and Fairy I is clearly modeled on Hangzhou's West Lake. The core aesthetic of the real West Lake lies in its spatial layout of 'mountains on three sides, city on one': the city lies to the east, while the south, west, and north are embraced by mountains — this水面 'held' by mountains naturally creates a visual sense of 'a paradise within the mortal world.' The view from the inn window in the game, facing the lake and distant mountains, is precisely the most classic视角 of Hangzhou's lakeside area.\n\nEven more remarkable is the cultural density of West Lake itself: in the lake are Su Causeway and Bai Causeway, with bridges on them; around the lake stand ancient pagodas like Leifeng Pagoda, Baochu Pagoda, and Liuhe Pagoda, and ancient temples like Yue Fei's Temple and Lingyin Temple. Though Sword and Fairy I was limited by the pixel technology of its time, the crucial cutscene of Li Xiaoyao boating on the lake is an精准 capture of West Lake's气质.\n\nAlthough West Lake itself as a natural and cultural landscape has not been separately listed as a heritage site, its surrounding architectural cultural脉络 is deeply embedded in the heritage system — in subsequent Sword and Fairy works, this手法 of transforming real landscape environments into game worlds was repeatedly employed and upgraded.\n\nYet what Yuhang Town in Sword and Fairy I left players is far more than visual memory — it has an 'atmosphere': the moisture rising from the lake in the early morning, the wet reflections on the stone pavement, the distant temple bells. This sensory immersion is the most直观 cultural experience that heritage architecture, through the medium of games, transmitted to an entire generation. Even if you have never been to Hangzhou, having once walked through the pixel streets of Yuhang Town, you have already touched the soul of West Lake.",
+        "buildings": [
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 2: Suzhou — A Martial Arts Challenge in the Depths of the Garden",
+        "icon": "🏡",
+        "content": "Leaving Yuhang, Li Xiaoyao, Zhao Ling'er, and Lin Yueru arrive at Suzhou city — here, one of the most important scenes is the Lin family's 'Lin Manor,' a Jiangnan residence with high walls and deep courtyards. The moon gates, winding corridors, rockeries, and ponds within the manor are all classic symbols of Suzhou gardens.\n\nSword and Fairy I's recreation of Suzhou gardens was极致 within the technical limitations of its time. The most精彩 detail is the long corridor for the 'martial arts marriage challenge' — Yueru flies out from beneath the corridor, and Xiaoyao is forced to engage. The design of this corridor clearly references the water corridor of <a href=\"?page=building&name=拙政园&pid=jiangsu\" target=\"_blank\" data-nav>Humble Administrator's Garden</a> — the western section of the garden has a corridor built over the water, light and translucent, making one feel as if walking on ripples. Sword and Fairy I's pixel artists, working with extremely limited resolution, still succeeded in conveying the corridor's ethereal quality of 'floating above water' — this is the power of a good architectural archetype itself: even with粗糙 graphics, the poetic quality of the space is not diminished.\n\nAdditionally, the streets, stone bridges, and shops along the river in the game's Suzhou also capture the urban fabric of Suzhou as a Jiangnan water town: canals running parallel to streets, shops at the front and residences behind, every household枕河. And Suzhou's other heritage site — <a href=\"?page=building&name=留园&pid=jiangsu\" target=\"_blank\" data-nav>Lingering Garden</a> — with its层层递进的 courtyard spatiality appears multiple times in later Sword and Fairy installments (especially the Liu Family Maze in Sword and Fairy IV), which can be seen as the continued发酵 of the first game's Suzhou imagery.\n\nOpening Sword and Fairy I more than twenty years later, those pixelated rockeries and moon gates can still bring tears to your eyes — not from nostalgia, but from the sudden realization that we had 'seen' real Chinese gardens so early on, and were merely waiting to grow up to verify them with our own eyes.",
+        "buildings": [
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Liuyuan Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 3: Mount Shu — The Xianxia Sanctuary of Qingcheng's Seclusion Under Heaven",
+        "icon": "⛰️",
+        "content": "No discussion of The Legend of Sword and Fairy is complete without 'Mount Shu.'\n\nThe Mount Shu Sect is the most important cultivation school in the series — Sword Saint, Drunken Swordsman, Xu Changqing, Elder Qingwei... countless unforgettable characters hail from Mount Shu. And the prototype of 'Mount Shu' itself is drawn from two famous mountains in Sichuan and Anhui.\n\nThe first prototype is the <a href=\"?page=building&name=青城山古建筑群&pid=sichuan\" target=\"_blank\" data-nav>Mount Qingcheng Ancient Architecture Complex</a> in Dujiangyan, Sichuan. Mount Qingcheng is one of the birthplaces of Daoism — in the late Eastern Han, Zhang Daoling built a thatched hut here to preach, founding the Way of the Five Pecks of Rice. Over subsequent centuries, Daoists built temples such as the Heavenly Master's Cave, Upper Qing Palace, and Jianfu Palace on the mountain. These structures do not追求 ostentation but blend seamlessly with ancient towering trees, flying waterfalls, and flowing springs — when clouds surge and bells chime, it truly feels like 'entering a celestial realm.' The 'seclusion' of Mount Qingcheng — not desolation but tranquility, not deathly stillness but vitality — is precisely the core spiritual definition of Mount Shu in the Sword and Fairy series.\n\nThe second prototype is Mount Huang in Anhui. Mount Huang is famous for its four wonders: odd-shaped pines,怪石, seas of clouds, and hot springs. Its ancient climbing paths and historic buildings — such as Ciguang Pavilion and Yuping Tower — constitute the heritage site of <a href=\"?page=building&name=黄山登山古道及古建筑&pid=anhui\" target=\"_blank\" data-nav>Mount Huang Climbing Path and Ancient Architecture</a>. The visual design of Mount Shu's precipitous peaks and surging seas of clouds in Sword and Fairy III heavily incorporates the peak forest地貌 of Huangshan.\n\nCombining 'Qingcheng's seclusion' with 'Huangshan's peril' creates in players' hearts that unique 'Mount Shu' — at the foot, the quiet Daoist temples and pine forests like Qingcheng; on the summit, the奇峭 peaks and seas of clouds like Huangshan. With a single fictional 'Mount Shu,' the Sword and Fairy series完成d a poetic distillation of China's famous mountains.",
+        "buildings": [
+          {
+            "n": "Qingcheng Mountain Ancient Buildings",
+            "p": "sichuan",
+            "d": "sichuan_chengdu"
+          },
+          {
+            "n": "Huangshan Mountain Ancient Climbing Path and Ancient Buildings",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          }
+        ]
+      },
+      {
+        "title": "Stop 4: Mount Wutai — The Reincarnation Pact at Foguang Temple",
+        "icon": "🛕",
+        "content": "In The Legend of Sword and Fairy III, there is an important storyline set at 'Thunderclap Monastery' — Jing Tian and his companions enter this ancient mountain temple, where before the Buddha they engage in a dialogue about reincarnation and fate.\n\nThe 'Thunderclap Monastery' in Sword and Fairy III does not refer to any specific real temple, but its spatial feel and architectural character strongly指向 the <a href=\"?page=building&name=五台山古建筑群&pid=shanxi\" target=\"_blank\" data-nav>Mount Wutai Ancient Architecture Complex</a> in Shanxi. Mount Wutai is the foremost of China's four great Buddhist mountains, with temples scattered both within and beyond the terraces, encompassing the Tang-dynasty Nanchan Temple and Foguang Temple, the Yuan-dynasty Guangji Temple, and other顶尖 structures from various dynasties — especially the East Hall of Foguang Temple, which Liang Sicheng called 'China's foremost national treasure,' the largest surviving Tang-dynasty timber structure in China. Its巨大的 bracket sets, deep overhanging eaves, and robust proportions represent the golden age of Chinese timber architecture.\n\nThough the Thunderclap Monastery scene in Sword and Fairy III is a combination of 2D background and 3D characters, the artist accurately depicted the Tang architectural character of Foguang Temple's East Hall — both 'majestic and serene,' with seven-puzuo bracket sets层层 projecting, the upturned eaves both vigorous and从容. The distant mountain contours behind the temple also closely resemble the landscape of Mount Wutai's Taihuai Town.\n\nMore importantly, since the Yuan dynasty, Mount Wutai has been a place where Han and Tibetan Buddhism coexist — yellow temples (Tibetan Buddhist) and green temples (Han Buddhist) standing side by side. This pattern of diverse faiths coexisting on one mountain finds its echo in the 'Six Realms' worldview of Sword and Fairy III: humans, immortals, demons, and monsters are inherently incompatible, yet all are equal before the Buddha's dharma — this is precisely the spiritual core of Mount Wutai: 'Buddha's light shines everywhere, all beings are equal.'\n\nOn a beam of Foguang Temple's East Hall is written 'Buddha Hall Patron, Female Devotee Ning Gongyu of the Capital' — that was the name of an ordinary female believer who left her mark in 857 AD. When you complete the Thunderclap Monastery storyline in Sword and Fairy III, and Jing Tian makes a wish before the Buddha — you may not think of that beam, but the piety is the same as that of Ning Gongyu, eleven hundred years ago.",
+        "buildings": [
+          {
+            "n": "Mount Wutai Ancient Architecture Complex",
+            "p": "shanxi",
+            "d": "shanxi_xinzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 5: Dali — The Three-Pagoda Buddha Land Between Cangshan and Erhai",
+        "icon": "🗼",
+        "content": "In The Legend of Sword and Fairy V and its prequel, the story's important stage shifts southwest to Dali, Yunnan.\n\nThe game's Dali city is embraced by snow-capped mountains and blue lakes, with Bai ethnic folk houses of green tiles and white walls, carved beams and painted rafters, while in the northwest stand three tall pagodas — one large, two small, arranged in a品 formation, striking beneath the azure sky of the Cangshan range. This is a tribute to Yunnan's <a href=\"?page=building&name=崇圣寺三塔&pid=yunnan\" target=\"_blank\" data-nav>Chongsheng Temple Three Pagodas</a>.\n\nThe Three Pagodas of Chongsheng Temple face Erhai Lake with the Cangshan range at their back. The main pagoda, Qianxun Pagoda, stands 69.13 meters tall, built during the Tang dynasty Nanzhao kingdom period about 1,200 years ago, the tallest Tang-dynasty dense-eave hollow brick pagoda in China. The two smaller pagodas to the north and south, each 42.19 meters tall, were built during the Five Dynasties period. The three pagodas have stood firm through numerous strong earthquakes — notably after a major earthquake during the Ming Zhengde era, the two smaller pagodas simultaneously tilted about one degree toward the main pagoda, creating the wonder of 'three pagodas facing each other.'\n\nIn the Sword and Fairy series, Dali is often赋予d a character of 'remote, tranquil, mysterious' — a pure land apart from the mortal world of the Central Plains. This character perfectly吻合 the real Chongsheng Temple Three Pagodas: when you stand at their base and look up, the snowline of Cangshan gleams white at the horizon, the shimmering light of Erhai dances between the pagodas — that sacred sense beyond time and space needs no xianxia embellishment.\n\nThe game also heavily incorporates Bai ethnic architectural elements — the words 'wind, flowers, snow, moon' on screen walls, the green-tiled white-walled folk houses, the traditional 'three rooms with one screen wall' courtyard layout. Although these are not individually at the heritage level, together with the Chongsheng Temple Three Pagodas they form the完整 cultural landscape of Dali ancient city.\n\nIn the thirty-year-long journey of the Sword and Fairy series, Dali is the southernmost point. Looking north from here, the nineteen peaks of Cangshan stretch beyond the horizon — as endless as the memories this series has left us.",
+        "buildings": [
+          {
+            "n": "Chongsheng Temple Three Pagodas",
+            "p": "yunnan",
+            "d": "yunnan_dali"
+          }
+        ]
+      },
+      {
+        "title": "Final Chapter: Thirty Years of Sword and Fairy — From Pixels to Mountains and Rivers",
+        "icon": "✨",
+        "content": "1995 to 2025 — thirty years.\n\nThirty years ago, when we first entered the world of Sword and Fairy I on DOS systems, no one could have imagined how far Chinese gaming would come. From pixel grains to Unreal Engine, from 256 colors to HDR, from single-thread storylines to open worlds — but one thing has never changed: the Sword and Fairy series' depiction of China's mountains, waters, and ancient architecture was never about 'pasting a nice background' but about 'making players truly want to step into that world.'\n\nOver the years, how many veteran players went to West Lake in Hangzhou because of Sword and Fairy I, to Mount Qingcheng because of Sword and Fairy III, to Mount Huang because of Sword and Fairy IV, to the Three Pagodas of Dali because of Sword and Fairy V? This number cannot be counted, but every 'pilgrimage' was a closure of the loop between game and reality.\n\nSword and Fairy taught us one most important thing: China does not lack for beautiful scenery and beautiful ancient architecture — what it lacks is good 'storytellers.' As generation after generation of game developers enter real heritage sites and transplant flying eaves and upturned corners into game worlds, they are doing more than entertainment — they are using the most powerful medium of this era to tell young people: look how beautiful the land beneath our feet is.\n\nLike Hangzhou's Liuhe Pagoda — this Song-dynasty brick-and-wood pagoda standing by the Qiantang River has witnessed eight hundred years of tides rising and falling. It never appeared in the pixel画面 of Sword and Fairy games, but that classic opening shot in every installment — looking down over Jiangnan from a height, gazing at the landscape from a tower — every player who has climbed Liuhe Pagoda will smile knowingly: the virtual landscape in the game and the real land seen from the pagoda overlap at some moment. That is the most moving legacy of Sword and Fairy's thirty years: it taught us to view China's mountains and rivers with Chinese eyes.",
+        "buildings": [
+          {
+            "n": "Liuhe Tower",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          }
+        ]
+      }
+    ]
+  }
+}

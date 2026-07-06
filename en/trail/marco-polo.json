@@ -1,0 +1,112 @@
+{
+  "id": "marco-polo",
+  "title": "The Travels of Marco Polo",
+  "subtitle": "Dictated by Marco Polo · Recorded by Rustichello · Yuan Dynasty China Through European Eyes",
+  "icon": "🦁",
+  "color": "#C62828",
+  "bgColor": "#FFEBEE",
+  "description": "Marco Polo (1254–1324), a Venetian merchant and traveler from Italy. In 1271, at the age of seventeen, he followed his father Niccolò and uncle Maffeo eastward along the Silk Road. After four years, they arrived at Shangdu of the Yuan Dynasty, where he was received by Kublai Khan. He lived in China for seventeen years, traveling across the land. In 1298, he was captured in a naval battle between Venice and Genoa. In prison, he dictated his experiences in China to the writer Rustichello, who recorded them into a book. This route follows the Chinese imprints left by Marco Polo's pen, visiting those Chinese national heritage buildings that were first documented by Europeans.",
+  "route": {
+    "title": "The Travels of Marco Polo: Yuan Dynasty China Through the Eyes of a Venetian Merchant",
+    "intro": "<div class=\"xuxiake-quote\">Hangzhou is the most beautiful and noble city in the world. ... Those who live there feel as if they are in paradise.</div>\n\nIn 1271, seventeen-year-old Marco Polo set out from Venice with his father Niccolò and uncle Maffeo. They crossed the Mediterranean, Central Asia, the Pamir Plateau, and the Taklamakan Desert. After four years, they arrived at Shangdu of the Yuan Dynasty — Kublai Khan's summer palace. Young Marco Polo immediately won Kublai Khan's favor — thanks to his linguistic talent and keen observation. For the next seventeen years, he traveled across China's mountains, rivers, cities, and villages as an envoy of the Yuan court.\n\nIn 1298, Marco Polo was captured in a naval battle between Venice and Genoa. In a Genoese prison, he recounted his experiences in China to his cellmate, the writer Rustichello. Rustichello recorded them in a popular Franco-Italian vernacular, producing the book — The Travels of Marco Polo. It shook all of Europe: there existed in the distant East a civilization so wealthy and powerful. Columbus set sail with this book in hand — he was heading for that \"land of gold\" called China, only to discover America instead.\n\nLet us see, through Marco Polo's eyes, what China looked like more than seven hundred years ago.",
+    "stops": [
+      {
+        "title": "Stop 1: Khanbaliq: Kublai Khan's Great Capital",
+        "icon": "🏯",
+        "content": "The city Marco Polo described most vividly was Yuan Dadu — he called it \"Khanbaliq,\" meaning \"City of the Khan.\" \"The city is square, twenty-four miles in circumference. The walls are made of rammed earth, ten paces wide at the base and three paces wide at the top, narrowing as they rise\" — though Marco Polo's numbers are somewhat exaggerated, the sheer scale of Yuan Dadu was indeed unbelievable to Europeans.\n\nWithin the city, the most breathtaking structure was the imperial palace: \"The great hall is so vast that it can hold six thousand people dining at once. The roof is covered with glazed tiles in red, yellow, blue, and green, dazzling and splendid.\" Though this palace no longer exists today — the Ming Emperor Yongle built the Forbidden City on its site — two architectural marvels from Dadu have miraculously survived. One is the <a href=\"?page=building&name=北京市西城区妙应寺白塔&pid=beijing\" target=\"_blank\" data-nav>妙应寺白塔</a> — designed by the Nepalese craftsman Arniko, pure white, 51 meters tall, a building Marco Polo saw with his own eyes. He called it in his travelogue \"the most wonderful pagoda in Dadu.\" The other is the <a href=\"?page=building&name=北京市东城区古观象台&pid=beijing\" target=\"_blank\" data-nav>古观象台</a> — the imperial astronomical observatory of the Ming and Qing dynasties, its bronze instruments covered in Chinese characters that Marco Polo could not read.\n\nMarco Polo also made special mention of Dadu's bell and drum towers and its night markets — \"The night market in the city is ablaze with lights, bright as day.\" A Venetian, dazzled by the lights of Beijing.",
+        "buildings": [
+          {
+            "n": "Bai Pagoda of Miaoying Temple",
+            "p": "beijing",
+            "d": "beijing_xicheng"
+          },
+          {
+            "n": "Ancient Observatory",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          }
+        ]
+      },
+      {
+        "title": "Stop 2: Lugou Bridge: The \"Peerless Bridge\" Praised by Marco Polo",
+        "icon": "🌉",
+        "content": "Leaving Dadu and heading south, Marco Polo crossed a bridge he would never forget — the <a href=\"?page=building&name=北京市丰台区卢沟桥&pid=beijing\" target=\"_blank\" data-nav>卢沟桥</a>. He devoted an entire chapter to this bridge in his travelogue: \"This bridge is three hundred paces long and eight paces wide, so that even ten horsemen riding abreast would not feel crowded. It has twenty-four arches, and atop each pillar stands a majestic marble lion.\"\n\n\"Twenty-four arches\" is incorrect — Lugou Bridge actually has eleven arches — but the description of 501 stone lions is absolutely accurate. These stone lions vary in size and pose, \"some crouching, some lying down, some carrying cubs, none alike,\" representing a pinnacle of stone carving from the Jin to the Qing dynasties. Marco Polo said: \"This bridge is so exquisite that no other in the world can surpass it\" — he called it \"Pul-i-Sangin\" (Stone Bridge).\n\nMore than seven hundred years later, on July 7, 1937, the sound of gunfire at the Marco Polo Bridge Incident marked the start of the full-scale national War of Resistance. That stone bridge once admired by Marco Polo is not only an architectural masterpiece but also the starting point of a nation's collective memory.",
+        "buildings": [
+          {
+            "n": "Lugou Bridge",
+            "p": "beijing",
+            "d": "beijing_fengtai"
+          }
+        ]
+      },
+      {
+        "title": "Stop 3: Zhuozhou: First Stop After Leaving the Capital",
+        "icon": "🏘️",
+        "content": "After leaving Lugou Bridge, Marco Polo's first stop heading south was Zhuozhou — an ancient city with a history of over two thousand years. He wrote in his travelogue: \"Zhuozhou is a great city, prosperous in commerce, and its inhabitants follow Buddhism.\" At that time, Zhuozhou was a mandatory stop on the official route south from Yuan Dadu. Merchants and travelers from north and south all rested here, with inns and taverns lining the streets, and the clamor of carriages and horses never ceasing day or night.\n\nZhuozhou also holds a special place in Chinese history — it is the hometown of Zhang Fei, the famous general of the Three Kingdoms. \"Yan man Zhang Yide is here\" — in the story of the Oath of the Peach Garden, Liu Bei was from Zhuozhou, and both Guan Yu and Zhang Fei were from the area near Zhuozhou. Though Marco Polo knew nothing of these Chinese tales, he was captivated by Zhuozhou's bustle and the refinement of its temples. He specifically noted there were \"many monasteries\" in the city, the most spectacular being the two Liao Dynasty brick pagodas standing at the north and south ends of the ancient city — the <a href=\"?page=building&name=涿州双塔&pid=hebei\" target=\"_blank\" data-nav>涿州双塔</a>. The southern pagoda, Zhidusi Pagoda, and the northern pagoda, Yunjusi Pagoda — one tall, one short, one stout, one slender — echo each other across the distance, having stood firm through over nine hundred years of wind and rain. When Marco Polo walked beneath them, the wind bells on the eaves chimed melodiously — a sound that pierced through the mists of the Yuan Dynasty and still echoes under Zhuozhou's sky today.\n\nToday, most of Zhuozhou's ancient city walls have vanished, but the twin pagodas remain, and the outline of the old city stretching north and south can still be discerned. Standing between the pagodas at the crossroads of Gulou Street, close your eyes, and you can still feel the relentless flow of Yuan Dynasty travelers — Marco Polo's camel caravan may have trod right along this very street. Zhuozhou is not a large city, but it was a warm beacon for every traveler heading south — as Marco Polo said: \"This is a great city where one can rest at ease.\"",
+        "buildings": [
+          {
+            "n": "Zhuozhou Twin Towers",
+            "p": "hebei",
+            "d": "hebei_baoding"
+          }
+        ]
+      },
+      {
+        "title": "Stop 4: Suzhou: The Venice of the East",
+        "icon": "🌿",
+        "content": "Arriving in Suzhou, Marco Polo marveled: \"Suzhou is a great and noble city.\" He saw a dense network of waterways, stone bridges, gardens, and silk workshops. The canals of Suzhou crisscrossed in all directions — \"There are six thousand stone bridges in the city\" — this figure was obviously an exaggeration he had heard, but it still speaks to the magnificence of Suzhou as a water city. Boats were the legs of Suzhou's people, and bridges were the city's bones. This Venetian found in Suzhou a sense of home — he, too, came from a city of water.\n\nWhat fascinated Marco Polo most was Suzhou's silk: \"The output of silk is immense; everyone in the city wears silk.\" He recorded in detail the entire process from sericulture to silk weaving — this was the first time Europeans learned the origin of silk. He also witnessed the use of silver and paper money in Suzhou's markets, finding it quite novel — because Europe at that time still mainly relied on barter.\n\nOn the western outskirts of Suzhou, he also saw the <a href=\"?page=building&name=云岩寺塔&pid=jiangsu\" target=\"_blank\" data-nav>云岩寺塔</a> on Tiger Hill — commonly known as the Tiger Hill Pagoda, first built at the end of the Five Dynasties, three hundred years before Marco Polo even arrived in China. The people of Suzhou often say: \"See Tiger Hill Pagoda first, then see Suzhou city.\" This slightly tilted brick pagoda is Suzhou's anchor, and when Marco Polo spotted it from afar, he knew a great city was near. He also visited Suzhou's gardens, though many famous gardens had not yet been built at the time — the <a href=\"?page=building&name=江苏省苏州市拙政园&pid=jiangsu\" target=\"_blank\" data-nav>拙政园</a> would not appear until the Ming Dynasty — but the spirit of Suzhou's gardens had already been established since the Song Dynasty. The Humble Administrator's Garden is famed for its waterscapes, with pavilions and terraces all built by the water's edge — a different view with every step — just as Marco Polo said: \"The beauty of this city is beyond words.\"",
+        "buildings": [
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Suzhou Yunyan Temple Pagoda",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 5: Hangzhou: City of Paradise",
+        "icon": "🌅",
+        "content": "Marco Polo's love for Hangzhou was evident — he called it \"Kinsay\" (行在) and devoted three full chapters to describing it. \"Hangzhou is the most beautiful and noble city in the world. There are twelve thousand stone bridges in the city, and around West Lake are exquisite palaces and temples.\" He recorded that Hangzhou had 1.6 million households (clearly an exaggeration), but this reflects his astonishment at the city's scale. He said the city walls had twelve gates, and beyond them a dense network of waterways, \"with goods so abundant that no city in the world can compare.\"\n\nHe ascended the <a href=\"?page=building&name=浙江省杭州市六和塔&pid=zhejiang\" target=\"_blank\" data-nav>六和塔</a> by the Qiantang River — \"The pagoda is several hundred feet high; from the top you can see the sea\" — standing atop the tower overlooking the vast Qiantang River, with a thousand sails racing across the water, the magnificent scenery left even this world traveler speechless. Then he visited <a href=\"?page=building&name=浙江省杭州市岳飞墓&pid=zhejiang\" target=\"_blank\" data-nav>岳飞墓</a> by West Lake. Though he knew nothing of Yue Fei's deeds, he was awed by the scale and solemnity of the tomb — before it stood four kneeling iron statues of traitors. Marco Polo could not understand why the Chinese spat at these iron figures, but he sensed the weight behind this burial site.\n\nMarco Polo also made special mention of Hangzhou's bathhouses — \"There are three to four thousand bathhouses in the city, using hot spring water\" — this detail is particularly authentic, as Marco Polo came from Europe with its ancient Roman bathhouse culture. He also noted the use of paper money, rice wine drinking, and dragon boat racing during the Dragon Boat Festival… Reading these details more than seven hundred years later, they remain as vivid as if he were standing before you, gesticulating enthusiastically as he told his stories of Hangzhou.",
+        "buildings": [
+          {
+            "n": "Liuhe Tower",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          },
+          {
+            "n": "Yue Fei Tomb",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 6: Quanzhou: A Thousand Sails at Zayton Port",
+        "icon": "⛵",
+        "content": "Marco Polo's last stop in China was Quanzhou — the greatest port of the East during the Yuan Dynasty. He wrote in his travelogue: \"Zayton Port is one of the greatest ports in the world, where all ships from India anchor.\" He specifically recorded the scale of Quanzhou's goods distribution — \"The quantity of pepper alone, if shipped to the port of Alexandria to supply the Western world, would be enough for all of Europe.\" The bustle of Quanzhou port far exceeded his imagination — merchants from Arabia, Persia, India, and Southeast Asia jostled shoulder to shoulder, the market filled with spices, jewelry, silk, porcelain, and medicinal herbs, with languages rising and falling like the roaring waves of the sea.\n\nWhat left the deepest impression on Marco Polo in Quanzhou was the coexistence of multiple religions. He saw \"Buddhist temples, Islamic mosques, and Nestorian churches standing side by side\" — this was unimaginable in Europe. In one city, people of different faiths each performed their own prayers, each believed in their own gods, and they coexisted peacefully. The main hall and the twin pagodas of <a href=\"?page=building&name=福建省泉州市开元寺&pid=fujian\" target=\"_blank\" data-nav>开元寺</a> — the tallest pair of Song Dynasty stone pagodas still standing in China, entirely carved and constructed from granite, having withstood eight hundred years of earthquakes and typhoons — left Marco Polo full of wonder. Meanwhile, <a href=\"?page=building&name=福建省泉州市清净寺&pid=fujian\" target=\"_blank\" data-nav>清净寺</a> — the oldest surviving Islamic mosque in China, with Arabic Quranic reliefs on its gate — gave him a sense of home. He also went to see China's oldest跨海 stone bridge — the <a href=\"?page=building&name=福建省泉州市洛阳桥&pid=fujian\" target=\"_blank\" data-nav>洛阳桥</a>, the entire bridge built from enormous granite slabs, standing immovable through the ebb and flow of the tides, the craftsmanship of Quanzhou's artisans laid bare on this bridge.\n\nIn 1291, Marco Polo and his family departed from Quanzhou, escorting a Mongol princess on her journey to marry the Ilkhan of Persia. They sailed across the South China Sea and the Indian Ocean, finally returning to Venice in 1295. When he left China, he had lived there for seventeen years — longer than the years he had lived in Venice. What he took away were silk, porcelain, and a book that changed world history — the Quanzhou within that book still emanates the fragrance of刺桐花 in libraries around the world.",
+        "buildings": [
+          {
+            "n": "Kaiyuan Temple",
+            "p": "fujian",
+            "d": "fujian_quanzhou"
+          },
+          {
+            "n": "Qingjing Temple",
+            "p": "fujian",
+            "d": "fujian_quanzhou"
+          },
+          {
+            "n": "Luoyang Bridge",
+            "p": "fujian",
+            "d": "fujian_quanzhou"
+          }
+        ]
+      }
+    ]
+  }
+}

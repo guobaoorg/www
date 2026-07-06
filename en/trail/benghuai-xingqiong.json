@@ -1,0 +1,107 @@
+{
+  "id": "benghuai-xingqiong",
+  "title": "Honkai: Star Rail",
+  "subtitle": "The Xianzhou Luofu — When Huizhou Ink Wash Meets the Sea of Stars",
+  "icon": "🚂",
+  "color": "#1565C0",
+  "bgColor": "#E3F2FD",
+  "description": "Honkai: Star Rail is a space fantasy role-playing game developed by miHoYo. Players board the 'Astral Express' and travel across the galaxy, embarking on adventures among many civilized planets. The China-inspired 'Xianzhou Luofu' — a colossal celestial ark traversing the stars — boldly fuses the white walls and black tiles of Huizhou architecture, the winding corridors and latticed windows of Suzhou gardens, the circular settlements of Fujian tulou, and cyberpunk technology, creating a visual marvel of 'Chinese sci-fi' that amazes players worldwide.",
+  "route": {
+    "title": "Honkai: Star Rail · Luofu: An Interstellar Voyage Through Ink Wash Painting",
+    "intro": "<div class=\"xuxiake-quote\">The galaxy is above — may this journey lead us to the stars</div>\n\nIn the world of video games, 'Chinese style' is often reduced to a few red lanterns and some glazed tiles. But the Xianzhou Luofu in Honkai: Star Rail subverts all stereotypes — it uses the architectural grammar of Huizhou ancient buildings to tell a Chinese story set amidst a sea of stars.\n\nmiHoYo's design philosophy here achieves a kind of 'bold caution': on one hand, they are completely faithful to the fundamental elements of Huizhou architecture — horse-head walls, white walls and black tiles, brick-carved door frames, skywell courtyards — every line and corner withstands architectural scrutiny. On the other hand, they scale these elements to the dimensions of a giant starship, allowing 'whitewashed walls and black tiles' to coexist in the same frame with 'holographic projections,' 'timber eaves' with 'interstellar navigation.'\n\nThis design approach of 'ancient architectural genes plus sci-fi exterior' makes the Xianzhou Luofu the most unique architectural experiment in Chinese gaming history.",
+    "stops": [
+      {
+        "title": "Stop 1: Exalting Sanctum — The Cosmic Scale of Huizhou Architecture",
+        "icon": "🏘️",
+        "content": "When you first land in the Exalting Sanctum — the central port district of the Xianzhou Luofu — your first reaction might not be 'so sci-fi' but 'so familiar.'\n\nBecause those层层叠叠, ridge-covering building clusters are clearly Huizhou ancient villages magnified countless times. White walls, black tile roofs, tall stepped horse-head walls — these most iconic elements of Huizhou architecture are fully transplanted into the fabric of this interstellar city.\n\nAt the source of it all is Anhui Huangshan's <a href=\"?page=building&name=宏村古建筑群&pid=anhui\" target=\"_blank\" data-nav>Hongcun Ancient Village</a>. Built in the Southern Song, Hongcun is called 'a village in a Chinese painting,' renowned for its unique ox-shaped water system and Huizhou architecture. During the Ming and Qing dynasties, the Wang clan developed it into an 'ox-shaped village with mountains as the head, trees as horns, and houses as the body.' The Moon Pond mirrors the sky, the South Lake forms a bow. Every house was built under strict feng shui principles — white walls were not just for beauty but to reflect the strong sunlight of southern Anhui; horse-head walls were not just decorative but fireproofing — if a neighbor's house caught fire, the tall gables prevented the blaze from spreading.\n\nThe more refined residences in the Exalting Sanctum reference <a href=\"?page=building&name=西递村古建筑群&pid=anhui\" target=\"_blank\" data-nav>Xidi Village</a>. Xidi has the reputation of 'the family home in the Land of Peach Blossoms.' Built in the Northern Song, during the Ming and Qing dynasties the Hu clan members returned from their business ventures abroad to build grand houses. The village's Lufu Hall, Ruiyu Courtyard, and Taoli Garden are famous for their exquisite brick-carved door frames and wood-carved window lattices. The shops and teahouses lining the lanes in the game, with their facade rhythms and decorative details, can be matched almost one-to-one with Ming dynasty shops along Xidi's stream.\n\nWhat is even more interesting is how the game takes the concept of 'architectural specimens' from <a href=\"?page=building&name=潜口民宅&pid=anhui\" target=\"_blank\" data-nav>Qiankou Folk Houses</a> — a relocated andprotected group of Ming dynasty Huizhou houses — to the extreme. Qiankou Folk Houses gathered more than a dozen Ming dynasty houses, ancestral halls, and stone bridges scattered across the Huizhou district into one place for centralized protection, forming an open-air museum. The Xianzhou Luofu's 'folded space' technology is, to some degree, a sci-fi interpretation of this 'relocation and reconstruction' concept — collapsing different periods of Huizhou architecture into a single space, where the bracket sets of a Ming ancestral hall sit right next to a holographic billboard, and an interstellar cargo ship hovers above the horse-head walls of a Qing dwelling.\n\nAnd so, a language of Huizhou architecture inherited over eight hundred years gains new life aboard a celestial ark crossing the galaxy.",
+        "buildings": [
+          {
+            "n": "Hongcun Ancient Architecture Complex",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          },
+          {
+            "n": "Xidi Village Ancient Architecture Complex",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          },
+          {
+            "n": "Qiankou Homestead",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          }
+        ]
+      },
+      {
+        "title": "Stop 2: Workshop of the Artisans — A Mechanical Translation of Huizhou's Three Carvings",
+        "icon": "🔧",
+        "content": "Traveling from the Exalting Sanctum to the Workshop of the Artisans — the industrial district of the Xianzhou Luofu responsible for forging and maintenance — the architectural style shifts abruptly from 'Huizhou folk houses' to 'Huizhou craftsmanship.'\n\nThis is a colossal mechanical factory. Countless gears turn, steam jets, mechanical arms swing — but all these industrial elements are wrapped in a highly decorative 'woodcarving' style shell. The edges of those gears are carved with entwined lotus patterns, the joints of steam pipes are brick-carved lotuses, and even the wall vents are styled as镂空 lattice windows.\n\nThis is what Huizhou's 'Three Carvings' — brick carving, wood carving, stone carving — look like in a fully cyberized form.\n\nIn the real world, Huizhou's Three Carvings represent the pinnacle of Chinese architectural decorative art. Brick carving is primarily used on door frames, gate towers, and screen walls, using high-relief and openwork techniques to carve opera characters and auspicious patterns into fired gray bricks. Wood carving is used on beams, doors, windows, partitions, and sparrow braces, often covering the entire structural element with 'full carving.' Stone carving is most commonly seen on memorial archways, column bases, and drum-shaped bearing stones. Together, the Three Carvings create Huizhou architecture's极致 craftsmanship: 'no place without carving, no carving without refinement.'\n\nThe game's Workshop of the Artisans grafts this spirit of 'no place without carving' onto mechanical aesthetics. Drive shafts carved into coiling dragon shapes, gears镂空 with longevity-character patterns, pistons covered in scrollwork — you have seen identical motifs on the ox-leg brackets of an old Huizhou house, and now they drive a colossal interstellar engine.\n\nEspecially worth mentioning is the transformation of brick-carved gate towers in the game. A real Huizhou gate tower — such as the Yuan dynasty gate in <a href=\"?page=building&name=呈坎村古建筑群&pid=anhui\" target=\"_blank\" data-nav>Chengkan Village</a>, with its层层叠涩 projecting eaves and graceful upturned corners — is magnified in the Workshop into a giant factory entrance. The foot-wide brick-carved figures are enlarged into ten-meter-tall mechanical sculptures, no longer holding ruyi scepter but operating control consoles.\n\nThe genius of this design approach is that it is not just consuming 'Chinese style' — it is making Chinese ancient craft 'solve future problems.' If a Huizhou artisan lived a thousand years from now and piloted a starship, he would still use the 'Three Carvings' technique to decorate his machines. Because to him, creation and aesthetics were never two separate things.",
+        "buildings": [
+          {
+            "n": "Chengkan Village Ancient Architecture Complex",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          }
+        ]
+      },
+      {
+        "title": "Stop 3: Alchemy Commission and Scalegorge Waterscape — A Space Walk Through Garden Corridors",
+        "icon": "🌿",
+        "content": "If the Exalting Sanctum is 'Hongcun in space,' then the Alchemy Commission and Scalegorge Waterscape are 'the Lingering Garden moved aboard a celestial ark.'\n\nThe Alchemy Commission is the Xianzhou Luofu's medical and alchemical institution, nestled in a quiet mountain valley. Passing through a simple brick-carved gate, you are greeted by a long winding corridor — vermilion pillars, dark gray roof tiles,镂空 wood-carved lattice windows, beyond which lies a pond of clear water with blooming white lotuses floating on the surface. Is this not a scene you have seen in Suzhou's <a href=\"?page=building&name=留园&pid=jiangsu\" target=\"_blank\" data-nav>Lingering Garden</a>?\n\nThe corridor of the Lingering Garden is the most brilliant spatial language in Suzhou gardens. It is not merely a passage but a device that 'folds space into time' — as you walk beneath the corridor, the lattice windows change your frame of view one panel at a time, each window revealing a different picture: now a rockery, now a water surface, now a distant pavilion. At the 'Ancient Trees Intertwine' corner of the Lingering Garden, a distance of mere meters is stretched into a spatial experience of tens of meters through the corridor's turns — this is the core secret of Chinese gardens: 'seeing the vast in the small.'\n\nThe Scalegorge Waterscape takes this corridor aesthetic to its extreme. It blends the Lingering Garden's 'winding corridor' with elements of Fujian tulou — circular corridors spiral upward around a vast central space, each level's lattice window featuring different patterns: ice-crack pattern (symbolizing cold-window study), crabapple pattern (symbolizing hall full of wealth), and interlocking square pattern (symbolizing uprightness). These patterns all come from real Suzhou garden lattice window谱系.\n\nWhat is even more breathtaking is that the game adds a 'corridor transformation' only possible in a sci-fi setting — at certain points, the corridor detaches from the ground, floating in midair as a 'flying bridge corridor,' as if the line from 'Ode to Epang Palace' — 'corridors like waistbands winding, eaves like beaks pecking high' — had been realized with interstellar technology. And the structural principle of this floating corridor — cantilevered beams, diagonal bracing, mortise-and-tenon locking — remains authentic traditional Chinese timber structure grammar, supported not by column bases on the ground but by anti-gravity engines.\n\nWalking slowly along this aerial corridor, with the Milky Way outside the lattice windows, you suddenly understand why the ancients called gardens 'city mountains and forests' — they merely wanted to build, amid the mortal world, a dream that leads to the distance.",
+        "buildings": [
+          {
+            "n": "Liuyuan Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop 4: Sui Garden — The Circular Universe of Tulou",
+        "icon": "🟤",
+        "content": "The final stop on the Xianzhou Luofu, Sui Garden — a quiet residential district, but its architectural form is strikingly distinctive: enormous circular enclosed buildings with outer walls of layered rammed earth and metal plates, residential units arrayed along circular corridors, all doors and windows facing the central circular courtyard.\n\nThis is <a href=\"?page=building&name=福建土楼&pid=fujian\" target=\"_blank\" data-nav>Fujian Tulou</a> projected into space.\n\nFujian tulou originated in the Song and Yuan dynasties and matured in the Ming and Qing. They are unique communal dwellings created by the Hakka people to adapt to the mountainous environment of western Fujian and defend against bandits. The classic circular tulou's internal structure is: the outermost ring has four floors of living quarters — kitchens on the ground floor, grain storage on the second, bedrooms on the third and fourth. In the central courtyard are a well and communal activity space. The only entrance is a heavy wooden door, behind which lies the collective life of the clan. Tulou are built primarily from raw earth mixed with lime, fine sand, bamboo strips, and other materials, repeatedly pounded and compacted, with walls several meters thick.\n\nThe game's sci-fi transformation of tulou is even more thorough than Genshin's treatment — in Sui Garden, every 'circular residence' is given a miniature ecological循环 system. In the center of the courtyard is not a well, but a fully transparent ecological garden leading to the floor below. And tulou's most essential 'inwardness' — all rooms facing inward — is magnified into a sociological metaphor: in the vast, cold universe, only within the 'circle' is there warmth.\n\nThe individual small buildings scattered between the circular structures in Sui Garden blend the waterside pavilions of <a href=\"?page=building&name=拙政园&pid=jiangsu\" target=\"_blank\" data-nav>Humble Administrator's Garden</a> with the horse-head walls of Huizhou folk houses — white walls pierced with漏 windows, bamboo behind the windows, and behind the bamboo, a holographic waterfall. This attempt to 'use ancient aesthetic methods for future living environments' is the most touching design core of the Xianzhou Luofu.\n\nStanding on the top-floor corridor of the tallest circular residence in Sui Garden, looking down at the peaceful garden in the central courtyard and up at the starskiff fleet flying past the dome, you suddenly understand why the Hakka ancestors built their houses in circles — not only for defense, but to draw a boundary of 'our own' on unfamiliar land.",
+        "buildings": [
+          {
+            "n": "Anxi Tulou",
+            "p": "fujian",
+            "d": "fujian_zhangzhou"
+          },
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Epilogue: White Walls, Black Tiles, Sailing Toward the Stars",
+        "icon": "🚀",
+        "content": "The design concept of the Xianzhou Luofu has sparked a debate in the Chinese gaming world about 'what true Chinese style really is.' It answers this question in a highly convincing way: Chinese style is not 'using red and gold,' not 'painting a few dragons and phoenixes,' and certainly not 'playing a zither background track.'\n\nChinese style is a spatial logic — it is the way Huizhou folk houses collect rainwater through skywells, the aesthetic philosophy of Suzhou gardens framing scenery through lattice windows, the collective memory of Fujian tulou凝聚ring a clan through circular enclosure. The wisdom behind these architectural traditions lies not in 'what they look like' but in 'how they think.'\n\nThe Xianzhou Luofu captures exactly this 'wisdom behind' — and then puts it into a starship.\n\nAnd this 'putting into a starship' is done with striking specificity: every turn of a corridor corresponds to the drainage logic of a Huizhou folk house's 'four waters returning to the hall'; every ice-crack pattern of a lattice window comes from the building repertoire of Suzhou gardens. miHoYo's designers even revealed in their development log that they built a specialized 'Chinese architectural component database' for the Xianzhou Luofu, parameterizing the taper ratio of horse-head walls, the number of bracket set projections, and the drip-tile patterns of round eaves tiles, then using these parameters to 'generate' an interstellar city. When you see entwined lotus patterns carved on gears in the Workshop of the Artisans, it is not a concept artist's hand-drawing — it is the result of projecting Huizhou woodcarving patterns from the database directly onto mechanical parts.\n\nAs we prepare to return to the Astral Express and leave the Luofu, we stand on the docks of Exalting Sanctum one last time: amid the white-walled, black-tiled mountains, ten thousand lights suddenly flicker to life — not red lanterns, but warm-colored LEDs shining through every Huizhou-style lattice window, as gentle as a thousand stars reflected on the surface of the Moon Pond.",
+        "buildings": [
+          {
+            "n": "Tangyue Stone memorial archway Group",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          },
+          {
+            "n": "Longchuan Hu Clan Ancestral Hall",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          }
+        ]
+      },
+      {
+        "title": "Stop 6: Divination Commission — The Forbidden City's Central Axis Extends into the Stars",
+        "icon": "🏛️",
+        "content": "If you walk from the Exalting Sanctum of the Xianzhou Luofu along the central axis deep into the ark, you will enter a district of a completely different character — the Divination Commission. The architecture here is no longer the white walls and black tiles of Huizhou folk houses, but a more solemn and majestic imperial atmosphere: high platforms, vermilion columns, double-eaved hip roofs covered with golden glazed tiles, sundials and grain measures standing silently before the halls — this is the 'court' of the Xianzhou Luofu, its architectural language directly borrowing from the imperial building regulations of <a href=\"?page=building&name=北京故宫&pid=beijing\" target=\"_blank\" data-nav>Beijing's Forbidden City</a>.\n\nThe Forbidden City is the culmination of ancient Chinese palace architecture, famous for its ritual layout of central axis symmetry, front court and rear寝宫, ancestral temple on the left and altar of land and grain on the right. Its central axis runs 7.8 kilometers from Yongding Gate to the Bell and Drum Towers, its core spirit lying in 'shaping power and order through the层层 progression of space.' The Divination Commission of the Xianzhou Luofu employs the same手法: from the memorial archway at the entrance to the marble阶梯 before the main hall, to the exalted seat of the diviner within — each step up is a confirmation of rank, each gate a boundary of hierarchy.\n\nThe game gives the Forbidden City's 'thousand gates and ten thousand doors' a sci-fi translation: the halls of the Divination Commission are connected by 'light portals' — doors no longer实体 but virtual palace gates formed by holographic projections. As you pass through a gate, the patterns of imperial bells on it ripple like water. This design preserves the ritual sense of 'gate' in Forbidden City architecture while giving it a futuristic quality of an interstellar civilization.\n\nLooking back at the entire celestial ark from the highest point of the Divination Commission — the central axis is lined in sequence with archways, palace gates, main halls, and altars,层层深入, orderly. In this moment you suddenly understand: the highest achievement of Chinese ancient architecture is not any particular pagoda, temple, or garden — it is that invisible 'central axis,' a grand narrative that writes the Mandate of Heaven through space.",
+        "buildings": [
+          {
+            "n": "The Palace Museum",
+            "p": "beijing",
+            "d": "beijing"
+          }
+        ]
+      }
+    ]
+  }
+}

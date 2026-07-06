@@ -1,0 +1,179 @@
+{
+  "provinces": [
+    {
+      "id": "anhui",
+      "name": "Anhui Province",
+      "count": 173
+    },
+    {
+      "id": "beijing",
+      "name": "Beijing City",
+      "count": 135
+    },
+    {
+      "id": "chongqing",
+      "name": "Chongqing City",
+      "count": 60
+    },
+    {
+      "id": "fujian",
+      "name": "Fujian Province",
+      "count": 167
+    },
+    {
+      "id": "gansu",
+      "name": "Gansu Province",
+      "count": 153
+    },
+    {
+      "id": "guangdong",
+      "name": "Guangdong Province",
+      "count": 131
+    },
+    {
+      "id": "guangxi",
+      "name": "Guangxi Zhuang Autonomous Region",
+      "count": 80
+    },
+    {
+      "id": "guizhou",
+      "name": "Guizhou Province",
+      "count": 80
+    },
+    {
+      "id": "hainan",
+      "name": "Hainan Province",
+      "count": 35
+    },
+    {
+      "id": "hebei",
+      "name": "Hebei Province",
+      "count": 285
+    },
+    {
+      "id": "heilongjiang",
+      "name": "Heilongjiang Province",
+      "count": 57
+    },
+    {
+      "id": "henan",
+      "name": "Henan Province",
+      "count": 416
+    },
+    {
+      "id": "hongkong",
+      "name": "Hong Kong Special Administrative Region",
+      "count": 151
+    },
+    {
+      "id": "hubei",
+      "name": "Hubei Province",
+      "count": 167
+    },
+    {
+      "id": "hunan",
+      "name": "Hunan Province",
+      "count": 229
+    },
+    {
+      "id": "jiangsu",
+      "name": "Jiangsu Province",
+      "count": 249
+    },
+    {
+      "id": "jiangxi",
+      "name": "Jiangxi Province",
+      "count": 161
+    },
+    {
+      "id": "jilin",
+      "name": "Jilin Province",
+      "count": 94
+    },
+    {
+      "id": "liaoning",
+      "name": "Liaoning Province",
+      "count": 144
+    },
+    {
+      "id": "macau",
+      "name": "Macau Special Administrative Region",
+      "count": 144
+    },
+    {
+      "id": "neimenggu",
+      "name": "Inner Mongolia Autonomous Region",
+      "count": 146
+    },
+    {
+      "id": "ningxia",
+      "name": "Ningxia Hui Autonomous Region",
+      "count": 37
+    },
+    {
+      "id": "qinghai",
+      "name": "Qinghai Province",
+      "count": 49
+    },
+    {
+      "id": "shaanxi",
+      "name": "Shaanxi Province",
+      "count": 270
+    },
+    {
+      "id": "shandong",
+      "name": "Shandong Province",
+      "count": 225
+    },
+    {
+      "id": "shanghai",
+      "name": "Shanghai City",
+      "count": 40
+    },
+    {
+      "id": "shanxi",
+      "name": "Shanxi Province",
+      "count": 535
+    },
+    {
+      "id": "sichuan",
+      "name": "Sichuan Province",
+      "count": 264
+    },
+    {
+      "id": "taiwan",
+      "name": "Taiwan Province",
+      "count": 108
+    },
+    {
+      "id": "tianjin",
+      "name": "Tianjin City",
+      "count": 33
+    },
+    {
+      "id": "xinjiang",
+      "name": "Xinjiang Uygur Autonomous Region",
+      "count": 133
+    },
+    {
+      "id": "xizang",
+      "name": "Tibet Autonomous Region",
+      "count": 71
+    },
+    {
+      "id": "yunnan",
+      "name": "Yunnan Province",
+      "count": 168
+    },
+    {
+      "id": "zhejiang",
+      "name": "Zhejiang Province",
+      "count": 279
+    }
+  ],
+  "protectionLabels": {
+    "taiwan": "National Monument",
+    "hongkong": "Grade I Historic Building",
+    "macau": "Macau Heritage List"
+  }
+}

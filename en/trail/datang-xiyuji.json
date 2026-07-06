@@ -1,0 +1,109 @@
+{
+  "id": "datang-xiyuji",
+  "title": "Great Tang Records on the Western Regions",
+  "subtitle": "Dictated by Xuanzang · Compiled by Bianji · Seventeen Years, Five Myriad Miles, One Hundred and Ten Kingdoms",
+  "icon": "🐫",
+  "color": "#E65100",
+  "bgColor": "#FFF3E0",
+  "description": "Xuanzang (602–664), a Tang-dynasty monk, was the greatest translator in Chinese Buddhist history. In the first year of the Zhenguan reign (627), he journeyed westward alone, passing through the Hexi Corridor, Gaochang, Kucha, and Central Asia, reaching India where he studied at Nalanda Monastery. His journey lasted seventeen years and covered five myriad miles. After his return, he dictated the twelve-volume Great Tang Records on the Western Regions, documenting the geography, products, architecture, and customs of 110 kingdoms. This route follows Xuanzang's westward footsteps, visiting the nationally protected heritage sites along the Silk Road.",
+  "route": {
+    "title": "Great Tang Records on the Western Regions: Following Xuanzang, a Five-Myriad-Mile Silk Road Quest",
+    "intro": "<div class=\"xuxiake-quote\">I, a humble monk, set out for the West in search of the Great Dharma. If I do not reach the land of the Brahmins, I shall not return eastward. Even if I die on the way, it is no fault.</div>\n\nIn the first year of the Zhenguan reign (627), Xuanzang, aged twenty-seven, departed from Chang'an. At that time, relations between the Tang and the Turks were tense, and the court had forbidden civilians from crossing the border. Xuanzang slipped through among refugees, heading alone into the vast Gobi Desert. In the desert, he overturned his water bag—\"for four nights and five days, not a drop touched his throat\"—and nearly died of thirst. But he did not turn back. \"I would rather die going west than return east alive\"—these words he later spoke to the king of Gaochang, and they were the motto of his entire life.\n\nSeventeen years later, in the nineteenth year of the Zhenguan reign (645), Xuanzang returned to Chang'an, bringing back 657 Buddhist scriptures. Emperor Taizong received him in person and asked: \"Master, why did you not inform me when you left?\" Xuanzang replied: \"I submitted memorials repeatedly before leaving, but my sincerity was too shallow to be granted permission.\" The emperor laughed heartily and ordered Xuanzang to write the Great Tang Records on the Western Regions. This work, dictated by Xuanzang and recorded by his disciple Bianji, is not only a Buddhist classic but also one of the greatest accounts in the history of world exploration.\n\nLet us follow Xuanzang's footsteps from Chang'an to Nalanda, across the Gobi, oases, and snowy mountains, to explore the brilliant gems of civilization he described.",
+    "stops": [
+      {
+        "title": "Stop One: Chang'an—The Western Journey's Starting Point",
+        "icon": "🏛️",
+        "content": "In autumn of the first year of the Zhenguan reign, Xuanzang set out from Chang'an. He had no court \"transit permit\"—equivalent to a modern passport—and could only leave the city under cover of darkness. The lights of Chang'an's 108 wards gradually dimmed behind him; ahead lay the unknown roads of the Western Regions.\n\nIn Chang'an, Xuanzang had studied at the Great Compassionate Grace Temple south of the city. Twenty years later, he returned as the master of this temple. Here he oversaw the construction of the <a href=\"?page=building&name=陕西省西安市大雁塔&pid=shaanxi\" target=\"_blank\" data-nav>Great Wild Goose Pagoda</a> to house the Sanskrit sutras and Buddha images brought back from India. The pagoda, seven stories of brick imitation-wood construction, blended Chinese and foreign elements—the structure was Chinese in style, but the sutras and images within came from the Western Regions and India. Every day, Xuanzang climbed to the top of the pagoda and gazed westward—the direction in which he had traveled for seventeen years.\n\nOn Shaoling Plain south of Chang'an lies Xuanzang's final resting place—the <a href=\"?page=building&name=陕西省西安市兴教寺塔&pid=shaanxi\" target=\"_blank\" data-nav>Xingjiao Temple Pagoda</a>, the funerary pagoda for Xuanzang and his disciples Kuiji and Woncheuk. It is the most exquisite Tang-dynasty funerary pagoda, simple in its five-story square form yet possessing an indescribable solemnity. When Xuanzang passed away, Emperor Gaozong suspended court for three days, and the entire city of Chang'an turned out to line the funeral route—a procession five hundred li long, stretching from the Great Compassionate Grace Temple all the way to Shaoling Plain.",
+        "buildings": [
+          {
+            "n": "Dayan Pagoda",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          },
+          {
+            "n": "Xingjiao Temple Pagoda",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Two: The Hexi Corridor—Buddhist Kingdoms Deep in the Gobi",
+        "icon": "🏜️",
+        "content": "Leaving Chang'an, Xuanzang traveled westward along the Wei River, passing through Qinzhou (Tianshui) and Lanzhou, entering the Hexi Corridor. This narrow passage between the Qilian Mountains and the Heli Mountains was the throat of the Silk Road. In the Great Tang Records on the Western Regions, he did not describe this journey in detail—because the book mainly covers 110 kingdoms—but we know from the Biography of the Tripitaka Master of the Great Compassionate Grace Temple that he endured his most dangerous \"illegal crossing\" here.\n\nIn Liangzhou (Wuwei), Xuanzang was discovered by local officials and ordered to return east. He fled by night, traveling by day and hiding by night, finally reaching Guazhou (near Dunhuang), where a Hu man helped him pass the last Tang beacon tower—the Jade Gate Pass. On the eastern slopes of Singing Sand Mountain near Dunhuang, the <a href=\"?page=building&name=甘肃省酒泉市莫高窟（含西千佛洞）&pid=gansu\" target=\"_blank\" data-nav>Mogao Caves (including the Western Thousand Buddha Caves)</a> had already been carved for over two hundred years. When Xuanzang passed through, he may have rested in one of the caves, looking at the murals of the Buddha's jataka tales and silently praying for a safe journey. After he passed, the Mogao murals began to feature the theme of \"Tripitaka Master Xuanzang Seeking Scriptures\"—he himself had become part of the Buddhist story.\n\nFurther east, the <a href=\"?page=building&name=甘肃省天水市麦积山石窟（含仙人崖石窟、鲁恭姬造像碑）&pid=gansu\" target=\"_blank\" data-nav>Maijishan Grottoes (including Xianrenya Grottoes and Lu Gongji Stele)</a> had been suspended on the sheer cliffs for two centuries. Xuanzang may have gazed up from the mountain's foot at the Buddha caves on the skywalk plankways—the path his masters had walked, he was now traveling in a different way, much farther.",
+        "buildings": [
+          {
+            "n": "Mogao Grottoes",
+            "p": "gansu",
+            "d": "gansu_jiuquan"
+          },
+          {
+            "n": "Maijishan Grottoes",
+            "p": "gansu",
+            "d": "gansu_tianshui"
+          }
+        ]
+      },
+      {
+        "title": "Stop Three: Gaochang—A Buddhist Kingdom at the Foot of the Flaming Mountains",
+        "icon": "🔥",
+        "content": "Crossing the Moheyan Desert—that \"sea of death without birds above or beasts below\"—Xuanzang reached the first important kingdom on his westward journey: Gaochang (present-day Turpan). King Qu Wentai of Gaochang was a devout Buddhist. Learning of the great Tang monk's arrival, he went out of the city at midnight with torches to welcome him.\n\nThe king knelt before Xuanzang, imploring him to stay in Gaochang as the state preceptor. Xuanzang made his resolve clear by fasting—\"Great King, you may keep my body, but you cannot keep my spirit.\" After three days, the king was moved, swore brotherhood with Xuanzang, and presented him with a hundred taels of gold, thirty thousand silver coins, five hundred bolts of silk, thirty horses, and twenty-five attendants—this lavish gift made the rest of Xuanzang's journey much easier.\n\nThe <a href=\"?page=building&name=新疆维吾尔自治区吐鲁番市高昌故城&pid=xinjiang\" target=\"_blank\" data-nav>Gaochang Ancient City</a> in the Turpan Basin was the capital of that kingdom. The remaining walls still stand over ten meters tall; the temple ruins and mural fragments within the city silently tell of that Buddhist kingdom's final glory. Xuanzang preached here for over a month, and King Qu Wentai knelt with his hundred officials to listen—that was the year 629, nearly 1,400 years ago.\n\nWhen Xuanzang left Gaochang to continue westward, Qu Wentai prepared a complete traveling party—not only horses and supplies, but also letters of introduction to the kings of twenty-four kingdoms along the route. Qu Wentai said: \"When the Master returns from obtaining the scriptures, please come to Gaochang again. I will receive you with the rites of a disciple.\" Xuanzang agreed. Yet seventeen years later, when Xuanzang returned from India, Gaochang had been destroyed by Emperor Taizong of Tang, and Qu Wentai had died of fright. In the Great Tang Records on the Western Regions, Xuanzang repeatedly lamented: \"Human affairs are impermanent, like a magical transformation.\" The vast quantity of Buddhist scripture fragments and Chinese-language documents unearthed at Gaochang prove that this was the most Sinicized kingdom in the Western Regions—royal decrees were written in Chinese, and the capital even had a Grand Academy where Confucian classics were taught. Qu Wentai could not keep Xuanzang, nor could he keep his kingdom—all things return to dust.",
+        "buildings": [
+          {
+            "n": "Gaochang Ancient City",
+            "p": "xinjiang",
+            "d": "tulufan"
+          }
+        ]
+      },
+      {
+        "title": "Stop Four: Kucha—The Music and Murals of a Western Region Buddhist Kingdom",
+        "icon": "🎵",
+        "content": "After leaving Gaochang, Xuanzang crossed the Tianshan Mountains and entered the kingdom of Kucha (present-day Kuqa). The Great Tang Records on the Western Regions says Kucha had \"over a hundred monasteries and more than five thousand monks\"—a Buddhist kingdom even more flourishing than Gaochang. Kucha's music was unsurpassed in the Western Regions; Xuanzang used the phrase \"string and wind instruments, particularly excellent among the kingdoms\" to describe it. You can imagine how beautiful the music he heard in Kucha must have been.\n\nThe artistic essence of Kucha Buddhism is all preserved in the <a href=\"?page=building&name=新疆维吾尔自治区阿克苏地区克孜尔千佛洞（含温巴什石窟、台台尔石窟）&pid=xinjiang\" target=\"_blank\" data-nav>Kizil Thousand Buddha Caves (including Wenbashi Grottoes and Taital Grottoes)</a> in Baicheng County. This is the earliest grotto complex in China, a century older than the Mogao Caves. The diamond-grid murals within the caves—depicting jataka tales in small diamond-shaped frames—are a unique artistic form of Kucha. The blue lapis lazuli pigment came from Afghanistan, the red vermilion from the Central Plains, blending into a uniquely glorious Western Region palette.\n\nXuanzang stayed in Kucha for two months, unable to continue westward because the mountain passes were blocked by snow. He preached and debated Buddhist doctrine with Kucha's eminent monks. When spring arrived and the ice and snow melted, he bid farewell to Kucha and set out on the most dangerous leg of his journey—crossing the Congling Range (Pamir Plateau).\n\nThe Great Tang Records on the Western Regions also records a peculiar custom of Kucha: every autumn, the kingdom's monks would gather for a \"procession of Buddha images\"—the Buddha statues paraded through the city, all the people turning out. Xuanzang happened to witness this grand event. His book describes in detail the statues draped in brocade and riding jeweled carriages, and the spectacular scene of thousands of monks reciting sutras in unison. Kucha's mural styles changed several times: early works were influenced by Indian Gandhara art, with deep-set eyes and high noses and heavy garment folds; middle-period works incorporated Central Chinese painting styles, with smooth flowing lines; late-period works absorbed Sassanid Persian decorative elements—this oasis at the foot of the Tianshan Mountains was itself a condensed history of East-West artistic exchange.",
+        "buildings": [
+          {
+            "n": "Kizil Qianfo Cave",
+            "p": "xinjiang",
+            "d": "akesu"
+          }
+        ]
+      },
+      {
+        "title": "Stop Five: Central Asia—Between Snowy Mountains and Oases",
+        "icon": "🏔️",
+        "content": "Crossing the Congling Range (Pamirs) was the most perilous leg of Xuanzang's westward journey. The Great Tang Records on the Western Regions states: \"Snow fills the mountain valleys, which does not melt even in spring and summer.\" The party traveled on the snowy mountains, \"both men and horses freezing, many dying.\" Xuanzang's toes were frostbitten, but he continued on with his staff. Beyond the Congling Range, he entered Central Asia—present-day Kyrgyzstan and Uzbekistan, then under Turkic control.\n\nThe Great Tang Records on the Western Regions documents the customs of several Central Asian kingdoms: Samarkand \"has fertile soil, all crops growing well, lush forests and abundant fruit.\" Tashkent \"has hundreds of towns.\" Xuanzang paid particular attention to the number of monasteries in each kingdom and the school of Buddhism practiced by the monks—he was a scholar conducting fieldwork. When he passed through Tokhara (present-day southern Tajikistan), he described with great interest the local monasteries and stupas, many of which had already become ruins due to war and religious change. Xuanzang recorded them all, so that later generations would know: once, here there was the Dharma. Today, the oasis cities of Central Asia have been transformed into Silk Road tourist destinations, but when Xuanzang first walked through them, warfare and banditry were commonplace. Every step he took added another thread to the civilizational bond between China and Central Asia.\n\nAnd the Chinese starting point of that bond can be traced to the <a href=\"?page=building&amp;name=苏巴什佛寺遗址&amp;pid=xinjiang\" target=\"_blank\" data-nav>Subashi Buddhist Temple Site</a> in the Aksu region of Xinjiang—one of the largest Buddhist monasteries in Kucha. When Xuanzang was in Kucha, he would certainly have stayed here to preach. Though only broken walls remain, the outlines of the stupas are still clearly discernible, as if still guarding the direction of that pilgrim monk's westward journey.",
+        "buildings": [
+          {
+            "n": "Subash Buddhist Temple Site",
+            "p": "xinjiang",
+            "d": "akesu"
+          }
+        ]
+      },
+      {
+        "title": "Stop Six: India—The Light of Wisdom at Nalanda",
+        "icon": "🕉️",
+        "content": "In 631, Xuanzang finally set foot on Indian soil. The Great Tang Records on the Western Regions contains the most detailed accounts of India—from Gandhara in the north to Magadha in central India, from the Buddha's birthplace at Lumbini to his parinirvana at Kushinagar, Xuanzang visited every Buddhist holy site.\n\nHe studied at Nalanda Monastery for five years—Nalanda was then the world's largest Buddhist academic institution, with ten thousand monks and nine million volumes of scripture. Xuanzang studied the Yogacarabhumisastra under the guidance of Master Silabhadra, and later began lecturing at Nalanda. His eloquence was unimpeded, and his fame spread throughout the five regions of India. King Harsha held a grand open assembly at Kanyakubja, and for eighteen days no one could refute his arguments—Xuanzang was honored as the \"Mahayana Deva.\"\n\nThe Great Tang Records on the Western Regions describes India's geography with remarkable precision—\"The land of the five Indias extends over ninety thousand li in circumference. On three sides is the great sea; in the north it backs onto the snowy mountains. It is broad in the north and narrow in the south, shaped like a half-moon.\" Taking Magadha as the center, Xuanzang meticulously recorded ancient Indian customs: \"It is hot and rainy, with lush vegetation. The land is fertile and crops are sown in season.\" He also recorded India's caste system—Brahmins, Kshatriyas, Vaishyas, Shudras—the most accurate first-hand description of Indian social structure in ancient Chinese literature.\n\nNalanda Monastery was destroyed by Islamic armies in the twelfth century; today only vast brick ruins remain. But Xuanzang's Great Tang Records on the Western Regions became a \"guide\" for Indian archaeologists—in the twentieth century, Indians followed Xuanzang's descriptions to excavate Nalanda, bit by bit, from the overgrown wilderness. At Nalanda, Xuanzang also studied the \"five sciences\"—cause (logic), sound (linguistics), medicine, arts and crafts, and metaphysics. He spent the rest of his life putting into practice the words on the roof of Nalanda's library: \"Turning the Great Wheel of Dharma, saving countless beings.\"",
+        "buildings": [
+          {
+            "n": "Xingjiao Temple Pagoda",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Seven: Returning Home to Translate Sutras—Nineteen Years at the Great Compassionate Grace Temple",
+        "icon": "🏮",
+        "content": "In the nineteenth year of the Zhenguan reign (645), Xuanzang arrived back in Chang'an, travel-worn. Emperor Taizong received him in Luoyang; his first words were: \"Master, why did you not inform me when you left?\" Xuanzang replied: \"I submitted memorials repeatedly before leaving, but my sincerity was too shallow to be granted permission.\" The entire court was deeply moved.\n\nThe last nineteen years of Xuanzang's life were spent entirely inside the <a href=\"?page=building&name=陕西省西安市大雁塔&pid=shaanxi\" target=\"_blank\" data-nav>Great Wild Goose Pagoda</a> south of Chang'an. He led a team of translators, producing 75 Buddhist scriptures in 1,335 volumes—an astonishing output. He worked late every night—\"sleeping briefly at the third watch, rising again at the fifth watch\"—like an untiring warrior. In between translations, he dictated the twelve-volume Great Tang Records on the Western Regions, bequeathing his experiences in 110 kingdoms of the Western Regions and India to future generations.\n\nOn the fifth day of the second month of the Linde reign (664), Xuanzang passed away. The city of Chang'an was deeply shaken; the funeral procession stretched five hundred li. He was buried beneath the Xingjiao Temple Pagoda on Shaoling Plain, where he could look out toward the Great Wild Goose Pagoda. Today, the Great Wild Goose Pagoda is still Xi'an's landmark; tens of thousands of people pass beneath it every day—perhaps unaware that within every brick of this pagoda lies the faith and perseverance of a monk who journeyed seventeen years and five myriad miles.",
+        "buildings": [
+          {
+            "n": "Dayan Pagoda",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      }
+    ]
+  }
+}

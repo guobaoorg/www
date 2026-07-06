@@ -1,0 +1,609 @@
+{
+  "id": "xuxiake-journey",
+  "title": "The Travel Diaries of Xu Xiake",
+  "subtitle": "Thirty-Four Years Trekking Across China · Pilgrimage to Over Eighty National Heritage Sites",
+  "icon": "🥾",
+  "color": "#8B4513",
+  "bgColor": "#FDF5E6",
+  "description": "Xu Hongzu (Xu Xiake), Ming-dynasty geographer, traveler, and writer. Starting at age twenty-two, he spent thirty-four years trekking on foot through what are now 21 provinces and regions, leaving behind over 600,000 words in his Travel Diaries. Known as the \"Eternal Wanderer.\" This route follows the Sage of Travel's footsteps, linking over eighty nationally protected heritage sites he visited.",
+  "route": {
+    "title": "The Travel Diaries of Xu Xiake: Thirty-Four Years Trekking Across China's National Heritage",
+    "intro": "<div class=\"xuxiake-quote\">A true man should ride the morning tide on the azure sea and rest by evening beneath the verdant wutong trees.</div>\n\nXu Hongzu (1587–1641), styled Xiake, was born in Jiangyin, South Zhili (present-day Jiangyin, Jiangsu). In the thirty-fifth year of the Wanli reign (1607), at the age of twenty-two, Xu Xiake set out from his hometown and began a thirty-four-year trek. He made four long-distance journeys, his footsteps covering what are now Jiangsu, Zhejiang, Anhui, Jiangxi, Fujian, Henan, Shandong, Shaanxi, Hubei, Hunan, Guangdong, Guangxi, Guizhou, Yunnan, Shanxi, Hebei, and Beijing—21 provinces and regions in total. He is the greatest traveler in Chinese history.\n\nThe first day of Xu Xiake's Travel Diaries (May 19, 1613) has been designated China Tourism Day. With a scientific spirit, he investigated landforms, hydrology, and vegetation; his records of karst landscapes, Danxia landforms, and volcanic geothermal features were centuries ahead of the rest of the world.\n\nLet us follow the Sage of Travel's footsteps, from the watery landscapes of Jiangnan to the southwestern borderlands, from the Five Sacred Mountains to the landscapes of Guilin, embarking on a journey across three centuries to visit the nationally protected heritage sites that witnessed his legendary travels.",
+    "stops": [
+      {
+        "title": "Stop One: Jiangyin—The Sage of Travel's Hometown",
+        "icon": "🏠",
+        "content": "Xu Xiake, born Hongzu, styled Xiake, was born in the fifteenth year of the Wanli reign (1587) into a scholarly family in Jiangyin. As a child, he had little interest in the Four Books and Five Classics, but he devoured the Classic of Mountains and Seas and the Commentary on the Water Classic. After his father passed away, he said to his mother: \"A true man should ride the morning tide on the azure sea and rest by evening beneath the verdant wutong trees\"—he had to go out and see with his own eyes the mountains and rivers described in books. In the spring of his twenty-second year, he shouldered his pack and set out—a journey that would last thirty-four years.\n\nThe old house where he was born still stands—a three-courtyard Ming-dynasty compound, now the <a href=\"?page=building&name=江苏省无锡市徐霞客故居及晴山堂石刻&pid=jiangsu\" target=\"_blank\" data-nav>Xu Xiake Former Residence and Qingshan Hall Stone Inscriptions</a>. The Qingshan Hall on the property was where he once studied; the stone inscriptions before the hall record the interactions between the Xu family and literary luminaries. Standing on the banks of the Yangtze in Jiangyin, watching the river roll eastward—that young man who left home with a small bundle probably never imagined that this journey would make him the Eternal Wanderer.",
+        "buildings": [
+          {
+            "n": "Xu Xiake's Former Residence and Qingshan Hall Stone Carvings",
+            "p": "jiangsu",
+            "d": "jiangsu_wuxi"
+          }
+        ]
+      },
+      {
+        "title": "Stop Two: Nanjing—The Southern Cultural Hub of Letters",
+        "icon": "🏯",
+        "content": "In the thirty-fifth year of the Wanli reign (1607), twenty-two-year-old Xu Xiake traveled eastward along the Yangtze; his first stop was Nanjing—the Ming auxiliary capital, the ancient capital of six dynasties.\n\nHe first paid homage at the <a href=\"?page=building&name=江苏省南京市明孝陵&pid=jiangsu\" target=\"_blank\" data-nav>Ming Xiaoling Mausoleum</a>, the tomb of Ming founder Zhu Yuanzhang. Its scale was breathtaking; the stone statues lining the Sacred Way had stood silent guard for over a century. Then he climbed the <a href=\"?page=building&name=江苏省南京市南京城墙&pid=jiangsu\" target=\"_blank\" data-nav>Nanjing City Wall</a>; from atop the gate tower, the Qinhuai River wound like a silk ribbon, and distant Zhongshan Mountain rose majestically.\n\nDuring his days in Nanjing, he also went outside the city to see the thousand-and-five-hundred-year-old <a href=\"?page=building&name=江苏省南京市南京南朝陵墓石刻&pid=jiangsu\" target=\"_blank\" data-nav>Nanjing Southern Dynasties Imperial Tomb Stone Carvings</a>, and visited the <a href=\"?page=building&name=江苏省南京市栖霞寺舍利塔&pid=jiangsu\" target=\"_blank\" data-nav>Qixia Temple Relic Pagoda</a> on Qixia Mountain, a Southern Tang stone pagoda of exquisite craftsmanship. This trip to Nanjing made the young Xu Xiake truly feel—the world outside the study was even more splendid than what the books described.",
+        "buildings": [
+          {
+            "n": "Xiaoling Tomb of Ming Dynasty",
+            "p": "jiangsu",
+            "d": "jiangsu_nanjing"
+          },
+          {
+            "n": "Nanjing City Wall",
+            "p": "jiangsu",
+            "d": "jiangsu_nanjing"
+          },
+          {
+            "n": "Stone Carvings from Nanjing Southern Dynasty Tombs",
+            "p": "jiangsu",
+            "d": "jiangsu_nanjing"
+          },
+          {
+            "n": "Qixia Temple Dagoba",
+            "p": "jiangsu",
+            "d": "jiangsu_nanjing"
+          }
+        ]
+      },
+      {
+        "title": "Stop Three: Zhenjiang and Yangzhou—Two Sides of the Yangtze",
+        "icon": "🌊",
+        "content": "Leaving Nanjing and traveling north along the Grand Canal, he reached Zhenjiang and Yangzhou. The two cities were a study in contrasts—Zhenjiang guarding the Yangtze's strategic pass, Yangzhou leaning on the canal's bustling docks.\n\nAt Zhenjiang, he climbed Jiaoshan and spent half a day exploring the <a href=\"?page=building&name=江苏省镇江市焦山碑林&pid=jiangsu\" target=\"_blank\" data-nav>Jiaoshan Stele Forest</a>, its steles spanning from the Six Dynasties to the Republic of China. Crossing the river to Yangzhou, he wandered through the <a href=\"?page=building&name=江苏省扬州市个园&pid=jiangsu\" target=\"_blank\" data-nav>Ge Garden</a> and the <a href=\"?page=building&name=江苏省扬州市何园&pid=jiangsu\" target=\"_blank\" data-nav>He Garden</a>. Yangzhou was different from Zhenjiang—the waters softer, the dialect sweeter, merchants and scholars from north and south brushing shoulders in lively throngs.",
+        "buildings": [
+          {
+            "n": "Jiaoshan Stele Forest",
+            "p": "jiangsu",
+            "d": "jiangsu_zhenjiang"
+          },
+          {
+            "n": "Ge Yuan",
+            "p": "jiangsu",
+            "d": "jiangsu_yangzhou"
+          },
+          {
+            "n": "He Yuan",
+            "p": "jiangsu",
+            "d": "jiangsu_yangzhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Four: Suzhou—The City of Gardens",
+        "icon": "🏘️",
+        "content": "In the Ming dynasty, Suzhou was already the most prosperous city in Jiangnan. Xu Xiake visited all of Suzhou's famous gardens—the <a href=\"?page=building&name=江苏省苏州市拙政园&pid=jiangsu\" target=\"_blank\" data-nav>Humble Administrator's Garden</a>, with its exquisite water features where pavilions and terraces are all built beside the water, the view changing with every step. The neighboring <a href=\"?page=building&name=江苏省苏州市留园&pid=jiangsu\" target=\"_blank\" data-nav>Lingering Garden</a> offered a completely different flavor, with its labyrinthine rockeries built from Taihu stones. There was also the Yuan-dynasty <a href=\"?page=building&name=江苏省苏州市狮子林&pid=jiangsu\" target=\"_blank\" data-nav>Lion Grove Garden</a> and the delicate <a href=\"?page=building&name=江苏省苏州市网师园&pid=jiangsu\" target=\"_blank\" data-nav>Master of the Nets Garden</a>.\n\nSuzhou had more than gardens. He climbed the gently leaning <a href=\"?page=building&name=江苏省苏州市云岩寺塔&pid=jiangsu\" target=\"_blank\" data-nav>Yunyan Temple Pagoda</a>, a Northern Song brick pagoda overlooking two and a half millennia of Suzhou's history. On the canal, the <a href=\"?page=building&name=江苏省苏州市宝带桥&pid=jiangsu\" target=\"_blank\" data-nav>Baodai Bridge</a> stretched fifty-three arches over three hundred meters, grain boats passing under it—a vibrant picture of life in Jiangnan.",
+        "buildings": [
+          {
+            "n": "Zhuozheng Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Liuyuan Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Suzhou Yunyan Temple Pagoda",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Baodai Bridge",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Shi Zi Lin",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          },
+          {
+            "n": "Wangshi Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_suzhou"
+          }
+        ]
+      },
+      {
+        "title": "Wuxi and Yixing—Pearls of Lake Tai",
+        "icon": "🏘️",
+        "content": "Wuxi borders Jiangyin, and Xu Xiake visited several times. The <a href=\"?page=building&name=江苏省无锡市寄畅园&pid=jiangsu\" target=\"_blank\" data-nav>Garden for Ease of Mind</a> at the foot of Huishan was built by Qin Jin, the Minister of War. It cleverly borrowed the scenery of the entire Huishan and Xishan ranges into its own garden. Nearby, the <a href=\"?page=building&name=江苏省无锡市东林书院&pid=jiangsu\" target=\"_blank\" data-nav>Donglin Academy</a> was where the Donglin faction lectured; Gu Xiancheng's famous line \"the sound of wind and rain, the sound of reading\" once echoed through the land.\n\nOn Huishan, the <a href=\"?page=building&name=江苏省无锡市天下第二泉庭院及石刻&pid=jiangsu\" target=\"_blank\" data-nav>Second Spring Under Heaven Courtyard and Stone Inscriptions</a> was the spring rated second best under heaven by the Tea Sage Lu Yu; Su Shi came here to drink tea and write poetry. Xu Xiake sat by the spring and had tea too, chatting with the mountain monks—perfect contentment.",
+        "buildings": [
+          {
+            "n": "Jichang Garden",
+            "p": "jiangsu",
+            "d": "jiangsu_wuxi"
+          },
+          {
+            "n": "Donglin Academy",
+            "p": "jiangsu",
+            "d": "jiangsu_wuxi"
+          },
+          {
+            "n": "Tianxia Second Spring Courtyard and Stone Carvings",
+            "p": "jiangsu",
+            "d": "jiangsu_wuxi"
+          }
+        ]
+      },
+      {
+        "title": "Stop Five: Lake Tai—Three Myriad Six Hundred Hectares of Misty Waves",
+        "icon": "🚣",
+        "content": "Setting out from Wuxi, he sailed on Lake Tai—three myriad six hundred hectares of misty waves, seventy-two peaks appearing and disappearing in the haze. In his travel diary, he meticulously recorded Lake Tai's hydrology and the scenery along its shores. Facing the vast expanse of misty water, the twenty-four-year-old Xu Xiake felt for the first time the magnificent grandeur of \"so lovely are the rivers and mountains.\"",
+        "buildings": []
+      },
+      {
+        "title": "Stop Six: Hangzhou—The Finest Scenery in the Southeast",
+        "icon": "🌅",
+        "content": "West Lake in Hangzhou was world-famous. He climbed the <a href=\"?page=building&name=浙江省杭州市六和塔&pid=zhejiang\" target=\"_blank\" data-nav>Liuhe Pagoda</a> by the Qiantang River and looked into the distance—the river like a silver ribbon winding its way to the sea. Before Lingyin Temple, he was deeply captivated by the <a href=\"?page=building&name=浙江省杭州市飞来峰造像（含西湖南山造像）&pid=zhejiang\" target=\"_blank\" data-nav>Feilaifeng Sculptures (including Southern Hill Sculptures)</a>—the Yuan-dynasty stone carvings were remarkably lifelike. He made a special trip to pay homage at the <a href=\"?page=building&name=浙江省杭州市岳飞墓&pid=zhejiang\" target=\"_blank\" data-nav>Yue Fei Tomb</a>; incense never ceased at King Yue's Temple, and the kneeling statues of Qin Hui were forever fixed on the pillar of shame—loyalty and treachery, good and evil, history has its own judgment.",
+        "buildings": [
+          {
+            "n": "Liuhe Tower",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          },
+          {
+            "n": "Feilai Peak Statue",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          },
+          {
+            "n": "Yue Fei Tomb",
+            "p": "zhejiang",
+            "d": "zhejiang_hangzhou"
+          },
+          {
+            "n": "Lanting",
+            "p": "zhejiang",
+            "d": "zhejiang_shaoxing"
+          }
+        ]
+      },
+      {
+        "title": "Stop Seven: Shaoxing—The Scholarly Vein of a Water Town",
+        "icon": "📚",
+        "content": "Shaoxing is an ancient city that floats on water. He paid homage at the <a href=\"?page=building&name=浙江省绍兴市大禹陵&pid=zhejiang\" target=\"_blank\" data-nav>Mausoleum of Yu the Great</a>, the tomb of the flood-control hero of four thousand years ago, nestled at the foot of Kuaiji Mountain. He searched for the <a href=\"?page=building&name=浙江省绍兴市兰亭&pid=zhejiang\" target=\"_blank\" data-nav>Orchid Pavilion</a>—where Wang Xizhi wrote the \"Best Calligraphy Under Heaven\" during the Eastern Jin, the elegant custom of floating wine cups along a winding stream capturing his imagination. He passed over the <a href=\"?page=building&name=浙江省绍兴市绍兴古桥群（含八字桥）&pid=zhejiang\" target=\"_blank\" data-nav>Shaoxing Ancient Bridge Cluster (including the Eight-Character Bridge)</a>, where black-canopied boats glide beneath Southern Song stone bridges—this kind of living heritage is more moving than any grand architecture.",
+        "buildings": [
+          {
+            "n": "Da Yu Mausoleum",
+            "p": "zhejiang",
+            "d": "zhejiang_shaoxing"
+          },
+          {
+            "n": "Bazi Bridge",
+            "p": "zhejiang",
+            "d": "zhejiang_shaoxing"
+          }
+        ]
+      },
+      {
+        "title": "Stop Eight: Tiantai Mountain—Where the Travel Diaries Begin",
+        "icon": "⛰️",
+        "content": "On the thirtieth day of the third month of the forty-first year of the Wanli reign (May 19, 1613), Xu Xiake set out for Tiantai Mountain. This day is now China Tourism Day—because this was the first entry in the Travel Diaries of Xu Xiake.\n\nHe entered the <a href=\"?page=building&name=浙江省台州市国清寺&pid=zhejiang\" target=\"_blank\" data-nav>Guoqing Temple</a>, the ancestral temple of the Tiantai school of Buddhism founded in the Sui dynasty. The Sui-dynasty pagoda and Sui-dynasty plum tree within the temple have witnessed 1,400 years of history. He twice climbed Huading Peak in search of the source of the Stone Beam Waterfall—a natural stone beam spanning two cliffs, the waterfall thundering beneath. His relentless pursuit of the source is the reason Xu Xiake's Travel Diaries are still respected in the field of geography today.",
+        "buildings": [
+          {
+            "n": "Guoqing Temple",
+            "p": "zhejiang",
+            "d": "zhejiang_taizhou"
+          }
+        ]
+      },
+      {
+        "title": "Stop Nine: Yandang Mountain—The Finest Mountain in the Southeast",
+        "icon": "🏔️",
+        "content": "After visiting Tiantai Mountain, Xu Xiake rushed to Yandang Mountain. Here, the volcanic rhyolite landform created unique peaks and strange rocks. He risked climbing sheer cliffs to find the source of the Great Dragon Waterfall—nearly two hundred meters high, one of China's four most famous waterfalls. Spirit Peak transforms mysteriously under moonlight, like a dreamscape. His investigation of the volcanic rhyolite landform predated European scientists by more than three hundred years.",
+        "buildings": []
+      },
+      {
+        "title": "Stop Ten: Mount Huangshan—No Need to See Other Mountains After the Five Sacred Peaks",
+        "icon": "🌄",
+        "content": "In the second month of the forty-fourth year of the Wanli reign (1616), Xu Xiake climbed Mount Huangshan in snow. He wrote the immortal line \"After seeing the Five Sacred Peaks, no other mountain is worth seeing; after seeing Huangshan, even the Five Sacred Peaks are not worth seeing.\" This made Huangshan the most remarkable mountain in the Chinese imagination.\n\nThe <a href=\"?page=building&name=安徽省黄山市黄山登山古道及古建筑&pid=anhui\" target=\"_blank\" data-nav>Mount Huangshan Climbing Ancient Paths and Ancient Buildings</a> wind from Ciguang Pavilion to Beihai, blending seamlessly with the wondrous pines and strange rocks. He risked the ascent to Celestial Capital Peak—\"using both hands and feet, climbing up through stone crevices\"—but the view from the summit made all the effort worthwhile. In the first year of the Chongzhen reign (1628), he visited Huangshan again, and is likely the first person in the world to have recorded the granite landforms of Huangshan.",
+        "buildings": [
+          {
+            "n": "Huangshan Mountain Ancient Climbing Path and Ancient Buildings",
+            "p": "anhui",
+            "d": "anhui_huangshan"
+          }
+        ]
+      },
+      {
+        "title": "Stop Eleven: Mount Lu—The Most Beautiful Mountain Under Heaven",
+        "icon": "🌫️",
+        "content": "In the forty-sixth year of the Wanli reign (1618), Xu Xiake came to Mount Lu. He visited the <a href=\"?page=building&name=江西省九江市白鹿书院&pid=jiangxi\" target=\"_blank\" data-nav>White Deer Grotto Academy</a>, one of the Four Great Academies, made famous by Zhu Xi's lectures there. He hiked to the Three-Fold Spring, where the waterfall drops in three tiers for a total of 155 meters, spraying water like broken jade and flying snow. His investigation of Mount Lu's geology and landforms was remarkably precise.",
+        "buildings": [
+          {
+            "n": "Bailu Academy",
+            "p": "jiangxi",
+            "d": "jiujiang"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twelve: Mount Wuyi—Azure Water and Vermilion Mountains",
+        "icon": "🍃",
+        "content": "In the forty-seventh year of the Wanli reign (1619), Xu Xiake arrived at Mount Wuyi in Fujian. The red-brown Danxia landform mountains were spectacular against the surrounding azure waters. He took a bamboo raft down the Nine-Bend Stream and examined the <a href=\"?page=building&name=福建省南平市城村汉城遗址&pid=fujian\" target=\"_blank\" data-nav>Chencun Han City Site</a>—a Western Han Minyue kingdom covering 480,000 square meters. Most mysterious were the <a href=\"?page=building&name=福建省南平市武夷山崖墓群&pid=fujian\" target=\"_blank\" data-nav>Mount Wuyi Cliff Tomb Cluster</a>, \"boat coffins lodged in cliff crevices\"—the ancient Yue people's hanging coffin burial custom. How they placed the coffins on cliffs tens of meters high remains a mystery to this day.",
+        "buildings": [
+          {
+            "n": "Chengcun Hancheng Site",
+            "p": "fujian",
+            "d": "fujian_nanping"
+          },
+          {
+            "n": "Wuyi Mountain Cliff Tombs",
+            "p": "fujian",
+            "d": "fujian_nanping"
+          }
+        ]
+      },
+      {
+        "title": "Stop Thirteen: Mount Song—The Center of Heaven and Earth",
+        "icon": "🏛️",
+        "content": "In the third year of the Tianqi reign (1623), Xu Xiake traveled north to Mount Song, the Central Sacred Peak. He climbed the <a href=\"?page=building&name=河南省郑州市嵩岳寺塔&pid=henan\" target=\"_blank\" data-nav>Songyue Temple Pagoda</a>—China's oldest surviving brick pagoda and the only twelve-sided pagoda in the country, standing firm for 1,500 years through wind and rain. At the <a href=\"?page=building&name=河南省郑州市少林寺&pid=henan\" target=\"_blank\" data-nav>Shaolin Temple</a>—the ancestral temple of Chan Buddhism and the birthplace of Shaolin martial arts. He also examined the Han-dynasty <a href=\"?page=building&name=河南省郑州市太室阙&pid=henan\" target=\"_blank\" data-nav>Taishi Que</a>, <a href=\"?page=building&name=河南省郑州市少室阙&pid=henan\" target=\"_blank\" data-nav>Shaoshi Que</a>, and <a href=\"?page=building&name=河南省郑州市启母阙&pid=henan\" target=\"_blank\" data-nav>Qimu Que</a>—some of the oldest surviving stone gate-towers in China. He also visited the Songyang Academy and the <a href=\"?page=building&name=河南省郑州市观星台&pid=henan\" target=\"_blank\" data-nav>Astronomical Observatory</a> built by Guo Shoujing.",
+        "buildings": [
+          {
+            "n": "Songyue Temple Pagoda",
+            "p": "henan",
+            "d": "zhengzhou"
+          },
+          {
+            "n": "Shaolin Temple",
+            "p": "henan",
+            "d": "zhengzhou"
+          },
+          {
+            "n": "Guan Xing Tai",
+            "p": "henan",
+            "d": "zhengzhou"
+          },
+          {
+            "n": "Taishi Que",
+            "p": "henan",
+            "d": "zhengzhou"
+          },
+          {
+            "n": "Shaoshi Que",
+            "p": "henan",
+            "d": "zhengzhou"
+          },
+          {
+            "n": "Qimu Que",
+            "p": "henan",
+            "d": "zhengzhou"
+          }
+        ]
+      },
+      {
+        "title": "Kaifeng—Dreams of the Eastern Capital",
+        "icon": "🏯",
+        "content": "From the Central Peak he traveled west to Luoyang. He visited the <a href=\"?page=building&name=河南省洛阳市龙门石窟&pid=henan\" target=\"_blank\" data-nav>Longmen Grottoes</a>—over 2,000 niches and more than 100,000 Buddha images, with the seventeen-meter Vairocana Buddha at Fengxian Temple, said to have been modeled after Empress Wu Zetian. He also went to the <a href=\"?page=building&name=河南省洛阳市白马寺&pid=henan\" target=\"_blank\" data-nav>White Horse Temple</a>—the first Buddhist monastery built after Buddhism was introduced to China; the story of \"a white horse carrying sutras\" has been told for nearly two thousand years.",
+        "buildings": [
+          {
+            "n": "Huguo Temple Pagoda (Tie Pagoda)",
+            "p": "henan",
+            "d": "kaifeng"
+          },
+          {
+            "n": "Kaifeng City Wall",
+            "p": "henan",
+            "d": "kaifeng"
+          },
+          {
+            "n": "Xiangguo Temple",
+            "p": "henan",
+            "d": "kaifeng"
+          },
+          {
+            "n": "Shan Shaan Gan Guild Hall",
+            "p": "henan",
+            "d": "kaifeng"
+          }
+        ]
+      },
+      {
+        "title": "Stop Fourteen: Luoyang and Kaifeng—Ancient Capitals of the Central Plain",
+        "icon": "🏺",
+        "content": "From Luoyang he traveled east to Kaifeng. He climbed the <a href=\"?page=building&name=河南省开封市祐国寺塔&pid=henan\" target=\"_blank\" data-nav>Youguo Temple Pagoda</a>—the Northern Song glazed-brick pagoda called the Iron Pagoda for its brown iron-like hue. He also ascended the <a href=\"?page=building&name=河南省开封市开封城墙&pid=henan\" target=\"_blank\" data-nav>Kaifeng City Wall</a> and looked down over the ancient city, visited the <a href=\"?page=building&name=河南省开封市相国寺&pid=henan\" target=\"_blank\" data-nav>Xiangguo Temple</a>, and admired the exquisite brick, wood, and stone carvings at the <a href=\"?page=building&name=河南省开封市山陕甘会馆&pid=henan\" target=\"_blank\" data-nav>Shan-Shaan-Gan Guild Hall</a>.",
+        "buildings": [
+          {
+            "n": "Longmen Grottoes",
+            "p": "henan",
+            "d": "luoyang"
+          },
+          {
+            "n": "Baima Temple",
+            "p": "henan",
+            "d": "luoyang"
+          },
+          {
+            "n": "Lingyan Temple",
+            "p": "shandong",
+            "d": "shandong_jinan"
+          },
+          {
+            "n": "Qufu Confucius Temple and Confucius Mansion",
+            "p": "shandong",
+            "d": "shandong_jining"
+          },
+          {
+            "n": "Kong Lin",
+            "p": "shandong",
+            "d": "shandong_jining"
+          }
+        ]
+      },
+      {
+        "title": "Stop Fifteen: Mount Tai—The Supreme of the Five Sacred Peaks",
+        "icon": "🌅",
+        "content": "In the third year of the Tianqi reign (1623), Xu Xiake traveled east to Mount Tai—the head of the Five Sacred Peaks. Starting from the <a href=\"?page=building&name=山东省泰安市岱庙&pid=shandong\" target=\"_blank\" data-nav>Dai Temple</a>, the mural \"The God of Mount Tai's Departure and Return Procession\" in the Tiankuang Hall was magnificent in scale. Following the climbing path up, the <a href=\"?page=building&name=山东省泰安市泰山古建筑群&pid=shandong\" target=\"_blank\" data-nav>Mount Tai Ancient Architecture Complex</a> stretched over ten kilometers from the foot to the summit. He paused at the Southern Heavenly Gate and gazed into the distance from the Jade Emperor Summit—the grand vista stirred his blood.\n\nHe also sought out the <a href=\"?page=building&name=山东省济南市灵岩寺&pid=shandong\" target=\"_blank\" data-nav>Lingyan Temple</a> in Jinan—one of the four great temples under heaven—then traveled south to Qufu to pay homage at the <a href=\"?page=building&name=山东省济宁市曲阜孔庙及孔府&pid=shandong\" target=\"_blank\" data-nav>Qufu Confucius Temple and Confucius Mansion</a> and the <a href=\"?page=building&name=山东省济宁市孔林&pid=shandong\" target=\"_blank\" data-nav>Confucius Forest</a>, feeling the millennium-long transmission of Confucian culture in the sage's hometown.",
+        "buildings": [
+          {
+            "n": "Dai Temple",
+            "p": "shandong",
+            "d": "shandong_taian"
+          },
+          {
+            "n": "Taishan Mountain Ancient Buildings",
+            "p": "shandong",
+            "d": "shandong_taian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Sixteen: Mount Hua—The Most Perilous Peak Under Heaven",
+        "icon": "⛰️",
+        "content": "In the first year of the Chongzhen reign (1628), Xu Xiake traveled west to Mount Hua. He ventured along the Plank Walk in the Sky—a path less than half a meter wide above a ten-thousand-zhang chasm. Below Mount Hua lay Chang'an. He studied the <a href=\"?page=building&name=陕西省西安市西安碑林&pid=shaanxi\" target=\"_blank\" data-nav>Xi'an Stele Forest</a>—over four thousand steles forming a treasure house of calligraphy; climbed the <a href=\"?page=building&name=陕西省西安市西安城墙&pid=shaanxi\" target=\"_blank\" data-nav>Xi'an City Wall</a> to look down over the ancient capital of thirteen dynasties; and paid homage at the <a href=\"?page=building&name=陕西省西安市大雁塔&pid=shaanxi\" target=\"_blank\" data-nav>Great Wild Goose Pagoda</a>—built by Xuanzang to house the Buddhist scriptures he brought from India.",
+        "buildings": [
+          {
+            "n": "Xi'an Monument Forest",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          },
+          {
+            "n": "Xi'an City Wall",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          },
+          {
+            "n": "Dayan Pagoda",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Seventeen: Wudang Mountains—A Sacred Daoist Realm",
+        "icon": "☯️",
+        "content": "After visiting Songshan and Huashan, he traveled south to Hubei and climbed the Wudang Mountains. The <a href=\"?page=building&name=湖北省十堰市武当山建筑群&pid=hubei\" target=\"_blank\" data-nav>Wudang Mountains Architecture Complex</a> stretches unbroken from the mountain foot to the Golden Summit—the Golden Hall is China's largest gilded bronze hall, the Purple Cloud Palace is magnificent, and the South Cliff Palace hangs from a sheer precipice. Ming Emperor Chengzu spent twelve years building the Wudang complex. When Xu Xiake reached the Golden Summit, he was full of praise for the splendor of the Purple Cloud Palace.",
+        "buildings": [
+          {
+            "n": "Wudang Mountain Architecture Complex",
+            "p": "hubei",
+            "d": "hubei_shiyan"
+          }
+        ]
+      },
+      {
+        "title": "Stop Eighteen: Mount Heng—Uniquely Beautiful in the South",
+        "icon": "🏔️",
+        "content": "In the ninth year of the Chongzhen reign (1636), the fifty-one-year-old Xu Xiake began his astonishing \"ten-thousand-mile expedition\"—through Zhejiang, Jiangxi, Hunan, Guangxi, Guizhou, and Yunnan, covering the southwestern half of China. He traveled south along the Xiang River to Mount Heng. The <a href=\"?page=building&name=湖南省衡阳市南岳庙&pid=hunan\" target=\"_blank\" data-nav>Southern Sacred Peak Temple</a> is one of the largest ancient architectural complexes in southern China. He summited Zhurong Peak and also went to the <a href=\"?page=building&name=湖南省长沙市岳麓书院&pid=hunan\" target=\"_blank\" data-nav>Yuelu Academy</a> in Changsha to feel the millennial pulse of scholarship. On the shores of Lake Dongting, he climbed the <a href=\"?page=building&name=湖南省岳阳市岳阳楼&pid=hunan\" target=\"_blank\" data-nav>Yueyang Tower</a>, where Fan Zhongyan's lines \"worry before the world's worries\" have echoed for a thousand years.",
+        "buildings": [
+          {
+            "n": "Yueyang Tower",
+            "p": "hunan",
+            "d": "hunan_yueyang"
+          },
+          {
+            "n": "Nanyue Temple",
+            "p": "hunan",
+            "d": "hunan_hengyang"
+          },
+          {
+            "n": "Yuelu Academy",
+            "p": "hunan",
+            "d": "hunan_changsha"
+          }
+        ]
+      },
+      {
+        "title": "Stop Nineteen: Guilin—The Finest Scenery Under Heaven",
+        "icon": "🚣",
+        "content": "In the tenth year of the Chongzhen reign (1637), Xu Xiake entered Guilin, Guangxi. Karst peaks rose in forest-like formations, surrounded by azure waters. He toured the <a href=\"?page=building&name=广西壮族自治区桂林市靖江王府及王陵&pid=guangxi\" target=\"_blank\" data-nav>Jingjiang Prince's Mansion and Tombs</a>—a Ming princely palace built thirty-four years earlier than the Forbidden City. He examined the <a href=\"?page=building&name=广西壮族自治区桂林市灵渠&pid=guangxi\" target=\"_blank\" data-nav>Lingqu Canal</a>—dug by Qin Shihuang to connect the Xiang and Li Rivers. The <a href=\"?page=building&name=广西壮族自治区桂林市桂林石刻&pid=guangxi\" target=\"_blank\" data-nav>Guilin Stone Inscriptions</a> are scattered across Longyin Rock and Diecai Mountain, with hundreds of Tang and Song cliff carvings. The <a href=\"?page=building&name=广西壮族自治区桂林市甑皮岩遗址&pid=guangxi\" target=\"_blank\" data-nav>Zengpiyan Site</a> is a Neolithic cave dwelling. The eighty-three kilometers of the Li River form the most beautiful landscape poetry he ever wrote.",
+        "buildings": [
+          {
+            "n": "Jingjiang Prince's Mansion and Mausoleum",
+            "p": "guangxi",
+            "d": "guangxi_guilin"
+          },
+          {
+            "n": "Lingqu Canal",
+            "p": "guangxi",
+            "d": "guangxi_guilin"
+          },
+          {
+            "n": "Guilin Stone Carvings",
+            "p": "guangxi",
+            "d": "guangxi_guilin"
+          },
+          {
+            "n": "Zengpiyan Site",
+            "p": "guangxi",
+            "d": "guangxi_guilin"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty: Guizhou—The Secret Realm of Karst",
+        "icon": "🌿",
+        "content": "In the eleventh year of the Chongzhen reign (1638), Xu Xiake entered Guizhou. The karst landscape was spectacular—caves, underground rivers, and sinkholes were everywhere, his records predating European studies by more than two hundred years. In Guiyang, he climbed the <a href=\"?page=building&name=贵州省贵阳市文昌阁和甲秀楼&pid=guizhou\" target=\"_blank\" data-nav>Wenchang Pavilion and Jiaxiu Tower</a> and searched for the <a href=\"?page=building&name=贵州省贵阳市阳明洞和阳明祠&pid=guizhou\" target=\"_blank\" data-nav>Yangming Cave and Yangming Shrine</a>—where Wang Yangming achieved enlightenment at Longchang. In Anshun, he saw China's largest waterfall, Huangguoshu, and visited the <a href=\"?page=building&name=贵州省安顺市安顺文庙&pid=guizhou\" target=\"_blank\" data-nav>Anshun Confucian Temple</a> and the <a href=\"?page=building&name=贵州省安顺市天台山伍龙寺&pid=guizhou\" target=\"_blank\" data-nav>Tiantai Mountain Wulong Temple</a>, perched atop the mountain peak.",
+        "buildings": [
+          {
+            "n": "Wenchang Pavilion and Jiaxiu Tower",
+            "p": "guizhou",
+            "d": "guizhou_guiyang"
+          },
+          {
+            "n": "Yangming Cave and Yangming Temple",
+            "p": "guizhou",
+            "d": "guizhou_guiyang"
+          },
+          {
+            "n": "Anshun Confucian Temple",
+            "p": "guizhou",
+            "d": "guizhou_anshun"
+          },
+          {
+            "n": "Tiantai Mountain Wulong Temple",
+            "p": "guizhou",
+            "d": "guizhou_anshun"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty-One: Kunming—A Sea of Flowers in the Spring City",
+        "icon": "🌸",
+        "content": "Entering Yunnan, he reached Kunming. He climbed Mingfeng Mountain to see the <a href=\"?page=building&name=云南省昆明市太和宫金殿&pid=yunnan\" target=\"_blank\" data-nav>Taihe Palace Golden Hall</a>—China's largest extant pure bronze palace. He visited the <a href=\"?page=building&name=云南省昆明市真庆观古建筑群&pid=yunnan\" target=\"_blank\" data-nav>Zhenqing Temple Ancient Architecture Complex</a>, a Ming-dynasty Daoist building group, and soaked in the hot springs at the <a href=\"?page=building&name=云南省昆明市温泉摩崖石刻群&pid=yunnan\" target=\"_blank\" data-nav>Hot Spring Cliff Inscriptions</a> at Anning. By Dianchi Lake, gazing at the Western Hills in the distance—the vastness of Dianchi was breathtakingly beautiful.",
+        "buildings": [
+          {
+            "n": "Taihe Palace Golden Hall",
+            "p": "yunnan",
+            "d": "yunnan_kunming"
+          },
+          {
+            "n": "Zhenqing Guan Ancient Architecture Complex",
+            "p": "yunnan",
+            "d": "yunnan_kunming"
+          },
+          {
+            "n": "Wenquan Cliff Carvings Group",
+            "p": "yunnan",
+            "d": "yunnan_kunming"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty-Two: Dali—Wind, Flowers, Snow, and Moon",
+        "icon": "🏛️",
+        "content": "From Kunming he traveled west to Dali. The ancient city between Cangshan Mountain and Erhai Lake was once the capital of the Nanzhao and Dali Kingdoms. The <a href=\"?page=building&name=云南省大理白族自治州崇圣寺三塔&pid=yunnan\" target=\"_blank\" data-nav>Three Pagodas of Chongsheng Temple</a> stand in a tripod formation, the main pagoda, \"Thousand-Seek Pagoda,\" reaching sixty-nine meters. The <a href=\"?page=building&name=云南省大理白族自治州太和城遗址（含南诏德化碑）&pid=yunnan\" target=\"_blank\" data-nav>Taihe City Site (including the Nanzhao Dehua Stele)</a> was the Nanzhao royal capital. The <a href=\"?page=building&name=云南省大理白族自治州喜洲白族古建筑群&pid=yunnan\" target=\"_blank\" data-nav>Xizhou Bai Ethnic Architecture Complex</a> features whitewashed walls, black tiles, and carved beams. Drifting on Erhai Lake, gazing up at Cangshan Mountain—this scene belongs in heaven.",
+        "buildings": [
+          {
+            "n": "Chongsheng Temple Three Pagodas",
+            "p": "yunnan",
+            "d": "yunnan_dali"
+          },
+          {
+            "n": "Taihe City Site",
+            "p": "yunnan",
+            "d": "yunnan_dali"
+          },
+          {
+            "n": "Xizhou Bai Ethnic Ancient Architecture Complex",
+            "p": "yunnan",
+            "d": "yunnan_dali"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty-Three: Lijiang—Ancient Naxi Charm",
+        "icon": "🏘️",
+        "content": "In the twelfth year of the Chongzhen reign (1639), Xu Xiake came to Lijiang. The Naxi chieftain Mu Zeng welcomed him warmly; the two hit it off immediately, drinking and talking of the world. Lijiang's ancient town was \"a dense cluster of dwellings winding along the slopes and valleys.\" He stayed as a guest at the Mu Mansion and visited the <a href=\"?page=building&name=云南省丽江市黑龙潭古建筑群&pid=yunnan\" target=\"_blank\" data-nav>Black Dragon Pool Ancient Architecture Complex</a> north of the city; the Moon-Gaining Pavilion reflected in the water was like a painting. With Mu Zeng's help, he compiled the Gazetteer of Jizu Mountain. He was the first scholar from the interior to pay attention to Naxi culture.",
+        "buildings": [
+          {
+            "n": "Heilongtan Ancient Architecture Complex",
+            "p": "yunnan",
+            "d": "yunnan_lijiang"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty-Four: Jizu Mountain—A Buddhist Holy Land",
+        "icon": "🪷",
+        "content": "From Lijiang he traveled south to Jizu Mountain in Binchuan—the bodhimanda of the Buddha's disciple Mahakasyapa, where Han Buddhism and Tibetan Buddhism converge. He stayed for several months compiling the Gazetteer of Jizu Mountain, carefully surveying the mountain's water systems and drawing topographic maps. In the thirteenth year of the Chongzhen reign (1640), Xu Xiake's feet were both crippled by illness. Mu Zeng sent eight strong men to carry him on a litter for over 150 days back to his hometown of Jiangyin. The following year, the great traveler died at home, entrusting his manuscripts to a close friend—these would become the Travel Diaries of Xu Xiake, passed down through the ages.",
+        "buildings": []
+      },
+      {
+        "title": "Stop Twenty-Five: Tengchong—The Furthest Frontier City",
+        "icon": "🌋",
+        "content": "In the twelfth year of the Chongzhen reign (1639), Xu Xiake reached the furthest point of his life—Tengchong. He spent over forty days investigating the volcanic and geothermal phenomena. The traces of the eruption of Daying Mountain three hundred years earlier were stark and shocking; the temperature of the Boiling Pot in the Hot Sea reached over ninety degrees Celsius. He was one of the earliest travelers in the world to record volcanic geothermal features, and his description of the Tengchong volcanic cluster is considered China's first scientific survey report on volcanoes.",
+        "buildings": []
+      },
+      {
+        "title": "Stop Twenty-Six: Mount Wutai and Mount Heng—Northern Buddhist Charm (Supplementary)",
+        "icon": "❄️",
+        "content": "In the sixth year of the Chongzhen reign (1633), Xu Xiake traveled north to Shanxi. Mount Wutai is the bodhimanda of Manjusri Bodhisattva; the temple cluster at Taihuai Town was resplendent with gold and green. He went to Datong to see the <a href=\"?page=building&name=山西省大同市云冈石窟&pid=shanxi\" target=\"_blank\" data-nav>Yungang Grottoes</a>—forty-five caves with over 50,000 Buddha images, the pinnacle of Buddhist rock art. He visited the <a href=\"?page=building&name=山西省大同市华严寺&pid=shanxi\" target=\"_blank\" data-nav>Huayan Temple</a> and <a href=\"?page=building&name=山西省大同市善化寺&pid=shanxi\" target=\"_blank\" data-nav>Shanhua Temple</a>, and climbed the <a href=\"?page=building&name=山西省大同市悬空寺&pid=shanxi\" target=\"_blank\" data-nav>Hanging Temple</a> on Mount Heng, suspended as if in midair. He passed by the Yingxian Wooden Pagoda—the world's tallest wooden pagoda. Traveling south to Pingyao, he examined the <a href=\"?page=building&name=山西省晋中市平遥城墙&pid=shanxi\" target=\"_blank\" data-nav>Pingyao City Wall</a>—the best-preserved Ming-Qing county town wall.",
+        "buildings": [
+          {
+            "n": "Xuankong Temple",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          },
+          {
+            "n": "Yungang Grottoes",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          },
+          {
+            "n": "Huayan Temple",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          },
+          {
+            "n": "Shanhua Temple",
+            "p": "shanxi",
+            "d": "shanxi_datong"
+          },
+          {
+            "n": "Pingyao City Wall",
+            "p": "shanxi",
+            "d": "shanxi_jinzhong"
+          }
+        ]
+      },
+      {
+        "title": "Stop Twenty-Seven: The Imperial Capital—Northern Hub (Supplementary)",
+        "icon": "🏯",
+        "content": "In the second year of the Chongzhen reign (1629), Xu Xiake traveled north to the imperial capital. He paid homage at the <a href=\"?page=building&name=北京市东城区天坛&pid=beijing\" target=\"_blank\" data-nav>Temple of Heaven</a>—where Ming and Qing emperors worshipped Heaven; the <a href=\"?page=building&name=北京市东城区故宫&pid=beijing\" target=\"_blank\" data-nav>Forbidden City</a>—whose grandeur stunned him. He went to the <a href=\"?page=building&name=北京市昌平区十三陵&pid=beijing\" target=\"_blank\" data-nav>Thirteen Ming Tombs</a> in Changping—where thirteen Ming emperors lie in eternal rest. He toured the <a href=\"?page=building&name=北京市东城区智化寺&pid=beijing\" target=\"_blank\" data-nav>Zhihua Temple</a>—a Ming-dynasty wooden monastery famous for its coffered ceiling; climbed the <a href=\"?page=building&name=北京市东城区古观象台&pid=beijing\" target=\"_blank\" data-nav>Ancient Observatory</a>—which fascinated this geography lover. He admired the <a href=\"?page=building&name=北京市东城区北京城东南角楼&pid=beijing\" target=\"_blank\" data-nav>Southeast Corner Tower of Beijing City Wall</a> and the <a href=\"?page=building&name=北京市东城区正阳门&pid=beijing\" target=\"_blank\" data-nav>Zhengyang Gate</a> to experience the majesty of the capital's defenses. Passing through Juyong Pass, he climbed the Badaling Great Wall—the dragon winding along the mountain crest stirred his heart. At this point, the Sage of Travel's footsteps had already covered most of China, and his thirty-four-year trek stands as one of the greatest feats in the history of human exploration.",
+        "buildings": [
+          {
+            "n": "Temple of Heaven",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          },
+          {
+            "n": "Ming Tombs",
+            "p": "beijing",
+            "d": "beijing_changping"
+          },
+          {
+            "n": "Ancient Observatory",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          },
+          {
+            "n": "Zhihua Temple",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          },
+          {
+            "n": "Southeast Corner Tower of Beijing City",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          },
+          {
+            "n": "Zhengyang Gate",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          },
+          {
+            "n": "The Palace Museum",
+            "p": "beijing",
+            "d": "beijing_dongcheng"
+          }
+        ]
+      }
+    ]
+  }
+}

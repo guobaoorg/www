@@ -1,0 +1,52 @@
+{
+  "name": "国保地图 - 全国重点文物保护单位查询",
+  "short_name": "国保地图",
+  "description": "收录全国34个省级行政区5000+处全国重点文物保护单位，提供国保查询、文化地图、历史故事与主题路线。",
+  "start_url": "/?page=map",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "background_color": "#FAF8F3",
+  "theme_color": "#B22222",
+  "categories": ["education", "travel", "reference"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%23B22222'/%3E%3Ctext x='256' y='320' font-size='280' text-anchor='middle' fill='%23FFD700' font-family='serif'%3E国%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='24' fill='%23B22222'/%3E%3Ctext x='96' y='128' font-size='120' text-anchor='middle' fill='%23FFD700' font-family='serif'%3E国%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "地图",
+      "short_name": "地图",
+      "description": "查看全国重点文物保护单位地图",
+      "url": "/?page=map",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>" }]
+    },
+    {
+      "name": "搜索",
+      "short_name": "搜索",
+      "description": "搜索全国重点文物保护单位",
+      "url": "/?page=search",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>" }]
+    },
+    {
+      "name": "猜保",
+      "short_name": "猜保",
+      "description": "猜文物保护单位小游戏",
+      "url": "/?page=quiz",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗝️</text></svg>" }]
+    }
+  ]
+}

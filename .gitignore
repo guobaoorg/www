@@ -1,0 +1,30 @@
+# Trae IDE spec documents — not for production
+.trae/
+
+# Dependencies
+node_modules/
+
+# Temporary Excel files
+~$*.xlsx
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data: track only msgpack and provinces.json
+zh/china/*
+!zh/china/*.msgpack
+!zh/china/provinces.json
+zh/trail/*
+!zh/trail/*.json
+en/china/*
+!en/china/*.msgpack
+!en/china/provinces.json
+en/trail/*
+!en/trail/*.json

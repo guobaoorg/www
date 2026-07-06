@@ -1,0 +1,930 @@
+{
+  "bs": [
+    {
+      "n": "Great Wall",
+      "d": "cross",
+      "l": "Feicheng City, Tai'an City",
+      "e": "Spring and Autumn Period to Ming Dynasty",
+      "t": "Ancient Architectures",
+      "g": [
+        "Military Site",
+        "Rammed Earth"
+      ],
+      "desc": "The Great Wall of China is one of the greatest construction projects in world history. First built during the Spring and Autumn and Warring States periods, it was connected by Qin Shihuang. Stretching from Hushan in Liaoning to Jiayuguan in Gansu, it spans approximately 21,000 km across 15 provinces.",
+      "hist": "Construction dates back to the 7th century BCE. The Ming dynasty (1368-1644) undertook the largest-scale construction, forming the main body of the existing wall.",
+      "arch": "The Great Wall is a complete military defense system comprising walls, watchtowers, passes, beacon towers, and barrier walls, using materials including rammed earth, stone, and brick.",
+      "feat": "Inscribed on the UNESCO World Heritage List in 1987. Its scale, historical longevity, and geographical extent are unparalleled in world architectural history.",
+      "pb": "The Fifth Batch",
+      "wh": true,
+      "why": 1987,
+      "sec": [
+        {
+          "n": "Shanhaiguan Pass",
+          "p": "Qinhuangdao City, Hebei Province"
+        },
+        {
+          "n": "Jinshanling Great Wall",
+          "p": "Chengde City, Hebei Province"
+        },
+        {
+          "n": "Mutianyu Great Wall",
+          "p": "Huairou District, Beijing"
+        },
+        {
+          "n": "Badaling Great Wall",
+          "p": "Yanqing District, Beijing"
+        },
+        {
+          "n": "Juyongguan Pass",
+          "p": "Changping District, Beijing"
+        },
+        {
+          "n": "Jiayuguan Pass",
+          "p": "Jiayuguan City, Gansu Province"
+        },
+        {
+          "n": "Simatai Great Wall",
+          "p": "Miyun District, Beijing"
+        },
+        {
+          "n": "Gubeikou Great Wall",
+          "p": "Miyun District, Beijing"
+        },
+        {
+          "n": "Huangyaguan Great Wall",
+          "p": "Jizhou District, Tianjin"
+        },
+        {
+          "n": "Yanmenguan Pass",
+          "p": "Xinzhou City, Shanxi Province"
+        },
+        {
+          "n": "Pingxingguan Pass",
+          "p": "Datong City, Shanxi Province"
+        },
+        {
+          "n": "Niangziguan Pass",
+          "p": "Yangquan City, Shanxi Province"
+        },
+        {
+          "n": "Piantouguan Pass",
+          "p": "Xinzhou City, Shanxi Province"
+        },
+        {
+          "n": "Ningwuguan Pass",
+          "p": "Xinzhou City, Shanxi Province"
+        },
+        {
+          "n": "Zhenbeitai Watchtower",
+          "p": "Yulin City, Shaanxi Province"
+        }
+      ],
+      "lat": 36.184677,
+      "lng": 116.771756,
+      "route": {
+        "title": "The Great Wall: A Dragon Across Northern China",
+        "intro": "<div class=\"xuxiake-quote\">Using terrain to establish strategic defenses.</div>\n\nThe Great Wall is not a single wall—it is a military defense system stretching thousands of miles across more than two millennia. From the Spring and Autumn and Warring States periods in the 7th century BCE to the Ming dynasty in the 17th century CE, the Great Wall wound along the ridges and deserts of northern China, separating the stability of agrarian civilization from the vastness of nomadic culture, while also binding them closely together.\n\nIn 1987, the Great Wall was inscribed on the UNESCO World Heritage List as a World Cultural Heritage site. It is not only a symbol of China but also a miracle in human engineering history, unparalleled in scale, construction duration, and geographical extent. Today, let us travel from east to west along the body of this giant dragon, visiting the key nodes that witnessed clashing arms and cultural fusion.",
+        "stops": [
+          {
+            "title": "Stop 1: The Eastern Gateway — Jiumenkou and Shanhaiguan",
+            "icon": "🏯",
+            "content": "The eastern end of the Great Wall begins at Hushan in Dandong, Liaoning, but the true fortress starting point lies at the junction of Hebei and Liaoning—at Jiumenkou and Shanhaiguan.\n\n<a href=\"?page=province&id=liaoning\" data-nav>Great Wall - Jiumenkou</a> spans the Jiuhe River and is famous for its nine water gates: \"The city walks on water, while water flows beneath the city.\" This section of the Wall was built during the Hongwu reign of the Ming dynasty and was a crucial passage from Liaodong to North China. Nearby stands <a href=\"?page=province&id=hebei\" data-nav>Great Wall - Shanhaiguan</a>, hailed as the \"First Pass Under Heaven.\" Shanhaiguan was first built in the 14th year of Hongwu (1381), supervised by the great general Xu Da, and was one of the nine border garrisons of the Ming Great Wall.\n\nStanding atop the Shanhaiguan tower and gazing westward, the Great Wall twists like a dragon through towering mountains. From here, the dragon will traverse a thousand miles of rivers and mountains, heading toward the distant Gobi.",
+            "buildings": [
+              {
+                "n": "Great Wall - Jiumenkou",
+                "p": "liaoning",
+                "d": "liaoning_huludao"
+              },
+              {
+                "n": "Great Wall - Shanhaiguan",
+                "p": "hebei",
+                "d": "hebei_qinhuangdao"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Guarding the Capital — The Essence of Jizhen Great Wall",
+            "icon": "🏛️",
+            "content": "After entering Hebei and Beijing, the Great Wall features its most exquisite architecture and most complete defense system. This was the defense zone of Ji Garrison in the Ming dynasty, renovated under the supervision of the famous anti-pirate general Qi Jiguang, who left behind many immortal masterpieces of the Great Wall.\n\n<a href=\"?page=province&id=beijing\" data-nav>Jinshanling Great Wall</a> spans 10.5 kilometers with dense watchtowers and exquisite architecture, earning the reputation that \"among the Ten Thousand Li Great Wall, Jinshanling stands alone in beauty.\" At its eastern end, the <a href=\"?page=province&id=beijing\" data-nav>Simatai Section</a> is renowned for its five marvels: \"steepness, density, completeness, ingenuity, and uniqueness.\" The Times of London rated it \"the number one of 25 scenic spots not to be missed globally.\"\n\nAt Badaling, Mutianyu, Juyongguan, and other locations, the Great Wall merges with the mountains, becoming Beijing's most magnificent cultural landmark. Here, the Great Wall is not only a military defense line but also a gallery of architectural art stretching across the northern land.",
+            "buildings": [
+              {
+                "n": "Jinshanling Great Wall",
+                "p": "beijing",
+                "d": "beijing_miyun"
+              },
+              {
+                "n": "Simatai Section",
+                "p": "beijing",
+                "d": "beijing_miyun"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: The Inner and Outer Three Passes",
+            "icon": "⛰️",
+            "content": "Leaving Beijing westward, the Great Wall enters the Taihang Mountains of Shanxi. Here the terrain is steep and passes are numerous. The Ming dynasty established the \"Inner Three Passes\" and \"Outer Three Passes\" for layered defense.\n\n<a href=\"?page=province&id=hebei\" data-nav>Great Wall - Zijingguan</a> is one of the Inner Three Passes, located on Zijing Ridge in the Taihang Mountains. Together with Juyongguan and Daomaguan, it formed the southwestern barrier for the capital. Meanwhile, the <a href=\"?page=province&id=shanxi\" data-nav>Yanmen Guan Section</a> is the foremost of the Outer Three Passes. Since ancient times, \"Among the nine passes under heaven, Yanmen is the first.\" Historically, Li Guang, Wei Qing, and Huo Qubing all fought fierce battles against the Xiongnu here, and the Song dynasty legends of the Yang Family Generals have made it famous throughout the world.\n\nThe <a href=\"?page=province&id=hebei\" data-nav>Wulonggou Section</a> is renowned for its well-preserved original appearance. The unrepaired walls loom in the morning mist of the Taihang Mountains, as if transporting you back to the age of cold steel and clashing arms.",
+            "buildings": [
+              {
+                "n": "Great Wall - Zijingguan",
+                "p": "hebei",
+                "d": "hebei_baoding"
+              },
+              {
+                "n": "Yanmen Guan Section",
+                "p": "shanxi",
+                "d": "shanxi_daixian"
+              },
+              {
+                "n": "Wulonggou Section",
+                "p": "hebei",
+                "d": "hebei_baoding"
+              }
+            ]
+          },
+          {
+            "title": "Stop 4: Frontier Beacon Smoke — Northern Shaanxi and Ningxia",
+            "icon": "🏜️",
+            "content": "Continuing westward, the Great Wall enters the Loess Plateau and the Mu Us Sandy Land. The Wall here is built of rammed earth, blending with the surrounding yellow landscape, presenting a desolate and majestic frontier scenery.\n\n<a href=\"?page=province&id=shaanxi\" data-nav>Zhenbeitai</a> in Yulin, Shaanxi, is the largest military watchtower on the Ming Great Wall, standing over 30 meters tall, known as the \"First Platform of the Ten Thousand Li Great Wall.\" Climbing the tower, the Mu Us Sandy Land stretches before your eyes, the Great Wall extending like a yellow dragon into the horizon.\n\nNearby is the <a href=\"?page=province&id=ningxia\" data-nav>Yanchi Section</a> of the Great Wall, whose \"Ten-Kilometer Wall\" ruins are the best-preserved Great Wall section in Ningxia. The rammed-earth walls have stood in the wind and sand for six hundred years, every crack telling the story of the loneliness and perseverance of frontier soldiers.",
+            "buildings": [
+              {
+                "n": "Zhenbeitai",
+                "p": "shaanxi",
+                "d": "shaanxi_yulin"
+              }
+            ]
+          },
+          {
+            "title": "Stop 5: The Western Pass — Jiayuguan",
+            "icon": "🐫",
+            "content": "The endpoint of the Great Wall is at Jiayuguan in Gansu. This is the western starting point of the Ming Ten Thousand Li Great Wall and the strategic transportation hub of the ancient Silk Road.\n\n<a href=\"?page=province&id=gansu\" data-nav>Great Wall - Jiayuguan</a> leans against the Qilian Mountains to the south and relies on the Black Mountains to the north. The pass was first built in the 5th year of Hongwu (1372) and expanded over 160 years, forming a three-tier defense system of inner city, outer city, and barbican. It is hailed as the \"First and Greatest Pass Under Heaven.\"\n\nWest of Jiayuguan, the Great Wall enters the vast Gobi Desert. But its presence does not disappear—Han dynasty beacon towers and Ming dynasty border walls continue westward across the Gobi, reaching Dunhuang and even Lop Nur. The Great Wall was built to the limits of geography, and it was also built into the frontier of the Chinese spirit.",
+            "buildings": [
+              {
+                "n": "Great Wall - Jiayuguan",
+                "p": "gansu",
+                "d": "gansu_jiayuguan"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "greatwall",
+      "en": "Great Wall"
+    },
+    {
+      "n": "Grand Canal",
+      "d": "cross",
+      "l": "Flows through Beijing, Tianjin, Hebei, Shandong, Jiangsu, Zhejiang, Henan, and Anhui",
+      "e": "Spring and Autumn Period to Qing Dynasty",
+      "t": "Ancient Architectures",
+      "g": [
+        "Water Conservancy Project",
+        "World Heritage"
+      ],
+      "desc": "The Grand Canal is the longest and earliest canal in the world, spanning 2,700 km across 8 provinces. Construction began in 486 BCE.",
+      "hist": "Canal building began in the late Spring and Autumn period. The Sui dynasty created a north-south waterway. The Yuan dynasty formed the modern Beijing-Hangzhou Grand Canal.",
+      "arch": "The canal system includes waterways, water sources, control structures, and ancillary facilities such as channels, embankments, locks, and wharves.",
+      "feat": "Inscribed on the UNESCO World Heritage List in 2014. It connects five major river systems and played an irreplaceable role in north-south economic and cultural exchange.",
+      "pb": "The Sixth Batch",
+      "wh": true,
+      "why": 2014,
+      "sec": [
+        {
+          "n": "Tonghui River Beijing Old City Section",
+          "p": "Beijing"
+        },
+        {
+          "n": "Tonghui River Tongzhou Section",
+          "p": "Beijing"
+        },
+        {
+          "n": "North Canal Tianjin Section",
+          "p": "Tianjin"
+        },
+        {
+          "n": "South Canal Tianjin Section",
+          "p": "Tianjin"
+        },
+        {
+          "n": "Cangzhou-Dezhou-Hengshui Section",
+          "p": "Hebei Province"
+        },
+        {
+          "n": "Linqing Section",
+          "p": "Shandong Province"
+        },
+        {
+          "n": "Jining Section",
+          "p": "Shandong Province"
+        },
+        {
+          "n": "Tai'erzhuang Section",
+          "p": "Shandong Province"
+        },
+        {
+          "n": "Huai'an Section",
+          "p": "Jiangsu Province"
+        },
+        {
+          "n": "Yangzhou Section",
+          "p": "Jiangsu Province"
+        },
+        {
+          "n": "Zhenjiang-Changzhou Section",
+          "p": "Jiangsu Province"
+        },
+        {
+          "n": "Suzhou Section",
+          "p": "Jiangsu Province"
+        },
+        {
+          "n": "Jiaxing-Hangzhou Section",
+          "p": "Zhejiang Province"
+        },
+        {
+          "n": "East Zhejiang Canal Hangzhou Section",
+          "p": "Zhejiang Province"
+        },
+        {
+          "n": "East Zhejiang Canal Ningbo Section",
+          "p": "Zhejiang Province"
+        }
+      ],
+      "lat": 31.781518,
+      "lng": 119.943542,
+      "route": {
+        "title": "The Grand Canal: A Water Dragon Traversing North and South",
+        "intro": "<div class=\"xuxiake-quote\">Though many say the Sui fell because of this river, to this day it carries boats a thousand miles.</div>\n\nThe Beijing-Hangzhou Grand Canal is one of the greatest water conservancy projects in ancient China, alongside the Great Wall as one of China's two great ancient artificial wonders. Construction began in the Spring and Autumn period and underwent large-scale excavation during the Sui and Yuan dynasties. Starting from Beijing in the north and ending at Hangzhou in the south, it spans approximately 1,794 kilometers, connecting the five major river systems of the Haihe, Yellow, Huai, Yangtze, and Qiantang Rivers.\n\nIn 2014, the Grand Canal was inscribed on the World Heritage List. It is not only a waterway but also a flowing epic, carrying a thousand years of grain transport memories, urban rise and fall, and cultural exchange.",
+        "stops": [
+          {
+            "title": "Stop 1: Beijing — The Canal's Starting Point",
+            "icon": "🏯",
+            "content": "The northern starting point of the Grand Canal is in Beijing. During the Yuan dynasty, Guo Shoujing excavated the Tonghui River, bringing the Grand Canal into Dadu (present-day Beijing). Jishuitan became the terminal dock for north-south grain transport. The \"Travels of Marco Polo\" records the bustling scene of \"boats coming and going like weaving\" on the Yuan Dadu Canal.\n\nTraveling east along the canal from Tongzhou, you enter the North Canal section of Tianjin. Tianjin prospered because of the canal. The Sancha River Mouth is the confluence of the North and South Canals and the Haihe River. Since ancient times, \"At dawn at Sancha Mouth, ten thousand boats gather mast to mast.\" The prosperity of grain transport directly gave birth to this northern commercial hub.",
+            "buildings": [
+              {
+                "n": "Beijing-Hangzhou Grand Canal",
+                "p": "jiangsu",
+                "d": "jiangsu_suzhou"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Shandong — Crossing the Yellow River",
+            "icon": "🌊",
+            "content": "After entering Shandong, the Grand Canal faced its greatest technical challenge—how to cross the Yellow River. During the Yuan dynasty, the Huitong River was built, using a system of locks and dams to regulate water levels and achieve a level crossing of the canal and the Yellow River. Linqing, Jining, Tai'erzhuang, and other places prospered because of the canal, becoming important commercial cities in the north during the Ming and Qing dynasties.\n\nThe Nanwang Water Diversion Project in Wenshang, Shandong, is one of the greatest hydraulic engineering works on the Grand Canal. During the Ming dynasty, Minister of Works Song Li adopted the suggestion of Elder Bai Ying, building a dam at Wenshang to divert water. Through the Nanwang Diversion Gate, the Wen River was split—three-tenths flowing south and seven-tenths flowing north—successfully solving the water source problem when the canal crossed the Yellow River watershed. It is hailed as the \"Dujiangyan of the Canal.\"\n\nThe Linqing Canal Customs House was the largest canal tax checkpoint in the country during the Ming and Qing dynasties, witnessing the prosperity of the canal economic belt.",
+            "buildings": [
+              {
+                "n": "Linqing Canal Banknote Pass",
+                "p": "hebei",
+                "d": "hebei_linxi"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: Jiangsu — Paradise on the Canal",
+            "icon": "🏛️",
+            "content": "After entering Jiangsu, the Grand Canal has abundant water and busy shipping. The prosperity of the four great canal cities—Huai'an, Yangzhou, Suzhou, and Hangzhou—largely owes to the nourishment of this water artery.\n\nYangzhou is the most brilliant pearl on the Grand Canal. In the Tang dynasty, Yangzhou's prosperity—\"In March, amid misty blossoms, one goes down to Yangzhou\" and \"Of the world's bright moonlit nights, two-tenths ungraciously belong to Yangzhou\"—even surpassed that of Chang'an. Yangzhou's Slender West Lake, Geyuan Garden, Heyuan Garden, and other classical gardens, nestled against the blue waters of the canal, form a paradise tableau of \"flowers and willows lining both banks, towers and pavilions stretching to the hills.\"\n\nThe Suzhou section of the canal features ancient city, gardens, water alleys, and stone bridges in harmonious interplay. Suzhou's classical gardens are masterpieces of canal civilization—the Humble Administrator's Garden, Lingering Garden, Master of the Nets Garden, and other World Heritage sites are all artistic treasures nurtured by the canal.",
+            "buildings": [
+              {
+                "n": "Beijing-Hangzhou Grand Canal",
+                "p": "jiangsu",
+                "d": "jiangsu_suzhou"
+              }
+            ]
+          },
+          {
+            "title": "Stop 4: Zhejiang — The Canal's Terminus",
+            "icon": "🌿",
+            "content": "The southern terminus of the Grand Canal is at Hangzhou. The East Zhejiang Canal extends eastward from Hangzhou, passing through Shaoxing and Ningbo to enter the sea, connecting the Grand Canal with the Maritime Silk Road.\n\nHangzhou's Gongchen Bridge is the iconic structure at the southern end of the Beijing-Hangzhou Grand Canal. First built in the 4th year of Chongzhen (1631), it is the tallest and longest stone arch bridge among Hangzhou's ancient bridges. Blue waters flow gently beneath the bridge, while pedestrians pass in an endless stream above. The thousand-year canal's terminus here dissolves into the gentleness of the Jiangnan water towns.",
+            "buildings": [
+              {
+                "n": "Beijing-Hangzhou Grand Canal",
+                "p": "jiangsu",
+                "d": "jiangsu_suzhou"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "canal",
+      "en": "Grand Canal"
+    },
+    {
+      "n": "Qin Zhidao Site",
+      "d": "cross",
+      "l": "Xunyi County, Xianyang City",
+      "e": "Qin Dynasty",
+      "t": "Ancient Sites",
+      "g": [
+        "Rammed Earth",
+        "Beacon Tower"
+      ],
+      "desc": "The Qin Direct Road was a military highway built by Qin Shihuang, one of ancient China's most important military transport routes.",
+      "hist": "In 212 BCE, Qin Shihuang ordered General Meng Tian to build the 736-km Direct Road from Yunyang to Jiuyuan.",
+      "arch": "The road was scientifically routed along ridges, with rammed-earth surfaces averaging 30 m in width. Post stations and beacon towers lined the route.",
+      "feat": "Known as the 'Ancient Highway,' it embodies the standardized engineering of early imperial China.",
+      "pb": "The Sixth Batch",
+      "wh": false,
+      "sec": [
+        {
+          "n": "Chunhua Section",
+          "p": "Xianyang City, Shaanxi Province"
+        },
+        {
+          "n": "Xunyi Section",
+          "p": "Xianyang City, Shaanxi Province"
+        },
+        {
+          "n": "Huangling Section",
+          "p": "Yan'an City, Shaanxi Province"
+        },
+        {
+          "n": "Fuxian Section",
+          "p": "Yan'an City, Shaanxi Province"
+        },
+        {
+          "n": "Ganquan Section",
+          "p": "Yan'an City, Shaanxi Province"
+        },
+        {
+          "n": "Zhidan Section",
+          "p": "Yan'an City, Shaanxi Province"
+        },
+        {
+          "n": "Ansai Section",
+          "p": "Yan'an City, Shaanxi Province"
+        },
+        {
+          "n": "Zhengning Section",
+          "p": "Qingyang City, Gansu Province"
+        },
+        {
+          "n": "Heshui Section",
+          "p": "Qingyang City, Gansu Province"
+        },
+        {
+          "n": "Huachi Section",
+          "p": "Qingyang City, Gansu Province"
+        },
+        {
+          "n": "Dongsheng Section",
+          "p": "Ordos City, Inner Mongolia"
+        },
+        {
+          "n": "Ejin Horo Banner Section",
+          "p": "Ordos City, Inner Mongolia"
+        },
+        {
+          "n": "Dalad Banner Section",
+          "p": "Ordos City, Inner Mongolia"
+        }
+      ],
+      "lat": 35.211099,
+      "lng": 108.482951,
+      "route": {
+        "title": "The Qin Direct Road: The World's Earliest Highway",
+        "intro": "<div class=\"xuxiake-quote\">The road was fifty paces wide, with trees planted every three zhang.</div>\n\nIn 212 BCE, Qin Shihuang ordered the construction of a military expressway from the capital Xianyang directly to the northern frontier fortress of Jiuyuan (present-day Baotou, Inner Mongolia), historically known as the \"Qin Direct Road.\" This road spanned approximately 736 kilometers, with an average road width of about 30 meters, reaching up to 60 meters at its widest points—an indisputable \"ancient highway.\"\n\nThe Qin Direct Road was built in just two and a half years (212–210 BCE) and, along with the Great Wall and the Mausoleum of the First Qin Emperor, is known as one of the \"Three Great Projects of Qin Shihuang.\" More than two thousand years later, sections of the Qin Direct Road are still clearly visible, with the rammed-earth surface as solid as ever.",
+        "stops": [
+          {
+            "title": "Stop 1: Starting Point — Xianyang Yunyang",
+            "icon": "🏛️",
+            "content": "The southern starting point of the Qin Direct Road is at Liangwudi Village, north of Chunhua County, Xianyang City, Shaanxi Province, known in Qin times as \"Yunyang.\" This was also the location of the Qin dynasty's \"Linguang Palace,\" a traveling palace where Qin Shihuang stayed during frontier inspections.\n\nDeparting from Yunyang, the Qin Direct Road followed the Ziwu Ridge northward into the Loess Plateau of northern Shaanxi. In Xunyi County, the Qin Direct Road site is well preserved, with a broad and level surface, reaching over 50 meters at its widest—capable of accommodating more than ten chariots side by side. Standing on this two-thousand-year-old road, one can almost hear the rumbling echoes of Qin war chariots passing by.\n\n<a href=\"?page=province&id=shaanxi\" data-nav>Qin Zhidao Starting Site</a> and <a href=\"?page=province&id=shaanxi\" data-nav>Qin Zhidao Site</a> are representative remains of this road, designated as Major Historical and Cultural Sites Protected at the National Level in 2006.",
+            "buildings": [
+              {
+                "n": "Qin Zhidao Starting Site",
+                "p": "shaanxi",
+                "d": "shaanxi_xianyang"
+              },
+              {
+                "n": "Qin Zhidao Site",
+                "p": "shaanxi",
+                "d": "shaanxi_xianyang"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Crossing Northern Shaanxi and Eastern Gansu",
+            "icon": "⛰️",
+            "content": "The Qin Direct Road passes from Xunyi, Shaanxi, into Zhengning, Heshui, and Huachi in Gansu, then turns back into Fuxian, Ganquan, and Zhidan in Shaanxi, winding northward through the countless ravines of the Loess Plateau.\n\nThis section of the road was scientifically routed—built along the ridges of the Ziwu Range, avoiding low-lying valleys and complex terrain, reducing construction volume while lowering the risk of flood damage. The road surface used rammed-earth technology, layer upon layer, as solid as stone. Beacon towers and post stations lined the route, forming a complete military communication system.\n\n<a href=\"?page=province&id=gansu\" data-nav>Qinzhidao Site Qingyang Section</a> preserves extensive typical road surface remains. In Zhidan County, the road traces of the <a href=\"?page=province&id=shaanxi\" data-nav>Qin Zhidao Site Yan'an Section</a> remain clearly visible to this day, with wheel ruts still imprinted on the surface.",
+            "buildings": [
+              {
+                "n": "Qinzhidao Site Qingyang Section",
+                "p": "gansu",
+                "d": "gansu_qingyang"
+              },
+              {
+                "n": "Qin Zhidao Site Yan'an Section",
+                "p": "shaanxi",
+                "d": "shaanxi_yanan"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: Terminus — Jiuyuan in Inner Mongolia",
+            "icon": "🏜️",
+            "content": "After leaving Shaanxi, the Qin Direct Road enters the Ordos Plateau of Inner Mongolia. On this vast grassland, the road surface is even broader, stretching straight toward the north.\n\nThe terminus is in present-day Jiuyuan District, Baotou City, Inner Mongolia, known in Qin times as \"Jiuyuan Commandery.\" The road departed from Chunhua, Shaanxi, passed through Xunyi, Huangling, Fuxian, Ganquan, and Zhidan, entered Zhengning, Heshui, and Huachi in Gansu, crossed the Ordos Plateau, and finally reached Baotou.\n\nDuring the reign of Emperor Wu of Han, Wei Qing and Huo Qubing repeatedly led armies north from the Direct Road to attack the Xiongnu. The Direct Road played a vital role in the Qin-Han military defense system. More than two thousand years later, a 17.5-kilometer intact section of the <a href=\"?page=province&id=neimenggu\" data-nav>Qin Zhidao Site</a> remains preserved in Ordos City, hailed as the \"Ancestor of the World's Highways.\"",
+            "buildings": [
+              {
+                "n": "Qin Zhidao Site",
+                "p": "shaanxi",
+                "d": "shaanxi_xianyang"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "zhidao",
+      "en": "Qin Zhidao Site"
+    },
+    {
+      "n": "Middle East Railway Architecture Complex",
+      "d": "cross",
+      "l": "Hailin City, Mudanjiang City",
+      "e": "Qing Dynasty",
+      "t": "Important Modern Historical Sites and Representative Buildings",
+      "g": [
+        "Industrial Heritage",
+        "Railway Heritage"
+      ],
+      "desc": "The Middle East Railway complex includes the Russian-built railway and its ancillary buildings from the late 19th to early 20th centuries in Northeast China.",
+      "hist": "Construction began in August 1897 and the railway opened in February 1903, funded by the Russo-Chinese Bank.",
+      "arch": "Hundreds of stations, locomotive sheds, churches, and residences in Russian, Art Nouveau, Classical, and Baroque styles.",
+      "feat": "An important part of China's railway cultural heritage and a typical 20th-century linear cultural heritage.",
+      "pb": "The Sixth Batch",
+      "wh": false,
+      "sec": [
+        {
+          "n": "Xiangfang Railway Station Site",
+          "p": "Harbin City, Heilongjiang Province"
+        },
+        {
+          "n": "Middle East Railway Administration Site",
+          "p": "Harbin City, Heilongjiang Province"
+        },
+        {
+          "n": "Jihong Bridge",
+          "p": "Harbin City, Heilongjiang Province"
+        },
+        {
+          "n": "Binzhou Line Songhua River Railway Bridge",
+          "p": "Harbin City, Heilongjiang Province"
+        },
+        {
+          "n": "Yimianpo Middle East Railway Complex",
+          "p": "Shangzhi City, Heilongjiang Province"
+        },
+        {
+          "n": "Hengdaohezi Middle East Railway Complex",
+          "p": "Hailin City, Heilongjiang Province"
+        },
+        {
+          "n": "Ang'angxi Middle East Railway Complex",
+          "p": "Qiqihar City, Heilongjiang Province"
+        },
+        {
+          "n": "Suifenhe Middle East Railway Complex",
+          "p": "Suifenhe City, Heilongjiang Province"
+        },
+        {
+          "n": "Zhalantun Middle East Railway Complex",
+          "p": "Hulunbuir City, Inner Mongolia"
+        },
+        {
+          "n": "Manzhouli Middle East Railway Complex",
+          "p": "Hulunbuir City, Inner Mongolia"
+        },
+        {
+          "n": "Boketu Middle East Railway Complex",
+          "p": "Hulunbuir City, Inner Mongolia"
+        },
+        {
+          "n": "Gongzhuling Russian-style Complex",
+          "p": "Gongzhuling City, Jilin Province"
+        },
+        {
+          "n": "Siping Locomotive Repair Depot Site",
+          "p": "Siping City, Jilin Province"
+        },
+        {
+          "n": "Mukden Station Site and Surrounding Buildings",
+          "p": "Shenyang City, Liaoning Province"
+        },
+        {
+          "n": "Lüshun Railway Station Site",
+          "p": "Dalian City, Liaoning Province"
+        }
+      ],
+      "lat": 44.895365,
+      "lng": 129.207801,
+      "route": {
+        "title": "The Middle East Railway: A Steel Corridor",
+        "intro": "<div class=\"xuxiake-quote\">One railway, a century of rise and fall.</div>\n\nThe Middle East Railway, also known as the Chinese Eastern Railway or East Qing Railway, was a railway artery built by Tsarist Russia in Northeast China in the late 19th century. With Harbin as its center, the railway extended west to Manzhouli, east to Suifenhe, and south to Lüshunkou, spanning nearly 2,500 kilometers.\n\nThis railway is not only a transportation line but also an architectural corridor—along its route remain numerous Russian-style stations, churches, residences, locomotive depots, and other buildings, making it the area with the richest concentration of modern Chinese railway architectural heritage.",
+        "stops": [
+          {
+            "title": "Stop 1: Western Terminus — Manzhouli",
+            "icon": "🚂",
+            "content": "The western end of the Middle East Railway starts at Manzhouli in Inner Mongolia, connecting with Russia's Trans-Baikal Railway. The Manzhouli Railway Station, built in 1901, was the first station of the Middle East Railway entering China. The station building is in typical Russian architectural style.\n\nTraveling east along the railway, stations such as Zhalantun and Boketu preserve numerous Russian-style architectural complexes. The Hengdaohezi Locomotive Depot is the most spectacular industrial building on the Middle East Railway—its fan-shaped layout could accommodate 15 locomotives simultaneously, and it is one of the few surviving fan-shaped locomotive depots in the world.",
+            "buildings": [
+              {
+                "n": "Middle East Railway Architecture Complex",
+                "p": "heilongjiang",
+                "d": "heilongjiang_haerbin"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Hub — Harbin",
+            "icon": "🏙️",
+            "content": "Harbin is the central hub of the Middle East Railway. After the full line opened in 1903, Harbin rapidly rose from a small fishing village into an international metropolis in the Far East. Russians, Jews, Poles, and Japanese flooded in, leaving behind a rich diversity of architectural heritage.\n\nThe Harbin Xiangfang Railway Station, built in 1898, was the earliest station on the Middle East Railway. The Jihong Bridge is a classic Russian steel truss bridge that still carries the weight of urban traffic today. The Binzhou Line Songhua River Railway Bridge spans the Songhua River, a century-old steel bridge that has witnessed the profound changes of Harbin.\n\nThe Middle East Railway Administration Building is a masterpiece of Harbin Art Nouveau, while the Church of the Intercession is an all-wood structure and a masterpiece of Orthodox church architecture. Yimianpo, Hengdaohezi, Ang'angxi, and other locations also preserve numerous Middle East Railway architectural complexes.",
+            "buildings": [
+              {
+                "n": "Middle East Railway Architecture Complex",
+                "p": "heilongjiang",
+                "d": "heilongjiang_haerbin"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: Eastern Terminus — Suifenhe",
+            "icon": "🌲",
+            "content": "The eastern end of the Middle East Railway terminates at Suifenhe, connecting with Russia's Ussuri Railway. The Suifenhe Port, built in 1901, is still in operation today and serves as an important land port connecting Northeast China with the Russian Far East.\n\nThe southern branch of the Middle East Railway passes through Changchun and Shenyang, reaching Lüshunkou. The construction and operation of this railway profoundly influenced the modern history of Northeast China. Today, the buildings along the line, as Major Historical and Cultural Sites Protected at the National Level, serve as precious windows for understanding that period of history.",
+            "buildings": [
+              {
+                "n": "Middle East Railway Architecture Complex",
+                "p": "heilongjiang",
+                "d": "heilongjiang_haerbin"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "railway",
+      "en": "Middle East Railway Architecture Complex"
+    },
+    {
+      "n": "Great Wall Site of Qi State",
+      "d": "cross",
+      "l": "Boshan District, Zibo City",
+      "e": "Spring and Autumn Period and Warring States Period",
+      "t": "Ancient Architectures",
+      "g": [
+        "Military Site",
+        "Rammed Earth"
+      ],
+      "desc": "The Qi Great Wall is the oldest surviving Great Wall with accurate archaeological evidence, known as the 'Father of the Great Wall.'",
+      "hist": "Construction began in the Spring and Autumn period, over 2,600 years ago, predating the Qin Great Wall by 400+ years.",
+      "arch": "Built using local materials: earth walls for plains, stone walls for mountains, and mixed construction.",
+      "feat": "Represents the highest level of Warring States inter-state defense walls.",
+      "pb": "The Fifth Batch",
+      "wh": true,
+      "why": 1987,
+      "sec": [
+        {
+          "n": "Changqing Section (incl. Dafeng Mountain Site)",
+          "p": "Jinan City, Shandong Province"
+        },
+        {
+          "n": "Licheng Section",
+          "p": "Jinan City, Shandong Province"
+        },
+        {
+          "n": "Zhangqiu Section (incl. Jinyang Pass)",
+          "p": "Jinan City, Shandong Province"
+        },
+        {
+          "n": "Laiwu Section (incl. Qingshi Pass)",
+          "p": "Jinan City, Shandong Province"
+        },
+        {
+          "n": "Feicheng Section",
+          "p": "Tai'an City, Shandong Province"
+        },
+        {
+          "n": "Daiyue Section",
+          "p": "Tai'an City, Shandong Province"
+        },
+        {
+          "n": "Mount Tai Section",
+          "p": "Tai'an City, Shandong Province"
+        },
+        {
+          "n": "Boshan Section",
+          "p": "Zibo City, Shandong Province"
+        },
+        {
+          "n": "Zichuan Section",
+          "p": "Zibo City, Shandong Province"
+        },
+        {
+          "n": "Yiyuan Section",
+          "p": "Zibo City, Shandong Province"
+        },
+        {
+          "n": "Linqu Section (incl. Muling Pass)",
+          "p": "Weifang City, Shandong Province"
+        },
+        {
+          "n": "Anqiu Section",
+          "p": "Weifang City, Shandong Province"
+        },
+        {
+          "n": "Zhucheng Section",
+          "p": "Weifang City, Shandong Province"
+        },
+        {
+          "n": "Yishui Section",
+          "p": "Linyi City, Shandong Province"
+        },
+        {
+          "n": "Juxian Section",
+          "p": "Rizhao City, Shandong Province"
+        },
+        {
+          "n": "Wulian Section",
+          "p": "Rizhao City, Shandong Province"
+        },
+        {
+          "n": "Huangdao Section (incl. Xiaozhu Mountain Sea Entry)",
+          "p": "Qingdao City, Shandong Province"
+        }
+      ],
+      "lat": 36.482114,
+      "lng": 117.832383,
+      "route": {
+        "title": "The Qi Great Wall: Father of the Great Wall",
+        "intro": "<div class=\"xuxiake-quote\">King Xuan of Qi built a Great Wall along the mountain ridges, reaching the sea in the east and extending over a thousand li to Jizhou in the west.</div>\n\nThe Qi Great Wall predates the Qin Great Wall by over 400 years and the Athenian Walls of Europe by more than 200 years. It is the oldest surviving Great Wall site in China, known as the \"Father of the Great Wall.\" Starting from Changqing, Jinan, in the west and ending at Huangdao, Qingdao, where it enters the sea in the east, it spans 641.32 kilometers, crossing 1,518 peaks, and passing through 7 cities and 17 counties (cities, districts): Jinan, Tai'an, Zibo, Weifang, Linyi, Rizhao, and Qingdao.\n\nThe Qi Great Wall was inscribed as part of \"The Great Wall\" on the World Heritage List in 1987.",
+        "stops": [
+          {
+            "title": "Stop 1: Western Start — Dafeng Mountain",
+            "icon": "⛰️",
+            "content": "The Qi Great Wall begins in the west at Guangli Village, Xiaoli Subdistrict, Changqing District, Jinan. Known in ancient times as \"Fangmen,\" it was the key fortress of Qi's southwestern border defense. The Dafeng Mountain section is one of the best-preserved sections of the Qi Great Wall, with over 1,500 meters of wall and more than 200 stone barracks ruins.\n\nThe Changqing section of the Qi Great Wall is built along the mountains, mainly constructed of stone walls. The average height of the wall is 2-4 meters, with a width of 5-6 meters. After more than two millennia of weathering, the walls are covered with moss and wild grass, appearing even more rugged and majestic.",
+            "buildings": [
+              {
+                "n": "Great Wall Site of Qi State",
+                "p": "shandong",
+                "d": "shandong_jinan"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Central Pass — Jinyang Pass and Qingshi Pass",
+            "icon": "🏛️",
+            "content": "The Jinyang Pass (at the border of Laiwu and Zhangqiu) and Qingshi Pass (at the border of Laiwu and Boshan) in the central section of the Qi Great Wall are important passes on the ancient Qi-Lu road.\n\nThe Jinyang Pass gate is still well preserved, with the characters \"Jinyang Pass\" faintly visible on the stone arch. The Qingshi Pass is strategically located, with sheer cliffs on both sides—\"one man holding the pass, ten thousand unable to break through.\" On the stone-paved road beneath the pass, deeply worn cart ruts record the footprints of merchants and travelers over two millennia.\n\nThe Muling Pass (at the border of Linqu and Yishui) in the eastern section is the most magnificent pass of the Qi Great Wall, celebrated by generations of literati.",
+            "buildings": [
+              {
+                "n": "Great Wall Site of Qi State",
+                "p": "shandong",
+                "d": "shandong_淄博"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: Eastern End — Entering the Sea at Huangdao",
+            "icon": "🌊",
+            "content": "The eastern end of the Qi Great Wall enters the sea at Yujiahe Village, Huangdao District, Qingdao. After a journey of 641 kilometers, this ancient Great Wall, first built in the Spring and Autumn period, finally embraces the ocean.\n\nAt the point where the Qi Great Wall meets the sea in Qingdao, in the morning light, the remnants of the Great Wall merge with the sea—a uniquely Chinese \"Great Wall entering the sea\" landscape. The wall at this end has long since crumbled into ruins, but the 2,600 years of history it carries is as vast and profound as the sea itself.",
+            "buildings": [
+              {
+                "n": "Great Wall Site of Qi State",
+                "p": "shandong",
+                "d": "shandong_qingdao"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "qigreatwall",
+      "en": "Great Wall Site of Qi State"
+    },
+    {
+      "n": "Tea-Horse Ancient Road",
+      "d": "cross",
+      "l": "Jinjiang District, Chengdu City",
+      "e": "Tang Dynasty to Republic of China",
+      "t": "Ancient Sites",
+      "g": [
+        "Post Station",
+        "Commerce"
+      ],
+      "desc": "The Tea Horse Ancient Road was a folk international trade route in southwestern China using horse caravans.",
+      "hist": "Dating to the Tang dynasty, the tea-horse trade flourished in Song and Ming. It became a vital international route during WWII.",
+      "arch": "Includes ancient roads, bridges, post stations, towns, tea gardens, and temples along the route.",
+      "feat": "The world's highest, most dangerous, and longest ancient cultural road.",
+      "pb": "The Seventh Batch",
+      "wh": false,
+      "sec": [
+        {
+          "n": "Hualinping Tea Horse Road",
+          "p": "Luding County, Garze Prefecture, Sichuan Province"
+        },
+        {
+          "n": "Yangjuanmen Ancient Road Site",
+          "p": "Hanyuan County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "24-Turn Ancient Road Site",
+          "p": "Hanyuan County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Qingxi Ancient City Site",
+          "p": "Hanyuan County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Tang Dynasty Qingxi Pass Site",
+          "p": "Hanyuan County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Feiyueling Ancient Road",
+          "p": "Hanyuan County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Xintian Post Station Site",
+          "p": "Yingjing County, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Sky Ladder Ancient Road",
+          "p": "Mingshan District, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Imperial Tea Garden",
+          "p": "Mingshan District, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Tea-Horse Bureau Site",
+          "p": "Mingshan District, Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Gongxing Tea House Site",
+          "p": "Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Fuhe Tea House Site",
+          "p": "Ya'an City, Sichuan Province"
+        },
+        {
+          "n": "Baolian Street Post Road",
+          "p": "Luzhou City, Sichuan Province"
+        },
+        {
+          "n": "Sichuan-Guizhou Post Road Chishui River Section",
+          "p": "Xuyong County, Luzhou City, Sichuan Province"
+        },
+        {
+          "n": "Guandou Village Section",
+          "p": "Xuyong County, Luzhou City, Sichuan Province"
+        },
+        {
+          "n": "Houziling Section",
+          "p": "Xuyong County, Luzhou City, Sichuan Province"
+        },
+        {
+          "n": "Dakanpo Section",
+          "p": "Xuyong County, Luzhou City, Sichuan Province"
+        },
+        {
+          "n": "Dengxiangying Ancient Post Station",
+          "p": "Xide County, Liangshan Prefecture, Sichuan Province"
+        },
+        {
+          "n": "Yunnanyi Ancient Architectural Complex",
+          "p": "Xiangyun County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Shaxi Ancient Town",
+          "p": "Jianchuan County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Lushi Ancient Town",
+          "p": "Fengqing County, Lincang City, Yunnan Province"
+        },
+        {
+          "n": "Jingmai Mountain Ancient Tea Garden",
+          "p": "Lancang County, Pu'er City, Yunnan Province"
+        },
+        {
+          "n": "Nannuo Mountain Ancient Tea Garden",
+          "p": "Menghai County, Xishuangbanna Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Yiwu Tea Horse Road",
+          "p": "Mengla County, Xishuangbanna Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Nakeli Tea Horse Road",
+          "p": "Ning'er County, Pu'er City, Yunnan Province"
+        },
+        {
+          "n": "Cha'antang Tea Horse Road",
+          "p": "Simao District, Pu'er City, Yunnan Province"
+        },
+        {
+          "n": "Bonan Ancient Road",
+          "p": "Yongping County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Yunlong Bridge",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Bijiang Ancient Bridge",
+          "p": "Yunlong County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Gaoligong Mountain Ancient Road",
+          "p": "Baoshan City, Yunnan Province"
+        },
+        {
+          "n": "Huiten Bridge Site",
+          "p": "Baoshan City, Yunnan Province"
+        },
+        {
+          "n": "Pingpo Town Dahejiang Central Section",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Pingpo Town Liziyuan to Shangbatian Section",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Cangshan West Town Jinniu Village Lanniqing Section",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "County Town Bonan Road Section",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Cangshan West Town Xiajie Village Shuangmo Lane",
+          "p": "Yangbi County, Dali Prefecture, Yunnan Province"
+        },
+        {
+          "n": "Shiqian Ancient Tea Garden",
+          "p": "Shiqian County, Tongren City, Guizhou Province"
+        },
+        {
+          "n": "Labrang Monastery",
+          "p": "Xiahe County, Gannan Prefecture, Gansu Province"
+        },
+        {
+          "n": "Dan'gaer Ancient City",
+          "p": "Huangyuan County, Xining City, Qinghai Province"
+        }
+      ],
+      "lat": 30.654063,
+      "lng": 104.073407,
+      "route": {
+        "title": "The Tea Horse Road: Civilization Corridor on the Roof of the World",
+        "intro": "<div class=\"xuxiake-quote\">Tea-horse trade, ancient road for a thousand years.</div>\n\nThe Tea Horse Road was a folk international trade route in southwestern China using horse caravans as the primary means of transport. It is one of the world's highest, most treacherous, and longest ancient civilization roads. With three main trunk lines—the Sichuan-Tibet, Yunnan-Tibet, and Qinghai-Tibet routes—it tightly connected Sichuan, Yunnan, Tibet, Guizhou, Qinghai, Gansu, and Shaanxi provinces, extending outward to South and Southeast Asia.\n\nThe Tea Horse Road originated from the ancient \"tea-horse trade,\" flourished during the Tang and Song dynasties, reached its peak in the Ming and Qing, and continued to operate until the mid-20th century. Along this ancient road flowed not only tea, horses, salt, and silk, but also language, religion, art, and culture.",
+        "stops": [
+          {
+            "title": "Stop 1: Tea Country — Yunnan",
+            "icon": "🍵",
+            "content": "The starting point of the Tea Horse Road lies in the Pu'er tea-producing region of Yunnan. The Jingmai Mountain Ancient Tea Garden is the site of the World Heritage \"Cultural Landscape of Old Tea Forests of the Jingmai Mountain in Pu'er,\" and is the oldest and most complete ancient tea mountain on the Tea Horse Road.\n\nDeparting from Pu'er, horse caravans carried tea westward along the Bonan Ancient Road, passing through Yunnanyi in Xiangyun and Shaxi Ancient Town in Dali, before reaching Shibao Mountain in Jianchuan. Shaxi Ancient Town is the only surviving ancient market on the Tea Horse Road. The blue stone-paved road and ancient stage of Sideng Street still seem to echo with the sound of horse bells from a thousand years ago.\n\nContinuing westward, crossing the Bijiang River via the Yunlong Bridge, and climbing over the Gaoligong Mountains, you enter the mysterious Nujiang River Gorge.",
+            "buildings": [
+              {
+                "n": "Shaxi Xingjiao Temple",
+                "p": "yunnan",
+                "d": "yunnan_dali"
+              },
+              {
+                "n": "Yunnan Yigu Architectural Complex",
+                "p": "yunnan",
+                "d": "yunnan_dali"
+              }
+            ]
+          },
+          {
+            "title": "Stop 2: Sichuan-Tibet Route — Sichuan",
+            "icon": "🏔️",
+            "content": "The Sichuan-Tibet route is one of the main trunk lines of the Tea Horse Road, starting from Ya'an, Sichuan, passing through Luding, Kangding, Litang, and Batang before entering Tibet. Ya'an is the starting point of the Sichuan-Tibet Tea Horse Road, and Mount Mengding is one of the birthplaces of Chinese tea culture.\n\nThe Hualinping Tea Horse Road in Luding is well preserved. The deep and shallow horseshoe prints on the stone-paved road record the hardships of countless horse caravans over a thousand years. The Xintian Post Station in Yingjing was an important relay station on the Sichuan-Tibet route, where horse caravans rested, changed horses, and replenished supplies.\n\nCrossing Erlang Mountain and the Dadu River, you enter the Qinghai-Tibet Plateau. On this ancient road at the world's highest altitude, every step is inscribed with courage and perseverance.",
+            "buildings": [
+              {
+                "n": "Tea-Horse Ancient Road",
+                "p": "sichuan",
+                "d": "sichuan_yaan"
+              }
+            ]
+          },
+          {
+            "title": "Stop 3: Snowy Plateau — Tibet",
+            "icon": "☸️",
+            "content": "After entering Tibet, the Tea Horse Road passes through Chamdo and Nyingchi before reaching Lhasa. Lhasa is the westernmost terminal city of the Tea Horse Road, where tea from Yunnan and Sichuan was eagerly purchased by Tibetan compatriots.\n\nThe Jokhang Temple, Ramoche Temple, Potala Palace, and other Buddhist holy sites shine with the light of faith along the Tea Horse Road. The ancient road was not only a trade route but also a path of cultural transmission—the tea culture of the Han, the Buddhist culture of Tibet, and the unique traditions of various ethnic groups along the route met, blended, and coexisted on this corridor atop the roof of the world.\n\nThough the Tea Horse Road has fallen silent in the river of history, those relics scattered along the route—the horseshoe prints on blue stone, the plank road holes in cliffs, the ancient post stations in mountain valleys—still silently tell the eternal legend of horse caravans crossing the snowy plateau.",
+            "buildings": [
+              {
+                "n": "Tea-Horse Ancient Road",
+                "p": "sichuan",
+                "d": "sichuan_yaan"
+              }
+            ]
+          }
+        ]
+      },
+      "cid": "teahorse",
+      "en": "Tea-Horse Ancient Road"
+    }
+  ],
+  "ds": {
+    "cross": {
+      "n": "Kuashengwenwubaohudanwei",
+      "c": 6
+    }
+  }
+}

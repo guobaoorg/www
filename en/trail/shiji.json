@@ -1,0 +1,116 @@
+{
+  "id": "shiji",
+  "title": "Records of the Grand Historian",
+  "subtitle": "To Understand the Ways of Heaven and Human Affairs · To Grasp the Changes of Past and Present · To Establish a School of Thought",
+  "icon": "📜",
+  "color": "#3E2723",
+  "bgColor": "#EFEBE9",
+  "description": "\"Records of the Grand Historian\" (Shiji), written by Sima Qian of the Western Han dynasty, is China's first comprehensive biographical history. The entire work comprises 130 chapters and over 526,000 characters, recording more than three thousand years of history from the legendary Yellow Emperor to the early years of Emperor Wu of Han. Lu Xun praised it as \"the greatest work of history, a Li Sao without rhyme.\" This route follows the Grand Historian's footsteps, traversing the historical stages from high antiquity to the early Han.",
+  "route": {
+    "title": "Journey Through the Records of the Grand Historian: To Understand the Ways of Heaven and Human Affairs, to Grasp the Changes of Past and Present",
+    "intro": "<div class=\"xuxiake-quote\">Though death befalls all men alike, it may be weightier than Mount Tai or lighter than a feather.</div>\n\nSima Qian, courtesy name Zichang, was a native of Xiayang (present-day Hancheng, Shaanxi). His father, Sima Tan, was the Grand Historian, and on his deathbed he charged his son to complete the great work of writing history. At twenty, the young Sima Qian began an epic journey across the realm—\"south to the Yangzi and Huai rivers, ascending Guiji Mountain, exploring the Cave of Yu, gazing at the Nine Doubts, sailing the Yuan and Xiang rivers. North across the Wen and Si rivers, studying in the capital of Lu and Qi, observing the legacy of Confucius.\" He traversed most of China, collecting folk legends and examining historical sites. Later, because of the Li Ling affair, he suffered the calamity of castration. Bearing the humiliation, he completed this millennial history.\n\n\"Though death befalls all men alike, it may be weightier than Mount Tai or lighter than a feather.\" The Grand Historian lived these words with his own life. Over two thousand years later, the figures he brought to life remain vivid—the first light of the Yellow Emperor, the rites and music of the Duke of Zhou, the hegemonic spirit of Xiang Yu, the legend of Liu Bang from village head to Son of Heaven.\n\nLet us follow the Grand Historian's footprints, starting from the Yellow Emperor's Mausoleum, passing through the Yin Ruins, the Zhou Plain, the Qinchuan, and the realm of Lu and Qi, linking together the most magnificent historical tapestry from high antiquity to the early Han.",
+    "stops": [
+      {
+        "title": "Stop One: The Yellow Emperor's Mausoleum: The First Light of Civilization",
+        "icon": "🔥",
+        "content": "The \"Records of the Grand Historian\" opens with the \"Basic Annals of the Five Emperors,\" beginning with the Yellow Emperor. Sima Qian states plainly: \"The Yellow Emperor was the son of Shaodian. His surname was Gongsun, and his given name was Xuanyuan.\" He tells us that the Yellow Emperor cultivated virtue, strengthened his armies, pacified the myriad peoples, and brought order to the four quarters—and after the Battle of Zhuolu against Yandi and Chiyou, he laid the first foundation stone of Chinese civilization.\n\nBridge Mountain is lush, the Ju River flows broad. The <a href=\"?page=building&amp;name=黄帝陵&amp;pid=shaanxi\" target=\"_blank\" data-nav>Yellow Emperor's Mausoleum</a> stands atop Bridge Mountain in Huangling County, Shaanxi, surrounded by millenary cypresses that guard the resting place of this primal ancestor of Chinese civilization. The \"cypress planted by the Yellow Emperor himself\" before the mausoleum is said to be five thousand years old; seven people linking arms cannot encircle its trunk. It has been called the \"Father of All Cypresses in the World.\" Within the Xuanyuan Temple, stelae of every dynasty stand in endless succession—from Emperor Wu of Han to Sun Yat-sen, from Mao Zedong to the present day. The sacrifice to the Yellow Emperor is an unbroken testimony to the continuity of Chinese civilization.\n\nWhether Sima Qian himself ever came to Bridge Mountain is unknown. But he gathered the words of a hundred schools, transforming myth into reliable history, making the Yellow Emperor from a legendary figure into a flesh-and-blood ancestor of civilization. Standing before the Yellow Emperor's Mausoleum, you cannot help but think: the Grand Historian began his work here because he knew that the story of Chinese civilization should begin where the light first shone.",
+        "buildings": [
+          {
+            "n": "Yellow Emperor's Mausoleum",
+            "p": "shaanxi",
+            "d": "shaanxi_yanan"
+          }
+        ]
+      },
+      {
+        "title": "Stop Two: The Yin Ruins: Oracle Bones Astound the World",
+        "icon": "🐢",
+        "content": "The \"Basic Annals of Yin\" in the \"Records of the Grand Historian\" records the Shang dynasty's thirty-one sovereigns from Cheng Tang to Di Xin (King Zhou). Sima Qian narrates in detail the important events: Pan Geng's move to Yin, Wu Ding's restoration, and King Zhou's tyranny. But for two thousand years, Western scholars questioned the existence of the Shang dynasty—until the discovery of oracle bone inscriptions provided irrefutable archaeological proof for the \"Basic Annals of Yin.\"\n\nThe <a href=\"?page=building&amp;name=殷墟&amp;pid=henan\" target=\"_blank\" data-nav>Yin Ruins</a>, located in Anyang, Henan, were the capital where Pan Geng moved the court in 1300 BC. The Shang dynasty continued here for 255 years. In 1899, Wang Yirong, a libationer of the Imperial Academy, discovered inscribed marks on \"dragon bones\" used in traditional medicine, thus unveiling the earth-shattering secret of oracle bone script. In over a century of archaeological excavation, more than 150,000 oracle bone fragments have been unearthed at the Yin Ruins, with over 4,000 individual characters confirming the Shang king list recorded in the \"Basic Annals of Yin\" with startling precision.\n\nWalking through the Yin Ruins, the foundations of palaces and ancestral temples are still discernible. The bronze vessels unearthed from Fu Hao's tomb are exquisite beyond compare; the Simuwu Ding (now known as Houmuwu Ding) weighs over 800 kilograms, the heaviest bronze vessel ever found in China. What was the true face of King Zhou, described by Sima Qian as creating a \"lake of wine and forest of meat\"? The massive sacrificial pits in the Yin royal tombs seem to offer a brutal answer. The Grand Historian's blade-like brush cut through three thousand years of mist.",
+        "buildings": [
+          {
+            "n": "Yin Ruins",
+            "p": "henan",
+            "d": "anyang"
+          }
+        ]
+      },
+      {
+        "title": "Stop Three: The Duke of Zhou's Temple: The Sacred Ground of Rites and Music",
+        "icon": "🏛️",
+        "content": "In the \"Records of the Grand Historian,\" the Duke of Zhou, Ji Dan, is an almost perfect model of human character. The \"Biography of the House of Lu\" records in detail the achievements of this founding hero of the Western Zhou: assisting King Wu in overthrowing the Shang, pacifying the rebellion of Guan Shu and Cai Shu, building the city of Luo, establishing rites and creating music, and finally returning power to King Cheng. Cao Cao's line, \"The Duke of Zhou spat out his food, and the hearts of all under heaven turned to him,\" is the highest tribute to this sage.\n\nThe <a href=\"?page=building&amp;name=周公庙&amp;pid=shaanxi\" target=\"_blank\" data-nav>Duke of Zhou's Temple</a> lies at the southern foot of Phoenix Mountain in Qishan County, Shaanxi. Qishan is the birthplace of Zhou culture—it was here that Gudan Gongdan led the Zhou people to settle, beginning the Zhou clan's eight-hundred-year foundation. The temple was first built in the Wude reign of the Tang dynasty, expanded in successive dynasties. Within the temple grounds, ancient trees reach skyward, and stelae stand in profusion. Standing atop Phoenix Mountain and gazing into the distance, the entire Zhou Plain spreads before you—three thousand years ago, this yellow earth nurtured the ritual and musical civilization that would influence China for two millennia.\n\nThe Duke of Zhou in Sima Qian's narrative is the diligent minister who \"spat out his food three times during a single meal and wrung out his hair three times during a single bath\" and the founder of the concept that \"virtue matches Heaven.\" The patriarchal clan system and ritual-music civilization he established became the archetype of Confucian political ideals. Confucius dreamed of the Duke of Zhou, praised the Duke of Zhou, and the Grand Historian took the Duke of Zhou as his spiritual guide.",
+        "buildings": [
+          {
+            "n": "Zhougong Temple",
+            "p": "shaanxi",
+            "d": "shaanxi_baoji"
+          }
+        ]
+      },
+      {
+        "title": "Stop Four: The Mausoleum of the First Qin Emperor: The Empire Dream of the Eternal Emperor",
+        "icon": "👑",
+        "content": "The \"Basic Annals of the First Emperor of Qin\" in the \"Records of the Grand Historian\" is one of the most literarily powerful chapters. The First Emperor in Sima Qian's portrayal both unified the six states, standardized script and axle widths, and also burned books, buried scholars alive, and embarked on massive construction projects with great cruelty. He wrote of the First Emperor seeking immortals, of Li Si and Zhao Gao conspiring to usurp the throne, of the plots at the Shaqiu Palace—in a few strokes, the image of the eternal emperor springs to life.\n\nThe <a href=\"?page=building&amp;name=秦始皇陵&amp;pid=shaanxi\" target=\"_blank\" data-nav>Mausoleum of the First Qin Emperor</a> is located in Lintong, Xi'an. It is the largest imperial mausoleum in Chinese history. The \"Records\" record: \"As soon as the First Emperor ascended the throne, he began digging and shaping Mount Li. After he had united the empire, over 700,000 conscripts were sent from all over the empire. They dug through three underground springs, poured molten copper for the outer coffin.\" The mausoleum park covers 56 square kilometers, and the remaining mound still stands 51 meters high. The terracotta warrior pits were accidentally discovered in 1974 by local farmers digging a well. Over 8,000 life-sized terracotta figures stand in battle formation, hailed as the \"Eighth Wonder of the World.\"\n\nSima Qian's account was written barely a century after the First Emperor, and his description matches archaeological discoveries with astonishing accuracy—\"Mercury was used to create the hundred rivers, the Yangzi and the Yellow Sea, circulating mechanically. Above, the constellations of heaven; below, the geography of the earth.\" Modern remote sensing has confirmed intense mercury anomalies beneath the sealed mound. The Grand Historian's millennial brush allows us to glimpse that underground empire that has yet to be excavated.",
+        "buildings": [
+          {
+            "n": "Qin Shi Huang Mausoleum",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Five: The Hongmen Banquet: A Single Moment of Indecision Changed the Course of History",
+        "icon": "⚔️",
+        "content": "The \"Hongmen Banquet\" episode in the \"Basic Annals of Xiang Yu\" is one of the most brilliant passages in both Chinese literary and historical writing. In 206 BC, Liu Bang entered the Guanzhong region first; Xiang Yu led 400,000 troops stationed at Hongmen. Fan Zeng urged Xiang Yu to kill Liu Bang, but Xiang Yu hesitated. At the feast, Xiang Zhuang performed a sword dance aimed at Liu Bang; Fan Kuai burst into the tent and berated Xiang Yu—the Grand Historian delineates each character's personality with extraordinary depth. Xiang Yu's arrogance and misplaced mercy, Liu Bang's forbearance and quick adaptability—among the clinking cups and clashing swords, the fate of the next four centuries of the Han empire was decided.\n\nThe Hongmen Banquet site is in Xinfeng Town, Lintong, just over ten kilometers from the <a href=\"?page=building&amp;name=秦始皇陵&amp;pid=shaanxi\" target=\"_blank\" data-nav>Mausoleum of the First Qin Emperor</a>. A monument now marks the site; the clashing swords of that long-ago feast have long since faded. Yet Sima Qian's account of the seating arrangement—\"Xiang Wang and Xiang Bo sat facing east; Yafu (Fan Zeng) sat facing south... the Prince of Pei (Liu Bang) sat facing north; Zhang Liang stood attending to the west\"—makes every reader of the \"Records\" feel as if they were there. You can almost hear the crisp sound of Fan Zeng raising his jade jue, see Zhang Liang quietly rising and slipping away.\n\nThe Grand Historian's genius lies in writing Xiang Yu as a tragedy. He placed Xiang Yu in the \"Basic Annals\"—the section for emperors—because in his heart, this loser was still a hero. \"I could pull down mountains with my might, my spirit overshadowed the age; but my time was against me, and my steed would not go forward\"—the song at Gaixia was the final lament of a doomed hero.",
+        "buildings": [
+          {
+            "n": "Qin Shi Huang Mausoleum",
+            "p": "shaanxi",
+            "d": "shaanxi_xian"
+          }
+        ]
+      },
+      {
+        "title": "Stop Six: Maoling: The Grand Ambition of Emperor Wu of Han's Golden Age",
+        "icon": "🐎",
+        "content": "The \"Records of the Grand Historian\" ends in the early years of the Taichu reign of Emperor Wu of Han. This means Sima Qian was writing \"living history\"—his brush directly touched the sovereign of his own time. Emperor Wu of Han, Liu Che, ascended the throne at sixteen and reigned for fifty-four years, striking north against the Xiongnu, pacifying the hundred Yue tribes in the south, opening the Western Regions, and pioneering the Silk Road. The biographies of Wei Qing, Huo Qubing, Zhang Qian, Li Guang, and others in the \"Records\" create a vivid panorama of that heroic, blood-stirring age.\n\nThe <a href=\"?page=building&amp;name=茂陵&amp;pid=shaanxi\" target=\"_blank\" data-nav>Maoling Mausoleum</a> in Xingping, Shaanxi, is the largest of the eleven Western Han imperial tombs. Liu Che began building his mausoleum in the second year of his reign, a process spanning fifty-three years. The sealed earth mound, shaped like an inverted dou (ancient measuring vessel), stands majestically on the Xianyang Plateau. Before Huo Qubing's tomb east of the mausoleum, seventeen large stone carvings in a rough, powerful style stand—the stone horse trampling a Xiongnu, head raised high, its hooves pressing down on a struggling enemy, is the most震撼 visual expression of the Han dynasty's martial spirit.\n\nYet Sima Qian's own fate was changed by this mighty sovereign. In the second year of the Tianhan reign (99 BC), Li Ling led five thousand infantry deep into Xiongnu territory, was defeated and captured. The entire court fell over themselves to condemn Li Ling, but the Grand Historian alone stepped forward to defend him, incurring the wrath of Emperor Wu and being sentenced to castration. For a scholar-official, this was a humiliation worse than death. But Sima Qian chose to \"bear the shame and live on\"—because he still had not finished the \"Records of the Grand Historian.\" The emperor lying beneath the sealed mound of Maoling probably died never knowing that his greatest minister was not Wei Qing or Huo Qubing, but the castrated Grand Historian.",
+        "buildings": [
+          {
+            "n": "Mao Ling",
+            "p": "shaanxi",
+            "d": "shaanxi_xianyang"
+          }
+        ]
+      },
+      {
+        "title": "Stop Seven: The Confucius Temple in Qufu: The Grand Historian's Spiritual Pilgrimage",
+        "icon": "📖",
+        "content": "In the \"Records of the Grand Historian,\" Confucius is placed in the \"Hereditary Houses\" section—the highest honor the Grand Historian could bestow. The \"Hereditary House of Confucius\" and the \"Biographies of the Disciples of Zhongni\" occupy a substantial portion of the work. During his youthful journey across the realm at age twenty, Sima Qian made a special trip to the land of Lu, lingering long before the Confucius Temple. He wrote: \"When I read the works of Confucius, I wanted to see the man himself. I went to Lu and observed Zhongni's temple hall, his chariots, robes, and ritual vessels. The scholars practiced ritual in his home at the proper times. I lingered, unable to tear myself away.\"\n\nThe <a href=\"?page=building&amp;name=曲阜孔庙及孔府&amp;pid=shandong\" target=\"_blank\" data-nav>Qufu Confucius Temple and Confucius Mansion</a> is one of China's largest ritual building complexes. The year after Confucius died, Duke Ai of Lu converted his former residence into a temple. Over the following two millennia, successive emperors expanded and renovated it, resulting in a nine-courtyard architectural marvel of gleaming gold and splendor. The Dacheng Hall, with its double-eaved hip-and-gable roof, features ten deep-relief carved dragon columns of exquisite craftsmanship. Adjacent to the temple, the Confucius Mansion was the hereditary residence of Confucius' direct descendants, called \"the first family under heaven.\"\n\nTo the north of the city, the <a href=\"?page=building&amp;name=孔林&amp;pid=shandong\" target=\"_blank\" data-nav>Confucius Forest</a> covers two square kilometers, a family cemetery for Confucius and his descendants spanning over 2,400 years. Tens of thousands of ancient trees, over 100,000 grave mounds—it is the longest continuous family cemetery in the world. Walking among the pines and cypresses of the Confucius Forest, you recall the words of the Grand Historian: \"There have been many kings and wise men under heaven. In their own time they were honored, but after they passed, that was the end. Confucius, though a commoner, has been revered for over ten generations. Scholars of all ages look to him as their ultimate authority. From the Son of Heaven and princes down, everyone in China who studies the Six Classics takes the Master as his standard. He may truly be called the Supreme Sage!\" If the Grand Historian knows of this in the underworld, he would surely smile. He and Confucius stand together as eternal beacons of Chinese civilization.",
+        "buildings": [
+          {
+            "n": "Qufu Confucius Temple and Confucius Mansion",
+            "p": "shandong",
+            "d": "shandong_jining"
+          },
+          {
+            "n": "Kong Lin",
+            "p": "shandong",
+            "d": "shandong_jining"
+          }
+        ]
+      },
+      {
+        "title": "Stop Eight: The Gaixia Ruins: Xiang Yu's Last Night, Parting with His Concubine",
+        "icon": "💔",
+        "content": "The \"Basic Annals of Xiang Yu\" in the \"Records of the Grand Historian\" is the masterpiece of the entire work. The Grand Historian writes of Xiang Yu: he was \"over eight feet tall, strong enough to lift a tripod, and gifted beyond all others\"; at the Battle of Julu, he staked everything by smashing the cooking pots, winning nine battles in nine engagements, and the feudal lords \"advanced on their knees, not daring to look up\"; and then there is the final chapter of the siege at Gaixia—\"In the night, he heard the Han army all around singing songs from Chu. Xiang Yu, greatly startled, said, 'Has Han already conquered Chu? How many Chu people there are!'\" Thus came the Farewell to His Concubine, Yu Ji's suicide; the Wujiang ferryman waiting with his boat, and Xiang Yu's laugh: \"Heaven is destroying me. Why should I cross?\"\n\nThe <a href=\"?page=building&amp;name=垓下遗址&amp;pid=anhui\" target=\"_blank\" data-nav>Gaixia Ruins</a> are in Haocheng Town, Guzhen County, Anhui. In 202 BC, Liu Bang assembled 600,000 troops from Han Xin, Peng Yue, Ying Bu, and others to trap Xiang Yu's 100,000 Chu troops here. Remains of rammed-earth walls survive; large numbers of Qin-Han artifacts have been unearthed within and around the site. Standing on the site, wind blowing across the northern Anhui plain, you can almost hear the Chu songs rising all around on that night two thousand years ago, see the man in armor gripping his long halberd charging one last time in the firelight.\n\nIn the \"Grand Historian's Remarks\" at the end of the \"Basic Annals of Xiang Yu,\" Sima Qian wrote: \"Xiang Yu turned his back on Guanzhong, cherished Chu, banished the Righteous Emperor and set himself up. He resented the feudal lords for turning against him—that was difficult indeed. He prided himself on his martial achievements, relied on his own cunning and refused to learn from the ancients, thinking to build a hegemonic empire by force alone. In five years, his kingdom was lost. He died at Dongcheng and still did not awaken or blame himself—that was his error. To say 'Heaven destroyed me, not that I used arms wrongly'—is that not absurd!\" Despite his criticism, he still made Xiang Yu immortal—because a true historian knows that history is not merely the victor's song.",
+        "buildings": [
+          {
+            "n": "Gaixia Site",
+            "p": "anhui",
+            "d": "anhui_bengbu"
+          }
+        ]
+      }
+    ]
+  }
+}
