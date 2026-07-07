@@ -1,7 +1,7 @@
 // ==================== 统一缓存管理 + 全局 API 请求入口 ====================
 // 全局仅此一处封装原生 fetch，所有业务数据请求必须经由 Cache.fetchMsgPack()，禁止业务代码直接调用 fetch()
 // 修改此版本号即可全局失效所有缓存（内存 + localStorage + SW）
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 import { decode as msgpackDecode } from './vendor/msgpack.js';
 const LS_PREFIX = 'guobao';
 
