@@ -2,7 +2,7 @@
 // 渐进增强层：不兼容环境不影响网站核心功能
 // 仅缓存静态资源（CSS/JS），HTML 使用网络优先（语言相关），业务数据由双层业务缓存管理
 
-const SW_VERSION = 'v1';
+const SW_VERSION = 'v2';
 const STATIC_CACHE = `guobao-static-${SW_VERSION}`;
 const RUNTIME_CACHE = `guobao-pages-${SW_VERSION}`;
 
